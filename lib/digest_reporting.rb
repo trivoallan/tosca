@@ -34,13 +34,13 @@ module DigestReporting
      :order => "contract_id ASC", :include => [:issuetype, :severity, :statut]}
     issues = Issue.find(:all, options)
 
-    @result = Array.new
+    @result = []
     last_contract_id = nil
     issues.each do |r|
       if last_contract_id != r.contract_id
         dc = DigestContracts.new
         dc.contract = r.contract
-        dc.issues = Array.new
+        dc.issues = []
         @result.push(dc)
       end
 
@@ -71,14 +71,14 @@ module DigestReporting
     issues = Issue.find(:all, options)
 
     @result = DigestManagers.new
-    @result.important = Array.new
-    @result.other = Array.new
+    @result.important = []
+    @result.other = []
     last_contract_id = nil
     issues.each do |r|
       if last_contract_id != r.contract_id and not r.critical?
         dc = DigestContracts.new
         dc.contract = r.contract
-        dc.issues = Array.new
+        dc.issues = []
         @result.other.push(dc)
       end
 

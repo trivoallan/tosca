@@ -71,7 +71,7 @@ class ReportingController < ApplicationController
     #We build a hash of { number_day => [new issues of the day]}
     @issues = {}
     issues.each do |r|
-      @issues[r.created_on.day] ||= Array.new
+      @issues[r.created_on.day] ||= []
       @issues[r.created_on.day].push(r)
     end
   end
@@ -346,7 +346,7 @@ class ReportingController < ApplicationController
 
 
   def init_compute_by_type
-    @types = Array.new
+    @types = []
     @contracts.each do |c|
       @types.concat(c.client.issuetypes)
     end
@@ -474,13 +474,13 @@ class ReportingController < ApplicationController
   # 3 initialisations are needed : titles, colors & datas.
   def init_data_general
     # [:empty] are needed for helpers, which always consider that first column is a title one.
-    @data[:by_type] = Array.new
-    @data[:by_severity] = Array.new
+    @data[:by_type] = []
+    @data[:by_severity] = []
     @data[:by_status] =
      [ [_('Cancelled')], [_('Bypassed')], [_('Fixed')], [_('Closed')], [_('Active')] ]
     @data[:by_status] =
      [ [_('Cancelled')], [_('Bypassed')], [_('Fixed')], [_('Closed')], [_('Active')] ]
-    @data[:by_software] = Array.new
+    @data[:by_software] = []
 
     # calcul des délais
     @data[:callback_time] =

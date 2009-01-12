@@ -96,7 +96,7 @@ protected
         # sort actions list, in order to display'em nicely
         # uniq is there coz' we can have multiple paths with different verbs
         @routes.last.last.sort!.uniq! unless @routes.empty?
-        @routes.push [ r.requirements[:controller], Array.new ]
+        @routes.push [ r.requirements[:controller], [] ]
       end
       @routes.last.last.push r.requirements[:action]
       last_controller = r.requirements[:controller]

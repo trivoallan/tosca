@@ -151,7 +151,7 @@ class ContractsController < ApplicationController
   def add_software
     @contract = Contract.find(params[:id])
     software = params['software'] || []
-    versions = Array.new
+    versions = []
     software.each do |s|
       # get rid of the random_field hack
       s = s[1]
