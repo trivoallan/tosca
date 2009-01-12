@@ -212,6 +212,7 @@ class AccountController < ApplicationController
       if @user.generate_password and @user.save
         flash[:warn] = nil
         flash[:notice] = _('Your new password has been generated.')
+        #TODO : find a way to put it in the model user
         Notifier::deliver_user_signup(@user)
       end
     end
