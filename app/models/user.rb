@@ -105,6 +105,12 @@ class User < ActiveRecord::Base
     true
   end
 
+  after_create :do_after_create
+  def do_after_create
+    Notifier::deliver_user_signup(self)
+    true
+  end
+
   # Eck ... We must add message manually in order to
   # not have the "pwd" prefix ... TODO : find a pretty way ?
   # TODO : check if gettext is an answer ?

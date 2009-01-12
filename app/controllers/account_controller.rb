@@ -82,7 +82,6 @@ class AccountController < ApplicationController
       @user.generate_password # from PasswordGenerator, see lib/
       _associate_user
       if @user.save
-        Notifier::deliver_user_signup(@user, @session_user)
         # The commit has to be after sending email, not before
         flash[:notice] = _("Account successfully created.")
         flash[:notice] += message_notice(@user.email, nil)
@@ -213,7 +212,7 @@ class AccountController < ApplicationController
       if @user.generate_password and @user.save
         flash[:warn] = nil
         flash[:notice] = _('Your new password has been generated.')
-        Notifier::deliver_user_signup(@user, @session_user)
+        Notifier::deliver_user_signup(@user)
       end
     end
   end
