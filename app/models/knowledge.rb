@@ -53,7 +53,7 @@ class Knowledge < ActiveRecord::Base
   
   def subscribed
     return 0 unless self.engineer and self.engineer.id and self.id
-    (Subscription.find(:all, :conditions => { :user_id => self.engineer.id,
+    (Subscription.all(:conditions => { :user_id => self.engineer.id,
       :model_id => self.id, :model_type => 'Knowledge'}).empty? ? 0 : 1)
   end
   
@@ -62,7 +62,7 @@ class Knowledge < ActiveRecord::Base
   end
 
   def find_subscriptions_by_user(user)
-    Subscription.find(:all, :conditions => { :user_id => user.id,
+    Subscription.all(:conditions => { :user_id => user.id,
         :model_id => self.id,
         :model_type => 'Knowledge'})
   end

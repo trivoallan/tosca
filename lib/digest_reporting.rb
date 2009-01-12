@@ -32,7 +32,7 @@ module DigestReporting
 
     options = { :conditions => [ "updated_on >= ? ", updated ],
      :order => "contract_id ASC", :include => [:issuetype, :severity, :statut]}
-    issues = Issue.find(:all, options)
+    issues = Issue.all(options)
 
     @result = []
     last_contract_id = nil
@@ -49,7 +49,7 @@ module DigestReporting
       dr = DigestIssues.new
       dr.issue = r
       dr.issue_at = r.state_at(updated)
-      dr.comments = r.comments.find(:all, options)
+      dr.comments = r.comments.all(options)
       @result.last.issues.push(dr)
 
       last_contract_id = r.contract_id
@@ -68,7 +68,7 @@ module DigestReporting
 
     options = { :conditions => [ "updated_on >= ? ", updated ],
      :order => "contract_id ASC", :include => [:issuetype, :severity, :statut]}
-    issues = Issue.find(:all, options)
+    issues = Issue.all(options)
 
     @result = DigestManagers.new
     @result.important = []
@@ -91,7 +91,7 @@ module DigestReporting
         dr  = DigestIssues.new
         dr.issue = r
         dr.issue_at = r.state_at(updated)
-        dr.comments = r.comments.find(:all, options)
+        dr.comments = r.comments.all(options)
         @result.other.last.issues.push(dr)
       end
 

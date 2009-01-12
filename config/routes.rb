@@ -59,7 +59,7 @@ ActionController::Routing::Routes.draw do |map|
   # RESTful routes with ORM
   # Sample call :
   #   link_to _('..'), edit_account_path(:id => a.id)
-  #   link_to _('..'), accounts_path()
+  #   link_to _('..'), accounts_path
   # !!! CONVENTION !!!
   # - It MUST be in alphabetical order -
   # !!! CONVENTION !!!

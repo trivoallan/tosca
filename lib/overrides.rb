@@ -535,7 +535,7 @@ module AutoComplete
       define_method("auto_complete_for_#{object}_#{method}") do
         if object.to_s.camelize.constantize.methods.include? method.to_s
           search = params[object][method]
-          collection = object.to_s.camelize.constantize.find(:all, options)
+          collection = object.to_s.camelize.constantize.all(options)
           result = []
           collection.each do |c|
             result.push c if c.send(method).downcase.include? search.downcase or search == "*"
@@ -547,7 +547,7 @@ module AutoComplete
             :conditions => [ "LOWER(#{method}) LIKE ?", '%' + params[object][method].downcase + '%' ],
             :order => "#{method} ASC",
             :limit => 10 }.merge!(options)
-          @items = object.to_s.camelize.constantize.find(:all, find_options)
+          @items = object.to_s.camelize.constantize.all(find_options)
         end
         render :inline => "<%= auto_complete_choice('#{object}', '#{method}', @items, '#{model}[#{field}_ids]') %>"
       end

@@ -32,6 +32,6 @@ class LoadSkills < ActiveRecord::Migration
   end
 
   def self.down
-    Competence.find(:all).each{ |c| c.destroy }
+    Competence.all.each{ |c| c.destroy }
   end
 end

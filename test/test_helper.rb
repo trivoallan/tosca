@@ -120,7 +120,7 @@ class Test::Unit::TestCase
   # Ex : check_strings(Document, :date_delivery_on_formatted)
   # => will call all StringMethods and the additionnal date_delivery_on_formatted
   def check_strings(klass, *methods)
-    klass.find(:all).each { |o|
+    klass.all().each { |o|
       StringMethods.each { |m|
         begin
           assert !o.send(m).blank? if o.respond_to? m

@@ -34,7 +34,7 @@ class CreateRulesTable < ActiveRecord::Migration
       t.column :max,            :integer, :default => -1
     end
 
-    Contract.find(:all).each do |c|
+    Contract.all.each do |c|
       if c.support?
         c[:rule_type] = 'Rules::Credit'
       else

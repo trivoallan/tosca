@@ -29,6 +29,6 @@ class LoadContributionsType < ActiveRecord::Migration
   end
 
   def self.down
-    Typecontribution.find(:all).each{ |tc| tc.destroy }
+    Typecontribution.all.each{ |tc| tc.destroy }
   end
 end

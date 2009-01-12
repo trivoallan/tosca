@@ -344,8 +344,8 @@ class IssuesController < ApplicationController
 
   def _panel
     @statuts = Statut.find_select(:order => 'id')
-    @issuetypes = Issuetype.find_select()
-    @severities = Severity.find_select()
+    @issuetypes = Issuetype.find_select
+    @severities = Severity.find_select
     if @session_user.engineer?
       @contracts = Contract.find_select(Contract::OPTIONS)
       @engineers = User.find_select(User::EXPERT_OPTIONS)
@@ -367,7 +367,7 @@ class IssuesController < ApplicationController
     result
   end
 
-  def _form4versions()
+  def _form4versions
     software_id, contract_id = @issue.software_id.to_i, @issue.contract_id.to_i
     if software_id == 0 || contract_id == 0
       @versions = []
@@ -408,7 +408,7 @@ class IssuesController < ApplicationController
     if @issue.contract
       _form4contract(@issue.contract)
     elsif !@contracts.empty?
-      Contract.find(:all).each { |c|
+      Contract.all.each { |c|
         if _form4contract(c)
           @issue.contract = c
           break
@@ -424,13 +424,13 @@ class IssuesController < ApplicationController
   def set_attachments(issue_id)
     options = { :conditions => filter_comments(issue_id), :order =>
       'comments.updated_on DESC', :include => [:comment] }
-    @attachments = Attachment.find(:all, options)
+    @attachments = Attachment.all(options)
   end
 
   def set_comments(issue_id)
     fragment = "issues/#{issue_id}/comments-#{@session_user.kind}"
     if action_name == 'print' || !read_fragment(fragment)
-      @comments = Comment.find(:all, :conditions =>
+      @comments = Comment.all(:conditions =>
         filter_comments(issue_id), :order => "created_on ASC",
         :include => [:user,:statut,:severity])
     end

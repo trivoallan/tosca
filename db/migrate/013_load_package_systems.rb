@@ -30,6 +30,6 @@ class LoadPackageSystems < ActiveRecord::Migration
   end
 
   def self.down
-    Conteneur.find(:all).each{ |c| c.destroy }
+    Conteneur.all.each{ |c| c.destroy }
   end
 end

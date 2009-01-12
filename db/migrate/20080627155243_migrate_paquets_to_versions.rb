@@ -112,11 +112,11 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
     end
     add_index :archives, :release_id
 
-    package = Conteneur.find(:all,
+    package = Conteneur.all(
       :conditions => [ "name IN (?)", %w(rpm deb pkg) ]).collect { |c| c.id }
     puts "Conteneur found"
 
-    Paquet.find(:all, :order => "logiciel_id ASC, version ASC").each do |p|
+    Paquet.all(:order => "logiciel_id ASC, version ASC").each do |p|
       version = Version.create(:logiciel_id => p.logiciel_id, :name => p.version)
       # an id is needed before saving a n-n relationship
       version.contracts << p.contract
@@ -140,7 +140,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
 
     #Remove duplicate versions
     last_version = Version.new
-    Version.find(:all, :order => 'logiciel_id, name').each do |v|
+    Version.all(:order => 'logiciel_id, name').each do |v|
       if v.name == last_version.name and v.logiciel_id == last_version.logiciel_id
         v.releases.each do |r|
           r.version_id = last_version.id
@@ -180,7 +180,7 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
 
     #Remove duplicate releases
     last_release = Release.new
-    Release.find(:all, :order => 'contract_id, version_id, name').each do |r|
+    Release.all(:order => 'contract_id, version_id, name').each do |r|
       if r.version_id == last_release.version_id and
           r.contract_id == last_release.contract_id and
           r.name == last_release.name
@@ -193,14 +193,14 @@ class MigratePaquetsToVersions < ActiveRecord::Migration
 
     old_archive_path = File.join(RAILS_ROOT, "files", "binaire", "archive")
     new_archive_path = File.join(RAILS_ROOT, "files", "archive", "file")
-    Binaire.find(:all, :conditions => "archive is not null").each do |b|
+    Binaire.all(:conditions => "archive is not null").each do |b|
       logiciel = Logiciel.find(b.paquet.logiciel_id)
-      version = logiciel.versions.find(:all, :conditions => { :name => b.paquet.version })
+      version = logiciel.versions.all(:conditions => { :name => b.paquet.version })
       if version.size != 1
         puts "Too much versions #{logiciel.name}, ##{logiciel.id}, ##{b.id}"
       else
         version = version.first
-        release = version.releases.find(:all, :conditions => { :name => b.paquet.release,
+        release = version.releases.all(:conditions => { :name => b.paquet.release,
           :contract_id => b.paquet.contract_id })
 
         release.each do |r|

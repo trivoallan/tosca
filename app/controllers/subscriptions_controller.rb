@@ -19,7 +19,7 @@
 class SubscriptionsController < ApplicationController
   # GET /subscriptions
   def index
-    @subscriptions = Subscription.find(:all)
+    @subscriptions = Subscription.all
   end
 
   # GET /subscriptions/1

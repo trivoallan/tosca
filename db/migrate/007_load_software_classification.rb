@@ -32,6 +32,6 @@ class LoadSoftwareClassification < ActiveRecord::Migration
   end
 
   def self.down
-    Groupe.find(:all).each{ |g| g.destroy }
+    Groupe.all.each{ |g| g.destroy }
   end
 end

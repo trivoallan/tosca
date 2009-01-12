@@ -65,7 +65,7 @@ class ReportingController < ApplicationController
     #   FROM issues
     #   WHERE (created_on BETWEEN '2007-10-01 00:00:00' AND '2008-11-30 23:59:59')
     #   GROUP BY DAYOFMONTH(issues.created_on);
-    issues = Issue.find(:all, :conditions => conditions)
+    issues = Issue.all(:conditions => conditions)
     @number_issues = issues.size
 
     #We build a hash of { number_day => [new issues of the day]}
@@ -85,7 +85,7 @@ class ReportingController < ApplicationController
   end
 
   def general
-    _titles()
+    _titles
     redirect_to configuration_reporting_path and return unless
       params[:reporting]
 
@@ -245,7 +245,7 @@ class ReportingController < ApplicationController
   # Calcul un tableaux du respect des délais
   # pour les 3 étapes : prise en compte, contournée, corrigée
   def compute_time(data)
-    issues = Issue.find(:all)
+    issues = Issue.all
     phonecalls = data[:callback_time]
     workarounds = data[:workaround_time]
     corrections = data[:correction_time]
@@ -380,7 +380,7 @@ class ReportingController < ApplicationController
 
   end
 
-  def init_compute_by_severity()
+  def init_compute_by_severity
     severities = Severity.all
     severities.each_with_index do |s, i|
       severities[i] = { :conditions => { :severity_id => s.id } }

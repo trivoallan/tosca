@@ -12,6 +12,6 @@ class LoadVendors < ActiveRecord::Migration
   end
 
   def self.down
-    Distributeur.find(:all).each{ |d| d.destroy }
+    Distributeur.all.each{ |d| d.destroy }
   end
 end

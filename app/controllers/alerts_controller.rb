@@ -53,7 +53,7 @@ class AlertsController < ApplicationController
       if alert
         team = alert.team
         conditions = [ 'issues.contract_id IN (?) AND issues.statut_id = 1', team.contract_ids ]
-        @issues_found = Issue.find(:all, :conditions => conditions)
+        @issues_found = Issue.all(:conditions => conditions)
       end
     end
   end

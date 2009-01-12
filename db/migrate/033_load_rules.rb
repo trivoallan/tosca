@@ -27,7 +27,7 @@ class LoadRules < ActiveRecord::Migration
   end
 
   def self.down
-    Ossa.find(:all).each{ |o| o.destroy }
-    TimeTicket.find(:all).each{ |tt| tt.destroy }
+    Ossa.all.each{ |o| o.destroy }
+    TimeTicket.all.each{ |tt| tt.destroy }
   end
 end

@@ -285,7 +285,7 @@ class Issue < ActiveRecord::Base
 
   # Used for migration or if there is an issue on the computing of issue
   # It can be used on all issue with a line like this in the console :
-  # <tt>Issue.find(:all).each{|r| r.reset_elapsed }</tt>
+  # <tt>Issue.all.each{|r| r.reset_elapsed }</tt>
   def reset_elapsed
     # clean previous existing elapsed
     Elapsed.destroy_all(['elapseds.issue_id = ?', self.id])
@@ -296,7 +296,7 @@ class Issue < ActiveRecord::Base
     self.elapsed = Elapsed.new(self)
     options = { :conditions => 'comments.statut_id IS NOT NULL',
       :order => "comments.created_on ASC" }
-    life_cycle = self.comments.find(:all, options)
+    life_cycle = self.comments.all(options)
 
     # first one is different : it's the submission of the issue
     life_cycle.first.update_attribute :elapsed, rule.elapsed_on_create
@@ -386,7 +386,7 @@ class Issue < ActiveRecord::Base
     options[:conditions] = conditions
 
     conditions << [ own_id ]
-    Issue.find(:all, options)
+    Issue.all(options)
   end
 
   #Find the pending requests from a list of contracts
@@ -398,7 +398,7 @@ class Issue < ActiveRecord::Base
     options[:conditions] = conditions
 
     conditions << contract_ids
-    Issue.find(:all, options)
+    Issue.all(options)
   end
 
   #This model is scoped by Contract

@@ -60,7 +60,7 @@ class ContractTest < Test::Unit::TestCase
   end
 
   def test_issuetypes
-    Contract.find(:all).each do |c|
+    Contract.all().each do |c|
       c.issuetypes.each{ |td| assert_kind_of Issuetype, td }
     end
   end
@@ -76,12 +76,12 @@ class ContractTest < Test::Unit::TestCase
 
   def test_scope
     Contract.set_scope([Contract.first(:order => :id).id])
-    Contract.find(:all)
+    Contract.all()
     Contract.remove_scope
   end
 
   def test_engineer_users
-    Contract.find(:all).each do |c|
+    Contract.all().each do |c|
       c.engineer_users.each { |i|
         assert_kind_of User, i
         assert i.id

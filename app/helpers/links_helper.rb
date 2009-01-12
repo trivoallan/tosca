@@ -145,7 +145,7 @@ EOS
                    :title => _('Access to the list of contributions.'))
   end
 
-  def public_link_to_about()
+  def public_link_to_about
     public_link_to('?', about_welcome_path,
                    :title => _("About %s") % Tosca::App::Name)
   end

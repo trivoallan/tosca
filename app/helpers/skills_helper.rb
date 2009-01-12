@@ -24,7 +24,7 @@ module SkillsHelper
 
   # call it like :
   # <%= link_to_new_skill %>
-  def link_to_new_skill()
+  def link_to_new_skill
     link_to image_create(_('a technology')), new_skill_path
   end
 

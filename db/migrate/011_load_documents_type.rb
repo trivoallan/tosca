@@ -36,6 +36,6 @@ class LoadDocumentsType < ActiveRecord::Migration
   end
 
   def self.down
-    Typedocument.find(:all).each{ |td| td.destroy }
+    Typedocument.all.each{ |td| td.destroy }
   end
 end

@@ -53,7 +53,7 @@ module PagesHelper
         :confirm => _('Do you really want to destroy this object ?')
   end
 
-  def link_to_back()
+  def link_to_back
     link_to(StaticImage::back, :action =>'index')
   end
 

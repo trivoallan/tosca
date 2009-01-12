@@ -34,7 +34,7 @@ class MoveSupport2contrat < ActiveRecord::Migration
     add_column :contracts, :newsletter, :boolean, :default => false
     add_column :contracts, :heure_ouverture, :integer, :default => 9, :null => false
     add_column :contracts, :heure_fermeture, :integer, :default => 18, :null => false
-    Client.find(:all).each do |client|
+    Client.all.each do |client|
       support = client.support
       client.contracts.each { |c|
         c.heure_ouverture = support.ouverture
@@ -63,7 +63,7 @@ class MoveSupport2contrat < ActiveRecord::Migration
     end
     add_column :clients, :support_id, :integer
 
-    Client.find(:all).each do |client|
+    Client.all.each do |client|
       support = Support.new
       client.contracts.each { |c|
         support.ouverture = c.heure_ouverture

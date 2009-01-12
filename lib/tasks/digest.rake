@@ -17,7 +17,7 @@ namespace :tosca do
       isSunday = ( now.wday == 0 )
       isEndMonth = ( now.last_month.end_of_month == now.yesterday )
 
-      User.find(:all).each do |u|
+      User.all.each do |u|
         define_scope(u, true) do
           #Send emails eveyday except fior Saturdays and Sundays
           if u.prefers_digest_daily? and not isSunday and not isMonday

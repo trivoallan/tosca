@@ -97,7 +97,7 @@ class Contract < ActiveRecord::Base
 
   def find_recipients_select
     options = { :conditions => ['users.inactive = ?', false]}
-    self.recipient_users.find(:all, options).collect { |u| [u.name, u.id ] }
+    self.recipient_users.all(options).collect { |u| [u.name, u.id ] }
   end
 
   def start_date_formatted
@@ -119,7 +119,7 @@ class Contract < ActiveRecord::Base
     joins = 'INNER JOIN commitments ON commitments.issuetype_id = issuetypes.id '
     joins << 'INNER JOIN commitments_contracts ON commitments.id = commitments_contracts.commitment_id'
     conditions = [ 'commitments_contracts.contract_id = ? ', id ]
-    Issuetype.find(:all,
+    Issuetype.all(
                      :select => "DISTINCT issuetypes.*",
                      :conditions => conditions,
                      :joins => joins)
