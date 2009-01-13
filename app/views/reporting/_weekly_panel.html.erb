@@ -1,0 +1,13 @@
+<% options = { :update => 'col1_content', :method => :get,
+    :url => weekly_reporting_path,
+    :before => "Element.show('spinner')",
+    :success => "Element.hide('spinner')" } %>
+
+<% form_remote_tag( options.dup.update(:html => {
+    :id => 'filters', :name => 'filters'})) do %>
+
+<%= div_toggle _('Actions'), 'menu_actions', :class => "menu_title" %>
+<ul class="menu" id="menu_actions">
+</ul>
+
+<% end %>

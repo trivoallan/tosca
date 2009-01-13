@@ -6,7 +6,7 @@ module CalendarGrid
   # Returns a CalendarGrid::Calendar object. +args+ are the same 
   # as those for CalendarGrid::Builder#initialize
   def self.build(*args, &block)
-    Builder.new(*args).build &block
+    Builder.new(*args).build(&block)
   end
 
   # The result of Builder#build. Holds a list of Year objects and adds

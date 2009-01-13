@@ -40,20 +40,20 @@ module DatesHelper
   end
   
   def complete_date(date)
-     result = _(date.strftime("%A"))            #day of the week : Monday
-     result << " "
-     result << date.strftime("%d")              #day of the month : 10
-     result << " "
-     result << _(date.strftime("%B"))           #month : December
-     result << " "
-     result << date.strftime("%Y")              #Year : 2007
+    result = _(date.strftime("%A"))            #day of the week : Monday
+    result << " "
+    result << date.strftime("%d")              #day of the month : 10
+    result << " "
+    result << _(date.strftime("%B"))           #month : December
+    result << " "
+    result << date.strftime("%Y")              #Year : 2007
   end
   
-  # Display a BIG calendar for the month of the date in parm
+  # Display a BIG calendar for the month of the date in param
   #
   # options :
   #   :title Display a title for the calendar
-  def calendar(date, options = {})
+  def calendar_month(date, options = {})
     cal = CalendarGrid.build(date, 1)
     
     #We limit to one year and one month
@@ -90,5 +90,74 @@ module DatesHelper
     end        
     result << %(</table></div>)
   end
- 
+
+  # Display a BIG calendar for the week of the date in param
+  #
+  #
+  #
+  def calendar_weekly(start_date, options = {}, &block)
+    end_date = start_date.end_of_week - 2.day
+    span = end_date.day - start_date.day
+    dates = (start_date.day..end_date.day)
+
+    block ||= Proc.new { |d| nil }
+    defaults = {
+      :table_class => 'week-view',
+      :day_name_class => 'dayName',
+      :day_class => 'day',
+      :show_today => true,
+      :previous_span_text => nil,
+      :next_span_text => nil,
+      :start_time => 8,
+      :end_time => 19,
+      :duration => 30
+    }
+    options = defaults.merge options
+
+    time_range = (options[:start_time]..options[:end_time]).to_a
+
+		if options[:url]
+      next_start_date = end_date + 1.day
+      next_end_date   = next_start_date + 5.day
+      next_link = link_to('>>', url_for(options[:url].merge(:start_date => next_start_date, :end_date => next_end_date)) + options[:url_append])
+      prev_start_date = start_date - span.day
+      prev_end_date = start_date - 1.day
+      prev_link = link_to('<<', url_for(options[:url].merge(:start_date => prev_start_date, :end_date => prev_end_date)) + options[:url_append])
+		end
+
+    cal = "<table class=\"#{options[:table_class]}\">"
+    cal << '<thead><tr>'
+    cal << "<th><h3>#{start_date.year}</h3></th>"
+    dates.each do |d|
+      d = start_date.beginning_of_day - start_date.day.day + d.day
+      cal << "<th#{Time.today == d ? ' class="today"' : ''}><h3>#{d.strftime("%A")}<br />#{d.strftime('%d/%m')}</h3></th>"
+    end
+    cal << '</tr></thead><tbody>'
+    time_range.each do |hour|
+      minutes = 0
+      number_division = (60/options[:duration])
+      number_division.times do |i|
+        print_minutes = minutes.to_s.rjust(2, '0')
+        cal << "<tr class=\"m#{print_minutes} d#{options[:duration]}\">"
+        cal << "<th rowspan=\"#{number_division}\"><h2>#{hour}:00</h2></th>" if i == 0
+        start_date.day.upto(end_date.day) do |d|
+
+          # cell_attrs should return a hash.
+          now = start_date.beginning_of_day - start_date.day.day +
+            d.day + hour.hour + minutes.minutes
+          cell_text, cell_attrs = block.call(now)
+          cell_text ||= ""
+          cell_attrs ||= {}
+          cell_attrs[:class] = cell_attrs[:class].to_s + " today" if Time.today == d
+          cell_attrs = cell_attrs.map {|k, v| %(#{k}="#{v}") }.join(' ')
+
+          cal << "<td #{cell_attrs}>#{cell_text}&nbsp;</td>"
+        end
+        minutes += options[:duration]
+        cal << '</tr>'
+      end
+    end
+    cal << '</tbody></table>'
+  end
+
 end

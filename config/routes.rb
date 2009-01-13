@@ -35,7 +35,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.without_orm('welcome', %w(admin plan about index suggestions theme clear_cache))
   map.without_orm('welcome', %w(suggestions theme), :post)
-  map.without_orm('reporting', %w(configuration flux general digest digest_resultat calendar))
+  map.without_orm('reporting', %w(configuration flux general digest digest_resultat calendar weekly))
   map.without_orm('access', %w(denied))
   map.without_orm('alerts', %w(index show))
   map.without_orm('alerts', %w(update), :put)

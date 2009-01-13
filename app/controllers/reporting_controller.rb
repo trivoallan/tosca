@@ -1,4 +1,4 @@
-#
+  #
 # Copyright (c) 2006-2009 Linagora
 #
 # This file is part of Tosca
@@ -123,7 +123,53 @@ class ReportingController < ApplicationController
      @months_col.each { |c| c.gsub!(' \n','&nbsp;') }
   end
 
+  def weekly
+    @start_date = Time.now
+    @start_date = Time.mktime(params['year'], params['month'], params['day']) if params.has_key? 'year'
+    @start_date = @start_date.beginning_of_week
+    @end_date = @start_date.end_of_week - 2
+    conditions = ['created_on BETWEEN ? AND ?',
+      @start_date, @end_date ]
+    new_issues = Issue.all(:conditions => conditions)
+
+    #conditions = ['updated_on BETWEEN ? AND ? AND issues.id NOT IN (?)',
+    conditions = ['updated_on BETWEEN ? AND ?',
+      @start_date, @end_date]#,
+      #new_issues.collect(&:id)]
+    updated_issues = Issue.all(:conditions => conditions)
+
+    #We build a hash of { "day_hour_minute" => {:new_issues => [], :updated_issues => [] }
+    @issues = {}
+    new_issues.each do |i|
+      key = "#{i.created_on.day}_#{i.created_on.hour}_#{i.created_on.min/30*30}"
+      @issues[key] ||= {}
+      @issues[key][:new_issues] ||= []
+      @issues[key][:new_issues].push(i)
+    end
+    updated_issues.each do |i|
+      key = "#{i.updated_on.day}_#{i.updated_on.hour}_#{i.updated_on.min/30*30}"
+      @issues[key] ||= {}
+      @issues[key][:updated_issues] ||= []
+      @issues[key][:updated_issues].push(i)
+    end
+
+    p @issues.keys
+
+    # panel on the left side. cookies is here for a correct 'back' button
+    if request.xhr?
+      render :partial => 'reporting/calendar_weekly', :layout => false
+    else
+      _panel
+      @partial_panel = 'weekly_panel'
+      render :template => 'reporting/_calendar_weekly'
+    end
+  end
+
   private
+
+  def _panel
+    
+  end
 
   # initialise toutes les variables de classes nécessaire
   # path stocke les chemins d'accès, @données les données
@@ -240,7 +286,6 @@ class ReportingController < ApplicationController
     #     end
   end
 
-
   ##
   # Calcul un tableaux du respect des délais
   # pour les 3 étapes : prise en compte, contournée, corrigée
@@ -289,7 +334,6 @@ class ReportingController < ApplicationController
       collection[1][last] += 1
     end
   end
-
 
   def init_compute_by_software(report)
     software = Issue.count(:group => "software_id", :conditions =>
@@ -343,7 +387,6 @@ class ReportingController < ApplicationController
       report[i].push values[1]
     end
   end
-
 
   def init_compute_by_type
     @types = []
@@ -430,7 +473,6 @@ class ReportingController < ApplicationController
     report[4].push Issue.count(active)
   end
 
-
   # Lance l'écriture des _3_ graphes
   def write3graph(name, graph)
     __write_graph(name, graph)
@@ -469,7 +511,6 @@ class ReportingController < ApplicationController
     # this writes the file to the hard drive for caching
     g.write "#{RAILS_ROOT}/public/images/#{@path[name]}"
   end
-
 
   # 3 initialisations are needed : titles, colors & datas.
   def init_data_general
@@ -515,7 +556,6 @@ class ReportingController < ApplicationController
       end
     end
   end
-
 
   # 3 initialisations are needed : titles, colors & datas.
   def _titles

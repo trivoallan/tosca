@@ -17,7 +17,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 module ReportingHelper
-
   # Renvoit les titres du tableau
   # Data contient les entêtes. Les options applicable sont :
   # :without_firstcol => permet de ne pas afficher la première colonne
@@ -188,12 +187,12 @@ module ReportingHelper
     if options.has_key?(:cut_table) && size >= 4
       cut = size / 2
       out << show_report_table(first_col, cleaned_data[0..cut-1],
-                               fill_titles(cleaned_data[0..cut-1], options), options)
+        fill_titles(cleaned_data[0..cut-1], options), options)
       out << show_report_table(first_col, cleaned_data[cut..-1],
-                               fill_titles(cleaned_data[cut..-1], options), options)
+        fill_titles(cleaned_data[cut..-1], options), options)
     else
       out << show_report_table(first_col, cleaned_data,
-                               fill_titles(cleaned_data, options), options)
+        fill_titles(cleaned_data, options), options)
     end
     out
   end

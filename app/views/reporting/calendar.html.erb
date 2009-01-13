@@ -21,7 +21,7 @@
 %>
 
 
-<%= calendar(@time, :title => title) do |time|
+<%= calendar_month(@time, :title => title) do |time|
   @issues[time.day].map do |e|
     title = (@session_user.engineer? ? "[#{e.client}] #{e.resume}" : e.resume)
     link_to("##{e.id}", issue_path(e), :title => title)

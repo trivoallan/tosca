@@ -27,16 +27,16 @@ module WeeklyReporting
       :recipient_ids => recipient_ids
     }
     scope = { :find => { :conditions =>
-        [ 'issues.recipient_id IN (:recipient_ids) AND issues.updated_on BETWEEN :first_day AND :last_day', values ] }
+          [ 'issues.recipient_id IN (:recipient_ids) AND issues.updated_on BETWEEN :first_day AND :last_day', values ] }
     }
     Issue.send(:with_scope, scope) {
       first_day = values[:first_day].to_formatted_s(:db)
       last_day = values[:last_day].to_formatted_s(:db)
 
       options = { :conditions =>
-        [ 'issues.created_on BETWEEN :first_day AND :last_day', values ],
+          [ 'issues.created_on BETWEEN :first_day AND :last_day', values ],
         :order => 'clients.name, issues.id', :include => [{:recipient => :client},
-                                                           :statut,:issuetype] }
+          :statut,:issuetype] }
       @issues_created = Issue.all(options)
 
       options[:conditions] = [ 'issues.statut_id = ?', 7 ] # 7 => Closed.
@@ -46,4 +46,5 @@ module WeeklyReporting
       @issues_cancelled = Issue.all(options)
     }
   end
+
 end
