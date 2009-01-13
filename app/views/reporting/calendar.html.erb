@@ -3,12 +3,14 @@
 
 <%
   #We create next/previous month links
+  last_month = @time.last_month
   link_previous = link_to(StaticImage::previous_page,
-    calendar_reporting_path(:month => @time.month-1,
-      :year => @time.year))
+    calendar_reporting_path(:month => last_month.month,
+      :year => last_month.year))
+  next_month = @time.next_month
   link_next = link_to(StaticImage::next_page,
-    calendar_reporting_path(:month => @time.month+1,
-      :year => @time.year))
+    calendar_reporting_path(:month => next_month.month,
+      :year => next_month.year))
 
   title = link_previous
   title << "&nbsp;"
