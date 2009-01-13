@@ -125,17 +125,16 @@ class ReportingController < ApplicationController
 
   def weekly
     @start_date = Time.now
-    @start_date = Time.mktime(params['year'], params['month'], params['day']) if params.has_key? 'year'
+    @start_date = Time.mktime(params['year'], 
+      params['month'], params['day']) if params.has_key? 'year' and
+      params.has_key? 'month' and params.has_key? 'day'
     @start_date = @start_date.beginning_of_week
-    @end_date = @start_date.end_of_week - 2
-    conditions = ['created_on BETWEEN ? AND ?',
-      @start_date, @end_date ]
+    @end_date = @start_date.end_of_week - 2.day
+    
+    conditions = ['created_on BETWEEN ? AND ?', @start_date, @end_date ]
     new_issues = Issue.all(:conditions => conditions)
 
-    #conditions = ['updated_on BETWEEN ? AND ? AND issues.id NOT IN (?)',
-    conditions = ['updated_on BETWEEN ? AND ?',
-      @start_date, @end_date]#,
-      #new_issues.collect(&:id)]
+    conditions = ['updated_on BETWEEN ? AND ?', @start_date, @end_date]
     updated_issues = Issue.all(:conditions => conditions)
 
     #We build a hash of { "day_hour_minute" => {:new_issues => [], :updated_issues => [] }
@@ -152,8 +151,6 @@ class ReportingController < ApplicationController
       @issues[key][:updated_issues] ||= []
       @issues[key][:updated_issues].push(i)
     end
-
-    p @issues.keys
 
     # panel on the left side. cookies is here for a correct 'back' button
     if request.xhr?
