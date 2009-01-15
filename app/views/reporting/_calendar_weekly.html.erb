@@ -1,95 +1,29 @@
-<style>
+<h1><%= @title %> <%= StaticImage::spinner %></h1>
 
-table.week-view {
-  width: 100%;
-  padding: 0;
-  border-collapse: collapse;
-}
-table.week-view tbody tr th {
-  border-right: 1px solid black;
-  text-align: left;
-  padding-right: .5em;
-}
-table.week-view tbody tr th h3 {
-  display: inline;
-  font-size: 3em;
-  margin: 0;
-  padding: 0;
-  background: transparent;
-  border: none;
-}
-
-table.week-view th {
-  background-color: #eee;
-  color: black;
-}
-
-table.week-view tr td {
-  border-style: solid;
-  border-width: 1px 1px 0 0;
-  width: 19%;
-  padding: 0;
-  background-color: #ffffd5;
-}
-table.week-view tr.d30 td,
-table.week-view tr.d30 th {
-  font-size: 8px;
-  height: 1em;
-  border-color: #f3e4b1 #000;
-}
-table.week-view div.event-container{
-  position: relative;
-}
-table.week-view tr td div.event{
-  padding: 2px;
-  background-color: #fff;
-  height: 2em;
-  width: 90%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-style: solid;
-  border-color: black black black #00f;
-  border-width: .0625em .0625em .0625em .5em;
-  margin-right: .5em;
-  color: #333;
-  overflow: hidden;
-  float: left;
-}
-table.week-view tr td div.event.mm60{
-  height: 8em;
-}
-table.week-view tr td div.event.mm120{
-  height: 16em;
-}
-table.week-view tr td div.event h3{
-  margin: 0;
-  font-size: 9px;
-  color: black;
-  padding: 0;
-  border: 0;
-  background: transparent;
-}
-table.week-view tr.m00 td{
-  border-top-color: #c2b68d;
-}
-table.week-view tr.m00 th{
-  vertical-align: top;
-}
-</style>
-
-
-
-<%= calendar_weekly @start_date, :start_time => 8, :end_time => 19, :duration => 30 do |time|
+<%= calendar_weekly(@start_date, :start_time => 8, :end_time => 19) do |time|
   key = "#{time.day}_#{time.hour}_#{time.min*30/30}"
+  result = ""
   if @issues.has_key? key
     if @issues[key].has_key? :new_issues
-      @issues[key][:new_issues].collect(&:id).inspect
+      result << '['
+      res = []
+      @issues[key][:new_issues].each do |i|
+        res.push link_to_css_issue(i, 'new_issue')
+      end
+      result << res.join(', ')
+      result << ']'
     end
+
     if @issues[key].has_key? :updated_issues
-      @issues[key][:updated_issues].collect(&:id).inspect
+      result << '['
+      res = []
+      @issues[key][:updated_issues].each do |i|
+        res.push link_to_css_issue(i, 'updated_issue')
+      end
+      result << res.join(', ')
+      result << ']'
     end
   end
- end %>
-
-
+  result
+end
+%>

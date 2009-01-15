@@ -36,6 +36,11 @@ module IssuesHelper
     link_to text, issue_path(issue)
   end
 
+  def link_to_css_issue(issue, css_class)
+    return '-' unless issue
+    link_to "##{issue.id}", issue_path(issue), :class => css_class
+  end
+
   def public_link_to_status_legend
     public_link_to(_("Status legend"), statuts_path, NEW_WINDOW)
   end

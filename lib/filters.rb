@@ -82,6 +82,10 @@ module Filters
     extend Shared
   end
 
+  class WeeklyReport < Struct.new('WeeklyReport', :contract_id, :team_id)
+    extend Shared
+  end
+
   # build the conditions query, from a well specified array of filters
   # Specification of a filter f :
   # [ namespace, field, database field, operation ]
@@ -132,7 +136,14 @@ module Filters
         conditions.push(value)
       end
     end
-    condition_0.push special_conditions if special_conditions.is_a?(String)
+
+    if special_conditions.is_a?(String)
+      condition_0.push special_conditions
+    elsif special_conditions.is_a?(Array)
+      condition_0.push special_conditions.first
+      special_conditions[1..-1].each { |v| conditions.push v }
+    end
+
     if condition_0.empty?
       nil
     else

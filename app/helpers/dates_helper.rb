@@ -103,11 +103,6 @@ module DatesHelper
     block ||= Proc.new { |d| nil }
     defaults = {
       :table_class => 'week-view',
-      :day_name_class => 'dayName',
-      :day_class => 'day',
-      :show_today => true,
-      :previous_span_text => nil,
-      :next_span_text => nil,
       :start_time => 8,
       :end_time => 19,
       :duration => 30
@@ -130,7 +125,7 @@ module DatesHelper
     cal << "<th><h3>#{start_date.year}</h3></th>"
     dates.each do |d|
       d = start_date.beginning_of_day - start_date.day.day + d.day
-      cal << "<th#{Time.today == d ? ' class="today"' : ''}><h3>#{d.strftime("%A")}<br />#{d.strftime('%d/%m')}</h3></th>"
+      cal << "<th><h3>#{d.strftime("%A")}<br />#{d.strftime('%d/%m')}</h3></th>"
     end
     cal << '</tr></thead><tbody>'
     time_range.each do |hour|
@@ -139,7 +134,7 @@ module DatesHelper
       number_division.times do |i|
         print_minutes = minutes.to_s.rjust(2, '0')
         cal << "<tr class=\"m#{print_minutes} d#{options[:duration]}\">"
-        cal << "<th rowspan=\"#{number_division}\"><h2>#{hour}:00</h2></th>" if i == 0
+        cal << "<th rowspan=\"#{number_division}\"><h2>#{hour.to_s.rjust(2, '0')}:00</h2></th>" if i == 0
         start_date.day.upto(end_date.day) do |d|
 
           # cell_attrs should return a hash.

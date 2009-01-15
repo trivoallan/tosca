@@ -18,8 +18,9 @@
 #
 class ReportingController < ApplicationController
   helper :issues
-  include WeeklyReporting
+  
   include DigestReporting
+  include DatesHelper
 
   # Default colors are distributed by alphabetical order of severity
   # ( blocking, major, minor, none )
@@ -124,18 +125,44 @@ class ReportingController < ApplicationController
   end
 
   def weekly
-    @start_date = Time.now
-    @start_date = Time.mktime(params['year'], 
-      params['month'], params['day']) if params.has_key? 'year' and
-      params.has_key? 'month' and params.has_key? 'day'
+    if params.has_key? 'report' and params['report'].has_key? 'start_date'
+      begin
+        @start_date = Time.parse(params['report']['start_date'])
+      rescue ArgumentError; end
+    end
+    @start_date ||= Time.now
+    
     @start_date = @start_date.beginning_of_week
     @end_date = @start_date.end_of_week - 2.day
-    
-    conditions = ['created_on BETWEEN ? AND ?', @start_date, @end_date ]
-    new_issues = Issue.all(:conditions => conditions)
 
-    conditions = ['updated_on BETWEEN ? AND ?', @start_date, @end_date]
-    updated_issues = Issue.all(:conditions => conditions)
+    @title = _('Issues of all your contracts')
+    
+    # Specification of a filter f :
+    if params.has_key? :filters
+      session[:weeklyreport_filters] = 
+        Filters::WeeklyReport.new(params[:filters])
+      @title = _('Issues of the contract %s') %
+        Contract.find(params[:filters][:contract_id]).name if params[:filters].has_key? :contract_id and
+          not params[:filters][:contract_id].empty?
+    end
+    filters_weekly = session[:weeklyreport_filters]
+
+    if filters_weekly
+      filters = [
+        [:contract_id, 'issues.contract_id', :in ],
+        #[:team_id, 'contracts.engineer_id', :equal ],
+      ]
+      conditions_new = Filters.build_conditions(filters_weekly, filters,
+        ['created_on BETWEEN ? AND ?', @start_date, @end_date ])
+      p conditions_new
+      conditions_updated = Filters.build_conditions(filters_weekly, filters,
+        ['updated_on BETWEEN ? AND ?', @start_date, @end_date])
+      p conditions_updated
+    end
+
+    new_issues = Issue.all(:conditions => conditions_new, :order => :id)
+
+    updated_issues = Issue.all(:conditions => conditions_updated, :order => :id)
 
     #We build a hash of { "day_hour_minute" => {:new_issues => [], :updated_issues => [] }
     @issues = {}
@@ -165,7 +192,8 @@ class ReportingController < ApplicationController
   private
 
   def _panel
-    
+    @contracts = Contract.find_select(Contract::OPTIONS)
+    @teams = Team.find_select
   end
 
   # initialise toutes les variables de classes nécessaire
