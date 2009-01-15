@@ -82,7 +82,7 @@ module Filters
     extend Shared
   end
 
-  class WeeklyReport < Struct.new('WeeklyReport', :contract_id, :team_id)
+  class WeeklyReport < Struct.new('WeeklyReport', :contract_id)
     extend Shared
   end
 

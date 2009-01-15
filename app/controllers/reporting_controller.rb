@@ -148,16 +148,11 @@ class ReportingController < ApplicationController
     filters_weekly = session[:weeklyreport_filters]
 
     if filters_weekly
-      filters = [
-        [:contract_id, 'issues.contract_id', :in ],
-        #[:team_id, 'contracts.engineer_id', :equal ],
-      ]
+      filters = [ [:contract_id, 'issues.contract_id', :in ] ]
       conditions_new = Filters.build_conditions(filters_weekly, filters,
         ['created_on BETWEEN ? AND ?', @start_date, @end_date ])
-      p conditions_new
       conditions_updated = Filters.build_conditions(filters_weekly, filters,
         ['updated_on BETWEEN ? AND ?', @start_date, @end_date])
-      p conditions_updated
     end
 
     new_issues = Issue.all(:conditions => conditions_new, :order => :id)
