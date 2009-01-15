@@ -8,14 +8,14 @@
         <th width='2%'><%= StaticImage::checkbox %></th>
         <th width='2%'><%= _('Id') %></th>
         <th width='2%'>
-          <% if user.engineer? %>
+          <% if @session_user.engineer? %>
             <%=  _('Resp.') %>
           <% else %>
             <%=  _('Recipient') %>
           <% end %>
         </th>
         <th width='2%'><%= _('Software') %></th>
-        <% if user.engineer? %>
+        <% if @session_user.engineer? %>
           <th width='2%'><%= _('Client') %></th>
         <% end %>
         <th><%= _('Summary') %></th>
@@ -33,14 +33,14 @@
           <td><%= check_box_tag 'issue_ids[]', issue.id, false, :id => "issue_ids_#{issue.id}" %></td>
           <td><label for="issue_ids_<%=issue.id%>"><%= issue.id %></label></td>
           <td>
-            <% if user.engineer? %>
+            <% if @session_user.engineer? %>
               <%= (issue.engineer ? issue.engineer.trigram : '-') %>
             <% else %>
               <%= issue.recipient.trigram %>
             <% end %>
           </td>
           <td><%= issue.software_name %></td>
-          <% if user.engineer? %>
+          <% if @session_user.engineer? %>
             <td><%= issue.client_name %></td>
           <% end %>
           <td title="<%= "[#{issue.software_name}] #{issue.client_name}" %>">
