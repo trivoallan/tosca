@@ -1,4 +1,4 @@
-<% options = { :update => 'col1_content', :method => :get,
+<% options = { :method => :get,
   :url => weekly_reporting_path,
   :before => "Element.show('spinner')",
   :success => "Element.hide('spinner')" } %>
@@ -35,6 +35,10 @@
       <%= StaticScript::script_date('report_start_date', 'date_from') %>
     </li>
   </ul>
+
+  <div id="weekly_statistics">
+    <%= render :partial => 'reporting/weekly_statistics' %>
+  </div>
 
   <%= div_toggle _('Legend'), 'menu_legend', :class => "menu_title" %>
   <ul class="menu" id="menu_legend">

@@ -161,8 +161,10 @@ class ReportingController < ApplicationController
     end
 
     new_issues = Issue.all(:conditions => conditions_new, :order => :id)
+    @number_new_issues = new_issues.size
 
     updated_issues = Issue.all(:conditions => conditions_updated, :order => :id)
+    @number_updated_issues = updated_issues.uniq.size
 
     #We build a hash of { "day_hour_minute" => {:new_issues => [], :updated_issues => [] }
     @issues = {}
@@ -179,14 +181,16 @@ class ReportingController < ApplicationController
       @issues[key][:updated_issues].push(i)
     end
 
+    @opening_time = Contract.average(:opening_time).to_i - 1
+    @closing_time = Contract.average(:closing_time).to_i + 1
+
     # panel on the left side. cookies is here for a correct 'back' button
-    if request.xhr?
-      render :partial => 'reporting/calendar_weekly', :layout => false
-    else
+    unless request.xhr?
       _panel
       @partial_panel = 'weekly_panel'
       render :template => 'reporting/_calendar_weekly'
     end
+    # else : Rendering weekly.rjs
   end
 
   private

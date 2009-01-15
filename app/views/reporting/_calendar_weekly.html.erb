@@ -1,6 +1,7 @@
 <h1><%= @title %> <%= StaticImage::spinner %></h1>
 
-<%= calendar_weekly(@start_date, :start_time => 8, :end_time => 19) do |time|
+<%= calendar_weekly(@start_date, :start_time => @opening_time,
+  :end_time => @closing_time) do |time|
   key = "#{time.day}_#{time.hour}_#{time.min*30/30}"
   result = ""
   if @issues.has_key? key
