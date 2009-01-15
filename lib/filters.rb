@@ -21,7 +21,7 @@ module Filters
   module Shared
     def self.extended(base)
       base.class_eval do
-        define_method(:initialize) { |params, *args|
+        define_method(:initialize) do |params, *args|
           if params.is_a? Hash
             params.each do |key, value|
               if value.is_a?(String) and not value.blank?
@@ -38,7 +38,7 @@ module Filters
           else
             super(*args.unshift(params))
           end
-        }
+        end
       end
     end
   end

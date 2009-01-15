@@ -6,10 +6,6 @@
 <% form_remote_tag(options.dup.update(:html => {
       :id => 'filters', :name => 'filters'})) do %>
   
-  <%= div_toggle _('Actions'), 'menu_actions', :class => "menu_title" %>
-  <ul class="menu" id="menu_actions">
-  </ul>
-
   <%= div_toggle _('Filters'), 'menu_filters', :class => "menu_title" %>
   <ul class="menu" id="menu_filters">
     <% if @session_user.engineer? %>
@@ -18,8 +14,6 @@
         <%= select_filter(@contracts, :contract) %>
       </li>
     <% end %>
-    <li>
-    </li>
   </ul>
 
   <%= div_toggle _('Date'), 'menu_date', :class => "menu_title" %>
