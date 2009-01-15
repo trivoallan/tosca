@@ -1,59 +1,55 @@
 <% user = @session_user  %>
 
 <table id="issues_list" class="full">
-   <tr>
-      <th width='2%'><%= _('Id') %><%#= sortable_header(:id, :label => _("Id")) %></th>
-      <th width='7%'><%= _('Software') %><%#= sortable_header(:software_id, :label => _("Software")) %></th>
-      <th width='7%' colspan="2"><%= _('Type')%><%#= sortable_header(:issuetype_id, :label => _("Type")) %></th>
+  <tr>
+    <th width='2%'><%= _('Id') %></th>
+    <th width='7%'><%= _('Software') %></th>
+    <th width='7%' colspan="2"><%= _('Type')%></th>
+    <% if user.engineer? %>
+      <th width='7%'><%= _('Client')%></th>
+    <% end %>
+    <th><%= _('Summary')%></th>
+    <th width='10%'>
       <% if user.engineer? %>
-        <th width='7%'><%= _('Client')%><%#= sortable_header(:client_id , :label => _("Client")) %></th>
+        <%=_('Owner')%>
+      <% else %>
+        <%=_('Submitter')%>
       <% end %>
-      <th><%= _('Summary')%><%#= sortable_header(:description, :label => _("Summary")) %></th>
-      <th width='10%'>
-       <% if user.engineer? %>
-         <%=_('Owner')%><%#= sortable_header(:engineer_id, :label => _("Owner")) %>
-       <% else %>
-         <%=_('Submitter')%><%#= sortable_header(:recipient_id, :label => _("Submitter")) %>
-       <% end %>
-      </th>
+    </th>
 
-      <th width='8%'><%=_('Updated on')%><%#= sortable_header(:updated_on, :label => _("Updated on"), :descend => true) %></th>
-   </tr>
+    <th width='8%'><%=_('Updated on')%></th>
+  </tr>
 
-   <% for issue in @issues %>
-   <tr <%= tr_attributes(issue_path(issue)) %>>
-        <td><%= issue.id %></td>
-        <td><%= issue.software_name %></td>
-        <td></td>
-        <% #Yet another dirty hack ...
-           if issue.respond_to? :issuetypes_name
-             issuetypes_name = issue.issuetypes_name
-           else
-             issuetypes_name = issue.issuetype.name
-           end
-        %>
-        <td nowrap="nowrap"><span class="issue_<%=issue.statut_id%>">&nbsp;<%= issuetypes_name %><%= StaticImage::severity(issue) %></span></td>
-       <% if user.engineer? %>
+  <% for issue in @issues %>
+    <tr <%= tr_attributes(issue_path(issue)) %>>
+      <td><%= issue.id %></td>
+      <td><%= issue.software_name %></td>
+      <td></td>
+      <td nowrap="nowrap">
+        <span class="issue_<%=issue.statut_id%>">&nbsp;
+        <%= issue.issuetype.name %><%= StaticImage::severity(issue) %></span>
+      </td>
+      <% if user.engineer? %>
         <td><%= issue.client_name %></td>
-       <% end %>
-        <% recipient = issue.recipient if user.recipient? and user.id != issue.recipient_id %>
-        <td><b><%= link_to_issue issue %></b></td>
-        <td>
+      <% end %>
+      <% recipient = issue.recipient if user.recipient? and user.id != issue.recipient_id %>
+      <td><b><%= link_to_issue issue %></b></td>
+      <td>
         <% if user.engineer? %>
           <% engineer = issue.engineer %>
           <%= name(engineer) %>
         <% else %>
           <%= recipient %>
         <% end %>
-        </td>
-        <td><span class="date"><%= issue.updated_on_formatted %></span></td>
-   </tr>
-   <% end %>
+      </td>
+      <td><span class="date"><%= issue.updated_on_formatted %></span></td>
+    </tr>
+  <% end %>
 
-<% if @issues.size == 0 %>
-  <tr><td colspan="11">
-    <p><%= _("No issue found.") %></p>
-  </td></tr>
-<% end %>
+  <% if @issues.size == 0 %>
+    <tr><td colspan="11">
+        <p><%= _("No issue found.") %></p>
+    </td></tr>
+  <% end %>
 
 </table>
