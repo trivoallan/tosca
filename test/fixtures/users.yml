@@ -11,7 +11,7 @@ user_customer:
   password: c921769f9e42e4876d204fcd51ba16124fb8477f
   login: customer
   client_id: 2
-  image_id: 
+  picture_id: 
   email: <%= App::MaintenerEmail %>
 user_viewer: 
   name: Viewer
@@ -25,7 +25,7 @@ user_viewer:
   restricted: true
   password: 8b34fc039696a3815940c5672ba2efaa76ab51ac
   login: viewer
-  image_id: 
+  picture_id: 
   email: <%= App::MaintenerEmail %>
 user_admin: 
   name: Admin
@@ -38,7 +38,7 @@ user_admin:
   restricted: false
   password: 47261c32a405a38d54806e4db0e64d1ca9862598
   login: admin
-  image_id: 
+  picture_id: 
   email: <%= App::MaintenerEmail %>
   team_id: 2
 user_manager: 
@@ -52,7 +52,7 @@ user_manager:
   restricted: true
   password: 9d49c7773645ac6b2e7af68872074517e66c0e47
   login: manager
-  image_id: 
+  picture_id: 
   email: <%= App::MaintenerEmail %>
   team_id: 1
 user_expert: 
@@ -66,6 +66,6 @@ user_expert:
   restricted: true
   password: d81674f38d5627bb3580afe45ee79cffafe0b539
   login: expert
-  image_id: 
+  picture_id: 
   email: <%= App::MaintenerEmail %>
   team_id: 2

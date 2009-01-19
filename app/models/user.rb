@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   include PasswordGenerator
   include LdapTosca
 
-  belongs_to :image
+  belongs_to :picture
   belongs_to :role
   belongs_to :team
   belongs_to :client

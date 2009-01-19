@@ -20,7 +20,7 @@ class Client < ActiveRecord::Base
   # Small utils for inactive, located in /lib/inactive_record.rb
   include InactiveRecord
 
-  belongs_to :image
+  belongs_to :picture
   has_many :recipients, :class_name => 'User', :dependent => :destroy,
     :conditions => 'users.client_id IS NOT NULL'
   has_many :active_recipients, :class_name => 'User',
@@ -48,7 +48,7 @@ class Client < ActiveRecord::Base
 
   def self.content_columns
     @content_columns ||= columns.reject { |c|
-      c.primary || c.name =~ /(_id|_count|address|image|inactive)$/
+      c.primary || c.name =~ /(_id|_count|address|picture|inactive)$/
     }
   end
 

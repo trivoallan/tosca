@@ -52,7 +52,7 @@ module Static
 
     private
 
-    def compute_public_path(source,dir,ext=nil)
+    def compute_public_path(source, dir, ext=nil)
       "#{@@relative_url_root}#{source}"
     end
 
