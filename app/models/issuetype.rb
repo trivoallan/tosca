@@ -21,6 +21,16 @@ class Issuetype < ActiveRecord::Base
   has_many :issues
   has_many :workflows
 
+  ####################
+  N_("Information")
+  N_("Incident")
+  N_("Evolution")
+  N_("Call-out")
+  N_("Analysis")
+  N_("Delivery")
+  N_("Documentation")
+  ####################
+
   # Only ids, it's use is restricted to expert view
   def allowed_statuses_ids(from_status_id)
     w = self.workflows.first(:conditions => {:statut_id => from_status_id})
