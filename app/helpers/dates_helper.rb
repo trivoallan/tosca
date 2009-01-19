@@ -98,7 +98,6 @@ module DatesHelper
   def calendar_weekly(start_date, options = {}, &block)
     end_date = start_date.end_of_week - 2.day
     span = end_date.day - start_date.day
-    dates = (start_date.day..end_date.day)
 
     block ||= Proc.new { |d| nil }
     defaults = {
@@ -123,9 +122,9 @@ module DatesHelper
     cal = "<table class=\"#{options[:table_class]}\">"
     cal << '<thead><tr>'
     cal << "<th><h3>#{start_date.year}</h3></th>"
-    dates.each do |d|
-      d = start_date.beginning_of_day - start_date.day.day + d.day
-      cal << "<th><h3>#{d.strftime("%A")}<br />#{d.strftime('%d/%m')}</h3></th>"
+    5.times do |d|
+      date = start_date.beginning_of_day + d.days
+      cal << "<th><h3>#{date.strftime("%A")}<br />#{date.strftime('%d/%m')}</h3></th>"
     end
     cal << '</tr></thead><tbody>'
     time_range.each do |hour|
@@ -135,10 +134,10 @@ module DatesHelper
         print_minutes = minutes.to_s.rjust(2, '0')
         cal << "<tr class=\"m#{print_minutes} d#{options[:duration]}\">"
         cal << "<th rowspan=\"#{number_division}\"><h2>#{hour.to_s.rjust(2, '0')}:00</h2></th>" if i == 0
-        start_date.day.upto(end_date.day) do |d|
+        5.times do |d|
 
           # cell_attrs should return a hash.
-          now = start_date.beginning_of_day - start_date.day.day +
+          now = start_date.beginning_of_day +
             d.day + hour.hour + minutes.minutes
           cell_text, cell_attrs = block.call(now)
           cell_text ||= ""
