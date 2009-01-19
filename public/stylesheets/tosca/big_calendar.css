@@ -51,3 +51,67 @@
   padding: 5px;
   background-color: #FFFFFF;
 }
+
+/**
+ *
+ * Used for the weekly calendar views
+ *
+ **/
+.week-view {
+  width: 100%;
+  padding: 0;
+  border-collapse: collapse;
+}
+
+.week-view tbody tr th {
+  border-right: 1px solid black;
+  text-align: left;
+  padding-right: .5em;
+}
+
+.week-view tbody tr th h3 {
+  display: inline;
+  font-size: 3em;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.week-view th {
+  background-color: #eee;
+  color: black;
+}
+
+.week-view tr td {
+  border-style: solid;
+  border-width: 1px 1px 0 0;
+  width: 19%;
+  padding: 0;
+  background-color: #ffffd5;
+}
+
+.week-view tr.d30 td,
+.week-view tr.d30 th {
+  font-size: 8px;
+  height: 1em;
+  border-color: #f3e4b1 #000;
+}
+
+.week-view tr.m00 td {
+  border-top-color: #c2b68d;
+}
+
+.week-view tr.m00 th {
+  vertical-align: top;
+}
+
+.new_issue {
+    color: red;
+}
+
+.updated_issue {
+    color: blue;
+}
+
+

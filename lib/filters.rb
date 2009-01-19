@@ -21,7 +21,7 @@ module Filters
   module Shared
     def self.extended(base)
       base.class_eval do
-        define_method(:initialize) { |params, *args|
+        define_method(:initialize) do |params, *args|
           if params.is_a? Hash
             params.each do |key, value|
               if value.is_a?(String) and not value.blank?
@@ -38,7 +38,7 @@ module Filters
           else
             super(*args.unshift(params))
           end
-        }
+        end
       end
     end
   end
@@ -79,6 +79,10 @@ module Filters
 
   class Softwares < Struct.new('Softwares', :software, :group_id,
                                :contract_id, :description )
+    extend Shared
+  end
+
+  class WeeklyReport < Struct.new('WeeklyReport', :contract_id)
     extend Shared
   end
 
@@ -132,7 +136,14 @@ module Filters
         conditions.push(value)
       end
     end
-    condition_0.push special_conditions if special_conditions.is_a?(String)
+
+    if special_conditions.is_a?(String)
+      condition_0.push special_conditions
+    elsif special_conditions.is_a?(Array)
+      condition_0.push special_conditions.first
+      special_conditions[1..-1].each { |v| conditions.push v }
+    end
+
     if condition_0.empty?
       nil
     else

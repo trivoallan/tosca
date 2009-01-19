@@ -198,7 +198,7 @@ table.comment-table td.text {
 }
 
 /*************************
-  * Tabs in issuet	 *
+  * Tabs in issues	 *
   ************************/
 
 .issue_tabnav {
@@ -268,7 +268,6 @@ table.comment-table td.text {
   font-size: 95%;
   padding: 0.5em;
 }
-
 
 
 /******************************
@@ -414,7 +413,7 @@ a.nobackground {
 }
 
 /***************************************
- *                severite
+ *                severities
  ***************************************/
 
 /* TODO : options du select severite en couleur  */

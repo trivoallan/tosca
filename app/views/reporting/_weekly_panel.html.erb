@@ -1,13 +1,45 @@
-<% options = { :update => 'col1_content', :method => :get,
-    :url => weekly_reporting_path,
-    :before => "Element.show('spinner')",
-    :success => "Element.hide('spinner')" } %>
+<% options = { :method => :get,
+  :url => weekly_reporting_path,
+  :before => "Element.show('spinner')",
+  :success => "Element.hide('spinner')" } %>
 
-<% form_remote_tag( options.dup.update(:html => {
-    :id => 'filters', :name => 'filters'})) do %>
+<% form_remote_tag(options.dup.update(:html => {
+      :id => 'filters', :name => 'filters'})) do %>
+  
+  <%= div_toggle _('Filters'), 'menu_filters', :class => "menu_title" %>
+  <ul class="menu" id="menu_filters">
+    <% if @session_user.engineer? %>
+      <li>
+        <b><%= _('By contract') %></b><br />
+        <%= select_filter(@contracts, :contract) %>
+      </li>
+    <% end %>
+  </ul>
 
-<%= div_toggle _('Actions'), 'menu_actions', :class => "menu_title" %>
-<ul class="menu" id="menu_actions">
-</ul>
+  <%= div_toggle _('Date'), 'menu_date', :class => "menu_title" %>
+  <ul class="menu" id="menu_legend">
+    <li>
+      <b><%= _('Start date') %></b>&nbsp;
+      <span class="calendarPicker"><%= StaticScript::date_from %></span><br/>
+      <%= text_field :report, :start_date, :onchange => 'this.form.submit' %>
+      <%= StaticScript::script_date('report_start_date', 'date_from') %>
+    </li>
+  </ul>
+
+  <div id="weekly_statistics">
+    <%= render :partial => 'reporting/weekly_statistics' %>
+  </div>
+
+  <%= div_toggle _('Legend'), 'menu_legend', :class => "menu_title" %>
+  <ul class="menu" id="menu_legend">
+    <li>
+      <b><%= _('New issues are in') %> <span class="new_issue"><%= _('red') %></span></b>
+    </li>
+    <li>
+      <b><%= _('Updated issues are in') %> <span class="updated_issue"><%= _('blue') %></span></b>
+    </li>
+  </ul>
 
 <% end %>
+
+<%= observe_form 'filters', options %>
