@@ -58,8 +58,8 @@ class Notifier < ActionMailer::Base
     }
   end
 
-  # This method requires 3 symbols in options :
-  #   :user, :controller, :password
+  # This method takes a User in parameter and send a welcome email,
+  # with its password
   def user_signup(user)
     recipients  user.email
     from        App::NoReplyEmail

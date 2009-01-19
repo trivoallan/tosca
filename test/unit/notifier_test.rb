@@ -39,8 +39,7 @@ class NotifierTest < Test::Unit::TestCase
     sender = users(:user_admin)
     newpass = 'newpass'
     user.pwd = newpass
-    response = Notifier::deliver_user_signup(:user => user,
-      :password => newpass, :session_user => sender)
+    response = Notifier::deliver_user_signup(user)
     assert_match(/identifiant : #{user.login}/, response.body)
     assert_match(/mot de passe: #{newpass}/, response.body)
     assert_equal user.email, response.to[0]
