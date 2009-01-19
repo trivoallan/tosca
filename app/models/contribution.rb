@@ -32,8 +32,10 @@ class Contribution < ActiveRecord::Base
   file_column :patch, :fix_file_extensions => nil
 
   validates_length_of :name, :within => 3..100
-  validates_presence_of :software,
-    :warn => _('You have to specify a software.')
+  validates_presence_of :software
+
+  N_('Contribution|Software')
+
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||
@@ -88,7 +90,7 @@ class Contribution < ActiveRecord::Base
       -1
     end
   end
-  
+
   # Fake fields, used to prettify _form WUI
   def reverse; contributed_on?; end
   def clos; closed_on?; end

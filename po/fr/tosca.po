@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-12 13:58+0100\n"
-"PO-Revision-Date: 2009-01-12 18:11+0100\n"
+"POT-Creation-Date: 2009-01-16 11:13+0100\n"
+"PO-Revision-Date: 2009-01-16 11:15+0100\n"
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -29,76 +29,76 @@ msgstr "Échec lors de la connexion"
 msgid ", your account has been desactivated"
 msgstr ", votre compte a été désactivé"
 
-#: app/controllers/account_controller.rb:88
+#: app/controllers/account_controller.rb:86
 msgid "Account successfully created."
 msgstr "Le compte a été créé avec succès."
 
-#: app/controllers/account_controller.rb:168
+#: app/controllers/account_controller.rb:167
 msgid "Edition succeeded"
 msgstr "Les modifications ont été effectuées avec succès"
 
-#: app/controllers/account_controller.rb:209
+#: app/controllers/account_controller.rb:208
 msgid "Unknown account"
 msgstr "Compte inconnu"
 
-#: app/controllers/account_controller.rb:215
+#: app/controllers/account_controller.rb:214
 msgid "Your new password has been generated."
 msgstr "Votre nouveau mot de passe a été généré."
 
-#: app/controllers/account_controller.rb:230
+#: app/controllers/account_controller.rb:229
 msgid "You are not allowed to change your identity"
 msgstr "Vous n'êtes pas autorisé à changer votre identité"
 
-#: app/controllers/account_controller.rb:234
+#: app/controllers/account_controller.rb:233
 msgid "Person not found"
 msgstr "Personne non trouvée"
 
-#: app/controllers/account_controller.rb:267
+#: app/controllers/account_controller.rb:266
 msgid "Full name"
 msgstr "Nom Complet"
 
-#: app/controllers/account_controller.rb:267
+#: app/controllers/account_controller.rb:266
 msgid "Title"
 msgstr "Titre"
 
-#: app/controllers/account_controller.rb:267
+#: app/controllers/account_controller.rb:266
 #: app/views/account/forgotten_password.html.erb:9
 msgid "Email"
 msgstr "Email"
 
-#: app/controllers/account_controller.rb:267
+#: app/controllers/account_controller.rb:266
 #: app/views/issues/_show_panel.html.erb:28
 msgid "Phone"
 msgstr "Téléphone"
 
-#: app/controllers/account_controller.rb:268
+#: app/controllers/account_controller.rb:267
 #: app/views/account/forgotten_password.html.erb:6
 #: app/views/account/login.html.erb:9
 msgid "Login"
 msgstr "Identifiant"
 
-#: app/controllers/account_controller.rb:268
+#: app/controllers/account_controller.rb:267
 #: app/views/account/login.html.erb:12
 msgid "Password"
 msgstr "Mot de passe"
 
-#: app/controllers/account_controller.rb:268
+#: app/controllers/account_controller.rb:267
 msgid "Informations"
 msgstr "Informations"
 
-#: app/controllers/account_controller.rb:274
+#: app/controllers/account_controller.rb:273
 msgid "Welcome %s %s"
 msgstr "Bienvenue %s %s"
 
-#: app/controllers/account_controller.rb:281
+#: app/controllers/account_controller.rb:280
 msgid "Your contract '%s' is near its end date : %s"
 msgstr "Le contrat '%s' est près de sa date de fin : %s"
 
-#: app/controllers/application.rb:102 app/models/notifier.rb:367
+#: app/controllers/application.rb:102 app/models/notifier.rb:368
 msgid "An e-mail was sent to "
 msgstr "Un e-mail a été envoyé à "
 
-#: app/controllers/application.rb:103 app/models/notifier.rb:368
+#: app/controllers/application.rb:103 app/models/notifier.rb:369
 msgid "with a copy to"
 msgstr "avec en copie"
 
@@ -202,7 +202,7 @@ msgstr "La contribution a été créée avec succès"
 msgid "The contribution has been updated successfully."
 msgstr "La contribution a bien été mise à jour."
 
-#: app/controllers/contributions_controller.rb:195
+#: app/controllers/contributions_controller.rb:200
 msgid "The associated issue does not exist"
 msgstr "La demande associée n'existe pas"
 
@@ -267,7 +267,19 @@ msgstr "La demande n'est plus liée à une contribution"
 msgid "This contribution is now linked"
 msgstr "Cette contribution est maintenant liée"
 
-#: app/controllers/issues_controller.rb:393
+#: app/controllers/issues_controller.rb:351
+msgid "[ Me ]"
+msgstr "[ Moi ]"
+
+#: app/controllers/issues_controller.rb:362
+msgid "[ Team ]"
+msgstr "[ Équipe ]"
+
+#: app/controllers/issues_controller.rb:366
+msgid "[ Tam ]"
+msgstr "[ Tam ]"
+
+#: app/controllers/issues_controller.rb:410
 msgid ""
 "It seems that you are not associated to a contract, which prevents you from "
 "filling an issue. Please contact %s if you think it's not normal"
@@ -276,11 +288,11 @@ msgstr ""
 "de déposer une demande. Veuillez contacter %s si vous pensez que ce n'est "
 "pas normal."
 
-#: app/controllers/issues_controller.rb:453 app/helpers/issues_helper.rb:137
+#: app/controllers/issues_controller.rb:470 app/helpers/issues_helper.rb:137
 msgid "Active issues"
 msgstr "Demandes actives"
 
-#: app/controllers/issues_controller.rb:456 app/helpers/issues_helper.rb:144
+#: app/controllers/issues_controller.rb:473 app/helpers/issues_helper.rb:144
 msgid "Finished issues"
 msgstr "Demandes terminées"
 
@@ -292,11 +304,11 @@ msgstr "Un nouveau type de demande a bien été créé."
 msgid "An issue type was successfully updated."
 msgstr "Le type de demande a été mis à jour avec succès."
 
-#: app/controllers/knowledges_controller.rb:74
+#: app/controllers/knowledges_controller.rb:73
 msgid "Your knowledge was successfully created."
 msgstr "Votre connaissance a été créée avec succès."
 
-#: app/controllers/knowledges_controller.rb:84
+#: app/controllers/knowledges_controller.rb:83
 msgid "Your knowledge was successfully updated."
 msgstr "Votre connaissance a été mise à jour avec succès."
 
@@ -324,31 +336,31 @@ msgstr "Cette release a bien été créée."
 msgid "This release has been successfully updated."
 msgstr "Cette release a été mise à jour."
 
-#: app/controllers/reporting_controller.rb:163
-#: app/controllers/reporting_controller.rb:168
+#: app/controllers/reporting_controller.rb:206
+#: app/controllers/reporting_controller.rb:211
 msgid "incorrect parameters"
 msgstr "paramètres incorrects"
 
-#: app/controllers/reporting_controller.rb:307
+#: app/controllers/reporting_controller.rb:348
 msgid "Unknown"
 msgstr "Non spécifié"
 
-#: app/controllers/reporting_controller.rb:308
+#: app/controllers/reporting_controller.rb:349
 msgid "Others"
 msgstr "Autres"
 
-#: app/controllers/reporting_controller.rb:438
-#: app/controllers/reporting_controller.rb:440
+#: app/controllers/reporting_controller.rb:477
+#: app/controllers/reporting_controller.rb:479
 msgid "Distributed on "
 msgstr "Répartie sur "
 
-#: app/controllers/reporting_controller.rb:438
-#: app/controllers/reporting_controller.rb:440
+#: app/controllers/reporting_controller.rb:477
+#: app/controllers/reporting_controller.rb:479
 #: app/views/reporting/_introduction.html.erb:4
 msgid " months"
 msgstr " mois"
 
-#: app/controllers/reporting_controller.rb:446
+#: app/controllers/reporting_controller.rb:485
 #: app/helpers/contributions_helper.rb:25
 #: app/views/contributions/_admin_panel.html.erb:45
 #: app/views/issues/_form.html.erb:120 app/views/issues/_show_panel.html.erb:3
@@ -360,7 +372,7 @@ msgstr " mois"
 msgid "Summary"
 msgstr "Résumé"
 
-#: app/controllers/reporting_controller.rb:467
+#: app/controllers/reporting_controller.rb:506
 msgid ""
 "No data \n"
 "available"
@@ -368,85 +380,85 @@ msgstr ""
 "Aucune donnée \n"
 "disponible"
 
-#: app/controllers/reporting_controller.rb:480
-#: app/controllers/reporting_controller.rb:482 app/models/statut.rb:30
+#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520 app/models/statut.rb:30
 msgid "Cancelled"
 msgstr "Annulée"
 
-#: app/controllers/reporting_controller.rb:480
-#: app/controllers/reporting_controller.rb:482 app/models/statut.rb:27
+#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520 app/models/statut.rb:27
 msgid "Bypassed"
 msgstr "Contournée"
 
-#: app/controllers/reporting_controller.rb:480
-#: app/controllers/reporting_controller.rb:482 app/models/statut.rb:28
+#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520 app/models/statut.rb:28
 msgid "Fixed"
 msgstr "Corrigée"
 
-#: app/controllers/reporting_controller.rb:480
-#: app/controllers/reporting_controller.rb:482 app/models/statut.rb:29
+#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520 app/models/statut.rb:29
 msgid "Closed"
 msgstr "Fermée"
 
-#: app/controllers/reporting_controller.rb:480
-#: app/controllers/reporting_controller.rb:482
+#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520
 msgid "Active"
 msgstr "Actif"
 
-#: app/controllers/reporting_controller.rb:487
-#: app/controllers/reporting_controller.rb:489
-#: app/controllers/reporting_controller.rb:491
+#: app/controllers/reporting_controller.rb:525
+#: app/controllers/reporting_controller.rb:527
+#: app/controllers/reporting_controller.rb:529
 msgid "In time"
 msgstr "Délais respectés"
 
-#: app/controllers/reporting_controller.rb:487
-#: app/controllers/reporting_controller.rb:489
-#: app/controllers/reporting_controller.rb:491
+#: app/controllers/reporting_controller.rb:525
+#: app/controllers/reporting_controller.rb:527
+#: app/controllers/reporting_controller.rb:529
 msgid "Out of time"
 msgstr "Hors délais"
 
-#: app/controllers/reporting_controller.rb:523
+#: app/controllers/reporting_controller.rb:560
 msgid "Distribution of your issues"
 msgstr "Répartition de vos demandes"
 
-#: app/controllers/reporting_controller.rb:524
+#: app/controllers/reporting_controller.rb:561
 msgid "By types"
 msgstr "Par types"
 
-#: app/controllers/reporting_controller.rb:525
+#: app/controllers/reporting_controller.rb:562
 msgid "By severities"
 msgstr "Par sévérités"
 
-#: app/controllers/reporting_controller.rb:526
+#: app/controllers/reporting_controller.rb:563
 msgid "By status"
 msgstr "Par statuts"
 
-#: app/controllers/reporting_controller.rb:527
+#: app/controllers/reporting_controller.rb:564
 #: app/views/knowledges/_index_panel.html.erb:23
 msgid "By software"
 msgstr "Par logiciel"
 
-#: app/controllers/reporting_controller.rb:529
+#: app/controllers/reporting_controller.rb:566
 msgid "Top 5 of the most discussed issues"
 msgstr "Top 5 des demandes les plus discutées"
 
-#: app/controllers/reporting_controller.rb:530
+#: app/controllers/reporting_controller.rb:567
 msgid "Top 5 of the most discussed software"
 msgstr "Top 5 des logiciels les plus discutées"
 
-#: app/controllers/reporting_controller.rb:532
+#: app/controllers/reporting_controller.rb:569
 msgid "Processing time"
 msgstr "Temps de traitement"
 
-#: app/controllers/reporting_controller.rb:533
+#: app/controllers/reporting_controller.rb:570
 msgid "Response time"
 msgstr "Temps de réponse"
 
-#: app/controllers/reporting_controller.rb:534
+#: app/controllers/reporting_controller.rb:571
 msgid "Workaround time"
 msgstr "Temps de contournement"
 
-#: app/controllers/reporting_controller.rb:535
+#: app/controllers/reporting_controller.rb:572
 msgid "Correction time"
 msgstr "Temps de correction"
 
@@ -623,7 +635,7 @@ msgstr "%s se sont écoulé(e)s sur cette demande."
 #: app/views/account/_edit_account_informations.html.erb:9
 #: app/views/contracts/_form.html.erb:51 app/views/contracts/index.html.erb:6
 #: app/views/issues/_form.html.erb:14
-#: app/views/issues/_index_panel.html.erb:50
+#: app/views/issues/_index_panel.html.erb:49
 #: app/views/issues/_show_panel.html.erb:8
 #: app/views/issues/lists/_issues_table.html.erb:7
 msgid "Type"
@@ -633,7 +645,7 @@ msgstr "Type"
 #: app/helpers/engagements_helper.rb:37 app/helpers/engagements_helper.rb:87
 #: app/views/commitments/_form.html.erb:7
 #: app/views/issues/_comment_form.html.erb:12
-#: app/views/issues/_index_panel.html.erb:52
+#: app/views/issues/_index_panel.html.erb:51
 #: app/views/issues/_show_panel.html.erb:9
 msgid "Severity"
 msgstr "Sévérité"
@@ -679,11 +691,11 @@ msgstr "Date"
 msgid "a contribution"
 msgstr "une contribution"
 
-#: app/helpers/forms_helper.rb:159
+#: app/helpers/forms_helper.rb:170
 msgid "Quick access to an issue : type the issue number here"
 msgstr "Accès rapide à une demande : tapez ici le numéro de la demande"
 
-#: app/helpers/forms_helper.rb:175 app/views/account/_menu.html.erb:36
+#: app/helpers/forms_helper.rb:186 app/views/account/_menu.html.erb:36
 #: app/views/clients/_index_panel.html.erb:28
 #: app/views/contracts/_index_panel.html.erb:19
 #: app/views/contributions/_admin_panel.html.erb:28
@@ -900,42 +912,42 @@ msgstr "Dernière page"
 msgid "release"
 msgstr "release"
 
-#: app/helpers/reporting_helper.rb:32
+#: app/helpers/reporting_helper.rb:31
 #: app/views/issues/_comment_form.html.erb:6
-#: app/views/issues/_index_panel.html.erb:54
+#: app/views/issues/_index_panel.html.erb:53
 #: app/views/issues/_show_panel.html.erb:6
 msgid "Status"
 msgstr "Statut"
 
-#: app/helpers/reporting_helper.rb:32
+#: app/helpers/reporting_helper.rb:31
 msgid "Period"
 msgstr "Période"
 
-#: app/helpers/reporting_helper.rb:81
+#: app/helpers/reporting_helper.rb:80
 msgid "Running"
 msgstr "En cours"
 
-#: app/helpers/reporting_helper.rb:81
+#: app/helpers/reporting_helper.rb:80
 msgid "Finished"
 msgstr "Terminées"
 
-#: app/helpers/reporting_helper.rb:90
+#: app/helpers/reporting_helper.rb:89
 msgid "During the chosen period"
 msgstr "Pendant la période considérée"
 
-#: app/helpers/reporting_helper.rb:99
+#: app/helpers/reporting_helper.rb:98
 msgid "Since the beginning of your contract"
 msgstr "Depuis le début de votre contrat"
 
-#: app/helpers/reporting_helper.rb:208
+#: app/helpers/reporting_helper.rb:207
 msgid "no data"
 msgstr "aucune donnée"
 
-#: app/helpers/reporting_helper.rb:274
+#: app/helpers/reporting_helper.rb:273
 msgid "progress bar"
 msgstr "barre de progression"
 
-#: app/helpers/reporting_helper.rb:299
+#: app/helpers/reporting_helper.rb:298
 msgid "Exceedance"
 msgstr "Dépassement"
 
@@ -987,7 +999,7 @@ msgstr "Effacer"
 msgid "Hide"
 msgstr "Cacher"
 
-#: app/helpers/static_image.rb:81 app/views/issues/_index_panel.html.erb:64
+#: app/helpers/static_image.rb:81 app/views/issues/_index_panel.html.erb:63
 #: app/views/issues/_show_panel.html.erb:58 app/views/welcome/about.html.erb:4
 msgid "Help"
 msgstr "Aide"
@@ -1174,7 +1186,11 @@ msgstr "doit être >= 0."
 msgid "You have to specify a software."
 msgstr "Vous devez spécifier un logiciel"
 
-#: app/models/contribution.rb:55
+#: app/models/contribution.rb:38
+msgid "Contribution|Software"
+msgstr "Logiciel"
+
+#: app/models/contribution.rb:58
 msgid " on "
 msgstr " à "
 
@@ -1216,28 +1232,28 @@ msgstr "Vous devez spécifier un nom ou un domaine"
 msgid "You cannot specify a software and a domain."
 msgstr "Vous ne pouvez spécifier un logiciel et un domaine."
 
-#: app/models/notifier.rb:138
+#: app/models/notifier.rb:130
 msgid "Daily digest for "
 msgstr "Rapport d'activité pour "
 
-#: app/models/notifier.rb:140
+#: app/models/notifier.rb:132
 msgid " week of "
 msgstr " semaine "
 
-#: app/models/notifier.rb:141
+#: app/models/notifier.rb:133
 msgid "Weekly digest for "
 msgstr "Activité hebdomadaire pour "
 
-#: app/models/notifier.rb:144
+#: app/models/notifier.rb:136
 msgid "Monthly digest for "
 msgstr "Activité mensuelle pour "
 
-#: app/models/notifier.rb:147
+#: app/models/notifier.rb:139
 msgid "Yearly digest for "
 msgstr "Activité annuelle pour "
 
-#: app/models/notifier.rb:286 app/models/notifier.rb:298
-#: app/models/notifier.rb:311
+#: app/models/notifier.rb:287 app/models/notifier.rb:299
+#: app/models/notifier.rb:312
 msgid "Possible error in your e-mail"
 msgstr "Erreur possible dans votre adresse e-mail"
 
@@ -1339,23 +1355,23 @@ msgstr "Mot de passe"
 msgid "User|Pwd confirmation"
 msgstr "Confirmation du mot de passe"
 
-#: app/models/user.rb:112
+#: app/models/user.rb:128
 msgid "Password missing"
 msgstr "Mot de passe manquant"
 
-#: app/models/user.rb:114
+#: app/models/user.rb:130
 msgid "Password is different from its confirmation"
 msgstr "Mot de passe différent de sa confirmation"
 
-#: app/models/user.rb:118
+#: app/models/user.rb:134
 msgid "Your password is too long (max. 20)"
 msgstr "Votre mot de passe est trop long (max. 20 caractères)"
 
-#: app/models/user.rb:120
+#: app/models/user.rb:136
 msgid "Your password is too short (min. 5)"
 msgstr "Votre mot de passe est trop court (min. 5)"
 
-#: app/models/user.rb:124
+#: app/models/user.rb:140
 msgid "You must have specify a password."
 msgstr "Vous devez préciser un mot de passe"
 
@@ -2230,6 +2246,7 @@ msgstr " ou "
 
 #: app/views/contributions/_admin_panel.html.erb:15
 #: app/views/issues/_index_panel.html.erb:15
+#: app/views/reporting/_weekly_panel.html.erb:9
 msgid "Actions"
 msgstr "Actions"
 
@@ -2544,19 +2561,15 @@ msgstr "Par contrat"
 msgid "By expert"
 msgstr "Par expert"
 
-#: app/views/issues/_index_panel.html.erb:44
-msgid "[ Me ]"
-msgstr "[ Moi ]"
-
-#: app/views/issues/_index_panel.html.erb:48
+#: app/views/issues/_index_panel.html.erb:47
 msgid "Attributes"
 msgstr "Attributs"
 
-#: app/views/issues/_index_panel.html.erb:58
+#: app/views/issues/_index_panel.html.erb:57
 msgid "Settings"
 msgstr "Paramètres"
 
-#: app/views/issues/_index_panel.html.erb:60
+#: app/views/issues/_index_panel.html.erb:59
 msgid "Limit"
 msgstr "Limite"
 
@@ -2966,7 +2979,6 @@ msgstr "Activité %s du "
 
 #: app/views/reporting/_comex_tableaux.html.erb:3
 #: app/views/reporting/_header.html.erb:19
-#: app/views/reporting/weekly.html.erb:3
 msgid "to"
 msgstr "à"
 
@@ -3118,7 +3130,7 @@ msgid_plural "New issues %s"
 msgstr[0] "Nouvelle demande pour %s"
 msgstr[1] "Nouvelles demandes pour %s"
 
-#: app/views/reporting/calendar.html.erb:15
+#: app/views/reporting/calendar.html.erb:17
 msgid "%s new issue has been submitted"
 msgid_plural "%s new issues has been submitted"
 msgstr[0] "%s nouvelle demande a été soumise"
@@ -3235,28 +3247,6 @@ msgstr "ouverte depuis %s"
 #: app/views/reporting/general.html.erb:31
 msgid "Software are selected over the duration of the deal"
 msgstr "Les logiciels sont sélectionnés sur toute la durée des contrats"
-
-#: app/views/reporting/weekly.html.erb:2
-msgid "Weekly activity from "
-msgstr "Activité OSSA du "
-
-#: app/views/reporting/weekly.html.erb:7
-msgid "issue created"
-msgid_plural "issues created"
-msgstr[0] "issue créée"
-msgstr[1] "issues créées"
-
-#: app/views/reporting/weekly.html.erb:10
-msgid "issue closed"
-msgid_plural "issues closed"
-msgstr[0] "issue fermée"
-msgstr[1] "issues fermées"
-
-#: app/views/reporting/weekly.html.erb:13
-msgid "issue cancelled"
-msgid_plural "issues cancelled"
-msgstr[0] "issue annulée"
-msgstr[1] "issues annulées"
 
 #: app/views/roles/_form.html.erb:6
 msgid "Short description"
@@ -3989,6 +3979,24 @@ msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
 
+#~ msgid "Weekly activity from "
+#~ msgstr "Activité OSSA du "
+
+#~ msgid "issue created"
+#~ msgid_plural "issues created"
+#~ msgstr[0] "issue créée"
+#~ msgstr[1] "issues créées"
+
+#~ msgid "issue closed"
+#~ msgid_plural "issues closed"
+#~ msgstr[0] "issue fermée"
+#~ msgstr[1] "issues fermées"
+
+#~ msgid "issue cancelled"
+#~ msgid_plural "issues cancelled"
+#~ msgstr[0] "issue annulée"
+#~ msgstr[1] "issues annulées"
+
 #~ msgid "The call was successfully created."
 #~ msgstr "L'appel a été créée avec succès."
 
@@ -4123,9 +4131,6 @@ msgstr[1] "%d mois"
 
 #~ msgid "Commitment|Issuetype"
 #~ msgstr "Type de demande"
-
-#~ msgid "contributionstate"
-#~ msgstr "État de reversement"
 
 #~ msgid "contributiontype"
 #~ msgstr "type de contribution"
