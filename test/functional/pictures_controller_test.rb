@@ -23,7 +23,7 @@ require 'images_controller'
 class PicturesController; def rescue_action(e) raise e end; end
 
 class PicturesControllerTest < Test::Unit::TestCase
-  fixtures :images
+  fixtures :pictures
 
   def setup
     @controller = PicturesController.new

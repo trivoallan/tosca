@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ClientTest < Test::Unit::TestCase
-  fixtures :clients, :images, :severities, :users, :contracts,
+  fixtures :clients, :pictures, :severities, :users, :contracts,
     :contributions, :softwares, :components, :credits
 
   def test_to_strings
@@ -34,13 +34,13 @@ class ClientTest < Test::Unit::TestCase
       :address => "I live next door")
     assert client.save
 
-    images(:image_00001).destroy
+    pictures(:image_00001).destroy
     i = Picture.new(:image => image_file, :client => client)
     i.id = 1
     i.save
 
     client = Client.find_by_name('Testing logo')
-    assert_match(/logo_linagora.gif$/, client.picture.picture.to_s)
+    assert_match(/logo_linagora.gif$/, client.picture.image.to_s)
     client.destroy
   end
 

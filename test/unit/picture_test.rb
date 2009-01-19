@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class PictureTest < Test::Unit::TestCase
-  fixtures :images
+  fixtures :pictures
 
   def test_to_strings
     check_strings Picture
@@ -27,13 +27,13 @@ class PictureTest < Test::Unit::TestCase
 
   def test_image
     image_file = fixture_file_upload('/files/logo_linagora.gif', 'image/gif')
-    images(:image_00001).destroy
+    pictures(:image_00001).destroy
     image = Picture.new(:image => image_file)
     image.id = 1
     assert image.save
 
     image_file = fixture_file_upload('/files/logo_aliasource.jpg', 'image/jpg')
-    images(:image_00003).destroy
+    pictures(:image_00003).destroy
     image = Picture.new(:image => image_file)
     image.id = 3
     assert image.save

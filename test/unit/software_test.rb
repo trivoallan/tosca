@@ -19,7 +19,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class SoftwareTest < Test::Unit::TestCase
-  fixtures :softwares, :skills, :images, :contracts
+  fixtures :softwares, :skills, :pictures, :contracts
 
   def test_to_strings
     check_strings Software
@@ -39,7 +39,7 @@ class SoftwareTest < Test::Unit::TestCase
     upload_logo('/files/logo_firefox.gif', 'image/gif', 4)
     upload_logo('/files/logo_cvs.gif', 'image/gif', 5)
 
-    assert !@software.picture.picture.blank?
+    assert !@software.picture.image.blank?
   end
 
   # We need to upload files in order to have working logo in test environment.
