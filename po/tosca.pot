@@ -7,7 +7,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
+<<<<<<< HEAD:po/tosca.pot
 "POT-Creation-Date: 2009-01-19 13:47+0100\n"
+=======
+"POT-Creation-Date: 2009-01-16 11:13+0100\n"
+>>>>>>> e6f5f4947a80025e73218c945b0bef12ba3f758e:po/tosca.pot
 "PO-Revision-Date: 2008-05-22 15:28+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -191,7 +195,7 @@ msgstr ""
 msgid "The contribution has been updated successfully."
 msgstr ""
 
-#: app/controllers/contributions_controller.rb:195
+#: app/controllers/contributions_controller.rb:200
 msgid "The associated issue does not exist"
 msgstr ""
 
@@ -274,11 +278,19 @@ msgid ""
 "filling an issue. Please contact %s if you think it's not normal"
 msgstr ""
 
+<<<<<<< HEAD:po/tosca.pot
 #: app/controllers/issues_controller.rb:470 app/helpers/issues_helper.rb:142
 msgid "Active issues"
 msgstr ""
 
 #: app/controllers/issues_controller.rb:473 app/helpers/issues_helper.rb:149
+=======
+#: app/controllers/issues_controller.rb:470 app/helpers/issues_helper.rb:137
+msgid "Active issues"
+msgstr ""
+
+#: app/controllers/issues_controller.rb:473 app/helpers/issues_helper.rb:144
+>>>>>>> e6f5f4947a80025e73218c945b0bef12ba3f758e:po/tosca.pot
 msgid "Finished issues"
 msgstr ""
 
@@ -320,6 +332,7 @@ msgstr ""
 msgid "This release has been successfully updated."
 msgstr ""
 
+<<<<<<< HEAD:po/tosca.pot
 #: app/controllers/reporting_controller.rb:138
 msgid "Issues of all your contracts"
 msgstr ""
@@ -348,11 +361,37 @@ msgstr ""
 
 #: app/controllers/reporting_controller.rb:504
 #: app/controllers/reporting_controller.rb:506
+=======
+#: app/controllers/reporting_controller.rb:206
+#: app/controllers/reporting_controller.rb:211
+msgid "incorrect parameters"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:348
+msgid "Unknown"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:349
+msgid "Others"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:477
+#: app/controllers/reporting_controller.rb:479
+msgid "Distributed on "
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:477
+#: app/controllers/reporting_controller.rb:479
+>>>>>>> e6f5f4947a80025e73218c945b0bef12ba3f758e:po/tosca.pot
 #: app/views/reporting/_introduction.html.erb:4
 msgid " months"
 msgstr ""
 
+<<<<<<< HEAD:po/tosca.pot
 #: app/controllers/reporting_controller.rb:512
+=======
+#: app/controllers/reporting_controller.rb:485
+>>>>>>> e6f5f4947a80025e73218c945b0bef12ba3f758e:po/tosca.pot
 #: app/helpers/contributions_helper.rb:25
 #: app/views/contributions/_admin_panel.html.erb:45
 #: app/views/issues/_form.html.erb:120 app/views/issues/_show_panel.html.erb:3
@@ -364,12 +403,17 @@ msgstr ""
 msgid "Summary"
 msgstr ""
 
+<<<<<<< HEAD:po/tosca.pot
 #: app/controllers/reporting_controller.rb:533
+=======
+#: app/controllers/reporting_controller.rb:506
+>>>>>>> e6f5f4947a80025e73218c945b0bef12ba3f758e:po/tosca.pot
 msgid ""
 "No data \n"
 "available"
 msgstr ""
 
+<<<<<<< HEAD:po/tosca.pot
 #: app/controllers/reporting_controller.rb:545
 #: app/controllers/reporting_controller.rb:547 app/models/statut.rb:30
 msgid "Cancelled"
@@ -424,10 +468,67 @@ msgid "By status"
 msgstr ""
 
 #: app/controllers/reporting_controller.rb:591
+=======
+#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520 app/models/statut.rb:30
+msgid "Cancelled"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520 app/models/statut.rb:27
+msgid "Bypassed"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520 app/models/statut.rb:28
+msgid "Fixed"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520 app/models/statut.rb:29
+msgid "Closed"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520
+msgid "Active"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:525
+#: app/controllers/reporting_controller.rb:527
+#: app/controllers/reporting_controller.rb:529
+msgid "In time"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:525
+#: app/controllers/reporting_controller.rb:527
+#: app/controllers/reporting_controller.rb:529
+msgid "Out of time"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:560
+msgid "Distribution of your issues"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:561
+msgid "By types"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:562
+msgid "By severities"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:563
+msgid "By status"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:564
+>>>>>>> e6f5f4947a80025e73218c945b0bef12ba3f758e:po/tosca.pot
 #: app/views/knowledges/_index_panel.html.erb:23
 msgid "By software"
 msgstr ""
 
+<<<<<<< HEAD:po/tosca.pot
 #: app/controllers/reporting_controller.rb:593
 msgid "Top 5 of the most discussed issues"
 msgstr ""
@@ -449,6 +550,29 @@ msgid "Workaround time"
 msgstr ""
 
 #: app/controllers/reporting_controller.rb:599
+=======
+#: app/controllers/reporting_controller.rb:566
+msgid "Top 5 of the most discussed issues"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:567
+msgid "Top 5 of the most discussed software"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:569
+msgid "Processing time"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:570
+msgid "Response time"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:571
+msgid "Workaround time"
+msgstr ""
+
+#: app/controllers/reporting_controller.rb:572
+>>>>>>> e6f5f4947a80025e73218c945b0bef12ba3f758e:po/tosca.pot
 msgid "Correction time"
 msgstr ""
 
@@ -1174,7 +1298,11 @@ msgstr ""
 msgid "You have to specify a software."
 msgstr ""
 
-#: app/models/contribution.rb:55
+#: app/models/contribution.rb:38
+msgid "Contribution|Software"
+msgstr ""
+
+#: app/models/contribution.rb:58
 msgid " on "
 msgstr ""
 
@@ -2257,6 +2385,7 @@ msgstr ""
 
 #: app/views/contributions/_admin_panel.html.erb:15
 #: app/views/issues/_index_panel.html.erb:15
+#: app/views/reporting/_weekly_panel.html.erb:9
 msgid "Actions"
 msgstr ""
 

@@ -12,8 +12,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tosca 0.7.5\n"
 "Report-Msgid-Bugs-To: \n"
+<<<<<<< HEAD:po/fr/tosca.po
 "POT-Creation-Date: 2009-01-19 13:47+0100\n"
 "PO-Revision-Date: 2009-01-12 18:11+0100\n"
+=======
+"POT-Creation-Date: 2009-01-16 11:13+0100\n"
+"PO-Revision-Date: 2009-01-16 11:15+0100\n"
+>>>>>>> e6f5f4947a80025e73218c945b0bef12ba3f758e:po/fr/tosca.po
 "Last-Translator: Jonathan Clarke <jclarke@linagora.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -202,7 +207,7 @@ msgstr "La contribution a été créée avec succès"
 msgid "The contribution has been updated successfully."
 msgstr "La contribution a bien été mise à jour."
 
-#: app/controllers/contributions_controller.rb:195
+#: app/controllers/contributions_controller.rb:200
 msgid "The associated issue does not exist"
 msgstr "La demande associée n'existe pas"
 
@@ -288,11 +293,19 @@ msgstr ""
 "de déposer une demande. Veuillez contacter %s si vous pensez que ce n'est "
 "pas normal."
 
+<<<<<<< HEAD:po/fr/tosca.po
 #: app/controllers/issues_controller.rb:470 app/helpers/issues_helper.rb:142
 msgid "Active issues"
 msgstr "Demandes actives"
 
 #: app/controllers/issues_controller.rb:473 app/helpers/issues_helper.rb:149
+=======
+#: app/controllers/issues_controller.rb:470 app/helpers/issues_helper.rb:137
+msgid "Active issues"
+msgstr "Demandes actives"
+
+#: app/controllers/issues_controller.rb:473 app/helpers/issues_helper.rb:144
+>>>>>>> e6f5f4947a80025e73218c945b0bef12ba3f758e:po/fr/tosca.po
 msgid "Finished issues"
 msgstr "Demandes terminées"
 
@@ -336,6 +349,7 @@ msgstr "Cette release a bien été créée."
 msgid "This release has been successfully updated."
 msgstr "Cette release a été mise à jour."
 
+<<<<<<< HEAD:po/fr/tosca.po
 #: app/controllers/reporting_controller.rb:138
 msgid "Issues of all your contracts"
 msgstr "Les demandes de tous vos contrats"
@@ -364,11 +378,37 @@ msgstr "Répartie sur "
 
 #: app/controllers/reporting_controller.rb:504
 #: app/controllers/reporting_controller.rb:506
+=======
+#: app/controllers/reporting_controller.rb:206
+#: app/controllers/reporting_controller.rb:211
+msgid "incorrect parameters"
+msgstr "paramètres incorrects"
+
+#: app/controllers/reporting_controller.rb:348
+msgid "Unknown"
+msgstr "Non spécifié"
+
+#: app/controllers/reporting_controller.rb:349
+msgid "Others"
+msgstr "Autres"
+
+#: app/controllers/reporting_controller.rb:477
+#: app/controllers/reporting_controller.rb:479
+msgid "Distributed on "
+msgstr "Répartie sur "
+
+#: app/controllers/reporting_controller.rb:477
+#: app/controllers/reporting_controller.rb:479
+>>>>>>> e6f5f4947a80025e73218c945b0bef12ba3f758e:po/fr/tosca.po
 #: app/views/reporting/_introduction.html.erb:4
 msgid " months"
 msgstr " mois"
 
+<<<<<<< HEAD:po/fr/tosca.po
 #: app/controllers/reporting_controller.rb:512
+=======
+#: app/controllers/reporting_controller.rb:485
+>>>>>>> e6f5f4947a80025e73218c945b0bef12ba3f758e:po/fr/tosca.po
 #: app/helpers/contributions_helper.rb:25
 #: app/views/contributions/_admin_panel.html.erb:45
 #: app/views/issues/_form.html.erb:120 app/views/issues/_show_panel.html.erb:3
@@ -380,7 +420,11 @@ msgstr " mois"
 msgid "Summary"
 msgstr "Résumé"
 
+<<<<<<< HEAD:po/fr/tosca.po
 #: app/controllers/reporting_controller.rb:533
+=======
+#: app/controllers/reporting_controller.rb:506
+>>>>>>> e6f5f4947a80025e73218c945b0bef12ba3f758e:po/fr/tosca.po
 msgid ""
 "No data \n"
 "available"
@@ -388,6 +432,7 @@ msgstr ""
 "Aucune donnée \n"
 "disponible"
 
+<<<<<<< HEAD:po/fr/tosca.po
 #: app/controllers/reporting_controller.rb:545
 #: app/controllers/reporting_controller.rb:547 app/models/statut.rb:30
 msgid "Cancelled"
@@ -442,10 +487,67 @@ msgid "By status"
 msgstr "Par statuts"
 
 #: app/controllers/reporting_controller.rb:591
+=======
+#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520 app/models/statut.rb:30
+msgid "Cancelled"
+msgstr "Annulée"
+
+#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520 app/models/statut.rb:27
+msgid "Bypassed"
+msgstr "Contournée"
+
+#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520 app/models/statut.rb:28
+msgid "Fixed"
+msgstr "Corrigée"
+
+#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520 app/models/statut.rb:29
+msgid "Closed"
+msgstr "Fermée"
+
+#: app/controllers/reporting_controller.rb:518
+#: app/controllers/reporting_controller.rb:520
+msgid "Active"
+msgstr "Actif"
+
+#: app/controllers/reporting_controller.rb:525
+#: app/controllers/reporting_controller.rb:527
+#: app/controllers/reporting_controller.rb:529
+msgid "In time"
+msgstr "Délais respectés"
+
+#: app/controllers/reporting_controller.rb:525
+#: app/controllers/reporting_controller.rb:527
+#: app/controllers/reporting_controller.rb:529
+msgid "Out of time"
+msgstr "Hors délais"
+
+#: app/controllers/reporting_controller.rb:560
+msgid "Distribution of your issues"
+msgstr "Répartition de vos demandes"
+
+#: app/controllers/reporting_controller.rb:561
+msgid "By types"
+msgstr "Par types"
+
+#: app/controllers/reporting_controller.rb:562
+msgid "By severities"
+msgstr "Par sévérités"
+
+#: app/controllers/reporting_controller.rb:563
+msgid "By status"
+msgstr "Par statuts"
+
+#: app/controllers/reporting_controller.rb:564
+>>>>>>> e6f5f4947a80025e73218c945b0bef12ba3f758e:po/fr/tosca.po
 #: app/views/knowledges/_index_panel.html.erb:23
 msgid "By software"
 msgstr "Par logiciel"
 
+<<<<<<< HEAD:po/fr/tosca.po
 #: app/controllers/reporting_controller.rb:593
 msgid "Top 5 of the most discussed issues"
 msgstr "Top 5 des demandes les plus discutées"
@@ -467,6 +569,29 @@ msgid "Workaround time"
 msgstr "Temps de contournement"
 
 #: app/controllers/reporting_controller.rb:599
+=======
+#: app/controllers/reporting_controller.rb:566
+msgid "Top 5 of the most discussed issues"
+msgstr "Top 5 des demandes les plus discutées"
+
+#: app/controllers/reporting_controller.rb:567
+msgid "Top 5 of the most discussed software"
+msgstr "Top 5 des logiciels les plus discutées"
+
+#: app/controllers/reporting_controller.rb:569
+msgid "Processing time"
+msgstr "Temps de traitement"
+
+#: app/controllers/reporting_controller.rb:570
+msgid "Response time"
+msgstr "Temps de réponse"
+
+#: app/controllers/reporting_controller.rb:571
+msgid "Workaround time"
+msgstr "Temps de contournement"
+
+#: app/controllers/reporting_controller.rb:572
+>>>>>>> e6f5f4947a80025e73218c945b0bef12ba3f758e:po/fr/tosca.po
 msgid "Correction time"
 msgstr "Temps de correction"
 
@@ -1195,7 +1320,11 @@ msgstr "doit être >= 0."
 msgid "You have to specify a software."
 msgstr "Vous devez spécifier un logiciel"
 
-#: app/models/contribution.rb:55
+#: app/models/contribution.rb:38
+msgid "Contribution|Software"
+msgstr "Logiciel"
+
+#: app/models/contribution.rb:58
 msgid " on "
 msgstr " à "
 
@@ -2280,6 +2409,7 @@ msgstr " ou "
 
 #: app/views/contributions/_admin_panel.html.erb:15
 #: app/views/issues/_index_panel.html.erb:15
+#: app/views/reporting/_weekly_panel.html.erb:9
 msgid "Actions"
 msgstr "Actions"
 
@@ -4050,470 +4180,3 @@ msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
 
-#~ msgid "Weekly activity from "
-#~ msgstr "Activité OSSA du "
-
-#~ msgid "issue created"
-#~ msgid_plural "issues created"
-#~ msgstr[0] "issue créée"
-#~ msgstr[1] "issues créées"
-
-#~ msgid "issue closed"
-#~ msgid_plural "issues closed"
-#~ msgstr[0] "issue fermée"
-#~ msgstr[1] "issues fermées"
-
-#~ msgid "issue cancelled"
-#~ msgid_plural "issues cancelled"
-#~ msgstr[0] "issue annulée"
-#~ msgstr[1] "issues annulées"
-
-#~ msgid "The call was successfully created."
-#~ msgstr "L'appel a été créée avec succès."
-
-#~ msgid "The phone call has been updated."
-#~ msgstr "L'appel a été mis à jour avec succès"
-
-#~ msgid "Export in %s"
-#~ msgstr "Exporter en %s"
-
-#~ msgid "Add a phone call"
-#~ msgstr "Ajouter un appel"
-
-#~ msgid "alert"
-#~ msgstr "alerte"
-
-#~ msgid "Alert|Team"
-#~ msgstr "Équipe"
-
-#~ msgid "Alert|Hash value"
-#~ msgstr "Valeur du hash"
-
-#~ msgid "Alert|Created at"
-#~ msgstr "Créée le"
-
-#~ msgid "Alert|Updated at"
-#~ msgstr "Mise à jour le"
-
-#~ msgid "Archive|File"
-#~ msgstr "Fichier"
-
-#~ msgid "Archive|Size"
-#~ msgstr "Taille"
-
-#~ msgid "Archive|Release"
-#~ msgstr "Release"
-
-#~ msgid "attachment"
-#~ msgstr "Fichier joint"
-
-#~ msgid "Attachment|File"
-#~ msgstr "Fichier joint"
-
-#~ msgid "changelog"
-#~ msgstr "changelog"
-
-#~ msgid "Changelog|Release"
-#~ msgstr "Release"
-
-#~ msgid "Changelog|Modification date"
-#~ msgstr "Date de modification"
-
-#~ msgid "Changelog|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Changelog|Modification text"
-#~ msgstr "Description de la modification"
-
-#~ msgid "Client|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Client|Context"
-#~ msgstr "Contexte"
-
-#~ msgid "Client|Address"
-#~ msgstr "Adresse"
-
-#~ msgid "Client|Image"
-#~ msgstr "Image"
-
-#~ msgid "Client|Access code"
-#~ msgstr "Code d'accès"
-
-#~ msgid "Client|Recipients count"
-#~ msgstr "Nombre de bénéficiaires"
-
-#~ msgid "Client|Inactive"
-#~ msgstr "Inactif"
-
-#~ msgid "Client|Creator"
-#~ msgstr "Créateur"
-
-#~ msgid "comment"
-#~ msgstr "commentaire"
-
-#~ msgid "Comment|Issue"
-#~ msgstr "Issue"
-
-#~ msgid "Comment|User"
-#~ msgstr "Utilisateur"
-
-#~ msgid "Comment|Attachment"
-#~ msgstr "Fichier joint"
-
-#~ msgid "Comment|Text"
-#~ msgstr "Texte"
-
-#~ msgid "Comment|Created on"
-#~ msgstr "Créé le"
-
-#~ msgid "Comment|Updated on"
-#~ msgstr "Mis à jour le"
-
-#~ msgid "Comment|Private"
-#~ msgstr "Privé"
-
-#~ msgid "Comment|Severity"
-#~ msgstr "Sévérité"
-
-#~ msgid "Comment|Statut"
-#~ msgstr "Statut"
-
-#~ msgid "Comment|Elapsed"
-#~ msgstr "Passé"
-
-#~ msgid "Comment|Engineer"
-#~ msgstr "Ingénieur"
-
-#~ msgid "commitment"
-#~ msgstr "engagement"
-
-#~ msgid "Commitment|Severity"
-#~ msgstr "Sévérité"
-
-#~ msgid "Commitment|Workaround"
-#~ msgstr "Contournement"
-
-#~ msgid "Commitment|Correction"
-#~ msgstr "Correction"
-
-#~ msgid "Commitment|Issuetype"
-#~ msgstr "Type de demande"
-
-#~ msgid "contributionstate"
-#~ msgstr "État de reversement"
-
-#~ msgid "contributiontype"
-#~ msgstr "type de contribution"
-
-#~ msgid "Contributiontype|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Contributiontype|Description"
-#~ msgstr "Description"
-
-#~ msgid "elapsed"
-#~ msgstr "Temps écoulé"
-
-#~ msgid "Elapsed|Issue"
-#~ msgstr "Issue"
-
-#~ msgid "Elapsed|Taken into account"
-#~ msgstr "Prise en compte"
-
-#~ msgid "Elapsed|Workaround"
-#~ msgstr "Contournée"
-
-#~ msgid "Elapsed|Correction"
-#~ msgstr "Correction"
-
-#~ msgid "Elapsed|Until now"
-#~ msgstr "Jusqu'à maintenant"
-
-#~ msgid "group"
-#~ msgstr "groupe"
-
-#~ msgid "Group|Name"
-#~ msgstr "Nom"
-
-#~ msgid "hyperlink"
-#~ msgstr "lien"
-
-#~ msgid "Hyperlink|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Hyperlink|Model type"
-#~ msgstr "Type"
-
-#~ msgid "Hyperlink|Model"
-#~ msgstr "Model"
-
-#~ msgid "image"
-#~ msgstr "image"
-
-#~ msgid "Image|Image"
-#~ msgstr "Image"
-
-#~ msgid "Image|Description"
-#~ msgstr "Description"
-
-#~ msgid "Image|Software"
-#~ msgstr "Logiciel"
-
-#~ msgid "issuetype"
-#~ msgstr "type de demande"
-
-#~ msgid "Issuetype|Name"
-#~ msgstr "Nom"
-
-#~ msgid "knowledge"
-#~ msgstr "connaissance"
-
-#~ msgid "Knowledge|Skill"
-#~ msgstr "Compétence"
-
-#~ msgid "Knowledge|Software"
-#~ msgstr "Logiciel"
-
-#~ msgid "Knowledge|Level"
-#~ msgstr "Niveau"
-
-#~ msgid "Knowledge|Engineer"
-#~ msgstr "Ingénieur"
-
-#~ msgid "license"
-#~ msgstr "licence"
-
-#~ msgid "License|Url"
-#~ msgstr "Url"
-
-#~ msgid "License|Osi certified"
-#~ msgstr "Certifiée OSI"
-
-#~ msgid "permission"
-#~ msgstr "permission"
-
-#~ msgid "Permission|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Permission|Info"
-#~ msgstr "Informations"
-
-#~ msgid "phonecall"
-#~ msgstr "appel"
-
-#~ msgid "The beginning of the call has to be before to its end."
-#~ msgstr "Le début de l'appel doit précéder sa fin."
-
-#~ msgid "recipient and client have to correspond."
-#~ msgstr "bénéficiaires et le client doivent correspondre"
-
-#~ msgid "Phonecall of %s on '%s'"
-#~ msgstr "Appels de %s on '%s'"
-
-#~ msgid "Phonecall of %s for %s"
-#~ msgstr "Appels de %s pour %s"
-
-#~ msgid "preference"
-#~ msgstr "préférences"
-
-#~ msgid "Preference|Attribute"
-#~ msgstr "Attribut"
-
-#~ msgid "Preference|Owner"
-#~ msgstr "Possesseur"
-
-#~ msgid "Preference|Owner type"
-#~ msgstr "Type de possesseur"
-
-#~ msgid "Preference|Preferenced"
-#~ msgstr "Préférences"
-
-#~ msgid "Preference|Preferenced type"
-#~ msgstr "Type de préférence"
-
-#~ msgid "Preference|Value"
-#~ msgstr "Valeur"
-
-#~ msgid "Preference|Created at"
-#~ msgstr "Créé le"
-
-#~ msgid "Preference|Updated at"
-#~ msgstr "Mise à jour le"
-
-#~ msgid "Release|Version"
-#~ msgstr "Version"
-
-#~ msgid "Release|Contract"
-#~ msgstr "Contact"
-
-#~ msgid "Release|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Release|Packaged"
-#~ msgstr "Packagé"
-
-#~ msgid "Release|Inactive"
-#~ msgstr "Inactif"
-
-#~ msgid "role"
-#~ msgstr "rôle"
-
-#~ msgid "Role|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Role|Info"
-#~ msgstr "Info"
-
-#~ msgid "severity"
-#~ msgstr "sévérité"
-
-#~ msgid "Severity|Name"
-#~ msgstr "Nom"
-
-#~ msgid "skill"
-#~ msgstr "compétence"
-
-#~ msgid "Skill|Name"
-#~ msgstr "Nom"
-
-#~ msgid "software"
-#~ msgstr "logiciel"
-
-#~ msgid "Software|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Software|Referent"
-#~ msgstr "Référant"
-
-#~ msgid "Software|Resume"
-#~ msgstr "Résumé"
-
-#~ msgid "Software|Description"
-#~ msgstr "Description"
-
-#~ msgid "Software|License"
-#~ msgstr "Licence"
-
-#~ msgid "Software|Group"
-#~ msgstr "Groupe"
-
-#~ msgid "Software|Private"
-#~ msgstr "Privé"
-
-#~ msgid "subscription"
-#~ msgstr "souscription"
-
-#~ msgid "Subscription|User"
-#~ msgstr "Utilisateur"
-
-#~ msgid "Subscription|Model"
-#~ msgstr "Modèle"
-
-#~ msgid "Subscription|Model type"
-#~ msgstr "Type"
-
-#~ msgid "Subscription|Updated on"
-#~ msgstr "Mise à jour le"
-
-#~ msgid "team"
-#~ msgstr "équipe"
-
-#~ msgid "Team|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Team|Motto"
-#~ msgstr "Devise"
-
-#~ msgid "Team|User cache"
-#~ msgstr "Cache des membres"
-
-#~ msgid "Team|Contact"
-#~ msgstr "Contact"
-
-#~ msgid "version"
-#~ msgstr "version"
-
-#~ msgid "Version|Software"
-#~ msgstr "Version d'un logiciel"
-
-#~ msgid "Version|Name"
-#~ msgstr "Nom"
-
-#~ msgid "Version|Generic"
-#~ msgstr "Générique"
-
-#~ msgid "workflow"
-#~ msgstr "flux de travail"
-
-#~ msgid "Workflow|Issuetype"
-#~ msgstr "Nature de la demande :"
-
-#~ msgid "Workflow|Statut"
-#~ msgstr "Statut"
-
-#~ msgid "Workflow|Allowed status ids"
-#~ msgstr "Statuts autorisés"
-
-#~ msgid "Phonecalls"
-#~ msgstr "Appels"
-
-#~ msgid "Phone call"
-#~ msgstr "Appel"
-
-#~ msgid "End of phonecall"
-#~ msgstr "Fin de l'appel"
-
-#~ msgid "Duration"
-#~ msgstr "Durée"
-
-#~ msgid "Issue Id"
-#~ msgstr "ID de la demande"
-
-#~ msgid "Engineers"
-#~ msgstr "Ingénieurs"
-
-#~ msgid "Start of call"
-#~ msgstr "Début de l'appel"
-
-#~ msgid "End of call"
-#~ msgstr "Fin de l'appel"
-
-#~ msgid "Add a call"
-#~ msgstr "Ajouter un appel"
-
-#~ msgid "From"
-#~ msgstr "Du"
-
-#~ msgid "To"
-#~ msgstr "Au"
-
-#~ msgid "Recipients"
-#~ msgstr "Bénéficiaires"
-
-#~ msgid "Edit a phone call"
-#~ msgstr "Modifier un appel"
-
-#~ msgid "List of calls"
-#~ msgstr "Liste des appels"
-
-#~ msgid "a call"
-#~ msgstr "un appel"
-
-#~ msgid "Interlocutor"
-#~ msgstr "Interlocuteur"
-
-#~ msgid "New phone call"
-#~ msgstr "Nouvel appel téléphonique"
-
-#~ msgid "Started on"
-#~ msgstr "Commencé le"
-
-#~ msgid "Ended on"
-#~ msgstr "Terminé le"
-
-#~ msgid "Status of the Issues"
-#~ msgstr "issue"
-
-#~ msgid "Status list"
-#~ msgstr "Listes des Statuts"
