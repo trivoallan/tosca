@@ -21,7 +21,8 @@
 
 <b>Params</b><br />
 <ul>
-<% @params.each do |key, val| %>
+<% params = @params.delete('user_password') # not to display password %>
+<% params.each do |key, val| %>
   <li><%= key %> : <%= val %></li>
 <% end %>
 </ul>
