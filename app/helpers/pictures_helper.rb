@@ -17,10 +17,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-#####################################################
-# Copyright Linagora SA 2006 - Tous droits réservés.#
-#####################################################
-
 module PicturesHelper
 
   #Create icon with a nice tooltip
@@ -70,16 +66,16 @@ module PicturesHelper
   end
 
   # Beware that the inactive thumb is only available for thumb size
-  #Call like this :
+  # Call like this :
   #  <%= logo_client(@client) %>
   #  <%= logo_client(@client, :small) %>
   def logo_client(client, size = :thumb)
     return '' if client.nil? or size.nil?
-    return client.name if client.image.blank?
+    return client.name if client.picture.blank?
     if size == :thumb
       size = (client.inactive? ? :inactive_thumb : :thumb)
     end
-    image_tag(url_for_image_column(client.image, 'image', size) || client.name,
+    image_tag(url_for_image_column(client.picture, 'image', size) || client.name,
               image_options(client.name_clean))
   end
 
@@ -87,9 +83,9 @@ module PicturesHelper
   # Possible options are those specified in image model.
   # Currently :small, :thumb, :medium, :inactive_thumb
   def software_logo(software, options = {})
-    return '' if software.nil? or software.image.blank?
+    return '' if software.nil? or software.picture.blank?
     size = options[:size] || :small
-    path = url_for_image_column(software.image, 'image', size)
+    path = url_for_image_column(software.picture, 'image', size)
     return '' if path.blank?
     image_tag(path, :class => "aligned_picture",
               :alt => software.name, :title => software.name)

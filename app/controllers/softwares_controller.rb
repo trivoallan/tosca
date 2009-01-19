@@ -34,7 +34,7 @@ class SoftwaresController < ApplicationController
     end
 
     options = { :order => 'softwares.name', :include =>
-      [:group,:image,:skills], :page => params[:page] }
+      [:group,:picture,:skills], :page => params[:page] }
     conditions = []
 
     if params.has_key? :filters
@@ -154,19 +154,19 @@ private
   end
 
   def add_logo
-    image = params[:image]
+    image = params[:picture]
     unless image.nil? || image[:image].blank?
       image[:description] = @software.name
-      @software.image = Picture.new(image)
-      return @software.image.save
+      @software.picture = Picture.new(image)
+      return @software.picture.save
     end
     return true
   end
 
   # because :save resets @software.errors
   def add_image_errors
-    unless @software.image.nil?
-      @software.image.errors.each do |attr, msg|
+    unless @software.picture.nil?
+      @software.picture.errors.each do |attr, msg|
         @software.errors.add :image, msg
       end
     end

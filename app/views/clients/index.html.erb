@@ -5,7 +5,7 @@
  <% titles = [ _("Logo"), _("Name"), _('Contracts'), _("Access code") ]%>
  <%= show_table(@clients, Client, titles) { |c|
    result = ''
-   result <<  (c.image ? "<td>#{logo_client(c)}</td>" : '<td></td>')
+   result <<  (c.picture ? "<td>#{logo_client(c)}</td>" : '<td></td>')
    result << "<td>#{link_to_client(c)}</td>"
 
    result << '<td>'

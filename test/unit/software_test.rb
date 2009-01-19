@@ -39,7 +39,7 @@ class SoftwareTest < Test::Unit::TestCase
     upload_logo('/files/logo_firefox.gif', 'image/gif', 4)
     upload_logo('/files/logo_cvs.gif', 'image/gif', 5)
 
-    assert !@software.image.image.blank?
+    assert !@software.picture.picture.blank?
   end
 
   # We need to upload files in order to have working logo in test environment.

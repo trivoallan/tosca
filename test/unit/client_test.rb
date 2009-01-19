@@ -40,7 +40,7 @@ class ClientTest < Test::Unit::TestCase
     i.save
 
     client = Client.find_by_name('Testing logo')
-    assert_match(/logo_linagora.gif$/, client.image.image.to_s)
+    assert_match(/logo_linagora.gif$/, client.picture.picture.to_s)
     client.destroy
   end
 

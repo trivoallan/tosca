@@ -23,10 +23,10 @@ module ClientsHelper
     link_to c.name, client_path(c)
   end
 
-  # lien vers mon offre / mon client
+  # link to my offer/client
   # options
-  # :text texte du lien à afficher
-  # :image image du client à afficher à la place
+  # :text text of the link to print
+  # :image picture of the client to display
   def link_to_my_client(image = false)
     user = @session_user
     return nil unless user.recipient?

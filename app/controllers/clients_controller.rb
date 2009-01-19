@@ -110,8 +110,8 @@ class ClientsController < ApplicationController
     image = params[:pciture]
     unless image.nil? || image[:image].blank?
       image[:description] = @client.name
-      @client.image = Picture.new(image)
-      @client.image.save
+      @client.picture = Picture.new(image)
+      @client.picture.save
     else
       true
     end

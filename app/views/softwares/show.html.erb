@@ -16,7 +16,7 @@
          <td><%= @software.resume %></td></tr>
      <tr><td colspan="2">
           <fieldset>
-           <% unless @software.image.blank? %>
+           <% unless @software.picture.blank? %>
             <div style="float: left; padding: 0.2em 0.5em;"><%= software_logo(@software, :size => :thumb) %></div>
            <% end %>
            <%= @software.description %>
