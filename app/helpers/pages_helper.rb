@@ -35,26 +35,26 @@ module PagesHelper
   def link_to_show(ar)
     return nil unless ar
     url = (ar.is_a?(String) ? ar : { :action => 'show', :id => ar })
-    link_to StaticImage::view, url
+    link_to StaticPicture::view, url
   end
 
   # same behaviour as link_to_show
   def link_to_edit(ar)
     return nil unless ar
     url = (ar.is_a?(String) ? ar : { :action => 'edit', :id => ar })
-    link_to StaticImage::edit, url
+    link_to StaticPicture::edit, url
   end
 
   # same behaviour as link_to_show
   def link_to_delete(ar)
     return nil unless ar
     url = (ar.is_a?(String) ? ar : { :action => 'destroy', :id => ar })
-    link_to StaticImage::delete,  url, :method => :delete,
+    link_to StaticPicture::delete,  url, :method => :delete,
         :confirm => _('Do you really want to destroy this object ?')
   end
 
   def link_to_back
-    link_to(StaticImage::back, :action =>'index')
+    link_to(StaticPicture::back, :action =>'index')
   end
 
   def link_to_edit_and_list(ar)
@@ -88,7 +88,7 @@ module PagesHelper
  if you want ajax links, you must specificy the remote function this way :
  <%= show_pages_links @issue_pages, 'déposer une issue',
        :url => '/issues/update_list' %>
- (!) you will need an StaticImage::spinner too (!)
+ (!) you will need an StaticPicture::spinner too (!)
  If you want to display a list of objects in a distant controller,
  e. g. : displaying the flow issues in reporting controller, then you
  need to precise the controller like this :
@@ -114,10 +114,10 @@ module PagesHelper
 
     if pages.current.previous
       link = link_to_page(pages.first, _('First page'),
-                          StaticImage::first_page, ajax_call)
+                          StaticPicture::first_page, ajax_call)
       result << "<td>#{link}</td>"
       link = link_to_page(pages.current.previous, _('Previous page'),
-                          StaticImage::previous_page, ajax_call)
+                          StaticPicture::previous_page, ajax_call)
       result << "<td>#{link}</td>"
     end
     if pages.current.last_item > 0
@@ -127,10 +127,10 @@ module PagesHelper
     end
     if pages.current.next
       link = link_to_page(pages.current.next, _('Next page'),
-                          StaticImage::next_page, ajax_call)
+                          StaticPicture::next_page, ajax_call)
       result << "<td>#{link}</td>"
       link = link_to_page(pages.last, _('Last page'),
-                          StaticImage::last_page,ajax_call)
+                          StaticPicture::last_page,ajax_call)
       result << "<td>#{link}</td>"
     end
     result << '</tr></table>'

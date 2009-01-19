@@ -33,7 +33,7 @@ require 'static'
 #   def self.view
 #     @@view ||= tag('icons/b_view.png', options('Consulter', '15x15'))
 #   end
-class StaticImage < Static::ActionView
+class StaticPicture < Static::ActionView
 
   #########################################################
 

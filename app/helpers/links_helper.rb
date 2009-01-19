@@ -43,7 +43,7 @@ module LinksHelper
     unless filepath.blank? or not File.exist?(filepath)
       filename = filepath[/[._ \-a-zA-Z0-9]*$/]
       if options.has_key? :image
-        show = StaticImage::patch
+        show = StaticPicture::patch
       else
         show = filename
       end
@@ -97,13 +97,13 @@ module LinksHelper
   def redbox_div(relative_path, content, options = {})
     return '' if relative_path.blank? or content.nil?
     content << '<div style="position: absolute;top: 0;right: 0;">'
-    content << link_to_close_redbox(StaticImage::hide_notice) << '</div>'
+    content << link_to_close_redbox(StaticPicture::hide_notice) << '</div>'
     content = link_to_close_redbox(content) if options.has_key? :background_close
     return  <<EOS
       <div id="#{relative_path}" style="display: none;">
         #{content}
       </div>
-      #{link_to_redbox(StaticImage::view, relative_path)}
+      #{link_to_redbox(StaticPicture::view, relative_path)}
 EOS
   end
 
@@ -161,7 +161,7 @@ EOS
   end
 
   def public_link_to_remote_theme
-    link_to_remote_redbox(StaticImage.icon_css, :url => theme_welcome_path,
+    link_to_remote_redbox(StaticPicture.icon_css, :url => theme_welcome_path,
                           :method => :get, :update => 'theme_box')
   end
 

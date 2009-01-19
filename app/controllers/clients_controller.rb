@@ -21,7 +21,7 @@ class ClientsController < ApplicationController
 
   def index
     options = { :per_page => 15, :order => 'clients.name',
-      :include => [:image], :page => params[:page] }
+      :include => [:picture], :page => params[:page] }
 
     options[:conditions] = _clients_filters
     @clients = Client.paginate options
@@ -30,7 +30,6 @@ class ClientsController < ApplicationController
     if request.xhr?
       render :layout => false
     else
-      _panel
       @partial_panel = 'index_panel'
     end
   end
@@ -48,7 +47,6 @@ class ClientsController < ApplicationController
 
   def new
     @client = Client.new
-    _form
   end
 
   def create
@@ -59,13 +57,12 @@ class ClientsController < ApplicationController
         _('You have now to create the associated contract.')
       redirect_to new_contract_path(:id => @client.id)
     else
-      _form and render :action => 'new'
+      render :action => 'new'
     end
   end
 
   def edit
     @client = Client.find(params[:id])
-    _form
   end
 
   def update
@@ -74,7 +71,7 @@ class ClientsController < ApplicationController
       flash[:notice] = _('Client updated successfully.')
       redirect_to client_path(@client)
     else
-      _form and render :action => 'edit'
+      render :action => 'edit'
     end
   end
 
@@ -84,8 +81,6 @@ class ClientsController < ApplicationController
   end
 
   private
-  def _form
-  end
 
   def _clients_filters
     if params.has_key? :filters
@@ -111,14 +106,11 @@ class ClientsController < ApplicationController
     conditions
   end
 
-  def _panel
-  end
-
   def add_logo
-    image = params[:image]
+    image = params[:pciture]
     unless image.nil? || image[:image].blank?
       image[:description] = @client.name
-      @client.image = Image.new(image)
+      @client.image = Picture.new(image)
       @client.image.save
     else
       true

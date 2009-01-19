@@ -35,7 +35,7 @@ class ClientTest < Test::Unit::TestCase
     assert client.save
 
     images(:image_00001).destroy
-    i = Image.new(:image => image_file, :client => client)
+    i = Picture.new(:image => image_file, :client => client)
     i.id = 1
     i.save
 

@@ -1,7 +1,7 @@
 <% user = @session_user %>
 <% connected = public_link_to(_('connected'), login_accounts_path) %>
 <link rel="alternate" href="contributions/all/list.atom" title="" type="application/atom+xml" />
-<table><tr><td rowspan="2"><%= StaticImage::tosca %> </td><td><h2 class="spacer"><%=_('Contents')%></h2></td></tr>
+<table><tr><td rowspan="2"><%= StaticPicture::tosca %> </td><td><h2 class="spacer"><%=_('Contents')%></h2></td></tr>
   <tr><td>
      <%= _('Welcome to the %s management tool') % App::ServiceFullName %><%= user ? ", #{user.title} #{user.name}" : '.' %>
   </td></tr>

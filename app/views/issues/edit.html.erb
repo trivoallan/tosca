@@ -1,5 +1,5 @@
 <h1><%= _("Update the issue %s (administration)") % @issue.id %>
-    <%= StaticImage::spinner %></h1>
+    <%= StaticPicture::spinner %></h1>
 
 <% form_tag(issue_path(@issue.id), {:method => :put, :multipart => true,
               :id => 'main_form', :name => 'main_form' }) do %>

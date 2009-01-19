@@ -24,7 +24,7 @@ module KnowledgesHelper
     return '-' unless k and k.is_a? Knowledge
     name = "#{k.level} - #{k.name}"
     res = link_to name, knowledge_path(k)
-    res << " #{StaticImage::subscription}" if k.subscribed?
+    res << " #{StaticPicture::subscription}" if k.subscribed?
     res
   end
 

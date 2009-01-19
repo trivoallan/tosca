@@ -24,14 +24,14 @@ module SubscriptionsHelper
       alert_success = _('You are now unsubscribed to this %s') % model_name
       alert_failure = _('You can not unsubscribe to this %s') % model_name
       url = send("ajax_unsubscribe_#{model_name.underscore}_url", model)
-      icon = StaticImage::unsubscribe
+      icon = StaticPicture::unsubscribe
       text = _('Unsubscribe to this %s') % model_name
       method = :delete
     else
       alert_success = _('You are now subscribed to this %s') % model_name
       alert_failure = _('You can not subscribe to this %s') % model_name
       url = send("ajax_subscribe_#{model_name.underscore}_url", model)
-      icon = StaticImage::subscribe
+      icon = StaticPicture::subscribe
       text = _('Subscribe to this %s') % model_name
       method = :post
     end

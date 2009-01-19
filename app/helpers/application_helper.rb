@@ -28,7 +28,7 @@ module ApplicationHelper
   include PagesHelper
   include FormsHelper
   include LinksHelper
-  include ImagesHelper
+  include PicturesHelper
   include DatesHelper
   include TagsHelper
 

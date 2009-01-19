@@ -81,7 +81,7 @@ protected
     if @@first_time and not defined? Static
       require 'static'
       require 'static_script'
-      require 'static_image'
+      require 'static_picture'
       Static::ActionView.set_request(request())
 
       #Used for url in e-mails

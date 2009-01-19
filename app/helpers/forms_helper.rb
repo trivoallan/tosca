@@ -233,7 +233,7 @@ module FormsHelper
 
   # Apply a fade effect and delete the html element
   def delete_button(id)
-    link_to_function(StaticImage::delete, %Q{tosca_remove("#{id}")})
+    link_to_function(StaticPicture::delete, %Q{tosca_remove("#{id}")})
   end
 
 end

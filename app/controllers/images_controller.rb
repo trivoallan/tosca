@@ -16,46 +16,46 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class ImagesController < ApplicationController
+class PicturesController < ApplicationController
 
   def index
-    @images = Image.paginate :page => params[:page]
+    @pictures = Picture.paginate :page => params[:page]
   end
 
   def show
-    @image = Image.find(params[:id])
+    @picture = Picture.find(params[:id])
   end
 
   def new
-    @image = Image.new
+    @picture = Picture.new
   end
 
   def create
-    @image = Image.new(params[:image])
-    if @image.save
+    @picture = Picture.new(params[:picture])
+    if @picture.save
       flash[:notice] = _("An image was successfully created.")
-      redirect_to img_path(@image)
+      redirect_to img_path(@picture)
     else
       render :action => 'new'
     end
   end
 
   def edit
-    @image = Image.find(params[:id])
+    @picture = Picture.find(params[:id])
   end
 
   def update
-    @image = Image.find(params[:id])
-    if @image.update_attributes(params[:image])
+    @picture = Picture.find(params[:id])
+    if @picture.update_attributes(params[:picture])
       flash[:notice] = _("An image was successfully updated.")
-      redirect_to img_path(@image)
+      redirect_to img_path(@picture)
     else
       render :action => 'edit'
     end
   end
 
   def destroy
-    Image.find(params[:id]).destroy
-    redirect_to images_path
+    Picture.find(params[:id]).destroy
+    redirect_to pictures_path
   end
 end

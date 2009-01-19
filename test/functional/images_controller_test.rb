@@ -20,13 +20,13 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'images_controller'
 
 # Re-raise errors caught by the controller.
-class ImagesController; def rescue_action(e) raise e end; end
+class PicturesController; def rescue_action(e) raise e end; end
 
-class ImagesControllerTest < Test::Unit::TestCase
+class PicturesControllerTest < Test::Unit::TestCase
   fixtures :images
 
   def setup
-    @controller = ImagesController.new
+    @controller = PicturesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     login 'admin', 'admin'
@@ -59,7 +59,7 @@ class ImagesControllerTest < Test::Unit::TestCase
   end
 
   def test_create
-    num_images = Image.count
+    num_images = Picture.count
 
     post :create, { :image => {
         :image => fixture_file_upload('/files/logo_linagora.gif', 'image/gif')},
@@ -68,7 +68,7 @@ class ImagesControllerTest < Test::Unit::TestCase
     assert_response :redirect
     assert_redirected_to :action => 'show'
 
-    assert_equal num_images + 1, Image.count
+    assert_equal num_images + 1, Picture.count
   end
 
   def test_edit
@@ -88,17 +88,17 @@ class ImagesControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    image = Image.first(:order => :id)
+    image = Picture.first(:order => :id)
     assert_not_nil image
 
-    assert_difference('Image.count', -1) do
+    assert_difference('Picture.count', -1) do
       post :destroy, :id => 1
     end
     assert_response :redirect
     assert_redirected_to :action => 'index'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      Image.find(image.id)
+      Picture.find(image.id)
     }
     image.save
   end

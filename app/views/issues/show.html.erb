@@ -13,10 +13,10 @@
      </div>
    <h1>
     <% options = edit_issue_path(@issue.id) %>
-    <%= link_to(StaticImage::edit, options) %>
+    <%= link_to(StaticPicture::edit, options) %>
     <%= "#{@issue.pretty_id} #{@issue.resume}" %>
     <% options = print_issue_path(@issue.id) %>
-    <%= link_to(StaticImage::print, options) %>
+    <%= link_to(StaticPicture::print, options) %>
    </h1>
    <div id="comment-list" class="clearfix">
      <%= render(:partial => 'issues/tabs/comment',

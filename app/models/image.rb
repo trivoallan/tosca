@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class Image < ActiveRecord::Base
+class Picture < ActiveRecord::Base
   belongs_to :software
   has_one :client
   

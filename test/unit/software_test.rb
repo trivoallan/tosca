@@ -46,8 +46,8 @@ class SoftwareTest < Test::Unit::TestCase
   def upload_logo(path, mimetype, id)
     @software ||= Software.first(:order => :id)
     image_file = fixture_file_upload(path, mimetype)
-    Image.find(id).destroy
-    image = Image.new(:image => image_file, :software => @software)
+    Picture.find(id).destroy
+    image = Picture.new(:image => image_file, :software => @software)
     image.id = id
     image.save!
   end

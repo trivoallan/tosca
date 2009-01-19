@@ -10,7 +10,7 @@
       </tr><tr>
         <th><label for="contribution_software"><%=_('Software')%></label></th>
         <td><%= select_empty(:contribution, :software_id, @softwares) %>
-            <%= StaticImage::spinner %></td>
+            <%= StaticPicture::spinner %></td>
       </tr><tr>
         <th><label for="contribution_engineer"><%=_('Engineer')%></label></th>
         <td><%= select(:contribution, :engineer_id, @engineers) %></td>

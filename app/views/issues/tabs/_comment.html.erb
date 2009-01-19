@@ -18,13 +18,13 @@
         <% display_edit = (@session_user.engineer? or
             (user and @session_user.recipient? and @session_user.id == user.id)) %>
         <p>
-         <%= link_to(StaticImage::edit, edit_comment_path(comment)) if display_edit %>
+         <%= link_to(StaticPicture::edit, edit_comment_path(comment)) if display_edit %>
          <%= "##{comment.id}" %>
-         <%= link_to(StaticImage::delete, comment_path(comment), delete_ho) if @session_user.engineer? %><br />
+         <%= link_to(StaticPicture::delete, comment_path(comment), delete_ho) if @session_user.engineer? %><br />
         <% if user and user.recipient? %>
           <%= logo_client(user.client) %>
         <% else %>
-          <%= StaticImage::logo_service %>
+          <%= StaticPicture::logo_service %>
         <% end %><br />
         <% if @session_user.engineer? and user %>
           <%= user.phone %>

@@ -21,43 +21,43 @@
 # Copyright Linagora SA 2006 - Tous droits réservés.#
 #####################################################
 
-module ImagesHelper
+module PicturesHelper
 
   #Create icon with a nice tooltip
   def image_create(message)
     desc = _("Add %s") % message
-    image_tag("icons/add.png", StaticImage::options(desc, '16x16'))
+    image_tag("icons/add.png", StaticPicture::options(desc, '16x16'))
   end
 
   def image_next_page
-    image_tag("icons/resultset_next.png", StaticImage::options(_('Previous Page'), '16x16'))
+    image_tag("icons/resultset_next.png", StaticPicture::options(_('Previous Page'), '16x16'))
   end
   def image_prev_page
-    image_tag("icons/resultset_previous.png", StaticImage::options(_('Next Page'), '16x16'))
+    image_tag("icons/resultset_previous.png", StaticPicture::options(_('Next Page'), '16x16'))
   end
 
   #Disconnect icon with the tooltip
   def image_disconnect
     desc = _('Logout')
-    image_tag('icons/disconnect.gif', StaticImage::options(desc, '16x16'))
+    image_tag('icons/disconnect.gif', StaticPicture::options(desc, '16x16'))
   end
 
   #Connect icon with the tooltip
   def image_connect
     desc = _('Log in')
-    image_tag('icons/connect.png', StaticImage::options(desc, '16x16'))
+    image_tag('icons/connect.png', StaticPicture::options(desc, '16x16'))
   end
 
   def image_star(desc)
-    image_tag('icons/star.png', StaticImage::options(desc, '16x16'))
+    image_tag('icons/star.png', StaticPicture::options(desc, '16x16'))
   end
 
   def image_expand_all
-    image_tag('icons/expand_all.png', StaticImage::options(_('Expand all'), '16x16'))
+    image_tag('icons/expand_all.png', StaticPicture::options(_('Expand all'), '16x16'))
   end
 
   def image_collapse_all
-    image_tag('icons/collapse_all.png', StaticImage::options(_('Collapse all'), '16x16'))
+    image_tag('icons/collapse_all.png', StaticPicture::options(_('Collapse all'), '16x16'))
   end
 
   private
@@ -95,7 +95,7 @@ module ImagesHelper
               :alt => software.name, :title => software.name)
   end
 
-  #TODO Merge with StaticImage
+  #TODO Merge with StaticPicture
   def image_options(desc = '', size = nil )
     options = { :alt => desc, :title => desc }
     options[:size] = size if size

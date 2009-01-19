@@ -7,8 +7,8 @@
  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%=Locale.get%>" lang="<%=Locale.get%>">
  <head>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;"/>
-   <link rel="shortcut icon" href="<%=StaticImage::favimage_ico%>" type="image/x-icon" />
-   <link rel="icon" href="<%=StaticImage::favimage_png%>" type="image/png" />
+   <link rel="shortcut icon" href="<%=StaticPicture::favimage_ico%>" type="image/x-icon" />
+   <link rel="icon" href="<%=StaticPicture::favimage_png%>" type="image/png" />
    <%= stylesheet_link_tag("yaml/core/base.css", "yaml/core/print_base.css",
         "builder/basemod.css", "builder/content_default.css", "tosca/specific.css",
         "tosca/navigation.css", "tosca/print.css", "tosca/custom_tiny.css", "tosca/calendar.css",
@@ -70,7 +70,7 @@
           <% else %>
             <%= build_simple_menu([ public_link_to_home, public_link_to_softwares, public_link_to_contributions ]) %>
           <% end %>
-          <%= public_link_to StaticImage::logo_service, welcome_url, :class => "logo"%>
+          <%= public_link_to StaticPicture::logo_service, welcome_url, :class => "logo"%>
       <% end %>
           <ul class="nav_user">
           <% if user %>
@@ -114,7 +114,7 @@
       <!-- begin: #footer -->
       <div id="footer">
         <%= public_link_to(App::ServiceFullName, App::CompanySite + App::CompanySitePath) %>&nbsp;
-        <%= public_link_to(StaticImage::ruby, 'http://rubyonrails.org/') %>&nbsp;
+        <%= public_link_to(StaticPicture::ruby, 'http://rubyonrails.org/') %>&nbsp;
         <%= public_link_to(Tosca::App::Copyright, App::CompanySite) %>
       </div>
     </div>

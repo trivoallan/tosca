@@ -41,13 +41,13 @@ module ContractsHelper
   def link_to_rule(rule)
     return '' unless rule
     options = self.send("#{ActionController::RecordIdentifier.singular_class_name(rule)}_path", rule)
-    link_to StaticImage::view, options
+    link_to StaticPicture::view, options
   end
 
   def link_to_edit_rule(rule)
     return '' unless rule
     options = self.send("edit_#{ActionController::RecordIdentifier.singular_class_name(rule)}_path", rule)
-    link_to StaticImage::edit, options
+    link_to StaticPicture::edit, options
   end
 
 

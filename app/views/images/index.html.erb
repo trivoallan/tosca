@@ -2,7 +2,7 @@
 
 <% paginated_section(@images, :create_label => _("an image")) do %>
  <% titles = [_("Formatted"), _("Description")]%>
- <%= show_table(@images, Image, titles) do |p|
+ <%= show_table(@images, Picture, titles) do |p|
    result = ''
    result << "<td>#{self.image_tag(url_for_file_column(p, 'image', 'thumb')) if p.image}</td>"
    result << "<td>#{p.description}</td>"

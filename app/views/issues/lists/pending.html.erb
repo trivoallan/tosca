@@ -1,7 +1,7 @@
 <% # Don't display both if one is empty %>
 <% unless @own_issues.empty? %>
  <h1><%= n_('My pending issue', 'My pending issues', @own_issues.size) %>
-    <%= StaticImage::spinner %></h1>
+    <%= StaticPicture::spinner %></h1>
 
    <%= render :partial => 'issues/lists/pending_table',
              :locals => { :issues => @own_issues } %>
@@ -11,7 +11,7 @@
   <h1><%= n_('The contracts I manage has %d pending issue', 
   'The contracts I manage has %d pending issues', 
   @tam_issues.size) % @tam_issues.size %>
-    <%= StaticImage::spinner %></h1>
+    <%= StaticPicture::spinner %></h1>
   <%= render :partial => 'issues/lists/pending_table',
              :locals => { :issues => @tam_issues } %>
 <% end %>

@@ -27,7 +27,7 @@
       <td></td>
       <td nowrap="nowrap">
         <span class="issue_<%=issue.statut_id%>">&nbsp;
-        <%= issue.issuetype.name %><%= StaticImage::severity(issue) %></span>
+        <%= issue.issuetype.name %><%= StaticPicture::severity(issue) %></span>
       </td>
       <% if user.engineer? %>
         <td><%= issue.client_name %></td>

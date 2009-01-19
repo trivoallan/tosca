@@ -61,7 +61,7 @@ module CommentsHelper
     result << c.text
     attachment = c.attachment
     unless attachment.blank? or attachment.file.blank?
-      result << "<br /><br />#{StaticImage::folder} "
+      result << "<br /><br />#{StaticPicture::folder} "
       result << link_to_file(attachment, :file).to_s
       result << " (#{file_size(attachment.file)})"
       result << link_to_file_redbox(attachment, :file).to_s

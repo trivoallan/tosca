@@ -52,7 +52,7 @@ if @action == :dump or @action == :dumpall
     models = [ Arch,Changelog,Client,Comment,
       Skill,Contract,Contribution,Request,
       Distributeur,Document,Elapsed,Commitment,Contributionstate,Fichier,
-      Group,Image,Knowledge,License,Logiciel,Machine,
+      Group,Picture,Knowledge,License,Logiciel,Machine,
       Mainteneur,New,Rules::Component,Rules::Credit,Permission,Phonecall,
       Attachment,Preference,Role,Severite,Socle,Statut,Contributiontype,
       Typerequest,Documenttype,User ]

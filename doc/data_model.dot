@@ -10,7 +10,7 @@ Recipient -> Phonecall [arrowhead=crow,arrowtail=odot,dir=both]
 Recipient -> Client [arrowhead=dot,dir=both,arrowtail=crow]
 Recipient -> Recipient [arrowhead=dot,arrowtail=odot,dir=both]
 
-Client -> Image [arrowhead=dot,dir=both,arrowtail=crow]
+Client -> Picture [arrowhead=dot,dir=both,arrowtail=crow]
 Client -> Socle [arrowhead=crow,dir=both,arrowtail=crow]
 
 Comment -> Request [arrowhead=dot,dir=both,arrowtail=crow]
@@ -22,7 +22,7 @@ Contract -> User [arrowhead=crow,dir=both,arrowtail=crow]
 Contract -> Commitment [arrowhead=crow,arrowtail=crow,dir=both]
 Contract -> Rule [arrowhead=dot,arrowtail=crow]
 
-User -> Image [arrowhead=dot,dir=both,arrowtail=crow]
+User -> Picture [arrowhead=dot,dir=both,arrowtail=crow]
 User -> Role [arrowhead=dot,arrowtail=crow,dir=both]
 Engineer -> Skill [arrowhead=crow,arrowtail=crow,dir=both]
 Engineer -> User [arrowhead=dot,arrowtail=odot,dir=both]
@@ -49,7 +49,7 @@ Request -> Version [arrowhead=odot,dir=both,arrowtail=crow]
 Software -> Skill [arrowhead=crow,arrowtail=crow,dir=both]
 Software -> License [arrowhead=dot,dir=both,arrowtail=crow]
 Software -> Group [arrowhead=dot,dir=both,arrowtail=crow]
-Software -> Image [arrowhead=dot,dir=both,arrowtail=crow]
+Software -> Picture [arrowhead=dot,dir=both,arrowtail=crow]
 
 
 Version -> Software [arrowhead=dot,dir=both,arrowtail=crow]

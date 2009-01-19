@@ -157,7 +157,7 @@ private
     image = params[:image]
     unless image.nil? || image[:image].blank?
       image[:description] = @software.name
-      @software.image = Image.new(image)
+      @software.image = Picture.new(image)
       return @software.image.save
     end
     return true

@@ -1,4 +1,4 @@
-<h1><%= _('Edit a software')%> <%= StaticImage::spinner %></h1>
+<h1><%= _('Edit a software')%> <%= StaticPicture::spinner %></h1>
 <%= link_to_show_and_list( @software.id) %>
 
 <% form_tag(software_path(@software), :multipart => true, :method => :put, :id => 'form_software') do %>

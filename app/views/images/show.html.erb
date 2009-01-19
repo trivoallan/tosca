@@ -1,4 +1,4 @@
-<% for column in Image.content_columns %>
+<% for column in Picture.content_columns %>
 <p>
   <b><%= column.human_name %>:</b> <%= @image.send(column.name) %>
 </p>

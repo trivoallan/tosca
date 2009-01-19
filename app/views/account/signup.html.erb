@@ -1,5 +1,5 @@
 <%= error_messages_for 'user' %><br />
-<h1><%= _('Create an account') %> <%= StaticImage::spinner %></h1>
+<h1><%= _('Create an account') %> <%= StaticPicture::spinner %></h1>
 <div title="Account signup" id="signupform">
 <% form_tag(signup_new_account_path, :id => 'main_form') do %>
   <%= render :partial => "form" %>

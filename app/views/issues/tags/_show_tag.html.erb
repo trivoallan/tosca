@@ -11,4 +11,4 @@
    :method => :delete, :with => "'tag_name=#{tag.name}'",
    :before => "Element.show('spinner')",
    :success => success } %>
-<li id="<%=id%>"><%= tag.full_name %> <%= link_to_remote StaticImage::delete, options %></li>
+<li id="<%=id%>"><%= tag.full_name %> <%= link_to_remote StaticPicture::delete, options %></li>
