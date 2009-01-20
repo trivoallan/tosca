@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 require File.dirname(__FILE__) + '/../test_helper'
-require 'images_controller'
+require 'pictures_controller'
 
 # Re-raise errors caught by the controller.
 class PicturesController; def rescue_action(e) raise e end; end
@@ -36,7 +36,7 @@ class PicturesControllerTest < Test::Unit::TestCase
     get :index
     assert_response :success
     assert_template 'index'
-    assert_not_nil assigns(:images)
+    assert_not_nil assigns(:pictures)
   end
 
   def test_show
@@ -45,8 +45,8 @@ class PicturesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:image)
-    assert assigns(:image).valid?
+    assert_not_nil assigns(:picture)
+    assert assigns(:picture).valid?
   end
 
   def test_new
@@ -55,13 +55,13 @@ class PicturesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:image)
+    assert_not_nil assigns(:picture)
   end
 
   def test_create
     num_images = Picture.count
 
-    post :create, { :image => {
+    post :create, { :picture => {
         :image => fixture_file_upload('/files/logo_linagora.gif', 'image/gif')},
       :html => { :multipart => true }}
 
@@ -77,8 +77,8 @@ class PicturesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:image)
-    assert assigns(:image).valid?
+    assert_not_nil assigns(:picture)
+    assert assigns(:picture).valid?
   end
 
   def test_update

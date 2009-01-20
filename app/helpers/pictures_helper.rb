@@ -110,7 +110,7 @@ module PicturesHelper
   # call it like :
   # <%= link_to_new_version(@software) %>
   def link_to_new_client_logo
-    link_to(image_create(_('a logo')), new_img_path, :target => '_blank')
+    link_to(image_create(_('a logo')), new_picture_path, :target => '_blank')
   end
 
 end

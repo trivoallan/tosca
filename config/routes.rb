@@ -93,7 +93,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :hyperlinks
   # We cannot have 'image' for singular, coz'
   # image_path is used in ActionView::Helpers of Rails
-  map.resources :images, :singular => 'img'
+  map.resources :pictures
   map.resources :knowledges
   map.resources :licenses
   map.resources :softwares,

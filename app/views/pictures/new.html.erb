@@ -1,8 +1,8 @@
-<h1><%= _("New image") %></h1>
+<h1><%= _('New image') %></h1>
 
-<% form_tag( images_path, :multipart => true) do %>
+<% form_tag( pictures_path, :multipart => true) do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag _("Create") %>
+  <%= submit_tag _('Create') %>
 <% end %>
 
 <%= link_to_back %>

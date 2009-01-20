@@ -34,7 +34,7 @@ class PicturesController < ApplicationController
     @picture = Picture.new(params[:picture])
     if @picture.save
       flash[:notice] = _("An image was successfully created.")
-      redirect_to img_path(@picture)
+      redirect_to picture_path(@picture)
     else
       render :action => 'new'
     end
@@ -48,7 +48,7 @@ class PicturesController < ApplicationController
     @picture = Picture.find(params[:id])
     if @picture.update_attributes(params[:picture])
       flash[:notice] = _("An image was successfully updated.")
-      redirect_to img_path(@picture)
+      redirect_to picture_path(@picture)
     else
       render :action => 'edit'
     end
