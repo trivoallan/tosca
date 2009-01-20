@@ -89,6 +89,18 @@ class ClientsControllerTest < ActionController::TestCase
     assert assigns(:client).valid?
   end
 
+  def test_update_logo
+    get :edit, :id => Client.first(:order => :id).id
+    form = select_form 'main_form'
+    form.picture.image = fixture_file_upload('/files/logo_linagora.gif', 'image/gif')
+    form.submit
+    assert flash.has_key?(:notice)
+    assert_response :redirect
+    assert_redirected_to :action => 'show', :id => '1-Linagora'
+    assert_not_nil assigns(:client)
+    assert assigns(:client).valid?
+  end
+
   def test_destroy
     client = Client.first(:order => :id).clone
     client.save!

@@ -107,7 +107,7 @@ class ClientsController < ApplicationController
   end
 
   def add_logo
-    image = params[:pciture]
+    image = params[:picture]
     unless image.nil? || image[:image].blank?
       image[:description] = @client.name
       @client.picture = Picture.new(image)
