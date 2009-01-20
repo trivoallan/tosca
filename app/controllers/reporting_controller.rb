@@ -131,7 +131,7 @@ class ReportingController < ApplicationController
       rescue ArgumentError; end
     end
     @start_date ||= Time.now
-    
+
     @start_date = @start_date.beginning_of_week
     @end_date = @start_date.end_of_week - 2.day
 
@@ -147,12 +147,15 @@ class ReportingController < ApplicationController
     end
     filters_weekly = session[:weeklyreport_filters]
 
+    created_on_condition = ['created_on BETWEEN ? AND ?', @start_date, @end_date ]
+    updated_on_condition = ['updated_on BETWEEN ? AND ?', @start_date, @end_date]
     if filters_weekly
       filters = [ [:contract_id, 'issues.contract_id', :in ] ]
-      conditions_new = Filters.build_conditions(filters_weekly, filters,
-        ['created_on BETWEEN ? AND ?', @start_date, @end_date ])
-      conditions_updated = Filters.build_conditions(filters_weekly, filters,
-        ['updated_on BETWEEN ? AND ?', @start_date, @end_date])
+      conditions_new = Filters.build_conditions(filters_weekly, filters, created_on_condition)
+      conditions_updated = Filters.build_conditions(filters_weekly, filters, updated_on_condition)
+    else
+      conditions_new = created_on_condition
+      conditions_updated = updated_on_condition
     end
 
     new_issues = Issue.all(:conditions => conditions_new, :order => :id)
