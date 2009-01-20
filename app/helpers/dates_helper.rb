@@ -96,9 +96,6 @@ module DatesHelper
   #
   #
   def calendar_weekly(start_date, options = {}, &block)
-    end_date = start_date.end_of_week - 2.day
-    span = end_date.day - start_date.day
-
     block ||= Proc.new { |d| nil }
     defaults = {
       :table_class => 'week-view',
@@ -136,7 +133,7 @@ module DatesHelper
           cell_attrs[:class] = cell_attrs[:class].to_s + " today" if Time.today == d
           cell_attrs = cell_attrs.map {|k, v| %(#{k}="#{v}") }.join(' ')
 
-          cal << "<td #{cell_attrs}>#{cell_text}&nbsp;</td>"
+          cal << "<td #{cell_attrs}>#{cell_text}</td>"
         end
         minutes += options[:duration]
         cal << '</tr>'
