@@ -63,15 +63,15 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     roles = [ manager_id, expert_id ]
-    access = [ [ '^account/become$',
-                 'Helper for customer account' ],
+    access = [ [ '^account/become$', 'Helper for customer account' ],
                [ '^phonecalls/(?!destroy)', 'Manage calls' ],
                [ '^welcome/admin$', 'Administration page' ],
                [ '^comments/(?!destroy)', 'Manage comments' ],
                [ '^contributions/(?!destroy)', 'Manage contributions' ],
                [ '^issues/(?!destroy)', 'Manage issues' ],
                [ '^reporting/', 'Access to all kinds of reporting' ],
-               [ '^hyperlinks/(?!destroy)', 'Manage the urls' ]
+               [ '^hyperlinks/(?!destroy)', 'Manage the urls' ],
+               [ '^archives/(?!destroy)', 'Manage release files' ]
              ]
     add_permission.call(roles, access)
 
