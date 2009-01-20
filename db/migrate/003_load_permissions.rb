@@ -88,7 +88,6 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^softwares/(?!destroy)', 'Manage software' ],
                [ '^releases/(?!destroy)', 'Manage releases' ],
                [ '^teams/(?!destroy)', 'Manage teams' ],
-               [ '^releases/(?!destroy)', 'Manage release' ],
                [ '^tags/', 'Manage tags' ],
                [ '^versions/(?!destroy)', 'Manage version' ]
              ]
@@ -133,8 +132,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^contributions/(index|select|show|list|feed)',
                  'Public read access to contributions' ],
                [ '^groups/(index|show)', 'Public read access to groups' ],
-               [ '^softwares/(index|show)',
-                 'Public read access to software' ],
+               [ '^softwares/(index|show)', 'Public read access to software' ],
                [ '^statuts/(index|help)$', 'Explanation of status' ] ]
     add_permission.call(roles, access)
 
