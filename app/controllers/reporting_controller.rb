@@ -164,7 +164,7 @@ class ReportingController < ApplicationController
     updated_issues = Issue.all(:conditions => conditions_updated, :order => :id)
     @number_updated_issues = updated_issues.uniq.size
 
-    #We build a hash of { "day_hour_minute" => {:new_issues => [], :updated_issues => [] }
+    #We build a hash of { "day_hour_minute" => { :new_issues => [], :updated_issues => [] }
     @issues = {}
     new_issues.each do |i|
       key = "#{i.created_on.day}_#{i.created_on.hour}_#{i.created_on.min/30*30}"
@@ -182,9 +182,9 @@ class ReportingController < ApplicationController
     @opening_time = Contract.average(:opening_time).to_i - 1
     @closing_time = Contract.average(:closing_time).to_i + 1
 
-    # panel on the left side. cookies is here for a correct 'back' button
     unless request.xhr?
       _panel
+      # panel on the left side.
       @partial_panel = 'weekly_panel'
       render :template => 'reporting/_calendar_weekly'
     end
