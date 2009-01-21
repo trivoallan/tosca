@@ -128,9 +128,9 @@ module DatesHelper
           now = start_date.beginning_of_day +
             d.day + hour.hour + minutes.minutes
           cell_text, cell_attrs = block.call(now)
-          cell_text ||= ""
+          cell_text ||= ''
           cell_attrs ||= {}
-          cell_attrs[:class] = cell_attrs[:class].to_s + " today" if Time.today == d
+          cell_attrs[:class] = cell_attrs[:class].to_s + ' today' if Time.today == d
           cell_attrs = cell_attrs.map {|k, v| %(#{k}="#{v}") }.join(' ')
 
           cal << "<td #{cell_attrs}>#{cell_text}</td>"
