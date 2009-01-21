@@ -16,12 +16,14 @@
     <% end %>
   </ul>
 
+  <% submit_function = 
+    remote_function(options.dup.update(:with => "Form.serialize(document.forms['filters'])")) %>
   <%= div_toggle _('Date'), 'menu_date', :class => "menu_title" %>
   <ul class="menu" id="menu_legend">
     <li>
       <b><%= _('Start date') %></b>&nbsp;
       <span class="calendarPicker"><%= StaticScript::date_from %></span><br/>
-      <%= text_field :report, :start_date, :onchange => 'this.form.submit' %>
+      <%= text_field :report, :start_date, :onchange => submit_function %>
       <%= StaticScript::script_date('report_start_date', 'date_from') %>
     </li>
   </ul>
