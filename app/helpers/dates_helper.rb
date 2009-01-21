@@ -112,7 +112,7 @@ module DatesHelper
     cal << "<th><h3>#{start_date.year}</h3></th>"
     5.times do |d|
       date = start_date.beginning_of_day + d.days
-      cal << "<th><h3>#{date.strftime("%A")}<br />#{date.strftime('%d/%m')}</h3></th>"
+      cal << "<th><h3>#{date.strftime("%a %d/%m")}</h3></th>"
     end
     cal << '</tr></thead><tbody>'
     time_range.each do |hour|
