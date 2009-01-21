@@ -1,16 +1,20 @@
 <%
   #We create next/previous weeks links
   last_week = @start_date - 1.week
-  link_previous = link_to(StaticPicture::previous_page,
-      weekly_reporting_path(:report =>
-          { :start_date => last_week.strftime("%Y-%m-%d") }))
+  link_text = StaticPicture::previous_page + 
+    _('Week of the %s') % last_week.strftime('%d %B')
+  link_previous = link_to(link_text, weekly_reporting_path(:report =>
+        { :start_date => last_week.strftime("%Y-%m-%d") }))
+
   next_week = @start_date + 1.week
-  link_next = link_to(StaticPicture::next_page,
-    weekly_reporting_path(:report =>
+  link_text = _('Week of the %s') % next_week.strftime('%d %B') +
+    StaticPicture::next_page
+  link_next = link_to(link_text, weekly_reporting_path(:report =>
         { :start_date => next_week.strftime("%Y-%m-%d") }))
 %>
 
-<h1><%= "#{link_previous}&nbsp;#{@title}&nbsp;#{link_next}" %> <%= StaticPicture::spinner %></h1>
+<h1><%= @title %>&nbsp;<%= StaticPicture::spinner %></h1>
+<%= link_previous %>&nbsp;|&nbsp;<%= link_next %><br/><br/>
 
 <%= calendar_weekly(@start_date, :start_time => @opening_time,
   :end_time => @closing_time) do |time|
