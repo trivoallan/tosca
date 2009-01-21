@@ -1,16 +1,22 @@
 <%
+  options = { :method => :get,
+    :before => "Element.show('spinner')",
+    :success => "Element.hide('spinner')" }
+
   #We create next/previous weeks links
   last_week = @start_date - 1.week
   link_text = StaticPicture::previous_page + 
     _('Week of the %s') % last_week.strftime('%d %B')
-  link_previous = link_to(link_text, weekly_reporting_path(:report =>
-        { :start_date => last_week.strftime("%Y-%m-%d") }))
+  link_previous = link_to(link_text, 
+    options.dup.update(:url => weekly_reporting_path(:report =>
+        { :start_date => last_week.strftime("%Y-%m-%d") })))
 
   next_week = @start_date + 1.week
   link_text = _('Week of the %s') % next_week.strftime('%d %B') +
     StaticPicture::next_page
-  link_next = link_to(link_text, weekly_reporting_path(:report =>
-        { :start_date => next_week.strftime("%Y-%m-%d") }))
+  link_next = link_to_remote(link_text,
+    options.dup.update(:url => weekly_reporting_path(:report =>
+        { :start_date => next_week.strftime("%Y-%m-%d") })))
 %>
 
 <h1><%= @title %>&nbsp;<%= StaticPicture::spinner %></h1>
