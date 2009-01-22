@@ -36,6 +36,12 @@ class Tag
     name
   end
 
+
+  # This model is scoped by Contract
+  def self.scope_contract?
+    true
+  end
+
   # See ApplicationController#scope
   # Users can only see their contractual tags or generic ones
   def self.set_scope(contract_ids)

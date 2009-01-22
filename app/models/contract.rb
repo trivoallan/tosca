@@ -61,6 +61,11 @@ class Contract < ActiveRecord::Base
 
   Rules = [ 'Rules::Credit', 'Rules::Component' ] unless defined? Contract::Rules
 
+  # This model is scoped by Contract
+  def self.scope_contract?
+    true
+  end
+
   def self.set_scope(contract_ids)
     self.scoped_methods << { :find => { :conditions =>
         [ 'contracts.id IN (?)', contract_ids ] } }

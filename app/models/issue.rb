@@ -442,4 +442,10 @@ class Issue < ActiveRecord::Base
     Notifier::deliver_issue_new(self)
   end
 
+  # This model is scoped by Contract
+  def self.scope_contract?
+    true
+  end
+
+
 end
