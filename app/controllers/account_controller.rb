@@ -174,35 +174,8 @@ class AccountController < ApplicationController
     end
   end
 
-  # login with lemon-ldap technology.
-  # Administrator ensures that only authenticated client
-  #  can have access to this page, and provides some HTTP headers
-  #  in order to log in / create an engineer account.
-  def lemon
-    [ [ 'HTTP_AUTH_CN', :name ],
-      [ 'HTTP_AUTH_MAIL', :email ],
-      [ 'HTTP_AUTH_MOBILE', :phone ],
-      [ 'HTTP_AUTH_O', :description ], # Company
-      # Unused : [ 'HTTP_AUTH_SN', :Cherif ],
-      [ 'HTTP_AUTH_USER',  :login ] # TODO : check this field with Bayrem
-    ]
-    redirect_to welcome_path
-=begin
-    login = request.env['HTTP_AUTH_LOGIN']
-    return redirect_to(welcome_path) unless login
-    user = User.first(:conditions => { :login => login })
-    if user
-      _login user
-    end
-    redirect_to(welcome_path)
-=end
-  end
-
   def forgotten_password
-    case request.method
-    when :get
-      # Do nothing
-    when :post
+    if request.method == :post
       user = params[:user]
       return unless user && user.has_key?(:email) && user.has_key?(:login)
       flash[:warn] = _('Unknown account')
@@ -368,7 +341,6 @@ private
 
 
   # Bulk import users
-  # TODO : this method is too fat, unused, untested and have a lots
   # of improvements possibility. It's deactivated for now, until
   # someone find some times in order have it work properly
   # require 'fastercsv'

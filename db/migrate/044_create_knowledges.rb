@@ -29,13 +29,11 @@ class CreateKnowledges < ActiveRecord::Migration
   def self.up
     # TODO : Add a method to reduce this.
     # For now, it's copied from migration 003
-    # accounts id
     admin_id = Role.find(1)
     manager_id = Role.find(2)
     expert_id = Role.find(3)
 
     @roles = [ admin_id, manager_id, expert_id ]
-
 
     create_table :knowledges do |t|
       t.integer :competence_id, :null => true
@@ -49,7 +47,6 @@ class CreateKnowledges < ActiveRecord::Migration
     add_index :knowledges, :ingenieur_id
     add_index :knowledges, :logiciel_id
 
-
     # Permission distribution
     add_permission = Proc.new do |roles, access|
       access.each { |a|
@@ -60,7 +57,6 @@ class CreateKnowledges < ActiveRecord::Migration
     end
 
     add_permission.call(@roles, @access)
-
 
     drop_table :competences_ingenieurs
   end

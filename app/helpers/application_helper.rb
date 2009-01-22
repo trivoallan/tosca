@@ -48,14 +48,6 @@ module ApplicationHelper
     (condition ? %Q{style="display: none;"} : '')
   end
 
-  # Show a help message
-  # TODO : add an icon
-  # TODO : use more on forms
-  # TODO : change the cursor to the one in ? shape
-  def show_help( help_text )
-    "<a title=\"#{help_text}\" >?</a>"
-  end
-
   ### FILES #####################################################################
   def file_size(file)
     return '-' if file.blank? or not File.exists?(file)

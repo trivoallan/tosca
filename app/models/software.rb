@@ -55,17 +55,9 @@ class Software < ActiveRecord::Base
         { :private => false } } }
   end
 
-  # TODO : l'une des deux est de trop. Normalement c'est
-  # uniquement content_columns
-  def self.list_columns
-    columns.reject { |c| c.primary ||
-        c.name =~ /(_id|name|resume|description|referent)$/ ||
-          c.name == inheritance_column }
-  end
-
   def self.content_columns
     @content_columns ||= columns.reject { |c|
-      c.primary || c.name =~ /(_id|_count|referent|Description)$/
+      c.primary || c.name =~ /(_id|_count|referent|description)$/
     }
   end
 

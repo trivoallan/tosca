@@ -49,7 +49,6 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     # TODO : this one contains rights to an extension.
-    # There should be a mecanism to load new rights of an extension.
     roles = [ manager_id, expert_id, customer_id, viewer_id ]
     access = [ [ '/auto_complete', 'All kinds of Auto completion' ],
                [ '/ajax', 'All kinds of ajax view' ],

@@ -63,7 +63,12 @@ class Client < ActiveRecord::Base
   # for this client, false otherwise.
   def support_distribution
     result = false
-    self.contracts.each { |c| result = true if c.rule.max == -1 }
+    self.contracts.each do |c|
+      if c.rule.max == -1
+        result = true 
+        break
+      end
+    end
     result
   end
 

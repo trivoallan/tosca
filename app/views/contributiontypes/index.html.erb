@@ -2,19 +2,19 @@
 
 <table>
   <tr>
-  <% for column in Contributiontype.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
+    <% for column in Contributiontype.content_columns %>
+      <th><%= column.human_name %></th>
+    <% end %>
   </tr>
 
-<% for contributiontype in @contributiontypes %>
-  <tr>
-  <% for column in Contributiontype.content_columns %>
-    <td><%= contributiontype.send(column.name) %></td>
+  <% for contributiontype in @contributiontypes %>
+    <tr>
+      <% for column in Contributiontype.content_columns %>
+        <td><%= contributiontype.send(column.name) %></td>
+      <% end %>
+      <%= link_to_actions_table contributiontype %>
+    </tr>
   <% end %>
-    <%= link_to_actions_table contributiontype %>
-  </tr>
-<% end %>
 </table>
 
 <br />

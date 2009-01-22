@@ -1,11 +1,11 @@
 <%= public_link_to _('Homepage') , welcome_path %> >
- <%= @client.name %> <%= link_to_edit edit_client_path(@client)%>
+<%= @client.name %> <%= link_to_edit edit_client_path(@client)%>
 
 <div class="subcolumns">
   <div class="c50l">
     <div class="show">
-       <%= link_to_new_contract(@client.id) %><br />
-       <%= show_list(@client.contracts, _('contract')) do |c|
+      <%= link_to_new_contract(@client.id) %><br />
+      <%= show_list(@client.contracts, _('contract')) do |c|
         result = ''
         edit = link_to_edit(edit_contract_path(c))
         result << "#{edit}&nbsp;" if edit
@@ -23,48 +23,52 @@
         result << '<br />&nbsp;'
         result
       end %>
-      </td>
-    </tr>
-      </div>
+    </div>
   </div>
   <div class="c50r">
-   <div class="show">
-    <% if @session_user.expert? %>
-      <table class="full">
-       <tr>
-        <td><b><%= _('Name') %></b></td>
-        <td><%= @client.name %></td>
-        <td rowspan="2" align="right"><%= logo_client(@client) if @client.picture %></td>
-       </tr><tr>
-        <td><b><%= _('Access code') %></b></td>
-        <td><%= @client.access_code %></td>
-       </tr>
-      <% unless @client.address.blank? %>
-       <tr><td colspan="3">
-        <fieldset>
-         <legend><%= _('Address')%></legend><%= @client.address %>
-        </fieldset>
-       </td></tr>
+    <div class="show">
+      <% if @session_user.expert? %>
+        <table class="full">
+          <tr>
+            <td><b><%= _('Name') %></b></td>
+            <td><%= @client.name %></td>
+            <td rowspan="2" align="right"><%= logo_client(@client) if @client.picture %></td>
+          </tr><tr>
+            <td><b><%= _('Access code') %></b></td>
+            <td><%= @client.access_code %></td>
+          </tr>
+          <% unless @client.address.blank? %>
+            <tr><td colspan="3">
+                <fieldset>
+                  <legend><%= _('Address')%></legend><%= @client.address %>
+                </fieldset>
+            </td></tr>
+          <% end %>
+          <% unless @client.context.blank? %>
+            <tr><td colspan="3">
+                <fieldset>
+                  <legend><%= _('Context')%></legend><%= @client.context %>
+                </fieldset>
+            </td></tr>
+          <% end %>
+        </table>
       <% end %>
-      <% unless @client.context.blank? %>
-       <tr><td colspan="3">
-        <fieldset>
-         <legend><%= _('Context')%></legend><%= @client.context %>
-        </fieldset>
-       </td></tr>
-      <% end %>
-      </table>
-     <% end %>
-    <ul>
-     <li><%= _("View") %></b> <%=_("the")%>
-         <%= link_to(_('Activity report'), general_reporting_path) %></li>
-     <li><%= _("View") %></b> <%=n_('the','the',2)%>
-         <%= link_to(_('Contributions'),
-             list_contribution_path(:id => 'all', :client_id => @client.id)) %></li>
-     <li><%= link_to( _('Distribution of issues in time'), calendar_reporting_path) %></li>
-    </ul>
 
-   </div>
+      <ul>
+        <li>
+          <%= _('View the') %>
+          <%= link_to(_('Activity report'), general_reporting_path) %>
+        </li>
+        <li>
+          <%= _('View') %> <%=  n_('the', 'the',2) %>
+          <%= link_to(_('Contributions'), list_contribution_path(:id => 'all', :client_id => @client.id)) %>
+        </li>
+        <li>
+          <%= link_to( _('Distribution of issues in time'), calendar_reporting_path) %>
+        </li>
+      </ul>
+
+    </div>
   </div>
 </div>
 

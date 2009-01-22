@@ -84,13 +84,13 @@ class IssuesController < ApplicationController
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(issues_filters, [
-        [:text, 'softwares.name', 'issues.resume', :multiple_like ],
-        [:contract_id, 'issues.contract_id', :in ],
-        [:engineer_id, 'issues.engineer_id', :equal ],
-        [:issuetype_id, 'issues.issuetype_id', :equal ],
-        [:severity_id, 'issues.severity_id', :equal ],
-        [:statut_id, 'issues.statut_id', :equal ]
-      ], special_cond)
+          [:text, 'softwares.name', 'issues.resume', :multiple_like ],
+          [:contract_id, 'issues.contract_id', :in ],
+          [:engineer_id, 'issues.engineer_id', :equal ],
+          [:issuetype_id, 'issues.issuetype_id', :equal ],
+          [:severity_id, 'issues.severity_id', :equal ],
+          [:statut_id, 'issues.statut_id', :equal ]
+        ], special_cond)
       @filters = issues_filters
     end
     options = { :per_page => per_page, :order => order, :page => params[:page],
@@ -141,7 +141,7 @@ class IssuesController < ApplicationController
     if @issue.save
       options = { :conditions => [ 'issues.submitter_id = ?', user.id ]}
       flash[:notice] = _("You have successfully submitted your %s issue.") %
-        _ordinalize(Issue.count(options))
+      _ordinalize(Issue.count(options))
       @issue.first_comment.add_attachment(params)
       @comment = @issue.first_comment
       # needed in order to send properly the email
@@ -232,9 +232,9 @@ class IssuesController < ApplicationController
     @issue = Issue.find(params[:id])
     software_id = @issue.software_id
     options =  { :order => 'updated_on DESC', :limit => 10, :conditions =>
-      [ 'contributions.software_id = ?', software_id ] }
+        [ 'contributions.software_id = ?', software_id ] }
     @contributions = (software_id ?
-       Contribution.all(options).collect{|c| [c.name, c.id]} : [])
+        Contribution.all(options).collect{|c| [c.name, c.id]} : [])
     render :partial => 'issues/tabs/tab_actions', :layout => false
   end
 
@@ -303,14 +303,14 @@ class IssuesController < ApplicationController
 
   def ajax_subscribe
     Subscription.create(:user => @session_user,
-                        :model => Issue.find(params[:id]))
+      :model => Issue.find(params[:id]))
     _panel_subscribers
     render :partial => 'issues/panel/panel_subscribers', :layout => false
   end
 
   def ajax_unsubscribe
     Subscription.destroy_by_user_and_model(@session_user,
-                                           Issue.find(params[:id]))
+      Issue.find(params[:id]))
     _panel_subscribers
     render :partial => 'issues/panel/panel_subscribers', :layout => false
   end
@@ -349,7 +349,7 @@ class IssuesController < ApplicationController
     if @session_user.engineer?
       @contracts = _panel_build_contracts
       @engineers = [[ _('[ Me ]'), @session_user.id ]].concat(
-                    User.find_select(User::EXPERT_OPTIONS))
+        User.find_select(User::EXPERT_OPTIONS))
     end
   end
 
@@ -395,7 +395,7 @@ class IssuesController < ApplicationController
       @versions = software.releases_contract(contract.id).collect do |r|
         id = (r.type == Version ? "v#{r.id}" : "r#{r.id}")
         if ((@issue.version_id == r.id && r.type.is_a?(Version)) ||
-          (@issue.release_id == r.id && r.type.is_a?(Release)))
+              (@issue.release_id == r.id && r.type.is_a?(Release)))
           @selected_version = id
         end
         [ r.name, id ]
@@ -440,7 +440,7 @@ class IssuesController < ApplicationController
 
   def set_attachments(issue_id)
     options = { :conditions => filter_comments(issue_id), :order =>
-      'comments.updated_on DESC', :include => [:comment] }
+        'comments.updated_on DESC', :include => [:comment] }
     @attachments = Attachment.all(options)
   end
 
@@ -448,7 +448,7 @@ class IssuesController < ApplicationController
     fragment = "issues/#{issue_id}/comments-#{@session_user.kind}"
     if action_name == 'print' || !read_fragment(fragment)
       @comments = Comment.all(:conditions =>
-        filter_comments(issue_id), :order => "created_on ASC",
+          filter_comments(issue_id), :order => "created_on ASC",
         :include => [:user,:statut,:severity])
     end
   end

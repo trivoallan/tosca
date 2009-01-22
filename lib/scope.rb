@@ -21,7 +21,6 @@ module Scope
   private
   # There is a global scope, on all finders, in order to
   # preserve each user in his particular space.
-  # TODO : scope contract only ?? it seems coherent...
   # This method has a 'handmade' scope, really faster and with no cost
   # of safety. It was made in order to avoid 15 yields.
   def define_scope(user)
