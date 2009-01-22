@@ -1,7 +1,7 @@
 <h1><%= _("Submit an issue") %> <%= StaticPicture::spinner %></h1>
 
-<p><%= _("Please fill in the fields below.") %></p>
-<p><%= _("One of our consultants will then contact you in less than one hour.") %></p>
+<p><%= _("Please fill in the fields below.") %><br />
+   <%= _("One of our consultants will then contact you in less than one hour.") %></p>
 
 <% form_tag( issues_path, {:multipart => true, :id => 'main_form',
              :name => 'main_form' }) do %>
