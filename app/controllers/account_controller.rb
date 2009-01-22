@@ -30,10 +30,8 @@ class AccountController < ApplicationController
 
   helper :roles
 
-  around_filter :scope, :except => [:login, :logout]
-
+  # There's no need to check login on those actions
   skip_before_filter :login_required, :only => [:login, :logout]
-
 
   # Only available with POST, see config/routes.rb
   def login

@@ -30,11 +30,15 @@ require_dependency 'acl_system'
 class ApplicationController < ActionController::Base
   init_gettext 'tosca'
 
-  # access protected everywhere, See Wiki for more Info
-  before_filter :set_global_shortcuts, :login_required
+  # access protected everywhere, See
+  # * Wiki for more generic Info,
+  # * lib/scope.rb for deep protection
+  # * lib/login_system.rb for account protection
+  before_filter :set_global_shortcuts, :login_required, :before_scope
+  after_filter :after_scope
 
   # Limited perimeter for specific roles
-  around_filter :scope
+  # around_filter :scope
 
   # In order to escape conflict with other rails app
   session :session_key => '_tosca_session_id'
@@ -93,14 +97,19 @@ protected
     true
   end
 
-  def scope(&block)
-    define_scope(@session_user, &block)
+  def before_scope()
+    set_scopes(@session_user)
   end
+
+  def after_scope()
+    remove_scopes(@session_user)
+  end
+
 
   #Compute the receiver of an email for the flash
   def message_notice(recipients, cc)
-    result = "<br />" << _("An e-mail was sent to ") << " <b>#{html2text(recipients)}</b> "
-    result << "<br />" << _("with a copy to") << " <b>#{html2text(cc)}</b>" if cc && !cc.blank?
+    result = '<br />' << _("An e-mail was sent to ") << " <b>#{html2text(recipients)}</b> "
+    result << '<br />' << _("with a copy to") << " <b>#{html2text(cc)}</b>" if cc && !cc.blank?
     result << '.'
   end
 
