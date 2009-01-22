@@ -19,7 +19,7 @@
 class Software < ActiveRecord::Base
   acts_as_taggable
 
-  has_one :picture, :dependent => :destroy
+  belongs_to :picture, :dependent => :destroy
   belongs_to :license
   belongs_to :group
 
