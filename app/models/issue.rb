@@ -432,7 +432,7 @@ class Issue < ActiveRecord::Base
       c.issue = self
       c.severity_id = self.severity_id
       c.statut_id = self.statut_id
-      c.user_id = self.recipient_id
+      c.user_id = self.submitter_id
     end
   end
 

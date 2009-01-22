@@ -129,7 +129,7 @@ class IssuesController < ApplicationController
     @issue.submitter = user # it's the current user
     @issue.statut_id = (user.engineer? ? 2 : 1)
 
-    #If we have only one contract possible we auto asign it ti the request
+    #If we have only one contract possible we auto asign it to the request
     if @issue.contract.nil?
       contracts = @issue.recipient.contracts
       @issue.contract = contracts.first if contracts.size == 1
@@ -141,7 +141,7 @@ class IssuesController < ApplicationController
     if @issue.save
       options = { :conditions => [ 'issues.submitter_id = ?', user.id ]}
       flash[:notice] = _("You have successfully submitted your %s issue.") %
-      _ordinalize(Issue.count(options))
+        _ordinalize(Issue.count(options))
       @issue.first_comment.add_attachment(params)
       @comment = @issue.first_comment
       # needed in order to send properly the email

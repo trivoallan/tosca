@@ -71,8 +71,6 @@ class Notifier < ActionMailer::Base
 
   # This function require 1 parameter : the issue
   def issue_new(issue)
-    issue.reload
-
     options = {}
     options[:issue] = issue
     options[:comment] = issue.first_comment
