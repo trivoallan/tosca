@@ -164,13 +164,6 @@ class AccountControllerTest < ActionController::TestCase
     }
   end
 
-  # It will be a feature for next version, so it's just a get test, for now
-  def test_lemon
-    login 'admin', 'admin'
-    get :lemon
-    assert_response :redirect
-  end
-
   def test_become
     %w(admin manager expert).each { |l|
       login l, l

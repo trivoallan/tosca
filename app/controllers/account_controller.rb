@@ -22,7 +22,7 @@ class AccountController < ApplicationController
 
   cache_sweeper :user_sweeper, :only => [:signup, :update]
 
-  PasswordGenerator
+  include PasswordGenerator
 
   # No clear text password in the log.
   # See http://api.rubyonrails.org/classes/ActionController/Base.html#M000441
@@ -30,7 +30,7 @@ class AccountController < ApplicationController
 
   helper :roles
 
-  around_filter :scope, :except => [:login, :logout, :lemon]
+  around_filter :scope, :except => [:login, :logout]
 
   skip_before_filter :login_required, :only => [:login, :logout]
 
@@ -174,30 +174,6 @@ class AccountController < ApplicationController
     end
   end
 
-  # login with lemon-ldap technology.
-  # Administrator ensures that only authenticated client
-  #  can have access to this page, and provides some HTTP headers
-  #  in order to log in / create an engineer account.
-  def lemon
-    [ [ 'HTTP_AUTH_CN', :name ],
-      [ 'HTTP_AUTH_MAIL', :email ],
-      [ 'HTTP_AUTH_MOBILE', :phone ],
-      [ 'HTTP_AUTH_O', :description ], # Company
-      # Unused : [ 'HTTP_AUTH_SN', :Cherif ],
-      [ 'HTTP_AUTH_USER',  :login ] # TODO : check this field with Bayrem
-    ]
-    redirect_to welcome_path
-=begin
-    login = request.env['HTTP_AUTH_LOGIN']
-    return redirect_to(welcome_path) unless login
-    user = User.first(:conditions => { :login => login })
-    if user
-      _login user
-    end
-    redirect_to(welcome_path)
-=end
-  end
-
   def forgotten_password
     case request.method
     when :get
@@ -324,7 +300,6 @@ private
     @user.role_id = 3 if @user.new_record?
   end
 
-  # Variables utilisé par le panneau de gauche
   def _panel
     if @session_user.role_id <= 2
       @count = {}
