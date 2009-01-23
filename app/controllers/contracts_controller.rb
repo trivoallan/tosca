@@ -156,6 +156,11 @@ class ContractsController < ApplicationController
       # get rid of the random_field hack
       s = s[1]
       next unless s.is_a? Hash
+
+      # We have to re-interprete this param,
+      # because rails does not on a find
+      s['generic'] = (s['generic'] == "true")
+
       # It's 2 lines but fast find_or_create call
       version = Version.first(:conditions => s, :include => :software)
       version = Version.create(s) unless version
