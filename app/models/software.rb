@@ -23,13 +23,13 @@ class Software < ActiveRecord::Base
   belongs_to :license
   belongs_to :group
 
-  has_many :contributions
-  has_many :knowledges
-  has_many :issues
+  has_many :contributions, :dependent => :destroy
+  has_many :knowledges, :dependent => :destroy
+  has_many :issues, :dependent => :destroy
   has_many :hyperlinks, :dependent => :destroy, :as => :model
   has_many :releases, :through => :versions
   has_many :versions, :order => "versions.name DESC", :dependent => :destroy
-  has_many :subscriptions, :through => :knowledges
+  has_many :subscriptions, :through => :knowledges, :dependent => :destroy
 
   has_and_belongs_to_many :skills, :uniq => true
 

@@ -20,7 +20,8 @@ class Client < ActiveRecord::Base
   # Small utils for inactive, located in /lib/inactive_record.rb
   include InactiveRecord
 
-  belongs_to :picture
+  belongs_to :picture, :dependent => :destroy
+
   has_many :recipients, :class_name => 'User', :dependent => :destroy,
     :conditions => 'users.client_id IS NOT NULL'
   has_many :active_recipients, :class_name => 'User',

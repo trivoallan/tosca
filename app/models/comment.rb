@@ -19,7 +19,7 @@
 class Comment < ActiveRecord::Base
   belongs_to :issue
   belongs_to :user
-  belongs_to :attachment
+  belongs_to :attachment, :dependent => :destroy
   belongs_to :statut
   belongs_to :severity
   belongs_to :engineer, :class_name => 'User',
@@ -93,6 +93,9 @@ class Comment < ActiveRecord::Base
   def delete_dependancies
     issue = self.issue
 
+    #We come from Issue.destroy
+    return true unless issue
+
     # We MUST have at least the first comment in an issue
     return false if issue.first_comment_id == self.id
 
@@ -109,13 +112,12 @@ class Comment < ActiveRecord::Base
     end
 
     issue.elapsed.remove(self) if issue.elapsed
-    self.attachment.destroy unless self.attachment.nil?
     true
   end
 
   after_destroy :update_status
   def update_status
-    return true if self.statut_id.nil? || self.statut_id == 0
+    return true if self.statut_id.nil? or self.statut_id == 0 or self.issue.nil?
 
     issue = self.issue
     options = { :order => 'created_on DESC', :conditions =>

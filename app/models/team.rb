@@ -21,7 +21,7 @@ class Team < ActiveRecord::Base
   belongs_to :contact, :class_name => 'User',
     :foreign_key => 'contact_id'
 
-  has_one :alert
+  has_one :alert, :dependent => :destroy
 
   has_many :users
   named_scope :on_contract_id, lambda { |contract_id |
