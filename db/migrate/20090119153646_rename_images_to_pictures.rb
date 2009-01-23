@@ -4,6 +4,9 @@ class RenameImagesToPictures < ActiveRecord::Migration
 
     rename_column :clients, :image_id, :picture_id
     rename_column :users, :image_id, :picture_id
+
+    FileUtils.mv File.join(RAILS_ROOT, 'public', 'image'),
+      File.join(RAILS_ROOT, 'public', 'picture'), :force => true
   end
 
   def self.down
