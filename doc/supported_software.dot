@@ -2,10 +2,9 @@ digraph supported_software {
 
 //rotate=90;
 
-
-Request -> Software [arrowhead=odot,dir=both,arrowtail=crow]
-Request -> Release [arrowhead=odot,dir=both,arrowtail=crow]
-Request -> Version [arrowhead=odot,dir=both,arrowtail=crow]
+Issue -> Software [arrowhead=odot,dir=both,arrowtail=crow]
+Issue -> Release [arrowhead=odot,dir=both,arrowtail=crow]
+Issue -> Version [arrowhead=odot,dir=both,arrowtail=crow]
 
 Version -> Software [arrowhead=dot,dir=both,arrowtail=crow]
 Version -> Contract [arrowhead=crow,dir=both,arrowtail=crow]
@@ -13,9 +12,6 @@ Contribution -> Version [arrowhead=dot,dir=both,arrowtail=crow]
 
 Release -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
 Release -> Version [arrowhead=dot,dir=both,arrowtail=crow]
-Archives -> Release [arrowhead=dot,dir=both,arrowtail=crow]
-
-
-
+Archive -> Release [arrowhead=dot,dir=both,arrowtail=crow]
 
 }

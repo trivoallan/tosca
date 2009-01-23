@@ -1,82 +1,102 @@
 digraph x {
 
 //rotate=90;
-{rank=min; Statut TypeRequest Statut }
+{rank=min; Statut TypeIssue Statut }
 
 Rule [label="Rule\nComponent\nTimeCredit"]
 
-Recipient -> User [arrowhead=dot,arrowtail=odot,dir=both]
-Recipient -> Phonecall [arrowhead=crow,arrowtail=odot,dir=both]
-Recipient -> Client [arrowhead=dot,dir=both,arrowtail=crow]
-Recipient -> Recipient [arrowhead=dot,arrowtail=odot,dir=both]
+Alert -> Team [arrowhead=dot,dir=both,arrowtail=crow]
+
+Archives -> Release [arrowhead=dot,dir=both,arrowtail=crow]
+
+Attachment -> User [arrowtail=crow,dir=both,arrowhead=dot]
+
+Changelog -> Release [arrowhead=dot,dir=both,arrowtail=crow]
 
 Client -> Picture [arrowhead=dot,dir=both,arrowtail=crow]
-Client -> Socle [arrowhead=crow,dir=both,arrowtail=crow]
 
-Comment -> Request [arrowhead=dot,dir=both,arrowtail=crow]
+Comment -> Issue [arrowhead=dot,dir=both,arrowtail=crow]
 Comment -> User [arrowhead=dot,dir=both,arrowtail=crow]
 Comment -> Attachment [arrowhead=odot,dir=both,arrowtail=dot]
-Comment -> Statut [arrowhead=odot]
+Comment -> Statut [arrowhead=dot,dir=both,arrowtail=crow]
+Comment -> Severity [arrowhead=dot,dir=both,arrowtail=crow]
+Comment -> User [label="Engineer",arrowhead=dot,dir=both,arrowtail=crow]
 
+Commitment -> Severity [arrowhead=dot,dir=both,arrowtail=crow]
+Commitment -> IssueType [arrowhead=dot,dir=both,arrowtail=crow]
+
+Contract -> Client [arrowhead=dot,dir=both,arrowtail=crow]
 Contract -> User [arrowhead=crow,dir=both,arrowtail=crow]
 Contract -> Commitment [arrowhead=crow,arrowtail=crow,dir=both]
 Contract -> Rule [arrowhead=dot,arrowtail=crow]
+Contract -> User [label="Creator",arrowhead=dot,dir=both,arrowtail=crow]
+Contract -> User [label="Salesman",arrowhead=dot,dir=both,arrowtail=crow]
+Contract -> User [label="Tam",arrowhead=dot,dir=both,arrowtail=crow]
+Contract -> Team [arrowhead=crow,arrowtail=crow,dir=both]
+Contract -> Subscription [arrowhead=crow,arrowtail=dot,dir=both]
 
-User -> Picture [arrowhead=dot,dir=both,arrowtail=crow]
-User -> Role [arrowhead=dot,arrowtail=crow,dir=both]
-Engineer -> Skill [arrowhead=crow,arrowtail=crow,dir=both]
-Engineer -> User [arrowhead=dot,arrowtail=odot,dir=both]
-Engineer -> Phonecall [arrowhead=crow,dir=both,arrowtail=dot]
+Contribution -> ContributionType [arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> ContributionState [arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Software [arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> User [label="Engineer",arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Version [label="AffectedVersion",arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Version [label="FixedVersion",arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Hyperlink [arrowhead=crow,dir=both,arrowtail=dot]
 
-News -> Engineer [arrowhead=dot,dir=both,arrowtail=crow]
-News -> Contract [arrowhead=crow,dir=both,arrowtail=crow]
-News -> Software [arrowhead=dot,dir=both,arrowtail=crow]
+Issue -> IssueType [arrowhead=dot,dir=both,arrowtail=crow]
+Issue -> Elapsed [arrowhead=dot,dir=both,arrowtail=dot]
+Issue -> Severity [arrowhead=dot,dir=both,arrowtail=crow]
+Issue -> Socle [arrowhead=dot,dir=both,arrowtail=crow]
+Issue -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
+Issue -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
+Issue -> Statut [arrowhead=dot,dir=both,arrowtail=crow]
+Issue -> Phonecall [arrowhead=crow,arrowtail=odot,dir=both]
+Issue -> Software [arrowhead=odot,dir=both,arrowtail=crow]
+Issue -> Release [arrowhead=odot,dir=both,arrowtail=crow]
+Issue -> Version [arrowhead=odot,dir=both,arrowtail=crow]
+Issue -> Subscription [arrowhead=crow,dir=both,arrowtail=dot]
+Issue -> User [label="Recipient",arrowhead=dot,dir=both,arrowtail=crow]
+Issue -> User [label="Engineer",arrowhead=dot,dir=both,arrowtail=crow]
+Issue -> User [label="Submitter",arrowhead=dot,dir=both,arrowtail=crow]
 
-Request -> TypeRequest [arrowhead=dot,dir=both,arrowtail=crow]
-Request -> Elapsed [arrowhead=dot,dir=both,arrowtail=dot]
-Request -> Severite [arrowhead=dot,dir=both,arrowtail=crow]
-Request -> Recipient [arrowhead=dot,dir=both,arrowtail=crow]
-Request -> Socle [arrowhead=dot,dir=both,arrowtail=crow]
-Request -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
-Request -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
-Request -> Statut [arrowhead=dot,dir=both,arrowtail=crow]
-Request -> Engineer [arrowhead=dot,dir=both,arrowtail=crow]
-Request -> Phonecall [arrowhead=crow,arrowtail=odot,dir=both]
-Request -> Software [arrowhead=odot,dir=both,arrowtail=crow]
-Request -> Release [arrowhead=odot,dir=both,arrowtail=crow]
-Request -> Version [arrowhead=odot,dir=both,arrowtail=crow]
+IssueType -> Workflow [arrowhead=crow,dir=both,arrowtail=dot]
+
+Knowledge -> User [label="Engineer",arrowhead=dot,dir=both,arrowtail=crow]
+Knowledge -> Skill [arrowhead=dot,dir=both,arrowtail=crow]
+Knowledge -> Software [arrowhead=dot,dir=both,arrowtail=crow]
+Knowledge -> Subscription [arrowhead=dot,dir=both,arrowtail=crow]
+
+Preference -> User [arrowhead=dot,arrowtail=dot,dir=both]
+
+Release -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
+Release -> Version [arrowhead=dot,dir=both,arrowtail=crow]
+
+Role -> Permission [arrowhead=crow,arrowtail=crow,dir=both]
+
+Skill -> Tag [arrowhead=crow,arrowtail=dot,dir=both]
 
 Software -> Skill [arrowhead=crow,arrowtail=crow,dir=both]
 Software -> License [arrowhead=dot,dir=both,arrowtail=crow]
 Software -> Group [arrowhead=dot,dir=both,arrowtail=crow]
 Software -> Picture [arrowhead=dot,dir=both,arrowtail=crow]
+Software -> Hyperlink [arrowhead=crow,dir=both,arrowtail=dot]
 
+Subscription -> User [arrowhead=dot,dir=both,arrowtail=crow]
+
+Tag -> User [arrowhead=dot,dir=both,arrowtail=crow]
+Tag -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
+
+Team -> User [label="Contact",arrowhead=dot,dir=both,arrowtail=crow]
+Team -> User [label="Contact",arrowhead=crow,dir=both,arrowtail=dot]
+
+User -> Picture [arrowhead=dot,dir=both,arrowtail=crow]
+User -> Role [arrowhead=dot,arrowtail=crow,dir=both]
+User -> Skill [arrowhead=crow,arrowtail=crow,dir=both]
+User -> Phonecall [arrowhead=crow,dir=both,arrowtail=dot]
+User -> Client [arrowhead=dot,dir=both,arrowtail=crow]
+User -> Preference [arrowhead=crow,dir=both,arrowtail=crow]
 
 Version -> Software [arrowhead=dot,dir=both,arrowtail=crow]
 Version -> Contract [arrowhead=crow,dir=both,arrowtail=crow]
-
-Release -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
-Release -> Version [arrowhead=dot,dir=both,arrowtail=crow]
-
-
-Preference -> User [arrowhead=dot,arrowtail=dot,dir=both]
-Socle -> Machine [arrowhead=dot,dir=both,arrowtail=dot]
-Machine -> Machine [arrowhead=dot,dir=both,arrowtail=odot]
-Hyperlink -> Software [arrowhead=dot,dir=both,arrowtail=crow]
-Commitment -> Severite [arrowhead=dot,dir=both,arrowtail=crow]
-Commitment -> TypeRequest [arrowhead=dot,dir=both,arrowtail=crow]
-Role -> Permission [arrowhead=crow,arrowtail=crow,dir=both]
-Hyperlink -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
-
-Contribution -> Contributionstate [arrowhead=dot,dir=both,arrowtail=crow]
-Contribution -> Contributiontype [arrowhead=dot,dir=both,arrowtail=crow]
-Contribution -> Software [arrowhead=dot,dir=both,arrowtail=crow]
-Contribution -> Version [arrowhead=dot,arrowtail=crow,dir=both]
-Contribution -> Engineer [arrowhead=dot,dir=both,arrowtail=crow]
-Attachment -> User [arrowtail=crow,dir=both,arrowhead=dot]
-Document -> Client [arrowhead=dot,dir=both,arrowtail=crow]
-Document -> Documenttype [arrowhead=dot,dir=both,arrowtail=crow]
-Document -> User [arrowhead=dot,dir=both,arrowtail=crow]
-
 
 }
