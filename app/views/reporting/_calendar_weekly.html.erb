@@ -28,23 +28,20 @@
   result = '<h3>'
   if @issues.has_key? key
     if @issues[key].has_key? :new_issues
-      result << '['
       res = []
       @issues[key][:new_issues].each do |i|
-        res.push link_to_css_issue(i, 'new_issue')
+        res.push "#{StaticPicture::new} #{link_to_issue(i, :icon_severity => true, :limit => 0, :show_id => true)}"
       end
-      result << res.join(', ')
-      result << ']'
+      result << res.join('<br/>')
     end
 
     if @issues[key].has_key? :updated_issues
-      result << '['
+      result << '<br/>' if @issues[key].has_key? :new_issues
       res = []
       @issues[key][:updated_issues].each do |i|
-        res.push link_to_css_issue(i, 'updated_issue')
+        res.push "#{StaticPicture::sla_running} #{link_to_issue(i, :icon_severity => true, :limit => 0, :show_id => true)}"
       end
-      result << res.join(', ')
-      result << ']'
+      result << res.join('<br/>')
     end
   end
   result << '&nbsp;</h3>'

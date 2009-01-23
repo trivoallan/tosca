@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ReportingController < ApplicationController
-  helper :issues
+  helper :issues, :contracts
   
   include DigestReporting
   include DatesHelper
@@ -166,17 +166,25 @@ class ReportingController < ApplicationController
 
     #We build a hash of { "day_hour_minute" => { :new_issues => [], :updated_issues => [] }
     @issues = {}
+    
     new_issues.each do |i|
       key = "#{i.created_on.day}_#{i.created_on.hour}_#{i.created_on.min/30*30}"
       @issues[key] ||= {}
       @issues[key][:new_issues] ||= []
       @issues[key][:new_issues].push(i)
     end
+
+    #We build a hash of { :contract_name => [issues] }
+    #A new issue is also an updated issue
+    @issues_by_contract = {}
     updated_issues.each do |i|
       key = "#{i.updated_on.day}_#{i.updated_on.hour}_#{i.updated_on.min/30*30}"
       @issues[key] ||= {}
       @issues[key][:updated_issues] ||= []
       @issues[key][:updated_issues].push(i)
+
+      @issues_by_contract[i.contract] ||= []
+      @issues_by_contract[i.contract].push(i)
     end
 
     @opening_time = Contract.average(:opening_time).to_i - 1

@@ -35,10 +35,10 @@
   <%= div_toggle _('Legend'), 'menu_legend', :class => "menu_title" %>
   <ul class="menu" id="menu_legend">
     <li>
-      <b><%= _('New issues are in') %> <span class="new_issue"><%= _('red') %></span></b>
+      <b><%= _('New issues are preceded by') %> <%= StaticPicture::new %></b>
     </li>
     <li>
-      <b><%= _('Updated issues are in') %> <span class="updated_issue"><%= _('blue') %></span></b>
+      <b><%= _('Updated issues are preceded by') %> <%= StaticPicture::sla_running %></b>
     </li>
   </ul>
 

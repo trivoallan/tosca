@@ -31,14 +31,9 @@ module IssuesHelper
       text = ''
       text << "##{issue.id} " if options.has_key? :show_id
       text << "#{StaticPicture::severity(issue)} " if options.has_key? :icon_severity #TODO
-      text << truncate(issue.resume, limit)
+      text << truncate(issue.resume, limit) if limit > 0
     end
     link_to text, issue_path(issue)
-  end
-
-  def link_to_css_issue(issue, css_class)
-    return '-' unless issue
-    link_to "##{issue.id}", issue_path(issue), :class => css_class
   end
 
   def public_link_to_status_legend
