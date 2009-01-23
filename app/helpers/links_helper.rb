@@ -161,8 +161,8 @@ EOS
   end
 
   def public_link_to_remote_theme
-    link_to_remote_redbox(StaticPicture.icon_css, :url => theme_welcome_path,
-                          :method => :get, :update => 'theme_box')
+    link_to_remote_redbox(StaticPicture::icon_css, { :url => theme_welcome_path,
+                          :method => :get, :update => 'theme_box' })
   end
 
 end
