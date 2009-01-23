@@ -31,14 +31,9 @@ module IssuesHelper
       text = ''
       text << "##{issue.id} " if options.has_key? :show_id
       text << "#{StaticPicture::severity(issue)} " if options.has_key? :icon_severity #TODO
-      text << truncate(issue.resume, limit)
+      text << truncate(issue.resume, limit) if limit > 0
     end
     link_to text, issue_path(issue)
-  end
-
-  def link_to_css_issue(issue, css_class)
-    return '-' unless issue
-    link_to "##{issue.id}", issue_path(issue), :class => css_class
   end
 
   def public_link_to_status_legend
@@ -54,19 +49,6 @@ module IssuesHelper
     path = version_path(issue.version) if issue.version
     path = release_path(issue.release) if issue.release
     link_to issue.full_software_name, path
-  end
-
-  # TODO : explain what does this function
-  # TODO : teach the author how to make it understandable
-  # TODO : give an example
-  # TODO : think about replacing case/when by if/else
-  def display(donnee, column)
-    case column
-    when 'workaround','correction'
-      display_days donnee.send(column)
-    else
-      donnee.send(column)
-    end
   end
 
   def render_table(options)
@@ -133,8 +115,7 @@ module IssuesHelper
         _("The %s has been submitted by the community") % link)
   end
 
-  # TODO : beaucoup trop de copier coller, c'est honteux !
-  # TODO/MLO : me taper sur les doigts et faire une version propre
+  # TODO : Too much copy/paste
   # begining of factorisation in softwares_helper
   def remote_link_to_active_issue
     ajax_call =  PagesHelper::AJAX_OPTIONS.dup.update(:url => issues_path)
@@ -185,7 +166,6 @@ module IssuesHelper
       image_tag("icons/question_mark.gif") <<
     '</a>'
   end
-
 
   @@help_on_severity = nil
   # Show the '?' icon with the link on severity explanation on the wiki

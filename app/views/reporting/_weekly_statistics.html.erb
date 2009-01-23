@@ -6,4 +6,16 @@
   <li>
     <b><%= _('Number of updated issues') %></b> : <%= @number_updated_issues %>
   </li>
+  <% if @issues_by_contract.length > 0 %>
+    <li>
+      <b> <%= _('Number of open issues by contracts') %></b>
+      <ul>
+        <% @issues_by_contract.each_pair do |key, value| %>
+          <li>
+            <b><%= link_to_contract(key) %></b> : <%= value.length %>
+          <li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
 </ul>

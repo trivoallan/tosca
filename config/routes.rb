@@ -42,7 +42,7 @@ ActionController::Routing::Routes.draw do |map|
   map.without_orm('alerts', %w(ajax_on_submit), :post)
 
   # routing files to prevent download from public access
-  # TODO : convertir en route nommée
+  # TODO : convert to named route
   options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }
   %w(file patch archive).each { |file|
     map.files(":file_type/#{file}/:id/:filename", options)
@@ -67,7 +67,7 @@ ActionController::Routing::Routes.draw do |map|
     :controller => "account",
     :member => { :become => :post, :ajax_contracts => :post },
     :collection => { :logout => :any, :login => :any,
-                     :lemon => :any, :forgotten_password => :any },
+                     :forgotten_password => :any },
     :new => { :signup => :any, # TODO : reactive it :multiple_signup => :any,
       :ajax_place => :post, :ajax_contracts => :post }
   map.resources :archives

@@ -71,8 +71,6 @@ class Notifier < ActionMailer::Base
 
   # This function require 1 parameter : the issue
   def issue_new(issue)
-    issue.reload
-
     options = {}
     options[:issue] = issue
     options[:comment] = issue.first_comment
@@ -232,20 +230,11 @@ class Notifier < ActionMailer::Base
     headers[HEADER_MESSAGE_ID] = message_id(comment.mail_id)
     #Refers to the issue
     headers[HEADER_REFERENCES] = headers[HEADER_IN_REPLY_TO] = message_id(issue.first_comment.mail_id)
-    headers[HEADER_XSOFTWARE]  = asciify(issue.software.name) if issue.software
-    headers[HEADER_XCONTRACT]  = asciify!(issue.contract.to_s)
-    headers[HEADER_XCLIENT]    = asciify(issue.client.to_s)
-    headers[HEADER_XASSIGNEE]  = asciify(issue.engineer.name) if issue.engineer
+    headers[HEADER_XSOFTWARE]  = issue.software.name.asciify if issue.software
+    headers[HEADER_XCONTRACT]  = issue.contract.to_s.asciify!
+    headers[HEADER_XCLIENT]    = issue.client.to_s.asciify
+    headers[HEADER_XASSIGNEE]  = issue.engineer.name.asciify if issue.engineer
     return headers
-  end
-
-  # TODO : move it to active support extension ?
-  # TODO : submit upstream ?
-  def asciify(str)
-    str.gsub(/[^a-z1-9 ]+/i, '-')
-  end
-  def asciify!(str)
-    str.gsub(/[^a-z1-9 ]+/i, '-')
   end
 
   def get_text_from_email(part)

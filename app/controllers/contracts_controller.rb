@@ -162,7 +162,7 @@ class ContractsController < ApplicationController
       s['generic'] = (s['generic'] == "true")
 
       # It's 2 lines but fast find_or_create call
-      version = Version.first(:conditions => s, :include => :software)
+      version = Version.first(:conditions => s)
       version = Version.create(s) unless version
       versions << version if version.valid?
     end

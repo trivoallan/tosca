@@ -1,30 +1,49 @@
-<h1><%= @title %> <%= StaticPicture::spinner %></h1>
+<%
+  options = { :method => :get,
+    :before => "Element.show('spinner')",
+    :success => "Element.hide('spinner')" }
+
+  #We create next/previous weeks links
+  last_week = @start_date - 1.week
+  link_text = StaticPicture::previous_page + 
+    _('Week of the %s') % last_week.strftime('%d %B')
+  link_previous = link_to(link_text, 
+    options.dup.update(:url => weekly_reporting_path(:report =>
+        { :start_date => last_week.strftime("%Y-%m-%d") })))
+
+  next_week = @start_date + 1.week
+  link_text = _('Week of the %s') % next_week.strftime('%d %B') +
+    StaticPicture::next_page
+  link_next = link_to_remote(link_text,
+    options.dup.update(:url => weekly_reporting_path(:report =>
+        { :start_date => next_week.strftime("%Y-%m-%d") })))
+%>
+
+<h1><%= @title %>&nbsp;<%= StaticPicture::spinner %></h1>
+<%= link_previous %>&nbsp;|&nbsp;<%= link_next %><br/><br/>
 
 <%= calendar_weekly(@start_date, :start_time => @opening_time,
   :end_time => @closing_time) do |time|
   key = "#{time.day}_#{time.hour}_#{time.min*30/30}"
-  result = ""
+  result = '<h3>'
   if @issues.has_key? key
     if @issues[key].has_key? :new_issues
-      result << '['
       res = []
       @issues[key][:new_issues].each do |i|
-        res.push link_to_css_issue(i, 'new_issue')
+        res.push "#{StaticPicture::new} #{link_to_issue(i, :icon_severity => true, :limit => 0, :show_id => true)}"
       end
-      result << res.join(', ')
-      result << ']'
+      result << res.join('<br/>')
     end
 
     if @issues[key].has_key? :updated_issues
-      result << '['
+      result << '<br/>' if @issues[key].has_key? :new_issues
       res = []
       @issues[key][:updated_issues].each do |i|
-        res.push link_to_css_issue(i, 'updated_issue')
+        res.push "#{StaticPicture::sla_running} #{link_to_issue(i, :icon_severity => true, :limit => 0, :show_id => true)}"
       end
-      result << res.join(', ')
-      result << ']'
+      result << res.join('<br/>')
     end
   end
-  result
+  result << '&nbsp;</h3>'
 end
 %>

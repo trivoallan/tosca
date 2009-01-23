@@ -92,7 +92,7 @@ module PicturesHelper
   end
 
   #TODO Merge with StaticPicture
-  def image_options(desc = '', size = nil )
+  def image_options(desc = '', size = nil)
     options = { :alt => desc, :title => desc }
     options[:size] = size if size
     options

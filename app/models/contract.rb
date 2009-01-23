@@ -23,12 +23,11 @@ class Contract < ActiveRecord::Base
   belongs_to :salesman, :class_name => 'User'
   belongs_to :tam, :class_name => 'User'
 
-  has_many :issues
-  has_many :appels
-  has_many :tags
-  has_many :releases
+  has_many :issues, :dependent => :destroy
+  has_many :tags, :dependent => :destroy
+  has_many :releases, :dependent => :destroy
 
-  has_many :subscriptions, :as => :model
+  has_many :subscriptions, :as => :model, :dependent => :destroy
 
   has_and_belongs_to_many :versions, :order => 'versions.name DESC', :uniq => true
   has_and_belongs_to_many :commitments, :uniq => true, :order =>

@@ -49,7 +49,6 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     # TODO : this one contains rights to an extension.
-    # There should be a mecanism to load new rights of an extension.
     roles = [ manager_id, expert_id, customer_id, viewer_id ]
     access = [ [ '/auto_complete', 'All kinds of Auto completion' ],
                [ '/ajax', 'All kinds of ajax view' ],
@@ -63,15 +62,15 @@ class LoadPermissions < ActiveRecord::Migration
     add_permission.call(roles, access)
 
     roles = [ manager_id, expert_id ]
-    access = [ [ '^account/become$',
-                 'Helper for customer account' ],
+    access = [ [ '^account/become$', 'Helper for customer account' ],
                [ '^phonecalls/(?!destroy)', 'Manage calls' ],
                [ '^welcome/admin$', 'Administration page' ],
                [ '^comments/(?!destroy)', 'Manage comments' ],
                [ '^contributions/(?!destroy)', 'Manage contributions' ],
                [ '^issues/(?!destroy)', 'Manage issues' ],
                [ '^reporting/', 'Access to all kinds of reporting' ],
-               [ '^hyperlinks/(?!destroy)', 'Manage the urls' ]
+               [ '^hyperlinks/(?!destroy)', 'Manage the urls' ],
+               [ '^archives/(?!destroy)', 'Manage release files' ]
              ]
     add_permission.call(roles, access)
 
@@ -88,7 +87,6 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^softwares/(?!destroy)', 'Manage software' ],
                [ '^releases/(?!destroy)', 'Manage releases' ],
                [ '^teams/(?!destroy)', 'Manage teams' ],
-               [ '^releases/(?!destroy)', 'Manage release' ],
                [ '^tags/', 'Manage tags' ],
                [ '^versions/(?!destroy)', 'Manage version' ]
              ]
@@ -133,8 +131,7 @@ class LoadPermissions < ActiveRecord::Migration
                [ '^contributions/(index|select|show|list|feed)',
                  'Public read access to contributions' ],
                [ '^groups/(index|show)', 'Public read access to groups' ],
-               [ '^softwares/(index|show)',
-                 'Public read access to software' ],
+               [ '^softwares/(index|show)', 'Public read access to software' ],
                [ '^statuts/(index|help)$', 'Explanation of status' ] ]
     add_permission.call(roles, access)
 

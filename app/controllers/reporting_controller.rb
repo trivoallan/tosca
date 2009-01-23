@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ReportingController < ApplicationController
-  helper :issues
+  helper :issues, :contracts
   
   include DigestReporting
   include DatesHelper
@@ -98,8 +98,8 @@ class ReportingController < ApplicationController
 
     init_colors
 
-    #on nettoie
-    # TODO retravailler le nettoyage
+    # we clean
+    # TODO rework the clean
     # reporting = File.expand_path('public/reporting', RAILS_ROOT)
     # rmtree(reporting)
     # Dir.mkdir(reporting)
@@ -131,7 +131,7 @@ class ReportingController < ApplicationController
       rescue ArgumentError; end
     end
     @start_date ||= Time.now
-    
+
     @start_date = @start_date.beginning_of_week
     @end_date = @start_date.end_of_week - 2.day
 
@@ -147,12 +147,15 @@ class ReportingController < ApplicationController
     end
     filters_weekly = session[:weeklyreport_filters]
 
+    created_on_condition = ['created_on BETWEEN ? AND ?', @start_date, @end_date ]
+    updated_on_condition = ['updated_on BETWEEN ? AND ?', @start_date, @end_date]
     if filters_weekly
       filters = [ [:contract_id, 'issues.contract_id', :in ] ]
-      conditions_new = Filters.build_conditions(filters_weekly, filters,
-        ['created_on BETWEEN ? AND ?', @start_date, @end_date ])
-      conditions_updated = Filters.build_conditions(filters_weekly, filters,
-        ['updated_on BETWEEN ? AND ?', @start_date, @end_date])
+      conditions_new = Filters.build_conditions(filters_weekly, filters, created_on_condition)
+      conditions_updated = Filters.build_conditions(filters_weekly, filters, updated_on_condition)
+    else
+      conditions_new = created_on_condition
+      conditions_updated = updated_on_condition
     end
 
     new_issues = Issue.all(:conditions => conditions_new, :order => :id)
@@ -161,27 +164,35 @@ class ReportingController < ApplicationController
     updated_issues = Issue.all(:conditions => conditions_updated, :order => :id)
     @number_updated_issues = updated_issues.uniq.size
 
-    #We build a hash of { "day_hour_minute" => {:new_issues => [], :updated_issues => [] }
+    #We build a hash of { "day_hour_minute" => { :new_issues => [], :updated_issues => [] }
     @issues = {}
+    
     new_issues.each do |i|
       key = "#{i.created_on.day}_#{i.created_on.hour}_#{i.created_on.min/30*30}"
       @issues[key] ||= {}
       @issues[key][:new_issues] ||= []
       @issues[key][:new_issues].push(i)
     end
+
+    #We build a hash of { :contract_name => [issues] }
+    #A new issue is also an updated issue
+    @issues_by_contract = {}
     updated_issues.each do |i|
       key = "#{i.updated_on.day}_#{i.updated_on.hour}_#{i.updated_on.min/30*30}"
       @issues[key] ||= {}
       @issues[key][:updated_issues] ||= []
       @issues[key][:updated_issues].push(i)
+
+      @issues_by_contract[i.contract] ||= []
+      @issues_by_contract[i.contract].push(i)
     end
 
     @opening_time = Contract.average(:opening_time).to_i - 1
     @closing_time = Contract.average(:closing_time).to_i + 1
 
-    # panel on the left side. cookies is here for a correct 'back' button
     unless request.xhr?
       _panel
+      # panel on the left side.
       @partial_panel = 'weekly_panel'
       render :template => 'reporting/_calendar_weekly'
     end
@@ -302,12 +313,6 @@ class ReportingController < ApplicationController
     # Maintenant on peut mettre à jour @data
     @data.update(middle_report)
     @data.update(total_report)
-    #TODO : se débarrasser de cet héritage legacy
-    #       compute_top5_softwares @data[:top5_softwares]
-    #       Comment.with_scope({ :find => { :conditions => @conditions } }) do
-    #         compute_top5_issues @data[:top5_issues]
-    #       end
-    #     end
   end
 
   ##
@@ -396,20 +401,6 @@ class ReportingController < ApplicationController
     # Others issues
     others = Issue.count - total
     report[index].push(others ? others : nil)
-  end
-
-  ##
-  # TODO : le faire marcher si y a moins de 5 issues
-  # Sort les 5 issues les plus commentées de l'année
-  def compute_top5_issues(report)
-    comments = Comment.count(:group => 'issue_id')
-    comments = comments.sort {|a,b| a[1]<=>b[1]}
-    5.times do |i|
-      values = comments.pop
-      name = values[0].to_s # "##{values[0]} (#{values[1]})"
-      report.push [ name.intern ]
-      report[i].push values[1]
-    end
   end
 
   def init_compute_by_type
@@ -529,7 +520,7 @@ class ReportingController < ApplicationController
     g.labels = @labels
     # g.hide_dots = true if g.respond_to? :hide_dots
     g.hide_legend = true
-    # TODO : mettre ca dans les metadatas
+    # TODO : put this in metadatas
     g.no_data_message = _("No data \navailable")
 
     # this writes the file to the hard drive for caching

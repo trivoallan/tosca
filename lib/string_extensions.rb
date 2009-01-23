@@ -38,7 +38,7 @@ module StringExtensions
   #  "http://www.google.com"
   #  "toto tutu djdjdjd google.com" >
   #  "toto tutu djdjdjd http://truc.machin.com/touo/sdqsd?tutu=1&machin google.com/toto/ddk?tr=1&machin"
-  #TODO: A améliorer
+  #TODO: To improve
   def urlize
     (self.gsub(/(\s+|^)[a-zA-Z]([\w-]{0,61}\w)?\.[a-zA-Z]([\w-]{0,61}\w)?(\.[a-zA-Z]([\w-]{0,61}\w)?)?/) { |s| " http://" + s.strip }).strip
   end
@@ -53,6 +53,15 @@ module StringExtensions
     self.gsub(' ', '&nbsp;')
   end
 
+  # TODO : move it to active support extension ?
+  # TODO : submit upstream ?
+  def asciify
+    self.gsub(/[^a-z1-9 ]+/i, '-')
+  end
+  def asciify!
+    self.gsub(/[^a-z1-9 ]+/i, '-')
+  end
 end
+
 
 String.send :include, StringExtensions

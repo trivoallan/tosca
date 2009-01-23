@@ -2,15 +2,13 @@ digraph contribution {
 
 //rotate=90;
 
-
-Request -> Recipient [arrowhead=dot,dir=both,arrowtail=crow]
-Request -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
-Request -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
-Request -> Engineer [arrowhead=dot,dir=both,arrowtail=crow]
-Request -> Release [arrowhead=odot,dir=both,arrowtail=crow]
-Request -> Version [arrowhead=odot,dir=both,arrowtail=crow]
-Request -> Software [arrowhead=odot,dir=both,arrowtail=crow]
-
+Issue -> User [arrowhead=dot,dir=both,arrowtail=crow]
+Issue -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
+Issue -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
+Issue -> User [arrowhead=dot,dir=both,arrowtail=crow]
+Issue -> Release [arrowhead=odot,dir=both,arrowtail=crow]
+Issue -> Version [arrowhead=odot,dir=both,arrowtail=crow]
+Issue -> Software [arrowhead=odot,dir=both,arrowtail=crow]
 
 Version -> Software [arrowhead=dot,dir=both,arrowtail=crow]
 Version -> Contract [arrowhead=crow,dir=both,arrowtail=crow]
@@ -18,15 +16,12 @@ Version -> Contract [arrowhead=crow,dir=both,arrowtail=crow]
 Release -> Contract [arrowhead=dot,dir=both,arrowtail=crow]
 Release -> Version [arrowhead=dot,dir=both,arrowtail=crow]
 
-
-Contributionurl -> Contribution [arrowhead=dot,dir=both,arrowtail=crow]
-
-Contribution -> Contributionstate [arrowhead=dot,dir=both,arrowtail=crow]
-Contribution -> Contributiontype [arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> ContributionType [arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> ContributionState [arrowhead=dot,dir=both,arrowtail=crow]
 Contribution -> Software [arrowhead=dot,dir=both,arrowtail=crow]
-Contribution -> Version [arrowhead=dot,arrowtail=crow,dir=both]
-Contribution -> Engineer [arrowhead=dot,dir=both,arrowtail=crow]
-
-
+Contribution -> User [label="Engineer",arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Version [label="AffectedVersion",arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Version [label="FixedVersion",arrowhead=dot,dir=both,arrowtail=crow]
+Contribution -> Hyperlink [arrowhead=crow,dir=both,arrowtail=dot]
 
 }

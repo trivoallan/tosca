@@ -20,7 +20,8 @@ class Client < ActiveRecord::Base
   # Small utils for inactive, located in /lib/inactive_record.rb
   include InactiveRecord
 
-  belongs_to :picture
+  belongs_to :picture, :dependent => :destroy
+
   has_many :recipients, :class_name => 'User', :dependent => :destroy,
     :conditions => 'users.client_id IS NOT NULL'
   has_many :active_recipients, :class_name => 'User',
@@ -63,7 +64,12 @@ class Client < ActiveRecord::Base
   # for this client, false otherwise.
   def support_distribution
     result = false
-    self.contracts.each { |c| result = true if c.rule.max == -1 }
+    self.contracts.each do |c|
+      if c.rule.max == -1
+        result = true 
+        break
+      end
+    end
     result
   end
 

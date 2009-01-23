@@ -22,7 +22,7 @@ class Knowledge < ActiveRecord::Base
   belongs_to :skill
   belongs_to :software
 
-  has_many :subscriptions, :as => :model
+  has_many :subscriptions, :as => :model, :dependent => :destroy
 
   validates_presence_of :engineer_id
   validate do |record|

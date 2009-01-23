@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Picture < ActiveRecord::Base
-  belongs_to :software
+  has_one :software
   has_one :client
   
   validates_presence_of :image, :message => _('You must select a file to upload')

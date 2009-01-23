@@ -173,10 +173,7 @@ class AccountController < ApplicationController
   end
 
   def forgotten_password
-    case request.method
-    when :get
-      # Do nothing
-    when :post
+    if request.method == :post
       user = params[:user]
       return unless user && user.has_key?(:email) && user.has_key?(:login)
       flash[:warn] = _('Unknown account')
@@ -341,7 +338,6 @@ private
 
 
   # Bulk import users
-  # TODO : this method is too fat, unused, untested and have a lots
   # of improvements possibility. It's deactivated for now, until
   # someone find some times in order have it work properly
   # require 'fastercsv'

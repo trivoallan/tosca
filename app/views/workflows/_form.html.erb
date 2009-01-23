@@ -1,17 +1,16 @@
 <div class="show">
-<% form_for(@workflow) do |f| %>
-  <%= f.error_messages %>
-  <h3><%= @workflow.issuetype %>
-      <%= f.hidden_field :issuetype_id %></h3>
-  <table>
-   <tr>
-    <td><%= f.select :statut_id, @statuses %> </td>
-    <th> ==> </th>
-    <td><%= hbtm_check_box( @workflow.allowed_status, @statuses,
-                            'workflow[allowed_status_ids]', :size => 1, :no_empty_field => true) %></td>
-   </tr>
-  </table>
+  <% form_for(@workflow) do |f| %>
+    <%= f.error_messages %>
+    <h3><%= @workflow.issuetype %>
+    <%= f.hidden_field :issuetype_id %></h3>
+    <table>
+      <tr>
+        <td><%= f.select :statut_id, @statuses %> </td>
+        <th> ==> </th>
+        <td><%= hbtm_check_box( @workflow.allowed_status, @statuses,
+          'workflow[allowed_status_ids]', :size => 1, :no_empty_field => true) %></td>
+      </tr>
+    </table>
     <%= f.submit _('Validate') %>
-  </p>
-<% end %>
+  <% end %>
 </div>

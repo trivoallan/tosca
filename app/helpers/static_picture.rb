@@ -58,10 +58,10 @@ class StaticPicture < Static::ActionView
 
   # You should prefer to use
   # image_create(message) : with message being a good tooltip for the link
-  @@new = nil
-  def self.new
-    desc = _("New")
-    @@new ||= image_tag('icons/add.png', options(desc, '16x16'))
+  @@add = nil
+  def self.add
+    desc = _('Add')
+    @@add ||= image_tag('icons/add.png', options(desc, '16x16'))
   end
 
   @@delete = nil
@@ -76,7 +76,7 @@ class StaticPicture < Static::ActionView
     @@hide_notice ||= image_tag('icons/cancel.png', options(desc, '16x16'))
   end
 
-  @@help= nil
+  @@help = nil
   def self.help
     desc = _("Help")
     @@help ||= image_tag('icons/help.png', options(desc, '16x16'))
@@ -290,6 +290,11 @@ class StaticPicture < Static::ActionView
   @@subscription = nil
   def self.subscription
     @@subscription ||= image_tag('icons/feed.png', options('Subscribed', '16x16'))
+  end
+
+  @@new = nil
+  def self.new
+    @@new ||= image_tag('icons/new.png', options('New', '16x16'))
   end
 
   ##############################################

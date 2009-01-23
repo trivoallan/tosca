@@ -7,6 +7,7 @@ software_00001:
   description: "OpenOffice.org is an Open Source, community-developed, multi-platform office productivity suite.  It includes the key desktop applications, such as a word processor, spreadsheet, presentation manager, formula editor and drawing program, with a user interface and feature set similar to other office suites.  Sophisticated and flexible, OpenOffice.org also works transparently with a variety of file formats, including Microsoft Office.  Usage: Simply type &quot;ooffice&quot; to run OpenOffice.org or select the issueed component (Writer, Calc, Draw, Impress, etc.) from your desktop menu. The ooffice wrapper script will install a few files in the user&#39;s home, if necessary.  The OpenOffice.org team hopes you enjoy working with OpenOffice.org!  Note: Non-.vor templates covered under the GPL license."
   license_id: 3
   private: false
+  picture_id: 2
 software_00002:
   name: Firefox
   group_id: "16"
@@ -16,6 +17,7 @@ software_00002:
   resume: Mozilla Firefox web browser
   license_id: "48"
   private: false
+  picture_id:
 software_00003:
   name: CVS
   group_id: "10"
@@ -25,6 +27,7 @@ software_00003:
   resume: A version control system.
   license_id: "3"
   private: false
+  picture_id: 5
 software_00004:
   name: ZimbraLDAP
   group_id: "10"
@@ -34,3 +37,4 @@ software_00004:
   resume: It's not a real one
   license_id: "3"
   private: true
+  picture_id: 2

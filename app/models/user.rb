@@ -24,18 +24,20 @@ class User < ActiveRecord::Base
   include PasswordGenerator
   include LdapTosca
 
-  belongs_to :picture
+  belongs_to :picture, :dependent => :destroy
   belongs_to :role
   belongs_to :team
   belongs_to :client
 
-  has_many :attachments
-  has_many :comments
-  has_many :issues, :dependent => :destroy, :foreign_key => :recipient_id
+  has_many :attachments, :through => :comments
+  has_many :comments, :dependent => :destroy
+  has_many :issues, :dependent => :destroy, :foreign_key => :recipient_id,
+    :dependent => :destroy
   has_many :managed_contracts, :class_name => 'Contract', :foreign_key => :tam_id
 
-  has_many :knowledges, :order => 'knowledges.level DESC', :foreign_key => :engineer_id
-  has_many :subscriptions
+  has_many :knowledges, :order => 'knowledges.level DESC', :foreign_key => :engineer_id,
+    :dependent => :destroy
+  has_many :subscriptions, :dependent => :destroy
 
   has_and_belongs_to_many :own_contracts, :class_name => 'Contract', :order => :id
 

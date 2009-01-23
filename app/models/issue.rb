@@ -43,7 +43,7 @@ class Issue < ActiveRecord::Base
 
   has_many :comments, :order => "created_on ASC", :dependent => :destroy
   has_many :attachments, :through => :comments
-  has_many :subscriptions, :as => :model
+  has_many :subscriptions, :as => :model, :dependent => :destroy
 
   named_scope :actives, lambda { |contract_ids| { :conditions =>
       { :statut_id => Statut::OPENED, :contract_id => contract_ids }
@@ -432,7 +432,7 @@ class Issue < ActiveRecord::Base
       c.issue = self
       c.severity_id = self.severity_id
       c.statut_id = self.statut_id
-      c.user_id = self.recipient_id
+      c.user_id = self.submitter_id
     end
   end
 

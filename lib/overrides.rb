@@ -67,7 +67,7 @@ class Date
 
   # Dynamic cache for variable holidays, for performance reason
   @@variable_holidays = {}
-  def self.VariableHolidays(year)
+  def self.variable_holidays(year)
     cache = @@variable_holidays[year]
     return cache unless cache.nil?
 
@@ -96,12 +96,11 @@ class Date
   def working?
     return false if self.cwday > 5 # 6,7 => Week End
     return false if FixedHolidays.include? Date.new(0, self.month, self.day)
-    return false if Date.VariableHolidays(self.year).include? self
+    return false if Date.variable_holidays(self.year).include? self
     true
   end
 
 end
-
 
 class Time
   ##

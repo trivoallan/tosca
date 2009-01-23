@@ -19,17 +19,17 @@
 class Software < ActiveRecord::Base
   acts_as_taggable
 
-  has_one :picture, :dependent => :destroy
+  belongs_to :picture, :dependent => :destroy
   belongs_to :license
   belongs_to :group
 
-  has_many :contributions
-  has_many :knowledges
-  has_many :issues
+  has_many :contributions, :dependent => :destroy
+  has_many :knowledges, :dependent => :destroy
+  has_many :issues, :dependent => :destroy
   has_many :hyperlinks, :dependent => :destroy, :as => :model
   has_many :releases, :through => :versions
   has_many :versions, :order => "versions.name DESC", :dependent => :destroy
-  has_many :subscriptions, :through => :knowledges
+  has_many :subscriptions, :through => :knowledges, :dependent => :destroy
 
   has_and_belongs_to_many :skills, :uniq => true
 
@@ -55,17 +55,9 @@ class Software < ActiveRecord::Base
         { :private => false } } }
   end
 
-  # TODO : l'une des deux est de trop. Normalement c'est
-  # uniquement content_columns
-  def self.list_columns
-    columns.reject { |c| c.primary ||
-        c.name =~ /(_id|name|resume|description|referent)$/ ||
-          c.name == inheritance_column }
-  end
-
   def self.content_columns
     @content_columns ||= columns.reject { |c|
-      c.primary || c.name =~ /(_id|_count|referent|Description)$/
+      c.primary || c.name =~ /(_id|_count|referent|description)$/
     }
   end
 

@@ -96,9 +96,6 @@ module DatesHelper
   #
   #
   def calendar_weekly(start_date, options = {}, &block)
-    end_date = start_date.end_of_week - 2.day
-    span = end_date.day - start_date.day
-
     block ||= Proc.new { |d| nil }
     defaults = {
       :table_class => 'week-view',
@@ -109,22 +106,13 @@ module DatesHelper
     options = defaults.merge options
 
     time_range = (options[:start_time]..options[:end_time]).to_a
-
-		if options[:url]
-      next_start_date = end_date + 1.day
-      next_end_date   = next_start_date + 5.day
-      next_link = link_to('>>', url_for(options[:url].merge(:start_date => next_start_date, :end_date => next_end_date)) + options[:url_append])
-      prev_start_date = start_date - span.day
-      prev_end_date = start_date - 1.day
-      prev_link = link_to('<<', url_for(options[:url].merge(:start_date => prev_start_date, :end_date => prev_end_date)) + options[:url_append])
-		end
-
+    
     cal = "<table class=\"#{options[:table_class]}\">"
     cal << '<thead><tr>'
     cal << "<th><h3>#{start_date.year}</h3></th>"
     5.times do |d|
       date = start_date.beginning_of_day + d.days
-      cal << "<th><h3>#{date.strftime("%A")}<br />#{date.strftime('%d/%m')}</h3></th>"
+      cal << "<th><h3>#{date.strftime('%a %d/%m')}</h3></th>"
     end
     cal << '</tr></thead><tbody>'
     time_range.each do |hour|
@@ -140,12 +128,12 @@ module DatesHelper
           now = start_date.beginning_of_day +
             d.day + hour.hour + minutes.minutes
           cell_text, cell_attrs = block.call(now)
-          cell_text ||= ""
+          cell_text ||= ''
           cell_attrs ||= {}
-          cell_attrs[:class] = cell_attrs[:class].to_s + " today" if Time.today == d
+          cell_attrs[:class] = cell_attrs[:class].to_s + ' today' if Time.today == d
           cell_attrs = cell_attrs.map {|k, v| %(#{k}="#{v}") }.join(' ')
 
-          cal << "<td #{cell_attrs}>#{cell_text}&nbsp;</td>"
+          cal << "<td #{cell_attrs}>#{cell_text}</td>"
         end
         minutes += options[:duration]
         cal << '</tr>'
