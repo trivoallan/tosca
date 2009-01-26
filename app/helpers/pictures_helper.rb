@@ -76,7 +76,7 @@ module PicturesHelper
       size = (client.inactive? ? :inactive_thumb : :thumb)
     end
     image_tag(url_for_image_column(client.picture, 'image', size) || client.name,
-              image_options(client.name_clean))
+              StaticPicture::options(client.name_clean))
   end
 
   # Display the software's logo, if possible
@@ -89,13 +89,6 @@ module PicturesHelper
     return '' if path.blank?
     image_tag(path, :class => "aligned_picture",
               :alt => software.name, :title => software.name)
-  end
-
-  #TODO Merge with StaticPicture
-  def image_options(desc = '', size = nil)
-    options = { :alt => desc, :title => desc }
-    options[:size] = size if size
-    options
   end
 
   # See usage in reporting_helper#progress_bar
