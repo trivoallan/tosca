@@ -20,7 +20,9 @@
 %>
 
 <h1><%= @title %>&nbsp;<%= StaticPicture::spinner %></h1>
-<%= link_previous %>&nbsp;|&nbsp;<%= link_next %><br/><br/>
+<div style="float: right">
+  <%= link_previous %>&nbsp;|&nbsp;<%= link_next %><br/><br/>
+</div>
 
 <%= calendar_weekly(@start_date, :start_time => @opening_time,
   :end_time => @closing_time) do |time|
