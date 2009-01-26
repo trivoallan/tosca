@@ -30,7 +30,7 @@ module IssuesHelper
       limit = options[:limit] || 50
       text = ''
       text << "##{issue.id} " if options.has_key? :show_id
-      text << "#{StaticPicture::severity(issue)} " if options.has_key? :icon_severity #TODO
+      text << "#{StaticPicture::severity(issue)} " if options.has_key? :icon_severity
       text << truncate(issue.resume, limit) if limit > 0
     end
     link_to text, issue_path(issue)

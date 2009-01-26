@@ -155,6 +155,7 @@ class ReportingController < ApplicationController
       conditions_new = created_on_condition
     end
 
+    #TODO : set a :select option ?
     comments = Comment.all(:conditions => conditions_new,
       :order => 'comments.issue_id, comments.created_on ASC',
       :joins => :issue)
