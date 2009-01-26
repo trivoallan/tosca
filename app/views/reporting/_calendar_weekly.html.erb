@@ -7,7 +7,7 @@
   last_week = @start_date - 1.week
   link_text = StaticPicture::previous_page + 
     _('Week of the %s') % last_week.strftime('%d %B')
-  link_previous = link_to(link_text, 
+  link_previous = link_to_remote(link_text,
     options.dup.update(:url => weekly_reporting_path(:report =>
         { :start_date => last_week.strftime("%Y-%m-%d") })))
 
