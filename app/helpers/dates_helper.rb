@@ -109,7 +109,8 @@ module DatesHelper
     
     cal = "<table class=\"#{options[:table_class]}\">"
     cal << '<thead><tr>'
-    cal << "<th><h3>#{start_date.year}</h3></th>"
+    week = _('Week %s of %s') % [start_date.strftime('%W'), start_date.year]
+    cal << "<th><h3>#{week}</h3></th>"
     5.times do |d|
       date = start_date.beginning_of_day + d.days
       cal << "<th><h3>#{date.strftime('%a %d/%m')}</h3></th>"
