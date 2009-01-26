@@ -85,6 +85,10 @@ class Comment < ActiveRecord::Base
     [ ]
   end
 
+  def first_comment?
+    (self.id == self.issue.first_comment_id)
+  end
+
   private
 
   # We destroy a few things, if appropriate

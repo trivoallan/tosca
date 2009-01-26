@@ -32,16 +32,23 @@
     if @issues[key].has_key? :new_issues
       res = []
       @issues[key][:new_issues].each do |i|
-        res.push "#{StaticPicture::new} #{link_to_issue(i, :icon_severity => true, :limit => 0, :show_id => true)}"
+        res.push "#{StaticPicture::new} #{link_to_issue(i.first, :icon_severity => true, :limit => 0, :show_id => true)}"
       end
       result << res.join('<br/>')
     end
 
-    if @issues[key].has_key? :updated_issues
-      result << '<br/>' if @issues[key].has_key? :new_issues
+    if @issues[key].has_key? :running_issues
       res = []
-      @issues[key][:updated_issues].each do |i|
-        res.push "#{StaticPicture::sla_running} #{link_to_issue(i, :icon_severity => true, :limit => 0, :show_id => true)}"
+      @issues[key][:running_issues].each do |i|
+        res.push "#{StaticPicture::sla_running} #{link_to_issue(i.first, :icon_severity => true, :limit => 0, :show_id => true)}"
+      end
+      result << res.join('<br/>')
+    end
+
+    if @issues[key].has_key? :closed_issues
+      res = []
+      @issues[key][:closed_issues].each do |i|
+        res.push "#{StaticPicture::stop} #{link_to_issue(i.first, :icon_severity => true, :limit => 0, :show_id => true)}"
       end
       result << res.join('<br/>')
     end

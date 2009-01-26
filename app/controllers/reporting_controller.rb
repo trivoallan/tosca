@@ -147,44 +147,49 @@ class ReportingController < ApplicationController
     end
     filters_weekly = session[:weeklyreport_filters]
 
-    created_on_condition = ['created_on BETWEEN ? AND ?', @start_date, @end_date ]
-    updated_on_condition = ['updated_on BETWEEN ? AND ?', @start_date, @end_date]
+    created_on_condition = ['comments.created_on BETWEEN ? AND ? AND comments.statut_id IS NOT NULL', @start_date, @end_date ]
     if filters_weekly
       filters = [ [:contract_id, 'issues.contract_id', :in ] ]
       conditions_new = Filters.build_conditions(filters_weekly, filters, created_on_condition)
-      conditions_updated = Filters.build_conditions(filters_weekly, filters, updated_on_condition)
     else
       conditions_new = created_on_condition
-      conditions_updated = updated_on_condition
     end
 
-    new_issues = Issue.all(:conditions => conditions_new, :order => :id)
-    @number_new_issues = new_issues.size
+    comments = Comment.all(:conditions => conditions_new,
+      :order => 'comments.issue_id, comments.created_on ASC',
+      :joins => :issue)
 
-    updated_issues = Issue.all(:conditions => conditions_updated, :order => :id)
-    @number_updated_issues = updated_issues.uniq.size
-
-    #We build a hash of { "day_hour_minute" => { :new_issues => [], :updated_issues => [] }
+    #We build a hash of { "day_hour_minute" => { :new_issues => [[issue, comment], ...],
+    # :updated_issues => [], :running_issues => [] }
     @issues = {}
+    #We build a hash of { :contract_name => [issues] }
+    @issues_by_contract = {}
+
+    @number_new_issues = 0
+    @number_closed_issues = 0
     
-    new_issues.each do |i|
-      key = "#{i.created_on.day}_#{i.created_on.hour}_#{i.created_on.min/30*30}"
+    comments.each do |c|
+      key = "#{c.created_on.day}_#{c.created_on.hour}_#{c.created_on.min/30*30}"
+      issue = c.issue
+
       @issues[key] ||= {}
       @issues[key][:new_issues] ||= []
-      @issues[key][:new_issues].push(i)
-    end
+      if c.first_comment?
+        @issues[key][:new_issues].push([issue, c])
+        @number_new_issues += 1
+      end
 
-    #We build a hash of { :contract_name => [issues] }
-    #A new issue is also an updated issue
-    @issues_by_contract = {}
-    updated_issues.each do |i|
-      key = "#{i.updated_on.day}_#{i.updated_on.hour}_#{i.updated_on.min/30*30}"
-      @issues[key] ||= {}
-      @issues[key][:updated_issues] ||= []
-      @issues[key][:updated_issues].push(i)
+      @issues[key][:closed_issues] ||= []
+      if Statut::CLOSED.include? c.statut
+        @issues[key][:closed_issues].push([issue, c])
+        @number_closed_issues += 1
+      end
+      
+      @issues[key][:running_issues] ||= []
+      @issues[key][:running_issues].push([issue, c]) if Statut::Running.include? c.statut
 
-      @issues_by_contract[i.contract] ||= []
-      @issues_by_contract[i.contract].push(i)
+      @issues_by_contract[issue.contract] ||= []
+      @issues_by_contract[issue.contract].push(issue) unless @issues_by_contract[issue.contract].include? issue
     end
 
     @opening_time = Contract.average(:opening_time).to_i - 1

@@ -297,6 +297,11 @@ class StaticPicture < Static::ActionView
     @@new ||= image_tag('icons/new.png', options('New', '16x16'))
   end
 
+  @@stop = nil
+  def self.stop
+    @@stop ||= image_tag('icons/stop.png', options('Stop', '16x16'))
+  end
+
   ##############################################
   # Severity
   # Display an icon matching severity
