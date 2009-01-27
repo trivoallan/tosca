@@ -1,4 +1,4 @@
-class DropJourferie < ActiveRecord::Migration
+class DropJourFerie < ActiveRecord::Migration
   def self.up
     drop_table "jourferies"
   end
