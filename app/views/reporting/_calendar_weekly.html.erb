@@ -24,7 +24,6 @@
   <%= link_previous %>&nbsp;|&nbsp;<%= link_next %><br/><br/>
 </div>
 
-<% links_options = {:icon_severity => true, :limit => 0, :show_id => true} %>
 <%= calendar_weekly(@start_date, :start_time => @opening_time,
   :end_time => @closing_time) do |time|
   key = "#{time.day}_#{time.hour}_#{time.min*30/30}"
@@ -34,25 +33,39 @@
     if @issues[key].has_key? :new_issues
       res = []
       @issues[key][:new_issues].each do |i|
-        res.push "#{StaticPicture::new} #{link_to_issue(i.first, links_options)}"
+        res.push link_to("##{i.id}", issue_path(i))
       end
-      result << res.join('<br/>')
+      unless res.empty?
+        result << "#{StaticPicture::new}&nbsp;["
+        result << res.join(', ')
+        result << ']'
+      end
     end
 
     if @issues[key].has_key? :running_issues
       res = []
       @issues[key][:running_issues].each do |i|
-        res.push "#{StaticPicture::sla_running} #{link_to_issue(i.first, links_options)}"
+        res.push link_to("##{i.id}", issue_path(i))
       end
-      result << res.join('<br/>')
+      unless res.empty?
+        result << '<br/>' if @issues[key].has_key? :new_issues
+        result << "#{StaticPicture::sla_running}&nbsp;["
+        result << res.join(', ')
+        result << ']'
+      end
     end
 
     if @issues[key].has_key? :closed_issues
       res = []
       @issues[key][:closed_issues].each do |i|
-        res.push "#{StaticPicture::stop} #{link_to_issue(i.first, links_options)}"
+        res.push link_to("##{i.id}", issue_path(i))
       end
-      result << res.join('<br/>')
+      unless res.empty?
+        result << '<br/>' unless @issues[key].has_key? :new_issues or @issues[key].has_key? :closed_issues
+        result << "#{StaticPicture::stop}&nbsp;["
+        result << res.join(', ')
+        result << ']'
+      end
     end
   end
   result << '&nbsp;</h3>'

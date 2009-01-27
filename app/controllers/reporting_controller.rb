@@ -176,18 +176,19 @@ class ReportingController < ApplicationController
       @issues[key] ||= {}
       @issues[key][:new_issues] ||= []
       if c.first_comment?
-        @issues[key][:new_issues].push([issue, c])
+        @issues[key][:new_issues].push(issue) unless @issues[key][:new_issues].include? issue
         @number_new_issues += 1
       end
 
       @issues[key][:closed_issues] ||= []
-      if Statut::CLOSED.include? c.statut
-        @issues[key][:closed_issues].push([issue, c])
+      if Statut::CLOSED.include? c.statut_id
+        @issues[key][:closed_issues].push(issue) unless @issues[key][:closed_issues].include? issue
         @number_closed_issues += 1
       end
       
       @issues[key][:running_issues] ||= []
-      @issues[key][:running_issues].push([issue, c]) if Statut::Running.include? c.statut
+      @issues[key][:running_issues].push(issue) if Statut::Running.include? c.statut_id and
+        not @issues[key][:running_issues].include? issue
 
       @issues_by_contract[issue.contract] ||= []
       @issues_by_contract[issue.contract].push(issue) unless @issues_by_contract[issue.contract].include? issue
