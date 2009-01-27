@@ -41,11 +41,11 @@ class CreateDynamicWorkFlow < ActiveRecord::Migration
     study = Issuetype.find_by_name('Étude')
     documentation = Issuetype.find_by_name('Documentation')
     if study and documentation
-      Issue.record_timestamp = false
+      Issue.record_timestamps = false
       Issue.all(:conditions => {:issuetype_id => study.id}).each do |i|
         i.update_attribute :issuetype_id, documentation.id
       end
-      Issue.record_timestamp = true
+      Issue.record_timestamps = true
     end
   end
 
