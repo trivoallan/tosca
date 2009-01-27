@@ -33,6 +33,9 @@ class RemoveIngenieurAndRecipient < ActiveRecord::Migration
     has_many :issues
   end
 
+  class Phonecall < ActiveRecord::Base
+  end
+
   def self.up
     remove_column :ingenieurs, :image_id
     remove_column :users, :client
