@@ -1,10 +1,10 @@
 <%= div_toggle _('Statictics'), 'menu_stats', :class => "menu_title" %>
 <ul class="menu" id="menu_stats">
   <li>
-    <b><%= _('Number of new issues') %></b> : <%= @number_new_issues %>
+    <b><%= _('Number of new issues') %></b> : <%= @statistics[:new_issues] %>
   </li>
   <li>
-    <b><%= _('Number of closed issues') %></b> : <%= @number_closed_issues %>
+    <b><%= _('Number of closed issues') %></b> : <%= @statistics[:closed_issues] %>
   </li>
   <% if @issues_by_contract.length > 0 %>
     <li>
@@ -13,7 +13,7 @@
         <% @issues_by_contract.each_pair do |key, value| %>
           <li>
             <b><%= link_to_contract(key) %></b> : <%= value.length %>
-          <li>
+          </li>
         <% end %>
       </ul>
     </li>
