@@ -19,13 +19,13 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 # Each Controller Test should test all _public_ methods
+# This test generate one method by route / role combination
 class ApplicationControllerTest < ActionController::TestCase
 
-  #We generate one method by test
   self.instance_eval do
     routes = ActionController::Routing::Routes.routes
 
-    #We load all the controllers
+    # This pre-load is required to obtain controllers list
     Dir.glob(RAILS_ROOT + '/app/controllers/*.rb').each { |file| require file }
     controllers = Object.subclasses_of(ActionController::Base).map(&:to_s)
 
@@ -33,29 +33,25 @@ class ApplicationControllerTest < ActionController::TestCase
       perm = Regexp.compile(p.name)
 
       routes.each do |r|
-        #string of the rout ex : account/login
+        # string of the rout ex : account/login
         string_route = r.segments.to_s
-        if perm.match(string_route) and 
-            ((r.conditions.has_key? :method and r.conditions[:method] == :get) or #only GET routes
-              r.conditions.empty?)
+        # Only display is tested
+        next unless perm.match(string_route) and
+          (r.conditions.empty? or
+           (r.conditions[:method] == :get))
 
-          p.roles.each do |role|
-
-            #We define one method for each test, it is easier to debug
-            define_method("test '#{string_route}' on (#{p.name}) with '#{role.name}'") do
-              login role.name, role.name
-
-              #Find the controller
-              possible_controllers = controllers.grep(Regexp.compile(r.requirements[:controller], Regexp::IGNORECASE))
-              unless possible_controllers.empty?
-                #Set the controller
-                @controller = eval(possible_controllers.first + ".new")
-                #Get the action
-                get r.requirements[:action], :id => 1 #We specifiy id = 1 for all views like edit/show
-                assert_response :success
-              end
-            end
-
+        p.roles.each do |role|
+          # We define one method for each test, it is easier to debug
+          define_method("test '#{string_route}' on (#{p.name}) with '#{role.name}'") do
+            login role.name, role.name
+            possible_controllers = controllers.grep(/#{r.requirements[:controller]}/i)
+            next if possible_controllers.empty?
+            # Needed to access to the page
+            @controller = eval(possible_controllers.first + ".new")
+            # We specifiy id = 1 for all views like edit/show.
+            # It does not impact generic views
+            get r.requirements[:action], :id => 1
+            assert_response :success
           end
         end
       end
