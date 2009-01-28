@@ -33,16 +33,26 @@ class ApplicationControllerTest < ActionController::TestCase
       perm = Regexp.compile(p.name)
 
       routes.each do |r|
+        #string of the rout ex : account/login
         string_route = r.segments.to_s
-        if perm.match(string_route) and ((r.conditions.has_key? :method and r.conditions[:method] == :get) or r.conditions.empty?)
+        if perm.match(string_route) and 
+            ((r.conditions.has_key? :method and r.conditions[:method] == :get) or #only GET routes
+              r.conditions.empty?)
+
           p.roles.each do |role|
 
+            #We define one method for each test, it is easier to debug
             define_method("test_#{string_route}_#{p.name}_#{role.name}") do
+              #login has user
               login role.name, role.name
+
+              #Find the controller
               possible_controllers = controllers.grep(Regexp.compile(r.requirements[:controller], Regexp::IGNORECASE))
               unless possible_controllers.empty?
+                #Set the controller
                 @controller = eval(possible_controllers.first + ".new")
-                get r.requirements[:action], :id => 1
+                #Get the action
+                get r.requirements[:action], :id => 1 #We specifiy id = 1 for all views like edit/show
                 assert_response :success
               end
             end
