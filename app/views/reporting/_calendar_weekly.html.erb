@@ -19,10 +19,10 @@
         { :start_date => next_week.strftime("%Y-%m-%d") })))
 %>
 
-<h1><%= @title %>&nbsp;<%= StaticPicture::spinner %></h1>
 <div style="float: right">
-  <%= link_previous %>&nbsp;|&nbsp;<%= link_next %><br/><br/>
+  <p><%= link_previous %>&nbsp;|&nbsp;<%= link_next %></p>
 </div>
+<h1><%= @title %>&nbsp;<%= StaticPicture::spinner %></h1>
 
 <%= calendar_weekly(@start_date, :start_time => @opening_time,
   :end_time => @closing_time) do |time|
@@ -68,6 +68,6 @@
       end
     end
   end
-  result << '</p>&nbsp;</h3>'
+  result << '</p></h3>'
 end
 %>

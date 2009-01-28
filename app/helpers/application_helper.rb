@@ -29,7 +29,6 @@ module ApplicationHelper
   include FormsHelper
   include LinksHelper
   include PicturesHelper
-  include DatesHelper
   include TagsHelper
 
   ### TEXT #####################################################################
