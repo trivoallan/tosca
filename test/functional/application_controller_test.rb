@@ -26,7 +26,7 @@ class ApplicationControllerTest < ActionController::TestCase
     routes = ActionController::Routing::Routes.routes
 
     #We load all the controllers
-    Dir.glob(RAILS_ROOT + '/app/controller/*.rb').each { |file| require file }
+    Dir.glob(RAILS_ROOT + '/app/controllers/*.rb').each { |file| require file }
     controllers = Object.subclasses_of(ActionController::Base).map(&:to_s)
 
     Permission.all.each do |p|
@@ -42,8 +42,7 @@ class ApplicationControllerTest < ActionController::TestCase
           p.roles.each do |role|
 
             #We define one method for each test, it is easier to debug
-            define_method("test_#{string_route}_#{p.name}_#{role.name}") do
-              #login has user
+            define_method("test '#{string_route}' on (#{p.name}) with '#{role.name}'") do
               login role.name, role.name
 
               #Find the controller
@@ -56,11 +55,11 @@ class ApplicationControllerTest < ActionController::TestCase
                 assert_response :success
               end
             end
-            
+
           end
         end
       end
     end
   end
-  
+
 end
