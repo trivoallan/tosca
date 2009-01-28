@@ -58,11 +58,11 @@ class WelcomeController < ApplicationController
     if suggestion
       unless suggestion[:team].blank?
         Notifier::deliver_welcome_idea(suggestion[:team],
-                                       :team, @session_user)
+          :team, @session_user)
       end
       unless suggestion[:tosca].blank?
         Notifier::deliver_welcome_idea(suggestion[:tosca],
-                                       :tosca, @session_user)
+          :tosca, @session_user)
       end
       flash[:notice] = _('Thank your for taking time in order to help us to improve this product. Your comments has been sent successfully.')
       redirect_to_home
@@ -80,7 +80,7 @@ class WelcomeController < ApplicationController
     redirect_to_home
   end
 
-protected
+  protected
 
   # Returns an array of a pair : [ 'controller', *actions ]
   def _plan

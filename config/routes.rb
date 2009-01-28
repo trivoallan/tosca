@@ -30,12 +30,12 @@ ActionController::Routing::Routes.draw do |map|
   # all those helpers only have GET method.
   # See overrides.rb for without_orm source code
   sweet_home = { :controller => 'welcome', :action => 'index',
-                 :conditions => { :method => :get } }
+    :conditions => { :method => :get } }
   map.welcome '/', sweet_home
 
   map.without_orm('welcome', %w(admin plan about index suggestions theme clear_cache))
   map.without_orm('welcome', %w(suggestions theme), :post)
-  map.without_orm('reporting', %w(configuration flux general digest digest_resultat calendar weekly))
+  map.without_orm('reporting', %w(configuration general digest digest_resultat calendar weekly))
   map.without_orm('access', %w(denied))
   map.without_orm('alerts', %w(index show))
   map.without_orm('alerts', %w(update), :put)
@@ -67,23 +67,23 @@ ActionController::Routing::Routes.draw do |map|
     :controller => "account",
     :member => { :become => :post, :ajax_contracts => :post },
     :collection => { :logout => :any, :login => :any,
-                     :forgotten_password => :any },
+    :forgotten_password => :any },
     :new => { :signup => :any, # TODO : reactive it :multiple_signup => :any,
-      :ajax_place => :post, :ajax_contracts => :post }
+    :ajax_place => :post, :ajax_contracts => :post }
   map.resources :archives
   map.resources :changelogs
   map.resources :clients
   map.resources :comments, :member => {
-     :change_state => :post,
-     :comment => :post }
+    :change_state => :post,
+    :comment => :post }
   map.resources :skills
   map.resources :contracts,
     :collection => {
-      :ajax_choose_rule_type => :post, :actives => :get, :ajax_add_software => :post,
-      :add_software => :post, :auto_complete_for_user_name => :post },
+    :ajax_choose_rule_type => :post, :actives => :get, :ajax_add_software => :post,
+    :add_software => :post, :auto_complete_for_user_name => :post },
     :member => { :supported_software => :get, :tags => :get,
-      :ajax_subscribe => :post,
-      :ajax_unsubscribe => :delete }
+    :ajax_subscribe => :post,
+    :ajax_unsubscribe => :delete }
   map.resources :contributions,
     :collection => { :admin => :any, :select => :get, :experts => :get, :ajax_list_versions => :post },
     :member => { :list => :get }
@@ -103,31 +103,30 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :releases
   map.resources :issues,
     :collection => { :pending => :get,
-      :ajax_renew => :post, # in pending view
-      :ajax_display_commitment => :post, # in new/edit form
-      :ajax_display_version => :post, # in new/edit form
-      :ajax_display_contract => :post }, # in new/edit form
-    :member => { :print => :get, # All members are in show view
-      :link_contribution => :post,
-      :unlink_contribution => :post,
-      :tag => :get,
-      :ajax_history => :get,
-      :ajax_attachments => :get,
-      :ajax_cns => :get,
-      :ajax_actions => :get,
-      :ajax_untag => :delete,
-      :ajax_add_tag => :post,
-      :ajax_subscribe => :post,
-      :ajax_unsubscribe => :delete,
-      :ajax_subscribe_someone => :post }
-  map.resources :reporting, :collection => { :flux => :get }
+    :ajax_renew => :post, # in pending view
+    :ajax_display_commitment => :post, # in new/edit form
+    :ajax_display_version => :post, # in new/edit form
+    :ajax_display_contract => :post }, # in new/edit form
+  :member => { :print => :get, # All members are in show view
+    :link_contribution => :post,
+    :unlink_contribution => :post,
+    :tag => :get,
+    :ajax_history => :get,
+    :ajax_attachments => :get,
+    :ajax_cns => :get,
+    :ajax_actions => :get,
+    :ajax_untag => :delete,
+    :ajax_add_tag => :post,
+    :ajax_subscribe => :post,
+    :ajax_unsubscribe => :delete,
+    :ajax_subscribe_someone => :post }
   map.resources :roles
 
   # Resources for rules/* controllers
-    map.resources :components, :controller => "rules/components",
-      :path_prefix => "/rules", :name_prefix => 'rules_'
-    map.resources :credits, :controller => "rules/credits",
-      :path_prefix => "/rules", :name_prefix => 'rules_'
+  map.resources :components, :controller => "rules/components",
+    :path_prefix => "/rules", :name_prefix => 'rules_'
+  map.resources :credits, :controller => "rules/credits",
+    :path_prefix => "/rules", :name_prefix => 'rules_'
 
   map.resources :severities
   map.resources :socles

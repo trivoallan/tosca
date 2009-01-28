@@ -25,9 +25,12 @@ class ApplicationControllerTest < ActionController::TestCase
   self.instance_eval do
     routes = ActionController::Routing::Routes.routes
 
-    # This pre-load is required to obtain controllers list
+    # This pre-load is required to obtain controllers and models list
     Dir.glob(RAILS_ROOT + '/app/controllers/*.rb').each { |file| require file }
     controllers = Object.subclasses_of(ActionController::Base).map(&:to_s)
+    Dir.glob(RAILS_ROOT + '/app/models/*.rb').each { |file| require file }
+    models = Object.subclasses_of(ActiveRecord::Base).map(&:to_s)
+
 
     Permission.all.each do |p|
       perm = Regexp.compile(p.name)
@@ -35,10 +38,11 @@ class ApplicationControllerTest < ActionController::TestCase
       routes.each do |r|
         # string of the rout ex : account/login
         string_route = r.segments.to_s
-        # Only display is tested
+        # Only display is tested and not a ajax view
         next unless perm.match(string_route) and
           (r.conditions.empty? or
-           (r.conditions[:method] == :get))
+            (r.conditions[:method] == :get)) and 
+          not r.requirements[:action] =~ /^ajax/
 
         p.roles.each do |role|
           # We define one method for each test, it is easier to debug
@@ -48,9 +52,14 @@ class ApplicationControllerTest < ActionController::TestCase
             next if possible_controllers.empty?
             # Needed to access to the page
             @controller = eval(possible_controllers.first + ".new")
-            # We specifiy id = 1 for all views like edit/show.
+
+            possible_models = models.grep(/^#{r.requirements[:controller].singularize}$/i)
+            id = 1
+            id = eval(possible_models.first + ".first.id") unless possible_models.empty?
+            
+            # We specifiy an id for all views like edit/show.
             # It does not impact generic views
-            get r.requirements[:action], :id => 1
+            get r.requirements[:action], :id => id
             assert_response :success
           end
         end
