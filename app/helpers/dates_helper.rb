@@ -24,11 +24,11 @@ require 'calendar_grid'
 CalendarGrid::Builder.start_wday = 1
 
 module DatesHelper
-  
+
   def pretty_date(date)
     day = sprintf("%02d", date.day)
     month = _(date.strftime("%b"))
-    
+
     result = ""
     result << '<div class="datestamp">'
     result << '<div>'
@@ -38,7 +38,7 @@ module DatesHelper
     result << '</div>'
     result << '</div>'
   end
-  
+
   def complete_date(date)
     result = _(date.strftime("%A"))            #day of the week : Monday
     result << " "
@@ -48,14 +48,14 @@ module DatesHelper
     result << " "
     result << date.strftime("%Y")              #Year : 2007
   end
-  
+
   # Display a BIG calendar for the month of the date in param
   #
   # options :
   #   :title Display a title for the calendar
   def calendar_month(date, options = {})
     cal = CalendarGrid.build(date, 1)
-    
+
     #We limit to one year and one month
     year = cal.years.first
     month = year.months.first
@@ -87,7 +87,7 @@ module DatesHelper
         end
       end
       result << %(</tr>)
-    end        
+    end
     result << %(</table></div>)
   end
 
@@ -106,10 +106,10 @@ module DatesHelper
     options = defaults.merge options
 
     time_range = (options[:start_time]..options[:end_time]).to_a
-    
+
     cal = "<table class=\"#{options[:table_class]}\">"
     cal << '<thead><tr>'
-    week = _('Week %s of %s') % [start_date.strftime('%W'), start_date.year]
+    week = start_date.strftime(_('W%W %Y'))
     cal << "<th><h3>#{week}</h3></th>"
     5.times do |d|
       date = start_date.beginning_of_day + d.days

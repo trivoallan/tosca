@@ -17,10 +17,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ReportingController < ApplicationController
-  helper :issues, :contracts
-  
+  helper :issues, :contracts, :dates
+
   include DigestReporting
-  include DatesHelper
 
   # Default colors are distributed by alphabetical order of severity
   # ( blocking, major, minor, none )
@@ -136,10 +135,10 @@ class ReportingController < ApplicationController
     @end_date = @start_date.end_of_week - 2.day
 
     @title = _('Issues of all your contracts')
-    
+
     # Specification of a filter f :
     if params.has_key? :filters
-      session[:weeklyreport_filters] = 
+      session[:weeklyreport_filters] =
         Filters::WeeklyReport.new(params[:filters])
       @title = _('Issues of the contract %s') %
         Contract.find(params[:filters][:contract_id]).name if params[:filters].has_key? :contract_id and
@@ -164,11 +163,12 @@ class ReportingController < ApplicationController
     # :updated_issues => [], :running_issues => [] }
     @issues = {}
     #We build a hash of { :contract_name => [issues] }
-    @issues_by_contract = {}
+    @issues_by_contract = {} # Hash.new([])
+    @issues_by_contract.default = []
 
-    @number_new_issues = 0
-    @number_closed_issues = 0
-    
+    @statistics = Hash.new(0)
+
+    last_issue = nil
     comments.each do |c|
       key = "#{c.created_on.day}_#{c.created_on.hour}_#{c.created_on.min/30*30}"
       issue = c.issue
@@ -176,22 +176,24 @@ class ReportingController < ApplicationController
       @issues[key] ||= {}
       @issues[key][:new_issues] ||= []
       if c.first_comment?
-        @issues[key][:new_issues].push(issue) unless @issues[key][:new_issues].include? issue
-        @number_new_issues += 1
+        @issues[key][:new_issues].push(issue) if issue != last_issue
+        @statistics[:new_issues] += 1
       end
 
       @issues[key][:closed_issues] ||= []
       if Statut::CLOSED.include? c.statut_id
-        @issues[key][:closed_issues].push(issue) unless @issues[key][:closed_issues].include? issue
-        @number_closed_issues += 1
+        @issues[key][:closed_issues].push(issue) if issue != last_issue
+        @statistics[:closed_issues] += 1
       end
-      
+
       @issues[key][:running_issues] ||= []
-      @issues[key][:running_issues].push(issue) if Statut::Running.include? c.statut_id and
-        not @issues[key][:running_issues].include? issue
+      if Statut::Running.include? c.statut_id and issue != last_issue
+        @issues[key][:running_issues].push(issue)
+      end
 
       @issues_by_contract[issue.contract] ||= []
-      @issues_by_contract[issue.contract].push(issue) unless @issues_by_contract[issue.contract].include? issue
+      @issues_by_contract[issue.contract].push(issue) if issue != last_issue
+      last_issue = issue
     end
 
     @opening_time = Contract.average(:opening_time).to_i - 1
@@ -201,7 +203,7 @@ class ReportingController < ApplicationController
       _panel
       # panel on the left side.
       @partial_panel = 'weekly_panel'
-      render :template => 'reporting/_calendar_weekly'
+      render :template => 'reporting/_weekly_calendar'
     end
     # else : Rendering weekly.rjs
   end

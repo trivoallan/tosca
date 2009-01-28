@@ -5,7 +5,7 @@
 
   #We create next/previous weeks links
   last_week = @start_date - 1.week
-  link_text = StaticPicture::previous_page + 
+  link_text = StaticPicture::previous_page +
     _('Week of the %s') % last_week.strftime('%d %B')
   link_previous = link_to_remote(link_text,
     options.dup.update(:url => weekly_reporting_path(:report =>
@@ -19,15 +19,15 @@
         { :start_date => next_week.strftime("%Y-%m-%d") })))
 %>
 
-<h1><%= @title %>&nbsp;<%= StaticPicture::spinner %></h1>
 <div style="float: right">
-  <%= link_previous %>&nbsp;|&nbsp;<%= link_next %><br/><br/>
+  <p><%= link_previous %>&nbsp;|&nbsp;<%= link_next %></p>
 </div>
+<h1><%= @title %>&nbsp;<%= StaticPicture::spinner %></h1>
 
 <%= calendar_weekly(@start_date, :start_time => @opening_time,
   :end_time => @closing_time) do |time|
   key = "#{time.day}_#{time.hour}_#{time.min*30/30}"
-  result = '<h3>'
+  result = '<h3><p>'
 
   if @issues.has_key? key
     if @issues[key].has_key? :new_issues
@@ -68,6 +68,6 @@
       end
     end
   end
-  result << '&nbsp;</h3>'
+  result << '</p></h3>'
 end
 %>
