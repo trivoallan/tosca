@@ -21,30 +21,36 @@ require File.dirname(__FILE__) + '/../test_helper'
 # Each Controller Test should test all _public_ methods
 class ApplicationControllerTest < ActionController::TestCase
 
-  def test_good_display
+  #We generate one method by test
+  self.instance_eval do
     routes = ActionController::Routing::Routes.routes
-    
+
     #We load all the controllers
     Dir.glob(RAILS_ROOT + '/app/controller/*.rb').each { |file| require file }
     controllers = Object.subclasses_of(ActionController::Base).map(&:to_s)
-    
+
     Permission.all.each do |p|
       perm = Regexp.compile(p.name)
-      
+
       routes.each do |r|
         string_route = r.segments.to_s
         if perm.match(string_route) and ((r.conditions.has_key? :method and r.conditions[:method] == :get) or r.conditions.empty?)
           p.roles.each do |role|
-            login role.name, role.name
-            possible_controllers = controllers.grep(Regexp.compile(r.requirements[:controller], Regexp::IGNORECASE))
-            unless possible_controllers.empty?
-              @controller = eval(possible_controllers.first + ".new")
-              get r.requirements[:action], :id => 1
-              assert_response :success
+
+            define_method("test_#{string_route}_#{p.name}_#{role.name}") do
+              login role.name, role.name
+              possible_controllers = controllers.grep(Regexp.compile(r.requirements[:controller], Regexp::IGNORECASE))
+              unless possible_controllers.empty?
+                @controller = eval(possible_controllers.first + ".new")
+                get r.requirements[:action], :id => 1
+                assert_response :success
+              end
             end
+            
           end
         end
       end
     end
   end
+  
 end
