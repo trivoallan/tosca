@@ -1,2 +1,2 @@
-page.replace_html 'col1_content', :partial => 'reporting/calendar_weekly'
+page.replace_html 'col1_content', :partial => 'reporting/weekly_calendar'
 page.replace_html 'weekly_statistics', :partial => 'reporting/weekly_statistics'

@@ -200,7 +200,7 @@ class ReportingController < ApplicationController
       _panel
       # panel on the left side.
       @partial_panel = 'weekly_panel'
-      render :template => 'reporting/_calendar_weekly'
+      render :template => 'reporting/_weekly_calendar'
     end
     # else : Rendering weekly.rjs
   end
