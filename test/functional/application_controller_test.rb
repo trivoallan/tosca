@@ -26,7 +26,7 @@ class ApplicationControllerTest < ActionController::TestCase
     routes = ActionController::Routing::Routes.routes
 
     #We load all the controllers
-    Dir.glob(RAILS_ROOT + '/app/controller/*.rb').each { |file| require file }
+    Dir.glob(RAILS_ROOT + '/app/controllers/*.rb').each { |file| require file }
     controllers = Object.subclasses_of(ActionController::Base).map(&:to_s)
 
     Permission.all.each do |p|
@@ -37,7 +37,7 @@ class ApplicationControllerTest < ActionController::TestCase
         if perm.match(string_route) and ((r.conditions.has_key? :method and r.conditions[:method] == :get) or r.conditions.empty?)
           p.roles.each do |role|
 
-            define_method("test_#{string_route}_#{p.name}_#{role.name}") do
+            define_method("test '#{string_route}' on (#{p.name}) with '#{role.name}'") do
               login role.name, role.name
               possible_controllers = controllers.grep(Regexp.compile(r.requirements[:controller], Regexp::IGNORECASE))
               unless possible_controllers.empty?
@@ -46,11 +46,11 @@ class ApplicationControllerTest < ActionController::TestCase
                 assert_response :success
               end
             end
-            
+
           end
         end
       end
     end
   end
-  
+
 end
