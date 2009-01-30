@@ -229,7 +229,7 @@ class Notifier < ActionMailer::Base
     headers = {}
     headers[HEADER_MESSAGE_ID] = message_id(comment.mail_id)
     #Refers to the issue
-    headers[HEADER_REFERENCES] = headers[HEADER_IN_REPLY_TO] = message_id(issue.first_comment.mail_id)
+    headers[HEADER_REFERENCES] = headers[HEADER_IN_REPLY_TO] = message_id((issue.first_comment || comment).mail_id)
     headers[HEADER_XSOFTWARE]  = issue.software.name.asciify if issue.software
     headers[HEADER_XCONTRACT]  = issue.contract.to_s.asciify!
     headers[HEADER_XCLIENT]    = issue.client.to_s.asciify

@@ -2,6 +2,7 @@
 <%= public_link_to _('Software') , softwares_path %> >
 <%= public_link_to @software.group, group_path(@software.group_id) %> >
 <%= @software %> <%= link_to_edit(@software) %>
+<% expert = @session_user and @session_user.engineer? %>
 <div class="subcolumns">
   <div class="c50l">
     <div class="show">
@@ -9,7 +10,7 @@
         <tr>
           <td><b><%= _('Name') %></b> </td>
           <td><%= @software.name %>
-            <% if @software.private? && @session_user.engineer? %>
+            <% if @software.private? and expert %>
               (<%= _('Private') %>)
             <% end %>
           </td>
@@ -26,7 +27,7 @@
             </fieldset>
           </td>
         </tr>
-        <% if @session_user.engineer? %>
+        <% if expert %>
           <tr>
             <th><%= _('Reference') %></th>
             <td><%=h @software.referent %></td>
@@ -49,8 +50,10 @@
         </tr>
 
         <tr>
+          <%# collecting before calling .size to versions allows to skip a COUNT(*) request %>
+          <% versions = @software.versions.collect{|v| link_to_version v}.join(', ') %>
           <th><%=n_('Version', 'Versions', @software.versions.size)%> <%= link_to_new_version(@software) %></th>
-          <td><%= @software.versions.collect{|v| link_to_version v}.join(', ') %></td>
+          <td><%= versions %></td>
         </tr>
 
         <tr>
