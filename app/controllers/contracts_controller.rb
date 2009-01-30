@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class ContractsController < ApplicationController
-  helper :clients, :commitments, :versions, :issues, :subscriptions
+  helper :clients, :commitments, :versions, :issues, :subscriptions, :dates
 
   auto_complete_for :user, :name, :contract, :engineer_user,
                     :conditions => { :client => false }
