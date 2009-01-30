@@ -218,21 +218,21 @@ class Time
     when half_day_inf..half_day_sup
       (opened ? _('1 half a working day') : _('1 half day'))
     when (day-60)..(day+60), (day*2-60)..(day*2+60),
-         (day*3-60)..(day*3), (3*day)..mo
+        (day*3-60)..(day*3), (3*day)..mo
       val = (distance / day).round
       (opened ? n_('%d working day', '%d working days', val) :
-                n_('%d day', '%d days', val)) % val
+          n_('%d day', '%d days', val)) % val
     when day..(3*day)
       days = (distance / day).floor
       hours = ((distance % 1.day)/60).round
       out = ((opened ? n_('%d working day', '%d working days', days) :
-                       n_('%d day', '%d days', days)) % days)
+            n_('%d day', '%d days', days)) % days)
       out << ' ' << _('and') << ' ' << n_('%d hour', '%d hours', hours) % hours
       out
     else
       val = (distance / mo).round
       (opened ? n_('%d working month', '%d working months', val) :
-                n_('%d month', '%d months', val)) % val
+          n_('%d month', '%d months', val)) % val
     end
   end
 
@@ -285,12 +285,12 @@ module ActionController
   class Base
     def url_for(options = nil) #:doc:
       case options || options={}
-        when String
-          options
-        when Hash
-          @url.rewrite(rewrite_options(options))
-        else
-          polymorphic_url(options)
+      when String
+        options
+      when Hash
+        @url.rewrite(rewrite_options(options))
+      else
+        polymorphic_url(options)
       end
     end
   end
@@ -320,19 +320,19 @@ module ActionView::Helpers::UrlHelper
     return nil unless options
 
     url = case options
-      when String
-        options
-      when :back
-        @controller.request.env["HTTP_REFERER"] || 'javascript:history.back()'
-      else
-        self.url_for(options)
-      end
+    when String
+      options
+    when :back
+      @controller.request.env["HTTP_REFERER"] || 'javascript:history.back()'
+    else
+      self.url_for(options)
+    end
 
     if html_options
       case html_options[:method]
-        when :delete
+      when :delete
         action = 'destroy'
-        when :put
+      when :put
         action = 'update'
       end
       html_options = html_options.stringify_keys
@@ -351,7 +351,7 @@ module ActionView::Helpers::UrlHelper
       required_perm = nil
       if options.is_a?(Hash) and options.has_key? :action
         required_perm = '%s/%s' % [ options[:controller] || controller.controller_name,
-                                    options[:action] ]
+          options[:action] ]
       end
       if action and options.is_a? String
         # No '/' here, since we have it with the grepped part of the url.
@@ -550,6 +550,32 @@ module AutoComplete
         end
         render :inline => "<%= auto_complete_choice('#{object}', '#{method}', @items, '#{model}[#{field}_ids]') %>"
       end
+    end
+  end
+end
+
+module Test
+  module Unit
+    class TestCase
+
+      class << self
+        #Add loading fixtures from extentions
+        def fixtures(*table_names)
+          if table_names.first == :all
+            table_names = Dir["#{fixture_path}/*.yml"] + Dir["#{fixture_path}/*.csv"] +
+              Dir["#{RAILS_ROOT}/vendor/extensions/*/test/fixtures/*.yml"] +
+              Dir["#{RAILS_ROOT}/vendor/extensions/*/test/fixtures/*.csv"]
+            table_names.map! { |f| File.basename(f).split('.')[0..-2].join('.') }
+          else
+            table_names = table_names.flatten.map { |n| n.to_s }
+          end
+
+          self.fixture_table_names |= table_names
+          require_fixture_classes(table_names)
+          setup_fixture_accessors(table_names)
+        end
+      end
+      
     end
   end
 end

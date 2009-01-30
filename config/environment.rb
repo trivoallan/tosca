@@ -71,7 +71,6 @@ Rails::Initializer.run do |config|
   # request, see ApplicationController for more info.
   config.action_mailer.default_url_options = { :host => "localhost" }
 
-
   ### External libs ###
   # Used to i18n and l10n
   config.gem 'gettext', :lib => 'gettext/rails'
