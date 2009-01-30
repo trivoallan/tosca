@@ -42,7 +42,7 @@ class WorkflowsController < ApplicationController
   # POST /workflows
   def create
     @workflow = Workflow.new(params[:workflow])
-    @workflow.allowed_status_ids.delete_if{|s| s == 0}
+    @workflow.allowed_status_ids.delete_if(&:zero?)
     if @workflow.save
       flash[:notice] = 'Workflow was successfully created.'
       redirect_to(@workflow.issuetype)
@@ -73,6 +73,6 @@ class WorkflowsController < ApplicationController
   def _form
     @workflow.issuetype_id ||= ( params.has_key? :issuetype_id ? params[:issuetype_id] : [])
     @workflow.allowed_status_ids ||= []
-    @statuses = Statut.find_select(:order => 'statuts.id')
+    @statuses = Statut.find_select(:order => :id)
   end
 end
