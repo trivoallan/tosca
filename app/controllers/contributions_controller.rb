@@ -21,12 +21,6 @@ class ContributionsController < ApplicationController
 
   cache_sweeper :contribution_sweeper, :only => [ :create, :update ]
 
-  # Show all contribs and who's done 'em
-  def experts
-    options = { :order => 'contributions.engineer_id, contributions.contributionstate_id' }
-    @contributions = Contribution.all(options)
-  end
-
   def index
     select
     render :action => "select"
