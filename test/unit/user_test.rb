@@ -277,5 +277,12 @@ class UserTest < Test::Unit::TestCase
       assert u.role_id == 1
     end
   end
-  
+
+  def test_issues
+    User.all.each do |u|
+      u.issues.each do |i|
+        assert_kind_of Issue, i
+      end
+    end
+  end
 end
