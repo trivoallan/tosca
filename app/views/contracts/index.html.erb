@@ -1,10 +1,10 @@
-<h1><%= _("List of contracts") %> <%= StaticPicture::spinner %></h1>
+<h1><%= t("List of contracts") %> <%= StaticPicture::spinner %></h1>
 
 
-<% options = { :create_label => _('a contract'), :remote_url => contracts_path }%>
+<% options = { :create_label => t('a contract'), :remote_url => contracts_path }%>
 <% paginated_section(@contracts, options) do %>
- <% titles = [_('Name'), _('Type'), _('Issues'), _('Releases'),
-   _('Users'), _('Start'), _('=>'), _('End')] %>
+ <% titles = [t('Name'), t('Type'), t('Issues'), t('Releases'),
+   t('Users'), t('Start'), t('=>'), t('End')] %>
  <%= show_table(@contracts, Contract, titles) do |c|
    result = ''
    result << "<td>#{link_to_contract(c)}</td>"
@@ -19,4 +19,4 @@
  end %>
  <%= page_entries_info @contracts %><br />
 <% end %><br />
-<%= link_to _('Ordered by end date'), actives_contracts_path %>
+<%= link_to t('Ordered by end date'), actives_contracts_path %>

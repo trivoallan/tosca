@@ -20,14 +20,14 @@ class Statut < ActiveRecord::Base
   has_many :issues
 
   #######################################
-  N_('Submitted') #1  	Enregistrée     #
-  N_('Accepted')  #2	Accepté         #
-  N_('Suspended') #3	Suspendue       #
-  N_('Analysed')  #4	Analysée        #
-  N_('Bypassed')  #5 	Contournée      #
-  N_('Fixed')     #6	Corrigée        #
-  N_('Closed')    #7	Clôturée        #
-  N_('Cancelled') #8    Annulée         #
+  I18n.t('Submitted') #1  	Enregistrée     #
+  I18n.t('Accepted')  #2	Accepté         #
+  I18n.t('Suspended') #3	Suspendue       #
+  I18n.t('Analysed')  #4	Analysée        #
+  I18n.t('Bypassed')  #5 	Contournée      #
+  I18n.t('Fixed')     #6	Corrigée        #
+  I18n.t('Closed')    #7	Clôturée        #
+  I18n.t('Cancelled') #8    Annulée         #
   #######################################
 
   # used in lib/comex_reporting and models/issue.rb
@@ -50,7 +50,7 @@ class Statut < ActiveRecord::Base
   # It's one of the rare "heavily used & fixed" AR model,
   # So we can include it in the translation mechanism
   def name
-    _(read_attribute(:name))
+    I18n.t(read_attribute(:name))
   end
 
 end

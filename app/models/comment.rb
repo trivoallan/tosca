@@ -26,13 +26,13 @@ class Comment < ActiveRecord::Base
     :conditions => 'users.client_id IS NULL'
 
   validates_length_of :text, :minimum => 5,
-    :warn => _('You must have a comment with at least 5 characters')
+    :warn => I18n.t('You must have a comment with at least 5 characters')
   validates_presence_of :user
 
   validate do |record|
     issue = record.issue
     if record.issue.nil?
-      record.errors.add_to_base _('You must indicate a valid issue')
+      record.errors.add_to_base I18n.t('You must indicate a valid issue')
     end
     #We check if we are trying to change the status of the request,
     #but it has already the same status
@@ -40,10 +40,10 @@ class Comment < ActiveRecord::Base
         issue.first_comment_id != record.id &&
         issue.statut_id == record.statut_id &&
         record.new_record?)
-      record.errors.add_to_base _('The status of this issue has already been changed.')
+      record.errors.add_to_base I18n.t('The status of this issue has already been changed.')
     end
     if (record.statut_id && record.private)
-      record.errors.add_to_base _('You cannot privately change the status')
+      record.errors.add_to_base I18n.t('You cannot privately change the status')
     end
   end
 
@@ -51,16 +51,16 @@ class Comment < ActiveRecord::Base
     #If the status was changed and we do not specify a text, we generate a default text
     text = html2text(record.text).strip
     if record.statut and not Statut::NEED_COMMENT.include? record.statut_id and text.empty?
-      record.text << ( _("The issue is now %s.<br/>") % _(record.statut.name) )
+      record.text << ( I18n.t("The issue is now %s.<br/>") % I18n.t(record.statut.name) )
     end
     if record.engineer and text.empty?
-      record.text << ( _("The issue is now managed by %s.<br/>") % _(record.engineer.name))
+      record.text << ( I18n.t("The issue is now managed by %s.<br/>") % I18n.t(record.engineer.name))
     end
   end
 
   # State in words of the comment (private or public)
   def state
-    ( private ? _("private") : _("public") )
+    ( private ? I18n.t("private") : I18n.t("public") )
   end
 
   # Used for outgoing mails feature, to keep track of the issue.
@@ -109,7 +109,7 @@ class Comment < ActiveRecord::Base
     if !self.private and issue.last_comment_id == self.id
       last_comment = issue.find_other_comment(self.id)
       if !last_comment
-        self.errors.add_to_base(_('This issue seems to be unstable.'))
+        self.errors.add_to_base(I18n.t('This issue seems to be unstable.'))
         return false
       end
       issue.update_attribute :last_comment_id, last_comment.id

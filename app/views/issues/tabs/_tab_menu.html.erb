@@ -6,30 +6,30 @@ issue_id = @issue ? @issue.id : @issue_id %>
 <ul class="issue_tabnav" id="issue_tabnav">
   <li>
     <% options[:url] = ajax_history_issue_path(issue_id) %>
-    <% desc = _('History') + ' ' + StaticPicture::history %>
+    <% desc = t('History') + ' ' + StaticPicture::history %>
     <%= link_to_remote_tab(desc, 'ajax_history', options) %>
   </li>
   <li>
     <% options[:url] = ajax_attachments_issue_path(issue_id) %>
-    <% desc = _('Attachments') + ' ' + StaticPicture::documents %>
+    <% desc = t('Attachments') + ' ' + StaticPicture::documents %>
     <%= link_to_remote_tab(desc, 'ajax_attachments', options) %>
   </li>
   <li>
     <% options[:url] = ajax_cns_issue_path(issue_id) %>
-    <% desc =  _('SLA') + ' ' + StaticPicture::sla_running %>
+    <% desc =  t('SLA') + ' ' + StaticPicture::sla_running %>
     <%= link_to_remote_tab(desc, 'ajax_cns', options) %>
   </li>
   <% if @session_user.engineer? %>
     <li>
       <% options[:url] = ajax_actions_issue_path(issue_id) %>
-      <% desc =  "#{_('Actions')} #{image_star(_('Actions'))}" %>
+      <% desc =  "#{t('Actions')} #{image_star(t('Actions'))}" %>
       <%= link_to_remote_tab(desc, 'ajax_actions', options) %>
     </li>
   <% end %>
   <% Issue::tabs.each do |t| %>
     <li>
       <% options[:url] = send("ajax_#{t}_issue_path", issue_id) %>
-      <% desc =  "#{_(t.capitalize)} " << StaticPicture.send(t) %>
+      <% desc =  "#{t(t.capitalize)} " << StaticPicture.send(t) %>
       <%= link_to_remote_tab(desc, "ajax_#{t}", options) %>
      </li>
   <% end %>

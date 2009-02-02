@@ -53,7 +53,7 @@ class CommentsController < ApplicationController
     end
     if (changed[:statut_id] or changed[:severity_id]) and params[:comment][:private]
       params[:comment][:private] = false
-      flash[:warn] = _("A comment can not be private if there is a change in<br/>
+      flash[:warn] = t("A comment can not be private if there is a change in<br/>
         the <b>status</b> or in the <b>severity</b>")
     end
 
@@ -68,12 +68,12 @@ class CommentsController < ApplicationController
 
     #We verify and send an email
     if @comment.save
-      flash[:notice] = _("Your comment was successfully added.")
+      flash[:notice] = t("Your comment was successfully added.")
       to = issue.compute_recipients(@comment.private)
       cc = issue.compute_copy(@comment.private)
       flash[:notice] += message_notice(to, cc)
     else
-      flash[:warn] = _("An error has occured.") + '<br/>' +
+      flash[:warn] = t("An error has occured.") + '<br/>' +
         @comment.errors.full_messages.join('<br/>')
       flash[:old_body] = @comment.text
     end
@@ -101,7 +101,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     return if _not_allowed?
     if @comment.update_attributes(params[:comment])
-      flash[:notice] = _("The comment was successfully updated.")
+      flash[:notice] = t("The comment was successfully updated.")
       redirect_to comment_path(@comment)
     else
       _form and render :action => 'edit'
@@ -113,9 +113,9 @@ class CommentsController < ApplicationController
     comment = Comment.find(params[:id])
     issue = comment.issue_id
     if comment.destroy
-      flash[:notice] = _("The comment was successfully destroyed.")
+      flash[:notice] = t("The comment was successfully destroyed.")
     else
-      flash[:warn] = _('You cannot delete the first comment')
+      flash[:warn] = t('You cannot delete the first comment')
     end
     redirect_to issue_path(issue)
   end
@@ -129,7 +129,7 @@ class CommentsController < ApplicationController
 
   def _not_allowed?
     if @session_user.recipient? and @comment.user_id != @session_user.id
-      flash[:warn] = _('You are not allowed to edit this comment')
+      flash[:warn] = t('You are not allowed to edit this comment')
       redirect_to issue_path(@comment.issue)
       return true
     end

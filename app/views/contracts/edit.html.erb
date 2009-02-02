@@ -1,9 +1,9 @@
-<h1><%= _('Edit a contract') %> <%= StaticPicture::spinner %></h1>
+<h1><%= t('Edit a contract') %> <%= StaticPicture::spinner %></h1>
 
 <% form_tag contract_path(@contract), :id => 'main_form',
      :name => 'main_form' ,:method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag _('Validate') %>
+  <%= submit_tag t('Validate') %>
 <% end %>
 
 <%= link_to_show_and_list(@contract) %>

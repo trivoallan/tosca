@@ -28,7 +28,7 @@ module DigestReporting
     @period = "year" if period.blank?
     updated = Time.now.send("beginning_of_#{@period}")
     # We must localise it after getting the (english) helper for the start date
-    @period = _(@period)
+    @period = t(@period)
 
     options = { :conditions => [ "updated_on >= ? ", updated ],
      :order => "contract_id ASC", :include => [:issuetype, :severity, :statut]}
@@ -64,7 +64,7 @@ module DigestReporting
     @period = "year" if period.blank?
     updated = Time.now.send("beginning_of_#{@period}")
     # We must localise it after getting the (english) helper for the start date
-    @period = _(@period)
+    @period = t(@period)
 
     options = { :conditions => [ "updated_on >= ? ", updated ],
      :order => "contract_id ASC", :include => [:issuetype, :severity, :statut]}

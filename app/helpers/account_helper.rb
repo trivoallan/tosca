@@ -29,11 +29,11 @@ module AccountHelper
   def get_title
     result = ''
     if @session_user.id == @user.id
-      result << _('My account')
+      result << I18n.t('My account')
     else
-      result << _('Account of %s') % @user.name
+      result << I18n.t('Account of %s') % @user.name
     end
-    result << " (#{_('User|Inactive')})" if @user.inactive
+    result << " (#{I18n.t('User|Inactive')})" if @user.inactive
     result
   end
 
@@ -54,7 +54,7 @@ module AccountHelper
     result = ''
     if @session_user.engineer? && user && !user.inactive?
       result << %Q{<form action="#{become_account_path(user)}" method="post">}
-      result << %Q{<input name="commit" value='#{_('Become')}' type="submit" /></form>}
+      result << %Q{<input name="commit" value='#{I18n.t('Become')}' type="submit" /></form>}
     end
     result
   end

@@ -55,10 +55,10 @@ class Issue < ActiveRecord::Base
   }
 
   # Used for digest report see
-  N_('year')
-  N_('month')
-  N_('week')
-  N_('day')
+  I18n.t('year')
+  I18n.t('month')
+  I18n.t('week')
+  I18n.t('day')
 
   # Key pointers to the issue history
   # /!\ used to store the description /!\
@@ -67,10 +67,10 @@ class Issue < ActiveRecord::Base
   # /!\ the last _public_ comment /!\
   belongs_to :last_comment, :class_name => "Comment",
     :foreign_key => "last_comment_id"
-
+  
   # Validation
   validates_presence_of :resume, :contract, :description, :recipient,
-    :statut, :severity, :warn => _("You must indicate a %s for your issue")
+    :statut, :severity, :warn => I18n.t("You must indicate a %s for your issue")
   validates_length_of :resume, :within => 4..70
   validates_length_of :description, :minimum => 5
 
@@ -82,7 +82,7 @@ class Issue < ActiveRecord::Base
   validate do |record|
     if record.contract.nil? || record.recipient.nil? ||
         (record.contract.client_id != record.recipient.client_id)
-      record.errors.add_to_base _('The client of this contract is not consistant with the client of this recipient.')
+      record.errors.add_to_base I18n.t('The client of this contract is not consistant with the client of this recipient.')
     end
   end
 

@@ -1,7 +1,7 @@
-<h1><%= _('Roles list') %></h1>
-<small>[<%= link_to _('and associated permissions'), permissions_path %>]</small>
+<h1><%= t('Roles list') %></h1>
+<small>[<%= link_to t('and associated permissions'), permissions_path %>]</small>
 
-<% titres = [ _('Rule'), _('Description') ]
+<% titres = [ t('Rule'), t('Description') ]
   titres.concat(@roles.collect{|r| link_to(r.name, edit_role_path(r))})
 %>
 <%= show_table(@permissions, Permission, titres) { |p|
@@ -19,9 +19,9 @@
   result
 }%>
 
-<%= link_to _('Permission list'), permissions_path %> |
-<%= link_to _('Add a permission'), new_permission_path %>
+<%= link_to t('Permission list'), permissions_path %> |
+<%= link_to t('Add a permission'), new_permission_path %>
 
 <p>&nbsp;</p>
 
-<%= link_to _('Add a role'), new_role_path %> <br />
+<%= link_to t('Add a role'), new_role_path %> <br />

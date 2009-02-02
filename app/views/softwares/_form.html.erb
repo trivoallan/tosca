@@ -5,41 +5,41 @@
   <div class="show">
    <table>
     <tr>
-     <th><label for="software_name"><%=_('Name')%></label></th>
+     <th><label for="software_name"><%=t('Name')%></label></th>
      <td><%= text_field :software, :name %></td>
 	</tr><tr>
-     <th><label for="software_resume"><%=_('Summary')%></label></th>
+     <th><label for="software_resume"><%=t('Summary')%></label></th>
      <td><%= text_field :software, :resume %></td>
     </tr>
    </table>
 
-   <p><label for="software_description"><%=_('Description')%></label><br />
+   <p><label for="software_description"><%=t('Description')%></label><br />
    <%= text_area :software, :description, :cols => 60 %></p>
 
-   <p><label for="image_image"><%=_('Logo')%></label><br />
+   <p><label for="image_image"><%=t('Logo')%></label><br />
    <%= file_column_field 'image', 'image' %></p>
 
-   <p><label for="software_referent"><%=_('Base name')%></label><br />
+   <p><label for="software_referent"><%=t('Base name')%></label><br />
    <%= text_field :software, :referent %></p>
   </div>
  </div><div class="c50r">
   <div class="show">
    <table>
     <tr>
-     <th><label for="software_licence_id"><%=_('Copyright')%></label>
+     <th><label for="software_licence_id"><%=t('Copyright')%></label>
       <%= link_to_new_license %></th>
      <td><%= select(:software, :license_id, @licenses) %></td>
     </tr><tr>
-     <th><label for="software_group_id"><%=_('Group')%></label>
+     <th><label for="software_group_id"><%=t('Group')%></label>
       <%= link_to_new_group %></th>
      <td><%= select(:software, :group_id, @groups) %></td>
     </tr><tr>
-     <th><label for="software_private"><%=_('Private')%></label></th>
+     <th><label for="software_private"><%=t('Private')%></label></th>
      <td><%= check_box(:software, :private) %></td>
     </tr>
    </table>
 
-   <p><label><%=_('Technologies')%></label> <%= link_to_new_skill %></p>
+   <p><label><%=t('Technologies')%></label> <%= link_to_new_skill %></p>
      <%= hbtm_check_box( @software.skills, @skills,
                          'software[skill_ids]', :size => 4) %>
    <% # Tags are dynamically dependent of related technologies %>

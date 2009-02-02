@@ -1,8 +1,8 @@
-<h1><%= _('New skill')%></h1>
+<h1><%= t('New skill')%></h1>
 
 <% form_tag skills_path do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag _('Create') %>
+  <%= submit_tag t('Create') %>
 <% end %>
 
 <%= link_to_back %>

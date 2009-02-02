@@ -1,9 +1,9 @@
 <% if @issues_found and not @issues_found.empty?%>
   <%= play_mp3(App::AlertFile) %>
-  <%= show_list(@issues_found, _('New issues')) do |r|
+  <%= show_list(@issues_found, t('New issues')) do |r|
         "##{r.id} #{r.contract} : #{r.resume}"
       end %>
 
 <% else %>
-  <h2><%= _("There is no new issue") %></h2>
+  <h2><%= t("There is no new issue") %></h2>
 <% end %>

@@ -2,10 +2,10 @@
   <% if @session_user.engineer? %>
     <ul>
       <% options = { :software_id => @issue.software_id, :issue_id => @issue.id } %>
-      <li><%=link_to_new_contribution(_('Add a contribution'), options )%></li>
+      <li><%=link_to_new_contribution(t('Add a contribution'), options )%></li>
 
       <% unless @contributions.empty? %>
-        <li><%= _('Link to a contribution')%>
+        <li><%= t('Link to a contribution')%>
           <% form_tag link_contribution_issue_path(@issue.id) do %>
             <%= select_onchange @contributions, 'issue', 'contribution_id' %>
           <% end %>

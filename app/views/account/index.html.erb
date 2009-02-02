@@ -1,19 +1,19 @@
-<h1><%= _('User list') %><%= StaticPicture::spinner %></h1>
+<h1><%= t('User list') %><%= StaticPicture::spinner %></h1>
 
-<% options = { :create_label => _('a new user'), :remote_url => accounts_path } %>
+<% options = { :create_label => t('a new user'), :remote_url => accounts_path } %>
 <% paginated_section(@users, options) do %>
  <% manager = @session_user.manager? %>
  <table class="full">
   <tr>
-    <th><%= _('User|Title')%></th>
-    <th><%= _('User|Name')%></th>
+    <th><%= t('User|Title')%></th>
+    <th><%= t('User|Name')%></th>
     <% if manager %>
-     <th><%= _('User|Role')%></th>
-     <th><%= _('Engineer')%></th>
-     <th><%= _('Recipient')%></th>
+     <th><%= t('User|Role')%></th>
+     <th><%= t('Engineer')%></th>
+     <th><%= t('Recipient')%></th>
     <% end %>
-    <th><%= _('User|Email')%></th>
-    <th><%= _('User|Phone')%></th>
+    <th><%= t('User|Email')%></th>
+    <th><%= t('User|Phone')%></th>
   </tr>
 
   <% options = PagesHelper::AJAX_OPTIONS.dup %>

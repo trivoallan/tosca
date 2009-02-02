@@ -65,7 +65,7 @@ class IssuesController < ApplicationController
     end
 
     conditions = nil
-    @title = _('All issues')
+    @title = t('All issues')
 
     issues_filters = session[:issues_filters]
 
@@ -140,7 +140,7 @@ class IssuesController < ApplicationController
 
     if @issue.save
       options = { :conditions => [ 'issues.submitter_id = ?', user.id ]}
-      flash[:notice] = _("You have successfully submitted your %s issue.") %
+      flash[:notice] = t("You have successfully submitted your %s issue.") %
         _ordinalize(Issue.count(options))
       @issue.first_comment.add_attachment(params)
       @comment = @issue.first_comment
@@ -252,7 +252,7 @@ class IssuesController < ApplicationController
     description = issue[:description]
     if @issue.update_attributes(issue) &&
         @issue.first_comment.update_attribute(:text, description)
-      flash[:notice] = _("The issue has been updated successfully.")
+      flash[:notice] = t("The issue has been updated successfully.")
       redirect_to issue_path(@issue)
     else
       _form @session_user
@@ -324,9 +324,9 @@ class IssuesController < ApplicationController
   private
   def update_contribution( demand_id , contribution_id )
     if contribution_id == nil
-      flash_text = _("This issue is no longer linked to a contribution")
+      flash_text = t("This issue is no longer linked to a contribution")
     else
-      flash_text = _("This contribution is now linked")
+      flash_text = t("This contribution is now linked")
     end
     @issue = Issue.find(demand_id) unless @issue
     @issue.update_attributes!(:contribution_id => contribution_id)
@@ -348,7 +348,7 @@ class IssuesController < ApplicationController
     @severities = Severity.find_select
     if @session_user.engineer?
       @contracts = _panel_build_contracts
-      @engineers = [[ _('[ Me ]'), @session_user.id ]].concat(
+      @engineers = [[ t('[ Me ]'), @session_user.id ]].concat(
         User.find_select(User::EXPERT_OPTIONS))
     end
   end
@@ -359,11 +359,11 @@ class IssuesController < ApplicationController
     team = @session_user.team
     team_contract_ids = team.contract_ids if team
     if team and !team_contract_ids.empty?
-      contracts.concat [[ _('[ Team ]'), team_contract_ids.to_json ]]
+      contracts.concat [[ t('[ Team ]'), team_contract_ids.to_json ]]
     end
     managed_contract_ids = @session_user.managed_contract_ids
     unless managed_contract_ids.empty?
-      contracts.concat [[ _('[ Tam ]'), managed_contract_ids.to_json ]]
+      contracts.concat [[ t('[ Tam ]'), managed_contract_ids.to_json ]]
     end
     contracts.concat Contract.find_select(Contract::OPTIONS)
   end
@@ -407,7 +407,7 @@ class IssuesController < ApplicationController
   def _form(recipient)
     @contracts = Contract.find_active4select(Contract::OPTIONS)
     if @contracts.empty?
-      flash[:warn] = _("It seems that you are not associated to a contract, which prevents you from filling an issue. Please contact %s if you think it's not normal") % App::TeamEmail
+      flash[:warn] = t("It seems that you are not associated to a contract, which prevents you from filling an issue. Please contact %s if you think it's not normal") % App::TeamEmail
       return redirect_to(welcome_path)
     end
     if recipient and recipient.recipient?
@@ -467,10 +467,10 @@ class IssuesController < ApplicationController
   def active_filters(value)
     case value
     when '1'
-      @title = _('Active issues')
+      @title = t('Active issues')
       Issue::OPENED
     when '-1'
-      @title = _('Finished issues')
+      @title = t('Finished issues')
       Issue::CLOSED
     else
       nil

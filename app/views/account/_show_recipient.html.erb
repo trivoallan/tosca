@@ -1,7 +1,7 @@
 <% if @user.recipient? %>
 
-<div title="<%= _("Show an account") %>" class="show">
-<h1><b><%= _('Recipient') %></b></h1><br/>
+<div title="<%= t("Show an account") %>" class="show">
+<h1><b><%= t('Recipient') %></b></h1><br/>
 <ul>
   <% @user.contracts.each do |c| %>
     <li><%= c.name %></li>

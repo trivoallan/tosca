@@ -32,7 +32,7 @@ class ContributiontypesController < ApplicationController
   def create
     @contributiontype = Contributiontype.new(params[:contributiontype])
     if @contributiontype.save
-      flash[:notice] = _("A new type of contribution was successfully created.")
+      flash[:notice] = t("A new type of contribution was successfully created.")
       redirect_to contributiontypes_path
     else
       render :action => 'new'
@@ -46,7 +46,7 @@ class ContributiontypesController < ApplicationController
   def update
     @contributiontype = Contributiontype.find(params[:id])
     if @contributiontype.update_attributes(params[:contributiontype])
-      flash[:notice] = _("A Type of contribution was successfully updated.")
+      flash[:notice] = t("A Type of contribution was successfully updated.")
       redirect_to contributiontype_path(@contributiontype)
     else
       render :action => 'edit'

@@ -1,11 +1,11 @@
-<h1><%= _('List of contributions') + StaticPicture::spinner %></h1>
+<h1><%= t('List of contributions') + StaticPicture::spinner %></h1>
 
-<% links = show_pages_links(@contribution_pages, _('a contribution'),
+<% links = show_pages_links(@contribution_pages, t('a contribution'),
                             :url => admin_contributions_path) %>
 <%= links %>
 
-<% titres = [_('Software'), _('Patch'), _('Issue'), _('State'), _('Name'),
-             _('Submitted on'), _('Closed on'), _('Delay'), _('Updated on')]%>
+<% titres = [t('Software'), t('Patch'), t('Issue'), t('State'), t('Name'),
+             t('Submitted on'), t('Closed on'), t('Delay'), t('Updated on')]%>
 <% form_tag(contributions_path) do %>
 <%= show_table(@contributions, Contribution, titres) { |c|
   result = ''

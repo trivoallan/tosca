@@ -1,11 +1,11 @@
 <%= error_messages_for 'changelog' %>
 
-<p><label for="changelog_modification_date"><%= _("Modification date") %></label><br />
+<p><label for="changelog_modification_date"><%= t("Modification date") %></label><br />
 <%= datetime_select 'changelog', 'modification_date'  %></p>
 
-<p><label for="changelog_name"><%= _("Name") %></label><br />
+<p><label for="changelog_name"><%= t("Name") %></label><br />
 <%= text_field 'changelog', 'name'  %></p>
 
-<p><label for="changelog_modification_text"><%= _("Modification text") %></label><br />
+<p><label for="changelog_modification_text"><%= t("Modification text") %></label><br />
 <%= text_area 'changelog', 'modification_text'  %></p>
 

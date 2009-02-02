@@ -1,8 +1,8 @@
-<h1><%=_('Editing a component offer') %></h1>
+<h1><%=t('Editing a component offer') %></h1>
 
 <% form_for(@component) do |f| %>
   <%= render :partial => 'form' %>
-  <%= f.submit _('Validate') %>
+  <%= f.submit t('Validate') %>
 <% end %>
 
 <%= link_to_show_and_list @component %>

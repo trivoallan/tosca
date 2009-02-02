@@ -1,4 +1,4 @@
-<th><label for="contribution_affected_version_id"><%=_('Affected version')%></label><br />
-    <label for="contribution_fixed_version_id"><%=_('Fixed version')%></label></th>
+<th><label for="contribution_affected_version_id"><%=t('Affected version')%></label><br />
+    <label for="contribution_fixed_version_id"><%=t('Fixed version')%></label></th>
 <td><%= select_empty(:contribution, :affected_version_id, @versions) %><br />
     <%= select_empty(:contribution, :fixed_version_id, @versions) %></td>

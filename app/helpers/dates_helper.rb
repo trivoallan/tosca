@@ -27,7 +27,7 @@ module DatesHelper
 
   def pretty_date(date)
     day = sprintf("%02d", date.day)
-    month = _(date.strftime("%b"))
+    month = I18n.t(date.strftime("%b"))
 
     result = ""
     result << '<div class="datestamp">'
@@ -40,11 +40,11 @@ module DatesHelper
   end
 
   def complete_date(date)
-    result = _(date.strftime("%A"))            #day of the week : Monday
+    result = I18n.t(date.strftime("%A"))            #day of the week : Monday
     result << " "
     result << date.strftime("%d")              #day of the month : 10
     result << " "
-    result << _(date.strftime("%B"))           #month : December
+    result << I18n.t(date.strftime("%B"))           #month : December
     result << " "
     result << date.strftime("%Y")              #Year : 2007
   end
@@ -65,13 +65,13 @@ module DatesHelper
     if options.has_key? :title
       result << %(<caption class="month_caption">#{options[:title]}</caption>)
     end
-    result << %(<th width="14%" class="weekdays">#{_('Monday')}</th>)
-    result << %(<th width="14%" class="weekdays">#{_('Tuesday')}</th>)
-    result << %(<th width="14%" class="weekdays">#{_('Wednesday')}</th>)
-    result << %(<th width="14%" class="weekdays">#{_('Thursday')}</th>)
-    result << %(<th width="14%" class="weekdays">#{_('Friday')}</th>)
-    result << %(<th width="14%" class="weekdays">#{_('Saturday')}</th>)
-    result << %(<th width="14%" class="weekdays">#{_('Sunday')}</th>)
+    result << %(<th width="14%" class="weekdays">#{I18n.t('Monday')}</th>)
+    result << %(<th width="14%" class="weekdays">#{I18n.t('Tuesday')}</th>)
+    result << %(<th width="14%" class="weekdays">#{I18n.t('Wednesday')}</th>)
+    result << %(<th width="14%" class="weekdays">#{I18n.t('Thursday')}</th>)
+    result << %(<th width="14%" class="weekdays">#{I18n.t('Friday')}</th>)
+    result << %(<th width="14%" class="weekdays">#{I18n.t('Saturday')}</th>)
+    result << %(<th width="14%" class="weekdays">#{I18n.t('Sunday')}</th>)
     month.weeks.each do |week|
       result << %(<tr class="events">)
       week.each do |day|
@@ -109,7 +109,7 @@ module DatesHelper
 
     cal = "<table class=\"#{options[:table_class]}\">"
     cal << '<thead><tr>'
-    week = start_date.strftime(_('W%W %Y'))
+    week = start_date.strftime(I18n.t('W%W %Y'))
     cal << "<th><h3>#{week}</h3></th>"
     5.times do |d|
       date = start_date.beginning_of_day + d.days

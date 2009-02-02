@@ -3,9 +3,9 @@
  <div class="content">
      <div class="software">
       <p><%= image_expand_all %>
-      <%= link_to_function _('Expand all'), 'tosca_expand_all_comments()' %>
+      <%= link_to_function t('Expand all'), 'tosca_expand_all_comments()' %>
       <%= image_collapse_all %>
-      <%= link_to_function _('Collapse all'), 'tosca_collapse_all_comments()' %>
+      <%= link_to_function t('Collapse all'), 'tosca_collapse_all_comments()' %>
       <% software = @issue.software %>
       <% if software %>
         <%= public_link_to(software_logo(software), software_path(software)) %>

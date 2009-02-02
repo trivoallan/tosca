@@ -1,12 +1,12 @@
-<h1><%= _('Alerts')%></h1>
-<h2><%= _('Please select the team you want to monitor')%></h2>
+<h1><%= t('Alerts')%></h1>
+<h2><%= t('Please select the team you want to monitor')%></h2>
 
 <% form_tag(update_alerts_path, :method => :put) do %>
 <table class="full">
   <thead>
-    <th><%= _('Teams') %></th>
-    <th><%= _('Hash') %></th>
-    <th><%= _('Link to the alert page') %></th>
+    <th><%= t('Teams') %></th>
+    <th><%= t('Hash') %></th>
+    <th><%= t('Link to the alert page') %></th>
   </thead>
   <tbody>
     <% @teams.each do |team| %>
@@ -19,15 +19,15 @@
         <% value = ""
            value = team.alert.hash_value if team.alert %>
         <%= text_field(:alert, :"#{hash_id}", :id => hash_id, :value => value) %>
-        <%= button_to_function(_("Generate a hash"), "tosca_generate_hash('#{hash_id}')") %>
+        <%= button_to_function(t("Generate a hash"), "tosca_generate_hash('#{hash_id}')") %>
       </td>
       <td>
-        <% text = _("Alert page for team %s") % team %>
+        <% text = t("Alert page for team %s") % team %>
         <%= link_to text, :action => :show, :hash => value %>
       </td>
     </tr>
     <% end %>
   </tbody>
 </table>
-<p><%= submit_tag _('Validate') %></p>
+<p><%= submit_tag t('Validate') %></p>
 <% end %>

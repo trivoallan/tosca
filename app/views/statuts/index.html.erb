@@ -1,8 +1,8 @@
-<h1><%= _('List of the status') %></h1>
+<h1><%= t('List of the status') %></h1>
 
 <table>
   <tr>
-    <th><%= _("Id") %></th>
+    <th><%= t("Id") %></th>
   <% for column in Statut.content_columns %>
     <th><%= column.human_name %></th>
   <% end %>

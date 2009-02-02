@@ -35,17 +35,17 @@ module WelcomeHelper
   def init_builder
     # List of special actions. It can be regexps
     @@texts = {
-      'admin' => [_('has an administration interface')],
-      'print' => _('has a pretty print page'),
-      'suggestions'=> [_('allows to post suggestions')],
-      'about'=> [_('displays informations')],
-      'become'=> _('allows to become an other one'),
-      'login'=> [_('allows to log in in the application')],
-      'plan'=> [_('display this map')],
-      'comment'=> _('allows to comment'),
-      'deroulement'=> _('prints the life cycle of an issue'),
-      [/ajax/, /auto_complete/] => _('is ajaxified'),
-      /_ods/ => _('allows to export datas in ODS')
+      'admin' => [I18n.t('has an administration interface')],
+      'print' => I18n.t('has a pretty print page'),
+      'suggestions'=> [I18n.t('allows to post suggestions')],
+      'about'=> [I18n.t('displays informations')],
+      'become'=> I18n.t('allows to become an other one'),
+      'login'=> [I18n.t('allows to log in in the application')],
+      'plan'=> [I18n.t('display this map')],
+      'comment'=> I18n.t('allows to comment'),
+      'deroulement'=> I18n.t('prints the life cycle of an issue'),
+      [/ajax/, /auto_complete/] => I18n.t('is ajaxified'),
+      /_ods/ => I18n.t('allows to export datas in ODS')
     }
   end
 
@@ -77,7 +77,7 @@ module WelcomeHelper
 
   def preview_image(theme)
     image = image_tag("screenshots/#{theme}_preview.png",
-                      StaticPicture.options(_('%s theme') % theme, '258x142'))
+                      StaticPicture.options(I18n.t('%s theme') % theme, '258x142'))
     public_link_to(image, theme_welcome_path(:theme => theme), :method => :post)
   end
 

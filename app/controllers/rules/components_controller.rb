@@ -37,7 +37,7 @@ class Rules::ComponentsController < ApplicationController
   def create
     @component = Rules::Component.new(params[:component])
     if @component.save
-      flash[:notice] = _("'%s' was successfully created.") % @component.name
+      flash[:notice] = t("'%s' was successfully created.") % @component.name
       redirect_to(@component)
     else
       render :action => "new"
@@ -47,7 +47,7 @@ class Rules::ComponentsController < ApplicationController
   def update
     @component = Rules::Component.find(params[:id])
     if @component.update_attributes(params[:component])
-      flash[:notice] = _("'%s' was successfully updated.") % @component.name
+      flash[:notice] = t("'%s' was successfully updated.") % @component.name
       redirect_to(@component)
     else
       render :action => "edit"

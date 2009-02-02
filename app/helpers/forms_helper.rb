@@ -167,7 +167,7 @@ module FormsHelper
   #  end
   def search_issue_field
     text_field('numero', '', :size => 3,
-      :title => _("Quick access to an issue : type the issue number here"))
+      :title => I18n.t("Quick access to an issue : type the issue number here"))
   end
   alias_method :search_issue, :search_issue_field
 
@@ -183,9 +183,9 @@ module FormsHelper
     @new_record = false
     out = "<table>"
     out << "<tr><td cilspan=\"2\">"
-    tag_options[:value]= _("Search") + "..."
+    tag_options[:value]= I18n.t("Search") + "..."
     tag_options[:onfocus] = "$('#{object}_#{method}').value = \"\" "
-    tag_options[:onblur] = "$('#{object}_#{method}').value = \"#{_("Search") + "..."}\""
+    tag_options[:onblur] = "$('#{object}_#{method}').value = \"#{I18n.t("Search") + "..."}\""
     completion_options[:skip_style] = true
     completion_options[:indicator] = "spinner_#{object}_#{method}"
     out << "</td></tr><tr><td>"

@@ -2,5 +2,5 @@ if @contracts && !@contracts.empty?
   page.replace_html("contracts",
       hbtm_check_box( @user.own_contracts, @contracts, 'user[own_contract_ids]', :size => 1))
 else
-  page.replace_html("contracts", _('No contracts currently open.'))
+  page.replace_html("contracts", t('No contracts currently open.'))
 end

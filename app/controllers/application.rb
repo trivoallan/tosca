@@ -28,8 +28,6 @@ require_dependency 'login_system'
 require_dependency 'acl_system'
 
 class ApplicationController < ActionController::Base
-  init_gettext 'tosca'
-
   # access protected everywhere, See
   # * Wiki for more generic Info,
   # * lib/scope.rb for deep protection
@@ -86,7 +84,7 @@ protected
       require 'static'
       require 'static_script'
       require 'static_picture'
-      Static::ActionView.set_request(request())
+      Static::ActionView.set_url_root
 
       #Used for url in e-mails
       ActionMailer::Base.default_url_options[:host] = request.host_with_port
@@ -108,8 +106,8 @@ protected
 
   #Compute the receiver of an email for the flash
   def message_notice(recipients, cc)
-    result = '<br />' << _("An e-mail was sent to ") << " <b>#{html2text(recipients)}</b> "
-    result << '<br />' << _("with a copy to") << " <b>#{html2text(cc)}</b>" if cc && !cc.blank?
+    result = '<br />' << t("An e-mail was sent to ") << " <b>#{html2text(recipients)}</b> "
+    result << '<br />' << t("with a copy to") << " <b>#{html2text(cc)}</b>" if cc && !cc.blank?
     result << '.'
   end
 
@@ -123,12 +121,12 @@ private
                            ActionController::RoutingError ]
     msg = nil
     @@rescued_errors.each{ |k| if exception.is_a? k
-        msg = _('This address is not valid. If you think this is an error, do not hesitate to contact us.')
+        msg = t('This address is not valid. If you think this is an error, do not hesitate to contact us.')
       end
     }
     if msg.nil?
-      msg = _('An error has occured. We are now advised of your issue and have all the required information to investigate in order to fix it.') +
-        '<br />' + _('Please contact us if your problem remains.')
+      msg = t('An error has occured. We are now advised of your issue and have all the required information to investigate in order to fix it.') +
+        '<br />' + t('Please contact us if your problem remains.')
       if ENV['RAILS_ENV'] == 'production'
         Notifier::deliver_error_message(exception, clean_backtrace(exception),
                                         session.instance_variable_get("@data"),

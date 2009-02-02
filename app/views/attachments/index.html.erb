@@ -1,7 +1,7 @@
-<h1><%= _("List of the attachments") %></h1>
+<h1><%= t("List of the attachments") %></h1>
 
-<% paginated_section(@attachments, :create_label => _('an attachment')) do %>
- <% titles = [ _('Id'), _('File'), _('Size'), _('Sumbitted on'), _('By')]%>
+<% paginated_section(@attachments, :create_label => t('an attachment')) do %>
+ <% titles = [ t('Id'), t('File'), t('Size'), t('Sumbitted on'), t('By')]%>
  <%= show_table(@attachments, Attachment, titles) { |p|
    result = ''
    result << "<td>##{p.id}</td>"

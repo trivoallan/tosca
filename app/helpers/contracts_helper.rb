@@ -28,14 +28,14 @@ module ContractsHelper
   # call it like :
   # <%= link_to_new_contract(@client.id) %>
   def link_to_new_contract(client_id = nil)
-    link_to(image_create(_('a contract')),
+    link_to(image_create(I18n.t('a contract')),
                      new_contract_path(:client_id => client_id))
   end
 
   def link_to_new_rule(rule)
     return '' unless rule
     options = self.send("new_#{rule.underscore.tr('/','_')}_path")
-    link_to image_create(_(rule.humanize)), options
+    link_to image_create(I18n.t(rule.humanize)), options
   end
 
   def link_to_rule(rule)

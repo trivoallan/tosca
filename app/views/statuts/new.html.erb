@@ -1,8 +1,8 @@
-<h1><%= _('New status') %></h1>
+<h1><%= t('New status') %></h1>
 
 <% form_tag statuts_path do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag _('Submit') %>
+  <%= submit_tag t('Submit') %>
 <% end %>
 
 <%= link_to_back %>

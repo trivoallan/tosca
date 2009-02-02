@@ -1,10 +1,10 @@
-<h1><%= _('Edit a comment') %></h1>
+<h1><%= t('Edit a comment') %></h1>
 
 <% form_tag comment_path(@comment), :method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag _('Validate') %>
+  <%= submit_tag t('Validate') %>
 <% end %>
 
 <%= link_to 'Show', comment_path(@comment) %> |
 <%= link_to_back %>
-<%= link_to_issue @comment.issue, :text => _('Return to the issue') %>
+<%= link_to_issue @comment.issue, :text => t('Return to the issue') %>

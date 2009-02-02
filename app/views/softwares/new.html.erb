@@ -1,8 +1,8 @@
-<h1><%= _('Add a new software')%></h1>
+<h1><%= t('Add a new software')%></h1>
 <%= link_to_back %>
 
 <% form_tag softwares_path, :multipart => true do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag _('Validate') %>
+  <%= submit_tag t('Validate') %>
 <% end %>
 <br />

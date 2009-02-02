@@ -73,7 +73,7 @@ class FilesController < ApplicationController
 
   rescue
     # if error on finding target
-    flash.now[:warn] = _("This file does not exist.")
+    flash.now[:warn] = t("This file does not exist.")
     redirect_to_home
   end
 

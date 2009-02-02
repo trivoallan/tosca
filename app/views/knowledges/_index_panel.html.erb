@@ -10,19 +10,19 @@
 <%= hidden_field_tag 'page', '1' %>
 
  <div class="menu_title" onclick="Element.toggle('menu_consultation')">
- > <%= _('Consultation') %></div>
+ > <%= t('Consultation') %></div>
  <ul class="menu" id="menu_consultation">
-  <li><%= link_to _('Add a knowledge'), new_knowledge_path %></li>
+  <li><%= link_to t('Add a knowledge'), new_knowledge_path %></li>
  </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">
-> <%= _('Search') %></div>
+> <%= t('Search') %></div>
 <ul class="menu" id="menu_recherche">
-  <li><b><%= _('By name') %> </b><br />
+  <li><b><%= t('By name') %> </b><br />
       <%= select_filter(@experts, 'engineer') %></li>
-  <li><b><%= _('By software') %> </b><br />
+  <li><b><%= t('By software') %> </b><br />
       <%= select_filter(@software, 'software') %></li>
-  <li><b><%= _('By technology') %> </b><br />
+  <li><b><%= t('By technology') %> </b><br />
       <%= select_filter(@skills, 'skill') %></li>
 </ul>
 

@@ -36,7 +36,7 @@ class ArchivesController < ApplicationController
   def create
     @archive = Archive.new(params[:archive])
     if @archive.save
-      flash[:notice] = _('This archive has been successfully created.')
+      flash[:notice] = t('This archive has been successfully created.')
       redirect_to release_path(@archive.release)
     else
       _form
@@ -52,7 +52,7 @@ class ArchivesController < ApplicationController
   def update
     @archive = Archive.find(params[:id])
     if @archive.update_attributes(params[:archive])
-      flash[:notice] = _('This archive has been successfully updated.')
+      flash[:notice] = t('This archive has been successfully updated.')
       redirect_to archive_path(@archive)
     else
       _form and render :action => 'edit'

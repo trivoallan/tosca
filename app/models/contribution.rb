@@ -34,7 +34,7 @@ class Contribution < ActiveRecord::Base
   validates_length_of :name, :within => 3..100
   validates_presence_of :software
 
-  N_('Contribution|Software')
+  I18n.t('Contribution|Software')
 
 
   def self.content_columns
@@ -49,12 +49,12 @@ class Contribution < ActiveRecord::Base
   end
 
   def fragments
-    [ %r{contributions/select_(\d*|all)} ]
+    [ %r{contributions/selectI18n.t(\d*|all)} ]
   end
 
   def summary
     out = ''
-    out << contributiontype.name + _(' on ') if contributiontype
+    out << contributiontype.name + I18n.t(' on ') if contributiontype
     out << software.name
     out << " #{affected_version}" if affected_version
     out

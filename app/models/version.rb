@@ -46,7 +46,7 @@ class Version < ActiveRecord::Base
 
   def full_name
     if self.read_attribute(:name).empty?
-      _("all versions")
+      I18n.t("all versions")
     else
       "v#{self.name}"
     end

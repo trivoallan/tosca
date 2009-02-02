@@ -1,4 +1,4 @@
-<h1><%= _("A new url") %></h1>
+<h1><%= t("A new url") %></h1>
 
 <% form_for(@hyperlink) do |f| %>
   <%= f.error_messages %>
@@ -24,8 +24,8 @@
     <% end %>
   </p>
   <p>
-    <%= f.submit _("Create") %>
+    <%= f.submit t("Create") %>
   </p>
 <% end %>
 
-<%= link_to _('Back'), hyperlinks_path %>
+<%= link_to t('Back'), hyperlinks_path %>

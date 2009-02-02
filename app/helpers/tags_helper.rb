@@ -20,7 +20,7 @@ module TagsHelper
   # call it like :
   # <%= link_to_new_tag %>
   def link_to_new_tag
-    link_to image_create(_('a tag')), new_tag_path
+    link_to image_create(I18n.t('a tag')), new_tag_path
   end
 
 end

@@ -1,6 +1,6 @@
 <% for column in Role.content_columns %>
 <p>
-  <b><%= _(column.human_name) %>:</b> <%= @role.send(column.name) %>
+  <b><%= t(column.human_name) %>:</b> <%= @role.send(column.name) %>
 </p>
 <% end %>
 

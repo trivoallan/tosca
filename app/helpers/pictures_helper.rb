@@ -21,26 +21,26 @@ module PicturesHelper
 
   #Create icon with a nice tooltip
   def image_create(message)
-    desc = _("Add %s") % message
+    desc = I18n.t("Add %s") % message
     image_tag("icons/add.png", StaticPicture::options(desc, '16x16'))
   end
 
   def image_next_page
-    image_tag("icons/resultset_next.png", StaticPicture::options(_('Previous Page'), '16x16'))
+    image_tag("icons/resultset_next.png", StaticPicture::options(I18n.t('Previous Page'), '16x16'))
   end
   def image_prev_page
-    image_tag("icons/resultset_previous.png", StaticPicture::options(_('Next Page'), '16x16'))
+    image_tag("icons/resultset_previous.png", StaticPicture::options(I18n.t('Next Page'), '16x16'))
   end
 
   #Disconnect icon with the tooltip
   def image_disconnect
-    desc = _('Logout')
+    desc = I18n.t('Logout')
     image_tag('icons/disconnect.gif', StaticPicture::options(desc, '16x16'))
   end
 
   #Connect icon with the tooltip
   def image_connect
-    desc = _('Log in')
+    desc = I18n.t('Log in')
     image_tag('icons/connect.png', StaticPicture::options(desc, '16x16'))
   end
 
@@ -49,11 +49,11 @@ module PicturesHelper
   end
 
   def image_expand_all
-    image_tag('icons/expand_all.png', StaticPicture::options(_('Expand all'), '16x16'))
+    image_tag('icons/expand_all.png', StaticPicture::options(I18n.t('Expand all'), '16x16'))
   end
 
   def image_collapse_all
-    image_tag('icons/collapse_all.png', StaticPicture::options(_('Collapse all'), '16x16'))
+    image_tag('icons/collapse_all.png', StaticPicture::options(I18n.t('Collapse all'), '16x16'))
   end
 
   private
@@ -103,7 +103,7 @@ module PicturesHelper
   # call it like :
   # <%= link_to_new_version(@software) %>
   def link_to_new_client_logo
-    link_to(image_create(_('a logo')), new_picture_path, :target => '_blank')
+    link_to(image_create(I18n.t('a logo')), new_picture_path, :target => '_blank')
   end
 
 end

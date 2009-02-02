@@ -1,10 +1,10 @@
 <%= error_messages_for 'license' %>
 
-<p><label for="license_name"><%=_('License|Name')%></label><br />
+<p><label for="license_name"><%=t('License|Name')%></label><br />
 <%= text_field 'license', 'name'  %></p>
 
-<p><label for="license_url"><%= _("Url") %></label><br />
+<p><label for="license_url"><%= t("Url") %></label><br />
 <%= text_field 'license', 'url'  %></p>
 
-<p><label for="license_certifie_osi"><%= _("OSI Certified") %></label>
+<p><label for="license_certifie_osi"><%= t("OSI Certified") %></label>
 <%= check_box 'license', 'osi_certified' %></p>

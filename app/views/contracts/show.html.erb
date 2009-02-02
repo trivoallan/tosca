@@ -11,11 +11,11 @@
   <div class="show">
    <table>
     <tr>
-     <td style="vertical-align: middle"><b><%= _('Client') %></b></td>
+     <td style="vertical-align: middle"><b><%= t('Client') %></b></td>
      <td><%= link_to logo_client(@contract.client), @contract.client %></td>
     </tr>
     <tr>
-     <td><b><%= _('Name') %></b></td>
+     <td><b><%= t('Name') %></b></td>
      <td><%= @contract %></td>
     </tr>
 
@@ -28,48 +28,48 @@
 
     <% if salesman %>
     <tr>
-     <td><b><%= _('Salesman Contact') %></b></td>
+     <td><b><%= t('Salesman Contact') %></b></td>
      <td><%= link_to salesman.name, account_path(salesman) %></td>
     </tr>
     <% end %>
 
     <% if tam %>
     <tr>
-     <td><b><%= _('Technical Account tam') %></b></td>
+     <td><b><%= t('Technical Account tam') %></b></td>
      <td><%= link_to tam.name, account_path(tam) %></td>
     </tr>
     <% end %>
 
     <% if @session_user.expert? %>
     <tr>
-     <td><b><%= _('Internal mailing list') %></b></td>
+     <td><b><%= t('Internal mailing list') %></b></td>
      <td><%= @contract.internal_ml %></td>
     </tr>
     <% end %>
 
     <tr>
-     <td><b><%= _('Customer mailing list') %></b></td>
+     <td><b><%= t('Customer mailing list') %></b></td>
      <td><%= @contract.customer_ml %></td>
     </tr>
     <tr>
-     <td><b><%= _('Start') %></b></td>
+     <td><b><%= t('Start') %></b></td>
      <td><%= complete_date(@contract.start_date) %></td>
     </tr>
     <tr>
-      <td><b><%= _('End') %></b></td>
+      <td><b><%= t('End') %></b></td>
       <td><%= complete_date(@contract.end_date) %></td>
     </tr>
    </table>
   </div><div class="show">
    <fieldset>
-    <legend><%= _("Contractual commitments") %></legend>
+    <legend><%= t("Contractual commitments") %></legend>
      <%= show_table_commitments @contract.commitments %>
    </fieldset>
   </div>
  </div><div class="c50r">
    <div class="show">
     <fieldset>
-     <legend><%= _("Human ressources") %>:</legend>
+     <legend><%= t("Human ressources") %>:</legend>
      <table width="100%"><tr>
        <th><%= n_('Expert', 'Experts', @contract.engineer_users.size) %></th>
        <th><%= n_('Team','Teams', teams.size ) %></th>
@@ -89,7 +89,7 @@
    <div class="show"><table>
     <tr>
      <td style="width: 36em;">
-       <p><b><%= _('Supported software') %>:
+       <p><b><%= t('Supported software') %>:
             <%= link_to StaticPicture::edit, { :action => "supported_software", :controller => "contracts"} %></b></p>
        <% unless versions.empty? %>
        <div class="long_bloc_scroll">
@@ -102,7 +102,7 @@
    <% end %>
    <% if @session_user.expert? or (@session_user.recipient? && !versions.empty?) %>
    <div class="show">
-    <p><b><%= _('Tags') %>:</b>
+    <p><b><%= t('Tags') %>:</b>
     <%= link_to StaticPicture::icon_tag, tags_contract_url(@contract) %></p>
    </div>
    <% end %>

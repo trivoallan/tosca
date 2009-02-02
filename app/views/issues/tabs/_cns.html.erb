@@ -4,33 +4,33 @@
 <% elapsed = @issue.elapsed %>
 <% interval = @issue.interval %>
 <% if commitment.nil? %>
-  <p><%= _("Your issue is not subject to a SLA.") %></p>
+  <p><%= t("Your issue is not subject to a SLA.") %></p>
 <% else %>
- <h1><%= _('Service Level Agreement') %></h1>
+ <h1><%= t('Service Level Agreement') %></h1>
  <table class="full">
   <thead>
    <tr>
     <th></th>
-    <th><%= _('Step') %></th>
-    <th><%= _('Progress') %></th>
-    <th><%= _('Commitment') %></th>
+    <th><%= t('Step') %></th>
+    <th><%= t('Progress') %></th>
+    <th><%= t('Commitment') %></th>
    </tr>
    <tr><td colspan="4"><hr /></td></tr>
   </thead><tbody>
    <% progress = elapsed.taken_into_account_progress %>
    <tr class="<%= cycle('even', 'odd') %>">
     <td><%= progress_image(elapsed.taken_into_account?, progress) %></td>
-    <td><strong><%= _("Taken into account") %></strong></td>
+    <td><strong><%= t("Taken into account") %></strong></td>
     <td><%= progress_bar(progress) %></td>
     <td><%= progress_text(elapsed.taken_into_account, 1.hour, interval) %></td>
    </tr>
    <% progress = elapsed.workaround_progress %>
    <tr class="<%= cycle('even', 'odd') %>">
     <% if commitment.workaround <= 0 %>
-     <td colspan="4"><%= _("Your issue has no commitment for workaround time") %></td>
+     <td colspan="4"><%= t("Your issue has no commitment for workaround time") %></td>
     <% else %>
      <td><%= progress_image(elapsed.workaround?, progress) %></td>
-     <td><strong><%= _("Workaround") %></strong></td>
+     <td><strong><%= t("Workaround") %></strong></td>
      <td><%= progress_bar(elapsed.workaround_progress) %></td>
      <td><%= progress_text(elapsed.workaround, commitment.workaround.days, interval) %></td>
     <% end %>
@@ -38,10 +38,10 @@
   <% progress = elapsed.correction_progress %>
    <tr class="<%= cycle('even', 'odd') %>">
     <% if commitment.correction <= 0 %>
-     <td colspan="4"><%= _("Your issue has no commitment for correction time") %></td>
+     <td colspan="4"><%= t("Your issue has no commitment for correction time") %></td>
     <% else %>
      <td><%= progress_image(elapsed.correction?, progress) %></td>
-     <td><strong><%= _("Correction") %></strong></td>
+     <td><strong><%= t("Correction") %></strong></td>
      <td><%= progress_bar(progress) %></td>
      <td><%= progress_text(elapsed.correction, commitment.correction.days, @issue.interval) %></td>
     <% end %>

@@ -97,7 +97,7 @@ class ContractsController < ApplicationController
       @contract.engineer_users = []
       if @contract.save
         @contract.update_attribute :engineer_users, engineers
-        flash[:notice] = _('Contract was successfully created.')
+        flash[:notice] = t('Contract was successfully created.')
         redirect_to contracts_path
       else
         @contract.engineer_users = engineers
@@ -116,7 +116,7 @@ class ContractsController < ApplicationController
     @contract.creator = @session_user unless @contract.creator
     _aggregate_commitments
     if @contract.update_attributes(params[:contract])
-      flash[:notice] = _('Contract was successfully updated.')
+      flash[:notice] = t('Contract was successfully updated.')
       redirect_to contract_path(@contract)
     else
       _form and render :action => 'edit'
@@ -216,7 +216,7 @@ private
     begin
       @rules = @contract.rule_type.constantize.find_select
     rescue Exception => e
-      flash[:warn] = _('Unknown rules for contract "%s"') % e.message
+      flash[:warn] = t('Unknown rules for contract "%s"') % e.message
     end
   end
 

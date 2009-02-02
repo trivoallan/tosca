@@ -110,54 +110,54 @@ EOS
   @@delete_options = { :class => 'nobackground', :method => :delete }
   def delete_options(objet_name)
     @@delete_options.update(:confirm =>
-        _('Do you really want to delete %s') % objet_name)
+        I18n.t('Do you really want to delete %s') % objet_name)
   end
 
   ### Header ###
   # TODO : put all those methods into another module
   # and merge it dynamically in this module
   def public_link_to_home
-    public_link_to(_('Home'), welcome_path)
+    public_link_to(I18n.t('Home'), welcome_path)
   end
 
   def link_to_issues
-    link_to(_('Issues'), issues_path, :title =>
-            _('Consult issues'))
+    link_to(I18n.t('Issues'), issues_path, :title =>
+            I18n.t('Consult issues'))
   end
 
   def link_to_all_issues
-    link_to(_('All issues'), issues_path, :title =>
-            _('Consult all issues'))
+    link_to(I18n.t('All issues'), issues_path, :title =>
+            I18n.t('Consult all issues'))
   end
 
   def link_to_tobd_issues
-    link_to(_('Pending Issues'), pending_issues_path, :title =>
-            _('Consult issues which are waiting an action from you'))
+    link_to(I18n.t('Pending Issues'), pending_issues_path, :title =>
+            I18n.t('Consult issues which are waiting an action from you'))
   end
 
   def public_link_to_softwares
-    public_link_to(_('Softwares'), softwares_path, :title =>
-                   _('Access to the list of software'))
+    public_link_to(I18n.t('Softwares'), softwares_path, :title =>
+                   I18n.t('Access to the list of software'))
   end
 
   def public_link_to_contributions
-    public_link_to(_('Contributions'), contributions_path,
-                   :title => _('Access to the list of contributions.'))
+    public_link_to(I18n.t('Contributions'), contributions_path,
+                   :title => I18n.t('Access to the list of contributions.'))
   end
 
   def public_link_to_about
     public_link_to('?', about_welcome_path,
-                   :title => _("About %s") % Tosca::App::Name)
+                   :title => I18n.t("About %s") % Tosca::App::Name)
   end
 
   def public_link_to_forgotten_pwd
-    public_link_to(_('Forgotten password ?'), forgotten_password_accounts_path)
+    public_link_to(I18n.t('Forgotten password ?'), forgotten_password_accounts_path)
   end
 
   # No cache for this one. It's not a public link /!\
   def link_to_admin
-    link_to(_('Administration'), admin_welcome_path,
-            :title => _('Administration interface'))
+    link_to(I18n.t('Administration'), admin_welcome_path,
+            :title => I18n.t('Administration interface'))
   end
 
   def public_link_to_remote_theme

@@ -1,8 +1,8 @@
-<h1><%= _('Group list')%></h1>
+<h1><%= t('Group list')%></h1>
 
 
-<% paginated_section(@groups, :create_label => _('a group')) do %>
- <% titles = [_('Name') , _('Software') ]%>
+<% paginated_section(@groups, :create_label => t('a group')) do %>
+ <% titles = [t('Name') , t('Software') ]%>
  <%= show_table(@groups, Group, titles) do |g|
    result = ''
    result << "<td>#{g.name }</td>"

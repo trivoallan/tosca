@@ -33,8 +33,8 @@ module Static
 
     @@av = nil
     @@relative_url_root = nil
-    def self.set_request(request)
-      @@relative_url_root = "#{request.relative_url_root}/images/"
+    def self.set_url_root()
+      @@relative_url_root = "#{ActionController::Base.relative_url_root}/images/"
       @@av = ActionView.new
     end
 

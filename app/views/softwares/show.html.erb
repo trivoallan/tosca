@@ -1,5 +1,5 @@
-<%= public_link_to _('Homepage') , welcome_path %> >
-<%= public_link_to _('Software') , softwares_path %> >
+<%= public_link_to t('Homepage') , welcome_path %> >
+<%= public_link_to t('Software') , softwares_path %> >
 <%= public_link_to @software.group, group_path(@software.group_id) %> >
 <%= @software %> <%= link_to_edit(@software) %>
 <% expert = @session_user and @session_user.engineer? %>
@@ -8,14 +8,14 @@
     <div class="show">
       <table>
         <tr>
-          <td><b><%= _('Name') %></b> </td>
+          <td><b><%= t('Name') %></b> </td>
           <td><%= @software.name %>
             <% if @software.private? and expert %>
-              (<%= _('Private') %>)
+              (<%= t('Private') %>)
             <% end %>
           </td>
         </tr>
-        <tr><th><%= _('Summary') %></th>
+        <tr><th><%= t('Summary') %></th>
         <td><%= @software.resume %></td></tr>
         <tr>
           <td colspan="2">
@@ -29,23 +29,23 @@
         </tr>
         <% if expert %>
           <tr>
-            <th><%= _('Reference') %></th>
+            <th><%= t('Reference') %></th>
             <td><%=h @software.referent %></td>
           </tr>
         <% end %>
 
         <tr>
-          <th><%= _('Copyright') %></th>
+          <th><%= t('Copyright') %></th>
           <td><%=h @software.license.name if @software.license %></td>
         </tr>
 
         <tr>
-          <th><%= _('Technologies') %></th>
+          <th><%= t('Technologies') %></th>
           <td><%= @software.skills.collect{|c| c.name}.join(', ') %></td>
         </tr>
 
         <tr>
-          <th><%= _('Group') %></th>
+          <th><%= t('Group') %></th>
           <td><%= public_link_to(@software.group.name, group_path(@software.group_id) ) if @software.group %></td>
         </tr>
 
@@ -57,7 +57,7 @@
         </tr>
 
         <tr>
-          <td><b><%= _('Links') %></b> <%= link_to_new_hyperlink("software", @software.id) %></td>
+          <td><b><%= t('Links') %></b> <%= link_to_new_hyperlink("software", @software.id) %></td>
           <% options = {:no_title => true, :edit => 'hyperlink'} %>
           <td><%= show_list(@software.hyperlinks, 'hyperlink', options) {|u|
               "<a href=\"#{u.name.urlize}\" target=\"_blank\">#{u.name}</a>"
@@ -71,24 +71,24 @@
     <div class="show">
       <table>
         <tr>
-          <td colspan="2"><b><%=_('Issues')%></b> <%= link_to_new_issue(:software_id => @software.id)%> <br />
+          <td colspan="2"><b><%=t('Issues')%></b> <%= link_to_new_issue(:software_id => @software.id)%> <br />
             <% options[:edit] = nil %>
             <% options[:public_summarized] = true %>
             <% if @issues.size > 0  %>
               <div class="bloc_scroll">
-                <%=show_list(@issues, _('Issue'), options) {|d| link_to_issue d}%>
+                <%=show_list(@issues, t('Issue'), options) {|d| link_to_issue d}%>
               </div>
           <% end %></td>
         </tr>
 
         <tr>
-          <td colspan="2"><b><%=_('Contributions')%></b>
+          <td colspan="2"><b><%=t('Contributions')%></b>
             <%= link_to_new_contribution(nil, :software_id => @software.id)%><br />
             <%= public_table_of_contributions(@software.contributions) %> </td>
         </tr>
 
         <tr>
-          <td><b><%=_('Tags')%></b></td>
+          <td><b><%=t('Tags')%></b></td>
           <td><%= @software.tag_list %></td>
         </tr>
       </table>

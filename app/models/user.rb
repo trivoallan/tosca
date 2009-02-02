@@ -48,8 +48,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :pwd_confirmation
 
-  N_('User|Pwd')
-  N_('User|Pwd confirmation')
+  I18n.t('User|Pwd')
+  I18n.t('User|Pwd confirmation')
 
   #Preferences
   preference :digest_daily, :default => false
@@ -127,19 +127,19 @@ class User < ActiveRecord::Base
   # not have the "pwd" prefix ... TODO : find a pretty way ?
   # TODO : check if gettext is an answer ?
   def validate
-    errors.add(:pwd, _("Password missing")) if password.blank?
+    errors.add(:pwd, I18n.t("Password missing")) if password.blank?
     if pwd != pwd_confirmation
-      errors.add(:pwd_confirmation, _('Password is different from its confirmation'))
+      errors.add(:pwd_confirmation, I18n.t('Password is different from its confirmation'))
     end
     unless pwd.blank?
       if pwd.length > 40
-        errors.add(:pwd, _('Your password is too long (max. 20)'))
+        errors.add(:pwd, I18n.t('Your password is too long (max. 20)'))
       elsif pwd.length < 5
-        errors.add(:pwd, _('Your password is too short (min. 5)'))
+        errors.add(:pwd, I18n.t('Your password is too short (min. 5)'))
       end
     end
     if pwd.blank? and self.password.blank?
-      errors.add(:pwd, _('You must have specify a password.'))
+      errors.add(:pwd, I18n.t('You must have specify a password.'))
     end
   end
 

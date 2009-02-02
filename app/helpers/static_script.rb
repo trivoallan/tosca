@@ -20,8 +20,8 @@
 
 class StaticScript < Static::ActionView
 
-  @@date_opt = { :alt => _("Choose a date"), :size => '16x16',
-    :title => _("Select a date"),
+  @@date_opt = { :alt => I18n.t("Choose a date"), :size => '16x16',
+    :title => I18n.t("Select a date"),
     :onmouseover => "this.className='calendar_over';", :class => 'calendar_out',
     :onmouseout => "this.className='calendar_out';", :style => 'cursor: pointer;'
   }

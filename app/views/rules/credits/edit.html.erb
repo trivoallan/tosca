@@ -1,8 +1,8 @@
-<h1><%=_('Editing an offer with time credits') %></h1>
+<h1><%=t('Editing an offer with time credits') %></h1>
 
 <% form_for(@credit) do |f| %>
   <%= render :partial => 'form' %>
-  <%= f.submit _('Validate') %>
+  <%= f.submit t('Validate') %>
 <% end %>
 
 <%= link_to_show_and_list(@credit) %>

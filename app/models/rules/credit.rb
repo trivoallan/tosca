@@ -38,20 +38,20 @@ class Rules::Credit < ActiveRecord::Base
 
   def short_description
     if max == -1
-      _('unlimited number of time-credits of %s') %
+      t('unlimited number of time-credits of %s') %
         Time.in_words(time.hours)
     else
-      _('%d time-credits of %s') %
+      t('%d time-credits of %s') %
         [ max, Time.in_words(time.hours) ]
     end
   end
 
   def complete_description(value, contract)
     if max == -1
-      _("%s time-credits of %s have already been spent") %
+      t("%s time-credits of %s have already been spent") %
         [ "<b>#{value}</b>", "<b>#{max}</b>", "<b>#{Time.in_words(time.hours)}</b>" ]
     else
-      _("%s / %s time-credits of %s have already been spent") %
+      t("%s / %s time-credits of %s have already been spent") %
         [ "<b>#{value}</b>", "<b>#{max}</b>", "<b>#{Time.in_words(time.hours)}</b>" ]
     end
   end

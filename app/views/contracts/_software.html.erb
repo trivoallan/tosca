@@ -25,7 +25,7 @@
     <td><%= check_box_tag("#{random_field}[generic]") %></td>
   <% else %>
     <td><%= @version.name %><%= hidden_field_tag "#{random_field}[name]", @version.read_attribute(:name) %></td>
-    <td><%= @version.generic? ? _('Yes') : _('No') %><%= hidden_field_tag "#{random_field}[generic]", @version.generic %></td>
+    <td><%= @version.generic? ? t('Yes') : t('No') %><%= hidden_field_tag "#{random_field}[generic]", @version.generic %></td>
   <% end %>
   <td>
    <%# Only admin can remove a software, since it can have a great impact on issues %>

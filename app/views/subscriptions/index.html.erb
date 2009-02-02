@@ -1,9 +1,9 @@
-<h1><%= _('List of the subscriptions') %></h1>
+<h1><%= t('List of the subscriptions') %></h1>
 
 <table>
   <tr>
-    <th><%= _('User') %></th>
-    <th><%= _('Subscribed to') %></th>
+    <th><%= t('User') %></th>
+    <th><%= t('Subscribed to') %></th>
     <th><%= ('Updated on') %></th>
   </tr>
 
@@ -12,13 +12,13 @@
     <td><%=h subscription.user %></td>
     <td><%=h subscription.model %></td>
     <td><%=h subscription.updated_on %></td>
-    <td><%= link_to _('Show'), subscription %></td>
-    <td><%= link_to _('Edit'), edit_subscription_path(subscription) %></td>
-    <td><%= link_to _('Destroy'), subscription, :confirm => _('Are you sure?'), :method => :delete %></td>
+    <td><%= link_to t('Show'), subscription %></td>
+    <td><%= link_to t('Edit'), edit_subscription_path(subscription) %></td>
+    <td><%= link_to t('Destroy'), subscription, :confirm => t('Are you sure?'), :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to _('Create a new subscription'), new_subscription_path %>
+<%= link_to t('Create a new subscription'), new_subscription_path %>

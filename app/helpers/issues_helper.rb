@@ -37,7 +37,7 @@ module IssuesHelper
   end
 
   def public_link_to_status_legend
-    public_link_to(_("Status legend"), statuts_path, NEW_WINDOW)
+    public_link_to(I18n.t("Status legend"), statuts_path, NEW_WINDOW)
   end
 
   # Display a link to the software or version or release
@@ -91,7 +91,7 @@ module IssuesHelper
 
   def link_to_new_issue(arg)
     options = arg ? new_issue_path(arg) : new_issue_path
-    link_to image_create(_('New issue')), options
+    link_to image_create(I18n.t('New issue')), options
   end
 
   # Link to access a ticket
@@ -100,7 +100,7 @@ module IssuesHelper
   end
 
   def link_to_unlink_contribution( demand_id )
-    link_to(_('Unlink the contribution'),
+    link_to(I18n.t('Unlink the contribution'),
             unlink_contribution_issue_path(demand_id),
             :method => :post)
   end
@@ -109,10 +109,10 @@ module IssuesHelper
   # method does not treat this case.
   def link_to_issue_contribution(contribution)
     return '' unless contribution
-    link = link_to _('patch'), contribution_path(contribution)
+    link = link_to I18n.t('patch'), contribution_path(contribution)
     (contribution.closed_on? ?
-        _("The %s has been accepted by the community") % link :
-        _("The %s has been submitted by the community") % link)
+        I18n.t("The %s has been accepted by the community") % link :
+        I18n.t("The %s has been submitted by the community") % link)
   end
 
   # TODO : Too much copy/paste
@@ -120,22 +120,22 @@ module IssuesHelper
   def remote_link_to_active_issue
     ajax_call =  PagesHelper::AJAX_OPTIONS.dup.update(:url => issues_path)
     js_call = "document.forms['filters'].elements['filters[active]'].value=1; #{remote_function(ajax_call)}"
-    link_to_function(_('Active issues'), js_call,
-                     _('show issues waiting to be processed'))
+    link_to_function(I18n.t('Active issues'), js_call,
+                     I18n.t('show issues waiting to be processed'))
   end
 
   def remote_link_to_dead_issue
     ajax_call =  PagesHelper::AJAX_OPTIONS.dup.update(:url => issues_path)
     js_call = "document.forms['filters'].elements['filters[active]'].value=-1; #{remote_function(ajax_call)}"
-    link_to_function(_('Finished issues'), js_call,
-                     _('show issues that were processed'))
+    link_to_function(I18n.t('Finished issues'), js_call,
+                     I18n.t('show issues that were processed'))
   end
 
   def remote_link_to_all_issue
     ajax_call =  PagesHelper::AJAX_OPTIONS.dup.update(:url => issues_path)
     js_call = "document.forms['filters'].elements['filters[active]'].value=0; #{remote_function(ajax_call)}"
-    link_to_function(_('All issues'), js_call,
-                     _('show all the issues'))
+    link_to_function(I18n.t('All issues'), js_call,
+                     I18n.t('show all the issues'))
   end
 
   #usage : <tr <%= tr_attributes("../issues/comment/#{demand.id}")%> >
@@ -150,8 +150,8 @@ module IssuesHelper
     commitment = req.commitment
     if commitment
       "<p><b>%s: </b> %s<br /><b>%s: </b> %s</p>" %
-        [ _('Workaround'), Time.in_words(commitment.workaround * 1.day, true),
-          _('Correction'), Time.in_words(commitment.correction * 1.day, true) ]
+        [ I18n.t('Workaround'), Time.in_words(commitment.workaround * 1.day, true),
+          I18n.t('Correction'), Time.in_words(commitment.correction * 1.day, true) ]
     else
       '-'
     end
@@ -188,24 +188,24 @@ module IssuesHelper
   NEW_WINDOW = { :target => '_blank' }
   # Link to the inline help to post an issue
   def public_link_to_help_new_issue
-    public_link_to(_("Submission of an issue"),
+    public_link_to(I18n.t("Submission of an issue"),
                    App::Help::NewIssueUrl, NEW_WINDOW)
   end
 
   # Link to the the inline help about life cycle of a demand
   def public_link_to_howto_issue
-    public_link_to(_("The life cycle of an issue"),
+    public_link_to(I18n.t("The life cycle of an issue"),
                    App::Help::LifeCycleUrl, NEW_WINDOW)
   end
 
   # Link to the inline help about the differents states of a demand
   def public_link_to_help_issue_status
-    public_link_to(_("Help on the status"),
+    public_link_to(I18n.t("Help on the status"),
                    App::Help::IssueStatusUrl, NEW_WINDOW)
   end
 
   def public_link_to_status_legend
-    public_link_to(_("Status legend"), statuts_path, NEW_WINDOW)
+    public_link_to(I18n.t("Status legend"), statuts_path, NEW_WINDOW)
   end
 
 end

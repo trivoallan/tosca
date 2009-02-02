@@ -13,32 +13,32 @@
   <%= hidden_field_tag 'active', '1' %>
 
   <% if @session_user %>
-    <%= div_toggle _('Consultation'), 'menu_consultation', :class => "menu_title" %>
+    <%= div_toggle t('Consultation'), 'menu_consultation', :class => "menu_title" %>
     <ul class="menu" id="menu_consultation">
       <% if @session_user.recipient? %>
         <li><%= remote_link_to_software :supported %></li>
         <li><%= remote_link_to_software :all %></li>
       <% end %>
-      <li><%= link_to _('List of the versions'), versions_path %></li>
+      <li><%= link_to t('List of the versions'), versions_path %></li>
     </ul>
   <% end %>
 
-  <%= div_toggle _('Search'), 'menu_search', :class => "menu_title" %>
+  <%= div_toggle t('Search'), 'menu_search', :class => "menu_title" %>
   <ul class="menu" id="menu_search">
-    <li><b><%= _('By name') %></b><br />
+    <li><b><%= t('By name') %></b><br />
       <%= text_field :filters, :software %>
     </li>
     <% if @contracts and @session_user and @session_user.engineer? %>
-      <li><b><%= _('By contract') %> </b><br />
+      <li><b><%= t('By contract') %> </b><br />
       <%= select_filter(@contracts, 'contract') %></li>
     <% end %>
   </ul>
 
-  <%= div_toggle _('Characteristic'), 'menu_characteristic', :class => "menu_title" %>
+  <%= div_toggle t('Characteristic'), 'menu_characteristic', :class => "menu_title" %>
   <ul class="menu" id="menu_characteristic">
-    <li><b><%= _('Description') %> </b><br />
+    <li><b><%= t('Description') %> </b><br />
     <%= text_field :filters, :description %></li>
-    <li><b><%= _('Group') %> </b><br />
+    <li><b><%= t('Group') %> </b><br />
     <%= select_filter(@groups, 'group') %></li>
   </ul>
 

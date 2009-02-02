@@ -50,7 +50,7 @@ module PagesHelper
     return nil unless ar
     url = (ar.is_a?(String) ? ar : { :action => 'destroy', :id => ar })
     link_to StaticPicture::delete,  url, :method => :delete,
-        :confirm => _('Do you really want to destroy this object ?')
+        :confirm => I18n.t('Do you really want to destroy this object ?')
   end
 
   def link_to_back
@@ -113,23 +113,23 @@ module PagesHelper
     return "<td>#{result}</td></tr></table>" unless pages.length > 0
 
     if pages.current.previous
-      link = link_to_page(pages.first, _('First page'),
+      link = link_to_page(pages.first, I18n.t('First page'),
                           StaticPicture::first_page, ajax_call)
       result << "<td>#{link}</td>"
-      link = link_to_page(pages.current.previous, _('Previous page'),
+      link = link_to_page(pages.current.previous, I18n.t('Previous page'),
                           StaticPicture::previous_page, ajax_call)
       result << "<td>#{link}</td>"
     end
     if pages.current.last_item > 0
       result << "<td valign='middle'><small>&nbsp;#{pages.current.first_item}"
-      result << _(' to ') << pages.current.last_item.to_s
-      result << _('&nbsp; on ') << pages.last.last_item.to_s << '&nbsp;</small></td>'
+      result << I18n.t(' to ') << pages.current.last_item.to_s
+      result << I18n.t('&nbsp; on ') << pages.last.last_item.to_s << '&nbsp;</small></td>'
     end
     if pages.current.next
-      link = link_to_page(pages.current.next, _('Next page'),
+      link = link_to_page(pages.current.next, I18n.t('Next page'),
                           StaticPicture::next_page, ajax_call)
       result << "<td>#{link}</td>"
-      link = link_to_page(pages.last, _('Last page'),
+      link = link_to_page(pages.last, I18n.t('Last page'),
                           StaticPicture::last_page,ajax_call)
       result << "<td>#{link}</td>"
     end

@@ -1,7 +1,7 @@
-<h1><%= _("List of images") %></h1>
+<h1><%= t("List of images") %></h1>
 
-<% paginated_section(@pictures, :create_label => _('an image')) do %>
- <% titles = [_('Formatted'), _('Description')]%>
+<% paginated_section(@pictures, :create_label => t('an image')) do %>
+ <% titles = [t('Formatted'), t('Description')]%>
  <%= show_table(@pictures, Picture, titles) do |p|
    result = ''
    result << "<td>#{self.image_tag(url_for_file_column(p, 'image', 'thumb')) if p.image}</td>"

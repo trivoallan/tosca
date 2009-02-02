@@ -1,25 +1,25 @@
 
 <table><tr><td>
 <% form_tag reporting_path(:filter => @filter, :client => @client) do %>
-  <p><label for="issue_resume"><%=_('Choose one year:')%></label>
+  <p><label for="issue_resume"><%=t('Choose one year:')%></label>
   <%= text_field 'report', '', "mois" => @annee  %>
-  <%= submit_tag _('Show') %></p>
+  <%= submit_tag t('Show') %></p>
 <% end %>
 </td><td>
 </td></tr></table>
 
 <% @clients.each do |c| %>
-  <h1><%= _('History of %s for %s') % [ c.name, @annee ] %></h1>
-   <h2><%=_('Time of taking into account the issues')%></h2>
+  <h1><%= t('History of %s for %s') % [ c.name, @annee ] %></h1>
+   <h2><%=t('Time of taking into account the issues')%></h2>
    <%= report_table(:"temps_rappel_#{c.id}", :titre => @titres[:temps_rappel]) %>
-   <label><%=_('Estimation in minutes')%></label><br />
+   <label><%=t('Estimation in minutes')%></label><br />
 
-   <h2><%=_('Workaround time of the issues in working days')%></h2>
+   <h2><%=t('Workaround time of the issues in working days')%></h2>
    <%= report_table(:"temps_contournement_#{c.id}", :titre => @titres[:temps_contournement]) %>
-   <label><%=_('Estimate made in working days')%></label><br />
+   <label><%=t('Estimate made in working days')%></label><br />
 
-   <h2><%=_('Issues correction time')%></h2>
+   <h2><%=t('Issues correction time')%></h2>
    <%= report_table(:"temps_correction_#{c.id}", :titre => @titres[:temps_correction]) %>
-   <label><%=_('Estimation in working days')%></label><br />
+   <label><%=t('Estimation in working days')%></label><br />
 
 <% end %>

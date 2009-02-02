@@ -64,7 +64,7 @@ class WelcomeController < ApplicationController
         Notifier::deliver_welcome_idea(suggestion[:tosca],
           :tosca, @session_user)
       end
-      flash[:notice] = _('Thank your for taking time in order to help us to improve this product. Your comments has been sent successfully.')
+      flash[:notice] = t('Thank your for taking time in order to help us to improve this product. Your comments has been sent successfully.')
       redirect_to_home
     end
   end
@@ -75,7 +75,7 @@ class WelcomeController < ApplicationController
     if @session_user.role_id == 1
       #TODO : Find a better way, and call directly the rake task tmp:cache:clear
       FileUtils.rm_rf(Dir['tmp/cache/[^.]*'])
-      flash[:notice] = _("Cache cleared !")
+      flash[:notice] = t("Cache cleared !")
     end
     redirect_to_home
   end

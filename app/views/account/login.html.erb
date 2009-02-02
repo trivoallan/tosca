@@ -1,19 +1,19 @@
 <% form_tag login_accounts_path do %>
  <table class="show">
   <tr>
-    <td colspan="2"><h1><%= _('%s login') % App::InternetAddress %></h1></td>
+    <td colspan="2"><h1><%= t('%s login') % App::InternetAddress %></h1></td>
     <% if(defined?(show_close_icon) and show_close_icon) %>
       <td><%= link_to_close_redbox(StaticPicture::hide_notice) %></td>
     <% end %>
   </tr><tr>
-    <td><label for="user_login"><%= _('Login')%> :</label></td>
+    <td><label for="user_login"><%= t('Login')%> :</label></td>
     <td><input type="text" name="user_login" id="user_login" size="16" value="" /></td>
   </tr><tr>
-    <td><label for="user_password"><%= _('Password')%> :</label></td>
+    <td><label for="user_password"><%= t('Password')%> :</label></td>
     <td><input type="password" name="user_password" id="user_password" size="16"/></td>
   </tr><tr>
     <td colspan="2"><div style="text-align: right">
-        <input type="submit" name="login" value="<%=_('Validate')%> &#187;"/>
+        <input type="submit" name="login" value="<%=t('Validate')%> &#187;"/>
     </div></td>
   </tr>
  </table>

@@ -1,8 +1,8 @@
-<h1><%= _('Editing tag')%></h1>
+<h1><%= t('Editing tag')%></h1>
 
 <% form_tag tag_path(@tag), :method => :put, :id => "main_form" do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag _('Edit') %>
+  <%= submit_tag t('Edit') %>
 <% end %>
 
 <br />

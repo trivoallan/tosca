@@ -1,14 +1,14 @@
-<%= div_toggle _('Statictics'), 'menu_stats', :class => "menu_title" %>
+<%= div_toggle t('Statictics'), 'menu_stats', :class => "menu_title" %>
 <ul class="menu" id="menu_stats">
   <li>
-    <b><%= _('Number of new issues') %></b> : <%= @statistics[:new_issues] %>
+    <b><%= t('Number of new issues') %></b> : <%= @statistics[:new_issues] %>
   </li>
   <li>
-    <b><%= _('Number of closed issues') %></b> : <%= @statistics[:closed_issues] %>
+    <b><%= t('Number of closed issues') %></b> : <%= @statistics[:closed_issues] %>
   </li>
   <% if @issues_by_contract.length > 0 %>
     <li>
-      <b> <%= _('Number of open issues by contracts') %></b>
+      <b> <%= t('Number of open issues by contracts') %></b>
       <ul>
         <% @issues_by_contract.each_pair do |key, value| %>
           <li>

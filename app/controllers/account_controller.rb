@@ -46,8 +46,8 @@ class AccountController < ApplicationController
       else
         clear_sessions
         id = User.find_by_login(params['user_login'])
-        flash.now[:warn] = _("Connexion failure")
-        flash.now[:warn] += _(", your account has been desactivated") if id and id.inactive?
+        flash.now[:warn] = t("Connexion failure")
+        flash.now[:warn] += t(", your account has been desactivated") if id and id.inactive?
       end
     else # Display form
     end
@@ -81,7 +81,7 @@ class AccountController < ApplicationController
       _associate_user
       if @user.save
         # The commit has to be after sending email, not before
-        flash[:notice] = _("Account successfully created.")
+        flash[:notice] = t("Account successfully created.")
         flash[:notice] += message_notice(@user.email, nil)
         redirect_to account_path(@user)
       else
@@ -162,7 +162,7 @@ class AccountController < ApplicationController
     end
     if res # update of account fully ok
       set_sessions @user if @session_user == @user
-      flash[:notice]  = _("Edition succeeded")
+      flash[:notice]  = t("Edition succeeded")
       redirect_to account_path(@user)
     else
       # Don't write this :  _form and render :action => 'edit'
@@ -176,13 +176,13 @@ class AccountController < ApplicationController
     if request.method == :post
       user = params[:user]
       return unless user && user.has_key?(:email) && user.has_key?(:login)
-      flash[:warn] = _('Unknown account')
+      flash[:warn] = t('Unknown account')
       conditions = { :email => user[:email], :login => user[:login] }
       @user = User.first(:conditions => conditions)
       return unless @user
       if @user.generate_password and @user.save
         flash[:warn] = nil
-        flash[:notice] = _('Your new password has been generated.')
+        flash[:notice] = t('Your new password has been generated.')
         #TODO : find a way to put it in the model user
         Notifier::deliver_user_signup(@user)
       end
@@ -197,11 +197,11 @@ class AccountController < ApplicationController
         set_sessions(User.find(params[:id]))
         session[:last_user] = current_user
       else
-        flash[:warn] = _('You are not allowed to change your identity')
+        flash[:warn] = t('You are not allowed to change your identity')
       end
       redirect_to_home
     rescue ActiveRecord::RecordNotFound
-      flash[:warn] = _('Person not found')
+      flash[:warn] = t('Person not found')
       redirect_to_home
     end
   end
@@ -233,22 +233,17 @@ class AccountController < ApplicationController
     @user = (user_id.blank? ? User.new : User.find(user_id))
   end
 
-  # Format du fichier CSV
-  COLUMNS = [ _('Full name'), _('Title'), _('Email'), _('Phone'),
-              _('Login'), _('Password'), _('Informations') ]
-
-
 private
   def _login(user)
     set_sessions(user)
-    flash[:notice] = (_("Welcome %s %s") %
+    flash[:notice] = (t("Welcome %s %s") %
                       [ user.title, user.name]).gsub(' ', '&nbsp;')
 
     user.active_contracts.each do |c|
       if (c.end_date - Time.now).between?(0.month, 1.month)
         message = '<br/><strong>'
         message << '</strong>'
-        message << (_("Your contract '%s' is near its end date : %s") %
+        message << (t("Your contract '%s' is near its end date : %s") %
             [c.name, c.end_date_formatted])
         flash[:notice] << message
       end

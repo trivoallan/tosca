@@ -1,34 +1,34 @@
 <div class="subcolumns">
   <div class="c50l">
     <div class="show">
-      <h3><%=_('Help')%></h3>
+      <h3><%=t('Help')%></h3>
  <% links = [ public_link_to_help_new_issue,
               public_link_to_howto_issue,
               public_link_to_help_issue_status ] %>
   <%= show_list(links) %>
-  <p><%=_("Don't hesitate to")%>
-    <%=  mail_to(App::TeamEmail, _('contact us'))%>
-    <%=  _("if needed")%>.</p>
+  <p><%=t("Don't hesitate to")%>
+    <%=  mail_to(App::TeamEmail, t('contact us'))%>
+    <%=  t("if needed")%>.</p>
  </div>
 
  <div class="show">
-  <h1><%= _('About')%> <%=Tosca::App::Name%> v<%=Tosca::App::Version%></h1>
+  <h1><%= t('About')%> <%=Tosca::App::Name%> v<%=Tosca::App::Version%></h1>
 
-  <p><%= _('This software was created at')%>
+  <p><%= t('This software was created at')%>
       <a href="http://www.linagora.com">Linagora</a>
-      <%= _("by the OSSA Team.")%></p>
-      <p><%= _('This journey would not have been possible without
+      <%= t("by the OSSA Team.")%></p>
+      <p><%= t('This journey would not have been possible without
       the <b>developers</b> who have taken part in this project,
       without the testers who have contributed to it\'s quality and
       without quite a bit of <b>free software</b> which has enabled the
       development to be fast and agile. They are all warmly thanked here.
       %s would be nothing without them.') % Tosca::App::Name %></p>
-      <p><%= _("It is now an Open Source software you can get at ") %>
-      <a href="http://www.tosca-project.net"><%= _("the homepage of the project")%></a>.
+      <p><%= t("It is now an Open Source software you can get at ") %>
+      <a href="http://www.tosca-project.net"><%= t("the homepage of the project")%></a>.
       </p>
  </div>
  <div class="show">
-   <h2><%= _('Developers')%></h2>
+   <h2><%= t('Developers')%></h2>
   <ul>
     <li>Michel Loiseleur</li>
     <li>Adrien Grellier</li>
@@ -41,7 +41,7 @@
   </div>
   <div class="c50r">
     <div class="show">
-     <h2><%= _('Quality Assurance') %></h2>
+     <h2><%= t('Quality Assurance') %></h2>
   <ul>
     <li>Jonathan Clarke</li>
     <li>Mehdi Rande</li>
@@ -50,7 +50,7 @@
   </ul>
  </div>
      <div class="show">
-      <h2><%= _('Free software used by %s') % Tosca::App::Name %></h2>
+      <h2><%= t('Free software used by %s') % Tosca::App::Name %></h2>
       <ul>
         <li><a href="http://www.ruby-lang.org">Ruby</a>
           <ul>

@@ -1,41 +1,41 @@
 <% cache("issues/#{@issue.id}/info-#{@session_user.kind}") do %>
 
-  <%= div_toggle _('Summary'), 'menu_resume', :class => "menu_title" %>
+  <%= div_toggle t('Summary'), 'menu_resume', :class => "menu_title" %>
   <ul id="menu_resume">
-    <li><b><%= _("Software") %>: </b><%= link_to_issue_software @issue %></li>
-    <li><b><%=_("Status")%>: </b>
+    <li><b><%= t("Software") %>: </b><%= link_to_issue_software @issue %></li>
+    <li><b><%=t("Status")%>: </b>
     <%= link_to_box_on_status(@issue) %> <%=help_on_status%></li>
-    <li><b><%= _("Type")%>: </b><%= @issue.issuetype.name %></li>
-    <li><b><%= _("Severity")%>: </b>
+    <li><b><%= t("Type")%>: </b><%= @issue.issuetype.name %></li>
+    <li><b><%= t("Severity")%>: </b>
     <%= @issue.severity.name %> <%=help_on_severity%></li>
     <% unless @issue.mail_cc.blank? %>
-      <li><b><%= _('CC') %>: </b><%= @issue.mail_cc.gsub(',', ',<br />') %></li>
+      <li><b><%= t('CC') %>: </b><%= @issue.mail_cc.gsub(',', ',<br />') %></li>
     <% end %>
     <% submitter_id = @issue.submitter_id %>
     <% if submitter_id != 0 and @issue.recipient.id != submitter_id %>
-      <li><b><%=_("Declared by")%>: </b><%= link_to_user(@issue.submitter) %></li>
+      <li><b><%=t("Declared by")%>: </b><%= link_to_user(@issue.submitter) %></li>
     <% end %>
     <% if @issue.engineer %>
-      <li><b><%=_("Assigned to")%>: </b> <%= link_to_user(@issue.engineer) %> </li>
+      <li><b><%=t("Assigned to")%>: </b> <%= link_to_user(@issue.engineer) %> </li>
     <% end %>
   </ul>
 
-  <%= div_toggle _('Recipent'), 'menu_recipient', :class => "menu_title" %>
+  <%= div_toggle t('Recipent'), 'menu_recipient', :class => "menu_title" %>
   <% user = @issue.recipient %>
   <ul id="menu_recipient">
-    <li><b><%= _("Contact") %>: </b><%= mail_to(user.email, user.name)%>
+    <li><b><%= t("Contact") %>: </b><%= mail_to(user.email, user.name)%>
     <%= link_to_show(account_path(user)) if @session_user.engineer? %></li>
-    <li><b><%= _('Phone') %>: </b><%= user.phone %></li>
+    <li><b><%= t('Phone') %>: </b><%= user.phone %></li>
     <% contract = @issue.contract %>
-    <li><b><%= _('Concerning') %>: </b><%= link_to contract, contract_path(contract) %></li>
+    <li><b><%= t('Concerning') %>: </b><%= link_to contract, contract_path(contract) %></li>
   </ul>
 
-  <%= div_toggle _("Life cycle"), 'life_cycle_menu', :class => "menu_title" %>
+  <%= div_toggle t("Life cycle"), 'life_cycle_menu', :class => "menu_title" %>
   <ul id="life_cycle_menu">
-    <li><b><%= _("Created on") %>: </b><%= @issue.created_on_formatted %></li>
-    <li><b><%= _("Updated on") %>: </b><%= @issue.updated_on_formatted %></li>
+    <li><b><%= t("Created on") %>: </b><%= @issue.created_on_formatted %></li>
+    <li><b><%= t("Updated on") %>: </b><%= @issue.updated_on_formatted %></li>
     <% if @issue.elapsed %>
-      <li><b><%= _("Time elapsed") %>: </b><%= @issue.elapsed_formatted %></li>
+      <li><b><%= t("Time elapsed") %>: </b><%= @issue.elapsed_formatted %></li>
     <% end %>
     <% contribution = @issue.contribution %>
     <% if contribution %>
@@ -43,19 +43,19 @@
     <% end %>
   </ul>
 
-  <%= div_toggle _("Tags"), 'tags_menu', :class => "menu_title", :hide => true %>
+  <%= div_toggle t("Tags"), 'tags_menu', :class => "menu_title", :hide => true %>
   <ul id="tags_menu" style="display: none">
     <% unless @issue.tag_list.empty? %>
-      <li><b><%= _("Tags") %>: </b><%= @issue.tag_list.join(', ') %></li>
+      <li><b><%= t("Tags") %>: </b><%= @issue.tag_list.join(', ') %></li>
     <% end %>
     <% if @session_user.engineer? %>
-      <li><%= link_to _("Edit the tags for this issue"), tag_issue_url(@issue) %></li>
+      <li><%= link_to t("Edit the tags for this issue"), tag_issue_url(@issue) %></li>
     <% end %>
   </ul>
 
   <%= render :partial => 'issues/panel/panel_subscribers' %>
 
-  <%= div_toggle _("Help"), 'menu_help', :class => "menu_title" %>
+  <%= div_toggle t("Help"), 'menu_help', :class => "menu_title" %>
   <ul id="menu_help">
     <li><%= public_link_to_howto_issue %></li>
   </ul>

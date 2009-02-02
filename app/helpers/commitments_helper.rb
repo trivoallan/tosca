@@ -32,13 +32,13 @@ module CommitmentsHelper
   def show_form_commitments(object_commitment, commitments)
     out = '<table class="full">'
     out << '<tr><th>'
-    out << _('Type')
+    out << I18n.t('Type')
     out << '</th><th>'
-    out << _('Severity')
+    out << I18n.t('Severity')
     out << '</th><th>'
-    out << _('Workaround')
+    out << I18n.t('Workaround')
     out << ' | '
-    out << _('Correction')
+    out << I18n.t('Correction')
     out << '</th></tr>'
     last_issuetype_id = 0
     last_severity_id = 0
@@ -68,8 +68,8 @@ module CommitmentsHelper
       while (e) do
         workaround = Time.in_words(e.workaround.days, true)
         correction = Time.in_words(e.correction.days, true)
-        workaround = _('None') if workaround == '-'
-        correction = _('None') if correction == '-'
+        workaround = I18n.t('None') if workaround == '-'
+        correction = I18n.t('None') if correction == '-'
         severities.push ["#{workaround} | #{correction}", e.id]
         break if commitments.empty? || (commitments.last.severity_id != last_severity_id)
         e = commitments.pop
@@ -84,7 +84,7 @@ module CommitmentsHelper
 
   def show_table_commitments(commitments)
     result = ''
-    titres = [_('Issue'), _('Severity'), _('Workaround'), _('Correction')]
+    titres = [I18n.t('Issue'), I18n.t('Severity'), I18n.t('Workaround'), I18n.t('Correction')]
     oldissuetype = nil
     result << show_table(commitments, Commitment, titres) { |e|
       out = ''

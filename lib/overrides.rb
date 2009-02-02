@@ -195,7 +195,7 @@ class Time
       @@first_time = nil
     end
 
-    return _('Immediate') if distance_in_seconds == 0
+    return t('Immediate') if distance_in_seconds == 0
     return '-' unless distance_in_seconds.is_a?(Numeric) and distance_in_seconds > 0
     return '-' unless dayly_time == true or (dayly_time > 0 and dayly_time < 25)
     opened = (dayly_time != 24 ? true : false)
@@ -209,14 +209,14 @@ class Time
 
     case distance # in minutes
     when 0..1
-      _('less than a minute')
+      t('less than a minute')
     when 1..45
-      _('%d minutes') % distance
+      t('%d minutes') % distance
     when 45..half_day_inf, half_day_sup..day-60
       value = (distance.to_f / 60.0).round
       n_('%d hour', '%d hours', value) % value
     when half_day_inf..half_day_sup
-      (opened ? _('1 half a working day') : _('1 half day'))
+      (opened ? t('1 half a working day') : t('1 half day'))
     when (day-60)..(day+60), (day*2-60)..(day*2+60),
          (day*3-60)..(day*3), (3*day)..mo
       val = (distance / day).round
@@ -227,7 +227,7 @@ class Time
       hours = ((distance % 1.day)/60).round
       out = ((opened ? n_('%d working day', '%d working days', days) :
                        n_('%d day', '%d days', days)) % days)
-      out << ' ' << _('and') << ' ' << n_('%d hour', '%d hours', hours) % hours
+      out << ' ' << t('and') << ' ' << n_('%d hour', '%d hours', hours) % hours
       out
     else
       val = (distance / mo).round
@@ -457,62 +457,6 @@ module ActiveRecord
     end
   end
 end
-
-
-# This one fix a bug encountered with cache + mongrel + prefix.
-# Url was badly rewritten
-module ActionView
-  module Helpers
-    module AssetTagHelper
-      public
-      def stylesheet_link_tag(*sources)
-        options = sources.extract_options!.stringify_keys
-        cache   = options.delete("cache")
-
-        if ActionController::Base.perform_caching && cache
-          joined_stylesheet_name = (cache == true ? "all" : cache) + ".css"
-          joined_stylesheet_path = File.join(STYLESHEETS_DIR, joined_stylesheet_name)
-
-          write_asset_file_contents(joined_stylesheet_path, compute_relative_stylesheet_paths(sources))
-          stylesheet_tag(joined_stylesheet_name, options)
-        else
-          expand_stylesheet_sources(sources).collect { |source| stylesheet_tag(source, options) }.join("\n")
-        end
-      end
-
-      def javascript_include_tag(*sources)
-        options = sources.extract_options!.stringify_keys
-        cache   = options.delete("cache")
-
-        if ActionController::Base.perform_caching && cache
-          joined_javascript_name = (cache == true ? "all" : cache) + ".js"
-          joined_javascript_path = File.join(JAVASCRIPTS_DIR, joined_javascript_name)
-
-          write_asset_file_contents(joined_javascript_path, compute_relative_javascript_paths(sources))
-          javascript_src_tag(joined_javascript_name, options)
-        else
-          expand_javascript_sources(sources).collect { |source| javascript_src_tag(source, options) }.join("\n")
-        end
-      end
-
-      private
-      def compute_relative_path(source, dir, ext = nil)
-        source += ".#{ext}" if File.extname(source).blank? && ext
-        # TODO : remove the '/' if possible
-        "#{dir}/#{source}"
-      end
-
-      def compute_relative_javascript_paths(sources)
-        expand_javascript_sources(sources).collect { |source| compute_relative_path(source, 'javascripts', 'js') }
-      end
-
-      def compute_relative_stylesheet_paths(sources)
-        expand_stylesheet_sources(sources).collect { |source| compute_relative_path(source, 'stylesheets', 'css') }
-      end
-    end
-  end
-end
-
 
 
 #To have homemade message-id in mails

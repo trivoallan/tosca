@@ -1,25 +1,25 @@
 <div class="content">
-<h1><%= _('SLA report') %> </h1>
-<h2><%= _('Caption') %> </h2>
-<p><%=_('The progressions bar represent the progress ratio of the contract: ')%></p><br />
+<h1><%= t('SLA report') %> </h1>
+<h2><%= t('Caption') %> </h2>
+<p><%=t('The progressions bar represent the progress ratio of the contract: ')%></p><br />
 <ul>
-  <li><%=progress_bar(0)%><%=_('The contract has not been started yet') %></li>
+  <li><%=progress_bar(0)%><%=t('The contract has not been started yet') %></li>
   <li><%=progress_bar(25) %> 25%</li>
   <li><%=progress_bar(50) %> 50%</li>
   <li><%=progress_bar(75) %> 75%</li>
-  <li><%=progress_bar(110) %> <%= _('The contract is outdated! ') %><br /><br /></li>
+  <li><%=progress_bar(110) %> <%= t('The contract is outdated! ') %><br /><br /></li>
 </ul>
- <p><%= _('The indicated time is the one elapsed before the end of the SLA.') %></p>
+ <p><%= t('The indicated time is the one elapsed before the end of the SLA.') %></p>
  <ul>
   <% @percents.each do |c| %>
     <% c_id = @percents.index(c) %>
     <li><h2><%= @extra[c_id][:name] %></h2>
     <table class="show" width='100%'>
         <tr>
-          <th><%= _('Id')%></th>
-          <th><%= _('Workaround')%></th>
-          <th><%= _('Correction')%></th>
-          <th><%= _('Summary')%></th>
+          <th><%= t('Id')%></th>
+          <th><%= t('Workaround')%></th>
+          <th><%= t('Correction')%></th>
+          <th><%= t('Summary')%></th>
         </tr>
         <% @extra[c_id][:issues_ids].each do |d_id| %>
         <% d= c[d_id] %>

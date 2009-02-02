@@ -1,67 +1,67 @@
-<h2><%= _('Contents')%></h2>
+<h2><%= t('Contents')%></h2>
 
-<%= _('You have %s rights on this portal') % @session_user.role %>
+<%= t('You have %s rights on this portal') % @session_user.role %>
 <div class="subcolumns">
   <div class="c50l">
     <div class="show">
-  <h3><%= _('Users') %></h3>
+  <h3><%= t('Users') %></h3>
   <% links = [
-        link_to(_('User list'), accounts_path),
-        link_to(_('Add a user'), signup_new_account_path) ] %>
-  <%= show_list(links, _('User management')) %>
+        link_to(t('User list'), accounts_path),
+        link_to(t('Add a user'), signup_new_account_path) ] %>
+  <%= show_list(links, t('User management')) %>
   <% if @session_user.role_id <= 2 # manager %>
     <% links = [
-          link_to(_('Teams'), teams_path) ] %>
-    <%= show_list(links, _("Teams management")) %>
+          link_to(t('Teams'), teams_path) ] %>
+    <%= show_list(links, t("Teams management")) %>
   <% end %>
   <% if @session_user.role_id == 1 # admin %>
    <% links = [
-        link_to( _('Permissions'), permissions_path),
-        link_to( _('Roles'), roles_path) ] %>
-   <%= show_list(links, _('Permission management')) %>
+        link_to( t('Permissions'), permissions_path),
+        link_to( t('Roles'), roles_path) ] %>
+   <%= show_list(links, t('Permission management')) %>
   <% end %>
   <% links = [
-        link_to( _('Skills'), knowledges_path) ] %>
-  <%= show_list(links, _('Skill management')) %>
+        link_to( t('Skills'), knowledges_path) ] %>
+  <%= show_list(links, t('Skill management')) %>
 </div>
 
 <div class="show">
-  <h3><%= _('Customers') %></h3>
-  <p><%= _('You have to create a client before creating a contract') %>.</p>
+  <h3><%= t('Customers') %></h3>
+  <p><%= t('You have to create a client before creating a contract') %>.</p>
   <% links = [
-        link_to( _('Customers'), clients_path),
-        link_to( _('Contracts'), contracts_path)  ] %>
-  <%= show_list(links, _('Customer management')) %>
+        link_to( t('Customers'), clients_path),
+        link_to( t('Contracts'), contracts_path)  ] %>
+  <%= show_list(links, t('Customer management')) %>
 </div>
   </div>
   <div class="c50r">
  <div class="show">
-   <h3><%= _('Plateform')%></h3>
-   <p><%= _('System management')%></p>
+   <h3><%= t('Plateform')%></h3>
+   <p><%= t('System management')%></p>
   <% links = [
-        link_to( _('Alerts'), alerts_path) ] %>
+        link_to( t('Alerts'), alerts_path) ] %>
   <%= show_list(links) %>
-  <p><%= _('Source management')%></p>
+  <p><%= t('Source management')%></p>
   <% links = [
-         link_to( _('Software list'), softwares_path),
-         link_to( _('Software categorization'), groups_path),
-         link_to( _('Versions'), versions_path),
-         link_to( _('Releases'), releases_path) ] %>
+         link_to( t('Software list'), softwares_path),
+         link_to( t('Software categorization'), groups_path),
+         link_to( t('Versions'), versions_path),
+         link_to( t('Releases'), releases_path) ] %>
    <%= show_list(links) %>
  </div>
   <div class="show">
-  <h3><%= _('Reporting')%></h3>
+  <h3><%= t('Reporting')%></h3>
   <% links = [
-      link_to( _('Digest report'), digest_reporting_path),
-      link_to( _('Weekly digest'), weekly_reporting_path),
-      link_to( _('Distribution of issues in time'), calendar_reporting_path) ] %>
+      link_to( t('Digest report'), digest_reporting_path),
+      link_to( t('Weekly digest'), weekly_reporting_path),
+      link_to( t('Distribution of issues in time'), calendar_reporting_path) ] %>
   <%= show_list(links) %>
  </div>
    <% if @session_user.role_id == 1 %>
    <div class="show">
-    <h3><%= _('Administration')%></h3>
+    <h3><%= t('Administration')%></h3>
     <% links = [
-        link_to( _('Clear cache'), clear_cache_welcome_path) ] %>
+        link_to( t('Clear cache'), clear_cache_welcome_path) ] %>
     <%= show_list(links) %>
    </div>
    <% end %>

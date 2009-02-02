@@ -19,7 +19,7 @@
 class Archive < ActiveRecord::Base
   belongs_to :release
   
-  validates_presence_of :file, :message => _('You must select a file to upload')
+  validates_presence_of :file, :message => I18n.t('You must select a file to upload')
 
   file_column :file, :fix_file_extensions => nil, :size => true
 

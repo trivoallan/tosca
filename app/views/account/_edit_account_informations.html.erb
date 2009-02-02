@@ -6,12 +6,12 @@
   <table  style="width: 100%;">
     <% if create_account %>
      <tr style="width: 100%;">
-      <td><label><%= _('Type') %></label></td>
+      <td><label><%= t('Type') %></label></td>
       <td>
         <%= radio_button(:user, :client_form, 'true', :class => 'radio') %>
-        <label for="user_client_form_true"><%= _('Recipient') %></label>
+        <label for="user_client_form_true"><%= t('Recipient') %></label>
         <%= radio_button(:user, :client_form, 'false', :class => 'radio') %>
-        <label for="user_client_form_false"><%= _('Expert') %></label>
+        <label for="user_client_form_false"><%= t('Expert') %></label>
       </td>
      </tr>
     <% else %>
@@ -24,27 +24,27 @@
     <tr>
       <td colspan="2"><hr /></td>
     </tr><tr>
-      <td><label for="user_name"><%= _('User|Name') %></label></td>
+      <td><label for="user_name"><%= t('User|Name') %></label></td>
       <td><%= text_field :user, :name %></td>
     </tr><tr>
-      <td><label for="user_title"><%= _('User|Title') %></label></td>
+      <td><label for="user_title"><%= t('User|Title') %></label></td>
       <td><%= text_field :user, :title %></td>
     </tr><tr>
-      <td><label for="user_email"><%= _('User|Email') %></label></td>
+      <td><label for="user_email"><%= t('User|Email') %></label></td>
       <td><%= text_field :user, :email %></td>
     </tr><tr>
-      <td><label for="user_phone"><%= _('User|Phone') %></label></td>
+      <td><label for="user_phone"><%= t('User|Phone') %></label></td>
       <td><%= text_field :user, :phone %></td>
     </tr>
     <% if @user.team %>
     <tr>
-      <td><label><%= _('User|Team') %></label></td>
+      <td><label><%= t('User|Team') %></label></td>
       <td><%= @user.team.name %></td>
     </tr>
     <% end %>
     <% if manager && !create_account %>
      <tr>
-      <td><label for="user_inactive"><%= _('User|Inactive') %></label></td>
+      <td><label for="user_inactive"><%= t('User|Inactive') %></label></td>
       <td><%= check_box :user, :inactive %></td>
      </tr>
     <% end %>
@@ -53,12 +53,12 @@
     </tr>
     <% if manager %>
      <tr>
-      <td><label for="user_login"><%= _('User|Login') %></label></td>
+      <td><label for="user_login"><%= t('User|Login') %></label></td>
       <td><%= text_field :user, :login %></td>
      </tr>
     <% elsif !@user.login.blank? %>
      <tr>
-      <td><%= _('User|Login') %></td>
+      <td><%= t('User|Login') %></td>
       <td><%= @user.login %></td>
     </tr>
     <% end %>
@@ -67,10 +67,10 @@
       <td><label>Prevent Firefox to autocomplete the true password field</label></td>
       <td><input type='password' name="fake" id="fake" /></td>
      </tr><tr>
-      <td><label for="user_pwd"><%= _('Modify your password') %></label></td>
+      <td><label for="user_pwd"><%= t('Modify your password') %></label></td>
       <td><%= password_field :user, :pwd %></td>
      </tr><tr>
-      <td><label for="user_pwd_confirmation"><%= _('Confirm this last') %></label></td>
+      <td><label for="user_pwd_confirmation"><%= t('Confirm this last') %></label></td>
       <td><%= password_field :user, :pwd_confirmation %></td>
      </tr>
     <% end %>
@@ -80,15 +80,15 @@
       <td colspan="2"><hr/></td>
     </tr>
     <tr>
-      <td><label for="user_preferred_digest_daily"><%= _("Receive a summary of daily activities") %></label></td>
+      <td><label for="user_preferred_digest_daily"><%= t("Receive a summary of daily activities") %></label></td>
       <td><%= check_box :user, :preferred_digest_daily %></td>
     </tr>
     <tr>
-      <td><label for="user_preferred_digest_weekly"><%= _("Receive a summary of weekly activities") %></label></td>
+      <td><label for="user_preferred_digest_weekly"><%= t("Receive a summary of weekly activities") %></label></td>
       <td><%= check_box :user, :preferred_digest_weekly %></td>
     </tr>
     <tr>
-      <td><label for="user_preferred_digest_monthly"><%= _("Receive a summary of monthly activities") %></label></td>
+      <td><label for="user_preferred_digest_monthly"><%= t("Receive a summary of monthly activities") %></label></td>
       <td><%= check_box :user, :preferred_digest_monthly %></td>
     </tr>
     <% end %>
@@ -97,13 +97,13 @@
      <tr>
       <td colspan="2"><hr /></td>
      </tr><tr>
-      <td><label><%= _('User|Role') %></label></td>
+      <td><label><%= t('User|Role') %></label></td>
       <td id="roles"><%= hm_radio_button(:user, :role_id, @roles, :size => 4) %></td>
      </tr>
     <% end %>
     <tr>
       <td colspan="2"><fieldset>
-       <legend><%=_('User|Informations')%></legend>
+       <legend><%=t('User|Informations')%></legend>
        <%= text_area(:user, :informations, :style => 'width:100%;') %>
       </fieldset></td>
     </tr>

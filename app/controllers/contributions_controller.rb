@@ -116,7 +116,7 @@ class ContributionsController < ApplicationController
   def create
     @contribution = Contribution.new(params[:contribution])
     if _link2issue && @contribution.save
-      flash[:notice] = _('The contribution has been created successfully.')
+      flash[:notice] = t('The contribution has been created successfully.')
       _update(@contribution)
       redirect_to contribution_path(@contribution)
     else
@@ -136,7 +136,7 @@ class ContributionsController < ApplicationController
   def update
     @contribution = Contribution.find(params[:id])
     if _link2issue && @contribution.update_attributes(params[:contribution])
-      flash[:notice] = _('The contribution has been updated successfully.')
+      flash[:notice] = t('The contribution has been updated successfully.')
       _update(@contribution)
       redirect_to contribution_path(@contribution)
     else
@@ -197,7 +197,7 @@ private
       @contribution.issue = issue
       true
     rescue
-      flash[:warn] = _('The associated issue does not exist')
+      flash[:warn] = t('The associated issue does not exist')
       false
     end
   end

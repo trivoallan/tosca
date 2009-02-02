@@ -1,5 +1,5 @@
-<%= public_link_to _('Home'), welcome_path %> >
- <%= public_link_to _('Contributions'), contributions_path %> >
+<%= public_link_to t('Home'), welcome_path %> >
+ <%= public_link_to t('Contributions'), contributions_path %> >
   <%= public_link_to @contribution.software.name, list_contribution_path(@contribution.software_id) %> >
 
 <h2>
@@ -14,24 +14,24 @@
 
   <%= link_to_new_hyperlink("contribution", @contribution.id) %>
   <% options = { :edit => 'hyperlink' } %>
-  <%= show_list(@contribution.hyperlinks, _('link'), options) do |u|
+  <%= show_list(@contribution.hyperlinks, t('link'), options) do |u|
         " <a href=\"#{u.name.urlize}\" target=\"_blank\">#{u.name}</a> "
   end %>
 
   <% if @contribution.contributed_on %>
-      <%= _('This contribution has been submitted on %s by <b>%s</b>') %
+      <%= t('This contribution has been submitted on %s by <b>%s</b>') %
             [ @contribution.contributed_on_formatted, @contribution.engineer.name ] %>
       <% if @contribution.closed_on %>
-         <%= _('and its has been approved on %s') % @contribution.closed_on_formatted %>
+         <%= t('and its has been approved on %s') % @contribution.closed_on_formatted %>
       <% end %>.<br/>
       <% if @contribution.affected_version %>
-         <%= _('This bug has been discovered in the version %s ') % link_to_version(@contribution.affected_version) %>
+         <%= t('This bug has been discovered in the version %s ') % link_to_version(@contribution.affected_version) %>
       <% end %>
       <% if @contribution.fixed_version %>
-         <%= _('and has been fixed in the version %s') % link_to_version(@contribution.fixed_version) %>
+         <%= t('and has been fixed in the version %s') % link_to_version(@contribution.fixed_version) %>
       <% end %>
   <% else %>
-      <%= _('This patch was not submitted to the community') %>
+      <%= t('This patch was not submitted to the community') %>
   <% end %><br />
 
   <% if @session_user and @session_user.engineer? and @contribution.issue %>

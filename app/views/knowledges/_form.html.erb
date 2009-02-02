@@ -2,20 +2,20 @@
 
 <table class="show">
   <tr>
-    <th colspan="2"><%= _('User')%> <%= @session_user.name %></th>
-    <th colspan="4" align="center"><%= _('Choose a domain OR a software') %></th>
+    <th colspan="2"><%= t('User')%> <%= @session_user.name %></th>
+    <th colspan="4" align="center"><%= t('Choose a domain OR a software') %></th>
   </tr>
   <tr>
-    <th><label for="knowledge_level"><%= _('Level') %></label></th>
+    <th><label for="knowledge_level"><%= t('Level') %></label></th>
     <td><%= text_field :knowledge, :level, :size => 1, :maxlength => 1 %></td>
 
-    <th><label for="knowledge_skill_id"><%= _('Domain') %></label></th>
+    <th><label for="knowledge_skill_id"><%= t('Domain') %></label></th>
     <td><%= select_empty(:knowledge, :skill_id, @skills) %></td>
-    <th><label for="knowledge_software_id"><%= _('Software') %></label></th>
+    <th><label for="knowledge_software_id"><%= t('Software') %></label></th>
     <td><%= select_empty(:knowledge, :software_id, @software) %></td>
   </tr>
   <tr>
-    <th><label for="knowledge_subscribed"><%= _('Subscribed ?') %></label></th>
+    <th><label for="knowledge_subscribed"><%= t('Subscribed ?') %></label></th>
     <td><%= check_box(:knowledge, :subscribed) %></td>
   </tr>
 </table>

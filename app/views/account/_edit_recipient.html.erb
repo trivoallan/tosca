@@ -3,14 +3,14 @@
 
 <% if @user.recipient? %>
 <div class="show">
-  <h1><b><%= _('Recipient') %></b></h1><br />
+  <h1><b><%= t('Recipient') %></b></h1><br />
 
   <p><label for="user_recipient_client_id">Client</label>
     <%= select(:user_recipient, :client_id, @clients) %>
   </p>
   <hr />
 
-  <p><label><%= _('Contracts')%></label></p>
+  <p><label><%= t('Contracts')%></label></p>
   <div id="contracts" class="bloc_scroll">
     <%# We display only the contracts of the user %>
     <%= hbtm_check_box( @user.own_contracts, @contracts, 'user[own_contract_ids]', :size => 1) %>

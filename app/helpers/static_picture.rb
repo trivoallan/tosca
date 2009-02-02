@@ -46,13 +46,13 @@ class StaticPicture < Static::ActionView
 
   @@view = nil
   def self.view
-    desc = _("View")
+    desc = I18n.t("View")
     @@view ||= image_tag('icons/zoom.png', options(desc, '16x16'))
   end
 
   @@edit = nil
   def self.edit
-    desc = _("Update")
+    desc = I18n.t("Update")
     @@edit ||= image_tag('icons/pencil.png', options(desc, '16x16'))
   end
 
@@ -60,81 +60,81 @@ class StaticPicture < Static::ActionView
   # image_create(message) : with message being a good tooltip for the link
   @@add = nil
   def self.add
-    desc = _('Add')
+    desc = I18n.t('Add')
     @@add ||= image_tag('icons/add.png', options(desc, '16x16'))
   end
 
   @@delete = nil
   def self.delete
-    desc = _("Delete")
+    desc = I18n.t("Delete")
     @@delete ||= image_tag('icons/cancel.png', options(desc, '16x16'))
   end
 
   @@hide_notice = nil
   def self.hide_notice
-    desc = _("Hide")
+    desc = I18n.t("Hide")
     @@hide_notice ||= image_tag('icons/cancel.png', options(desc, '16x16'))
   end
 
   @@help = nil
   def self.help
-    desc = _("Help")
+    desc = I18n.t("Help")
     @@help ||= image_tag('icons/help.png', options(desc, '16x16'))
   end
 
   # Navigation
   @@back = nil
   def self.back
-    desc = _("Back")
+    desc = I18n.t("Back")
     @@back ||= image_tag("icons/arrow_undo.png", options(desc, '16x16'))
   end
 
   @@first_page = nil
   def self.first_page
-    desc = _("First page")
+    desc = I18n.t("First page")
     @@first_page ||= image_tag("icons/resultset_first.png", options(desc, '16x16'))
   end
 
   @@previous_page = nil
   def self.previous_page
-    desc = _("Previous page")
+    desc = I18n.t("Previous page")
     @@previous_page ||= image_tag("icons/resultset_previous.png", options(desc, '16x16'))
   end
 
   @@next_page = nil
   def self.next_page
-    desc = _("Next page")
+    desc = I18n.t("Next page")
     @@next_page ||= image_tag("icons/resultset_next.png", options(desc, '16x16'))
   end
 
   @@last_page = nil
   def self.last_page
-    desc = _("Last page")
+    desc = I18n.t("Last page")
     @@last_page ||= image_tag("icons/resultset_last.png", options(desc, '16x16'))
   end
 
   @@folder = nil
   def self.folder
-    desc = _("File")
+    desc = I18n.t("File")
     @@folder ||= image_tag('icons/folder.png', options(desc, '16x16'))
   end
 
   @@patch = nil
   def self.patch
-    desc = _("Contribution")
+    desc = I18n.t("Contribution")
     @@patch ||= image_tag('icons/page_code.png', options(desc, '16x16'))
   end
 
   # Security
   @@public = nil
   def self.public
-    desc = _("Make public")
+    desc = I18n.t("Make public")
     @@public ||= image_tag('icons/lock_open.png', options(desc, '16x16'))
   end
 
   @@private = nil
   def self.private
-    desc = _("Make private")
+    desc = I18n.t("Make private")
     @@private ||= image_tag('icons/lock.png', options(desc, '16x16'))
   end
 
@@ -151,19 +151,19 @@ class StaticPicture < Static::ActionView
 
   @@tosca = nil
   def self.tosca
-    desc = _("Home page")
+    desc = I18n.t("Home page")
     @@tosca ||= image_tag('logo_tosca.gif', options(desc))
   end
 
   @@ruby = nil
   def self.ruby
-    desc = _("Tosca on Rails")
+    desc = I18n.t("Tosca on Rails")
     @@ruby ||= image_tag('icons/ruby.gif', options(desc, '15x15'))
   end
 
   @@linagora = nil
   def self.linagora
-    desc = _("Tosca on Rails")
+    desc = I18n.t("Tosca on Rails")
     @@linagora ||= image_tag('logo_linagora.gif', options(desc, '176x44'))
   end
 
@@ -179,7 +179,7 @@ class StaticPicture < Static::ActionView
 
   @@print = nil
   def self.print
-    desc = _("Print")
+    desc = I18n.t("Print")
     @@print ||= image_tag('icons/printer.png', options(desc, '16x16'))
   end
 
@@ -213,7 +213,7 @@ class StaticPicture < Static::ActionView
 
   @@icon_tag = nil
   def self.icon_tag
-    desc = _("Manage tags")
+    desc = I18n.t("Manage tags")
     @@icon_tag ||= image_tag('icons/tag_red.gif', options(desc, '16x16'))
   end
 

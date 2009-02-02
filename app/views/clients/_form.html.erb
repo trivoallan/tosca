@@ -5,13 +5,13 @@
     <div class="show tinymce">
       <table>
         <tr>
-         <td><label for="client_name"><%= _("Name") %></label></td>
+         <td><label for="client_name"><%= t("Name") %></label></td>
          <td><%= text_field :client, :name  %></td>
         </tr><tr>
-         <td colspan="2"><label for="client_address"><%= _("Address") %></label><br />
+         <td colspan="2"><label for="client_address"><%= t("Address") %></label><br />
              <%= text_area :client, :address, :rows => 9 %></td>
         </tr><tr>
-         <td colspan="2"><p><label for="client_context"><%= _("Context") %>(<%=_('Private')%></label><br />
+         <td colspan="2"><p><label for="client_context"><%= t("Context") %>(<%=t('Private')%></label><br />
             <%= text_area :client, :context, :rows => 10 %></p></td>
         </tr>
       </table>
@@ -21,14 +21,14 @@
     <div class="show">
       <table>
         <tr>
-         <td><label for="client_inactive"><%= _("Inactive") %></label></td>
+         <td><label for="client_inactive"><%= t("Inactive") %></label></td>
          <td><%= check_box :client, :inactive %></td>
         </tr><tr>
-       <td colspan="2"><label for="client_image"><%= _("Logo") %></label></td>
+       <td colspan="2"><label for="client_image"><%= t("Logo") %></label></td>
         </tr><tr>
          <td colspan="2"><%=  file_column_field 'picture', 'image'  %></td>
         </tr><tr>
-         <td><label for="client_access_code"><%= _("Access code") %></label></td>
+         <td><label for="client_access_code"><%= t("Access code") %></label></td>
          <td><%= text_field :client, :access_code, :size => 5 %></td>
         </tr>
       </table>

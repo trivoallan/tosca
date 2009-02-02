@@ -47,7 +47,7 @@
 <% end %>
  <% theme = session[:theme] %>
  <%= stylesheet_link_tag(theme, :media => 'all') unless theme.blank? %>
- <title><%= @page_title || _(controller.controller_name) %></title>
+ <title><%= @page_title || t(controller.controller_name) %></title>
 </head>
 <body>
   <div id="page_margins">
@@ -56,8 +56,8 @@
       <div id="header">
         <div id="topnav">
           <!-- start: skip link navigation -->
-          <a class="skip" title="skip link" href="#navigation"><%= _("Skip to the navigation") %></a><span class="hideme">.</span>
-          <a class="skip" title="skip link" href="#content"><%= _("Skip to the content") %></a><span class="hideme">.</span>
+          <a class="skip" title="skip link" href="#navigation"><%= t("Skip to the navigation") %></a><span class="hideme">.</span>
+          <a class="skip" title="skip link" href="#content"><%= t("Skip to the content") %></a><span class="hideme">.</span>
           <!-- end: skip link navigation -->
         </div>
       </div>
@@ -74,7 +74,7 @@
       <% end %>
           <ul class="nav_user">
           <% if user %>
-            <% infos = [ link_to(_('My account'), edit_account_path(user)),
+            <% infos = [ link_to(t('My account'), edit_account_path(user)),
 			             public_link_to_remote_theme,
                          public_link_to(image_disconnect, logout_accounts_path, :class => "disconnect") ] %>
             <li><%= infos.join('</li><li>') %></li>
@@ -102,7 +102,7 @@
         <% if @partial_panel %>
           <div id="col3">
             <div id="col3_content" class="clearfix">
-              <%= render_partial @partial_panel %>
+              <%= render :partial => @partial_panel %>
             </div>
             <!-- IE Column Clearing -->
             <div id="ie_clearing"> &#160; </div>

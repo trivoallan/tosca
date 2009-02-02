@@ -1,8 +1,8 @@
 <div id='issue_tab_content' class='issue_tab_content'>
   <% if @attachments.size > 0 %>
-    <b><u><%= pluralize(@attachments.size, _("Attachment")) %></u></b>
+    <b><u><%= pluralize(@attachments.size, t("Attachment")) %></u></b>
   <% end %>
-  <% titres = [_("Id"), _("Link"), _("Size"), _("Created on"), _("By") ] %>
+  <% titres = [t("Id"), t("Link"), t("Size"), t("Created on"), t("By") ] %>
   <%= show_table(@attachments, Attachment, titres, :total => false) { |pj|
     result = ''
     if File.exist?(pj.file.to_s)

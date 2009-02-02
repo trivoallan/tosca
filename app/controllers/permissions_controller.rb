@@ -35,7 +35,7 @@ class PermissionsController < ApplicationController
   def create
     @permission = Permission.new(params[:permission])
     if @permission.save
-      flash[:notice] = _('Permission was successfully created.')
+      flash[:notice] = t('Permission was successfully created.')
       redirect_to permissions_path
     else
       _form and render :action => 'new'
@@ -50,7 +50,7 @@ class PermissionsController < ApplicationController
   def update
     @permission = Permission.find(params[:id])
     if @permission.update_attributes(params[:permission])
-      flash[:notice] = _('Permission was successfully updated.')
+      flash[:notice] = t('Permission was successfully updated.')
       redirect_to permissions_path
     else
       _form and render :action => 'edit'

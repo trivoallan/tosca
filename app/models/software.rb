@@ -34,11 +34,11 @@ class Software < ActiveRecord::Base
   has_and_belongs_to_many :skills, :uniq => true
 
   validates_presence_of :name, :message =>
-    _('You have to specify a name')
+    I18n.t('You have to specify a name')
   validates_presence_of :group, :message =>
-    _('You have to specify a group')
+    I18n.t('You have to specify a group')
   validates_length_of :skills, :minimum => 1, :message =>
-    _('You have to specify at least one technology')
+    I18n.t('You have to specify at least one technology')
 
 
   # See ApplicationController#scope

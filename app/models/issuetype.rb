@@ -22,13 +22,13 @@ class Issuetype < ActiveRecord::Base
   has_many :workflows
 
   ####################
-  N_("Information")
-  N_("Incident")
-  N_("Evolution")
-  N_("Call-out")
-  N_("Analysis")
-  N_("Delivery")
-  N_("Documentation")
+  I18n.t("Information")
+  I18n.t("Incident")
+  I18n.t("Evolution")
+  I18n.t("Call-out")
+  I18n.t("Analysis")
+  I18n.t("Delivery")
+  I18n.t("Documentation")
   ####################
 
   # Only ids, it's use is restricted to expert view
