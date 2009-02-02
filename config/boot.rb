@@ -1,21 +1,3 @@
-#
-# Copyright (c) 2006-2009 Linagora
-#
-# This file is part of Tosca
-#
-# Tosca is free software, you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as
-# published by the Free Software Foundation; either version 2 of
-# the License, or (at your option) any later version.
-#
-# Tosca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU Lesser General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
 # Don't change this file!
 # Configure your app in config/environment.rb and config/environments/*.rb
 
@@ -85,7 +67,7 @@ module Rails
 
     class << self
       def rubygems_version
-        Gem::RubyGemsVersion if defined? Gem::RubyGemsVersion
+        Gem::RubyGemsVersion rescue nil
       end
 
       def gem_version
@@ -100,7 +82,7 @@ module Rails
 
       def load_rubygems
         require 'rubygems'
-        min_version = '1.1.1'
+        min_version = '1.3.1'
         unless rubygems_version >= min_version
           $stderr.puts %Q(Rails requires RubyGems >= #{min_version} (you have #{rubygems_version}). Please `gem update --system` and try again.)
           exit 1

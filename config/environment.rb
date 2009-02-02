@@ -23,9 +23,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.1.2' unless defined? RAILS_GEM_VERSION
-$KCODE='u'
-require 'jcode'
+RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -71,11 +69,14 @@ Rails::Initializer.run do |config|
   # request, see ApplicationController for more info.
   config.action_mailer.default_url_options = { :host => "localhost" }
 
+  # Default relative root
+  config.action_controller.relative_url_root = 'tosca' if RAILS_ENV == 'production'
+
 
   ### External libs ###
   # Used to i18n and l10n
-  config.gem 'gettext', :lib => 'gettext/rails'
-  config.gem 'gettext', :lib => 'gettext/utils' # needed by gettext_localize
+  config.gem 'locale'
+  config.gem 'locale_rails'
 
   # Used to get up2date pagination on list
   config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
