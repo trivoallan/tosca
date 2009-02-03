@@ -11,6 +11,34 @@ en:
         other:  "{{count}} working days"
       x_working_months:
         one:    "1 working month"
-        other:      "{{count}} working months"
+        other:  "{{count}} working months"
 
+  welcome:
+    title: Welcome
+    consult_list_of: "You can see the list of {{value}}"
+    issues_box:
+      submit_an_issue: "You can also make {{value}}"
+      access_denied: "You are not {{value}}, so you cannot access the issues interface of our service"
+    document_box:
+      activity_report: "You can consult your {{value}} online"
+      monthly_calendar: "You can also see the {{value}}"
+      weekly_calendar: "You can see the {{value}}"
+    idea_box:
+      title: Idea box
+      content: "You have an idea which can improve our services?<br />Your comments and suggestions are welcome in {{value}}."
+    software_box:
+      classification: "Software are sorted into a precise and simple {{value}}, distributed by activity group"
+      contributions: "You can consult and follow all the {{value}} done by our team in Open Source communities"
+    update_box:
+      this_site_has_changed: "This site has changed"
+      this_tool_has_been_updated: "As you can see, this tool has been updated. Here is a shortlist of changes : "
+      translation_framework_sucks: "This translation framework really sucks"
+
+
+  software: software
+  issue:
+    one: issue
+    other: issues
   and: and
+  a new issue: "une nouvelle demande"
+  weekly report of issues: weekly report of issues

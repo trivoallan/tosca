@@ -1,6 +1,6 @@
 <h2><%= t('Contents')%></h2>
 
-<%= t('You have %s rights on this portal') % @session_user.role %>
+<%= t("You have %s rights on this portal", :value => @session_user.role) %>
 <div class="subcolumns">
   <div class="c50l">
     <div class="show">
