@@ -23,14 +23,13 @@ module WillPaginate::ViewHelpers
       case collection.size
       when 0; t('No entries found')
       when 1; t('Displaying <b>1</b> entry')
-      else;   t("Displaying <b>all %d</b> entries", :count => collection.size)
+      else;   t("Displaying <b>all {{count}}</b> entries", :count => collection.size)
       end
     else
-      t('Displaying entries <b>%d&nbsp;-&nbsp;%d</b> of <b>%d</b> in total') % [
-         collection.offset + 1,
-         collection.offset + collection.length,
-         collection.total_entries
-       ]
+      t('Displaying entries <b>{{from}}&nbsp;-&nbsp;{{to}}</b> of <b>{{total}}</b> in total', :from => collection.offset + 1,
+        :to => collection.offset + collection.length,
+        :total => collection.total_entries
+        )
     end
   end
 
