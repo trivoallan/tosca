@@ -437,7 +437,6 @@ class ReportingController < ApplicationController
       end
     end
 
-    size = @types.size
     Issue.send(:with_scope, { :find => { :conditions => Issue::CLOSED } }) do
       @types.each_with_index do |type, i|
         conditions = { :conditions => { :issuetype_id => type.id } }
@@ -488,7 +487,7 @@ class ReportingController < ApplicationController
     fixed = { :conditions => [condition, 6] }
     closed = { :conditions => [condition, 7] }
     cancelled = { :conditions => [condition, 8] }
-    active = { :conditions => 'statut_id NOT IN (5,6,7,8)' }
+    active = { :conditions => 'issues.statut_id NOT IN (5,6,7,8)' }
 
     report[0].push Issue.count(cancelled)
     report[1].push Issue.count(bypassed)

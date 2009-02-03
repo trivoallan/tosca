@@ -73,7 +73,6 @@ Rails::Initializer.run do |config|
   # Default relative root
   config.action_controller.relative_url_root = 'tosca' if RAILS_ENV == 'production'
 
-
   ### External libs ###
   # Used to i18n and l10n
   config.gem 'locale'

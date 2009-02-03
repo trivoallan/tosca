@@ -31,8 +31,8 @@ class User < ActiveRecord::Base
 
   has_many :attachments, :through => :comments
   has_many :comments, :dependent => :destroy
-  has_many :issues, :dependent => :destroy, :foreign_key => :recipient_id,
-    :dependent => :destroy
+  has_many :affected_issues, :dependent => :destroy, :foreign_key => :recipient_id,
+    :dependent => :destroy, :class_name => 'Issue'
   has_many :managed_contracts, :class_name => 'Contract', :foreign_key => :tam_id
 
   has_many :knowledges, :order => 'knowledges.level DESC', :foreign_key => :engineer_id,
@@ -317,6 +317,10 @@ class User < ActiveRecord::Base
   #like : Toto Tutu <tutu.toto@truc.com>
   def email_name
     "#{self.name} <#{self.email}>"
+  end
+
+  def issues
+    self.contracts.collect(&:issues).uniq
   end
 
   private

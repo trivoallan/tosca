@@ -51,4 +51,13 @@ class TeamTest < ActiveSupport::TestCase
     end
   end
 
+  def test_issues
+    Team.all.each do |t|
+      t.issues.each do |i|
+        assert_kind_of Issue, i
+        assert t.contract_ids.include? i.contract_id
+      end
+    end
+  end
+
 end

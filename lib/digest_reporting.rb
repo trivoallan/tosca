@@ -30,9 +30,7 @@ module DigestReporting
     # We must localise it after getting the (english) helper for the start date
     @period = t(@period)
 
-    options = { :conditions => [ "updated_on >= ? ", updated ],
-     :order => "contract_id ASC", :include => [:issuetype, :severity, :statut]}
-    issues = Issue.all(options)
+    issues = @session_user.issues
 
     @result = []
     last_contract_id = nil
@@ -56,6 +54,7 @@ module DigestReporting
     end
   end
 
+<<<<<<< HEAD:lib/digest_reporting.rb
   #important is an array of Issue, other is an array of DigestContracts
   DigestManagers = Struct.new(:important, :other)
 
@@ -100,4 +99,6 @@ module DigestReporting
 
   end
 
+=======
+>>>>>>> 3d8cce628d7ebd799ad599b3b05a4dca266a80bc:lib/digest_reporting.rb
 end
