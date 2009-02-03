@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 
   has_many :attachments, :through => :comments
   has_many :comments, :dependent => :destroy
-  has_many :affected_issues, :dependent => :destroy, :foreign_key => :recipient_id,
+  has_many :assigned_issues, :dependent => :destroy, :foreign_key => :recipient_id,
     :dependent => :destroy, :class_name => 'Issue'
   has_many :managed_contracts, :class_name => 'Contract', :foreign_key => :tam_id
 
