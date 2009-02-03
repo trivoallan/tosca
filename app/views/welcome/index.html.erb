@@ -3,21 +3,21 @@
 <link rel="alternate" href="contributions/all/list.atom" title="" type="application/atom+xml" />
 <table><tr><td rowspan="2"><%= StaticPicture::tosca %> </td><td><h2 class="spacer"><%=t('Contents')%></h2></td></tr>
   <tr><td>
-      <%= t('Welcome to the %s management tool') % App::ServiceFullName %><%= user ? ", #{user.title} #{user.name}" : '.' %>
+      <%= t('Welcome to the %s management tool', :value => App::ServiceFullName) %><%= user ? ", #{user.title} #{user.name}" : '.' %>
   </td></tr>
 </table>
 
 <%# 6 : public access %>
 <% role_id = (user ? user.role_id : 6) %>
-<% cache("welcome/#{role_id}/#{user.client_id if user and user.recipient?}") do %>
+<%# cache("welcome/#{role_id}/#{user.client_id if user and user.recipient?}") do %>
   <div class="subcolumns">
     <div class="c50l">
       <div class="show">
         <h3><%= t('Issues')%></h3>
         <% if user %>
-          <p><%= t("You can see the list of %s") % link_to(t("issues"), issues_path) %>.</p>
+          <p><%= t("You can see the list of %s", :value => link_to(t("issues"), issues_path)) %>.</p>
           <% if role_id < 5 # 5 : viewer access %>
-            <p><%= t("You can also %s") % link_to(t("make an issue"), new_issue_path) %>.</p>
+            <p><%= t("You can also %s", :value => link_to(t("make an issue"), new_issue_path)) %>.</p>
           <% end %>
         <% else %>
           <p><%= t("You are not %s, so you cannot access the issues interface of our service.") % connected %></p>
@@ -26,8 +26,8 @@
       <div class="show">
         <h3><%= t('Documents')%></h3>
         <% if user %>
-          <p><%= t('You can consult your %s online.') % link_to(t('activity report'), general_reporting_path) %></p>
-          <p><%= t("You can also see the %s") % link_to( t('Distribution of issues in time'), calendar_reporting_path) %></p>
+          <p><%= t("You can consult your {{value}} online", :value => link_to(t('activity report'), general_reporting_path)) %>.</p>
+          <p><%= t("You can also see the {{value}}", :value => link_to( t('Distribution of issues in time'), calendar_reporting_path)) %></p>
           <p><%= t("You can see the %s") % link_to( t('weekly report of issues'), weekly_reporting_path) %></p>
         <% else %>
           <p><%= t("When you are %s, you can access an activity report") % connected %><br />
@@ -65,7 +65,7 @@
 
       <div class="show">
         <h3><%=t('Software')%></h3>
-        <p><%= t("You can see the list of %s.") % public_link_to_softwares %>
+        <p><%= t("You can see the list of %s.", :value => public_link_to_softwares) %>
         <%= t("This software is sorted into a precise and simple %s, distributed by activity group.") % public_link_to_groups %></p><br />
         <% unless user %>
           <p><%=t("We have a large range of offers for support with a SLA. This Service Level Agreement can be very strong and is guaranteed by contract.")%>
@@ -79,18 +79,12 @@
         <h3><%=t('This site has changed')%></h3>
         <p><%= t("As you can see, this tool has been updated. Here is a shortlist of changes : ") %>
         <ul>
-          <li><%= t('You can now choose a theme between three if you click on this icon %s, in the top bar') % public_link_to_remote_theme %></li>
-          <li><%= t('Your %s is more detailed and include a new section about software')  % link_to(t('activity report'), general_reporting_path) %></li>
-          <li><%= t('Detailed view of your issues is improved, with a new dynamic comment approach') %></li>
           <% if user and user.engineer? %>
-            <li><%= t('a new alert page is available, allowing all teams to monitor its own contract')%></li>
-            <li><%= t('A new search engine is available in contracts list')%></li>
-            <li><%= t('A new system, tag-based, allowing to regroup software or issue at your convenience')%></li>
+            <li><%= t('The new translation Framework really sucks.') %></li>
           <% end %>
-          <li><%= t('A new view on issue is available : %s') % link_to( t('Distribution of issues in time'), calendar_reporting_path) %></li>
         </ul>
       </div>
     </div>
   </div>
 
-<% end %>
+<%# end %>

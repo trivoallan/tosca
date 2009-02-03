@@ -67,10 +67,10 @@ class Issue < ActiveRecord::Base
   # /!\ the last _public_ comment /!\
   belongs_to :last_comment, :class_name => "Comment",
     :foreign_key => "last_comment_id"
-  
+
   # Validation
   validates_presence_of :resume, :contract, :description, :recipient,
-    :statut, :severity, :warn => I18n.t("You must indicate a %s for your issue")
+    :statut, :severity
   validates_length_of :resume, :within => 4..70
   validates_length_of :description, :minimum => 5
 

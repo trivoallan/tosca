@@ -27,7 +27,11 @@ require_dependency 'login_system'
 # Infos : http://wiki.rubyonrails.com/rails/pages/LoginGeneratorACLSystem/
 require_dependency 'acl_system'
 
+# All overrides to Rails class are here
+require_dependency 'overrides'
 class ApplicationController < ActionController::Base
+
+
   # access protected everywhere, See
   # * Wiki for more generic Info,
   # * lib/scope.rb for deep protection
@@ -75,12 +79,12 @@ protected
   end
 
   # global variables (not pretty, but those two are really usefull)
-  @@first_time = true
+  @@my_first_time = true
   def set_global_shortcuts
     # this small hack allows to initialize the static url
     # generator on the first request. We need it 'coz the prefix
     # (e.g.: /tosca) cannot be known before a request go through.
-    if @@first_time and not defined? Static
+    if @@my_first_time
       require 'static'
       require 'static_script'
       require 'static_picture'

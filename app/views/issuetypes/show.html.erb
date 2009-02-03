@@ -2,7 +2,7 @@
  <%= link_to t('Contracts') , contracts_path %> >
   <%= @issuetype.name %>
 <div class="show">
-  <h1><%= t("Workflow of %s") % @issuetype.name%></h1>
+  <h1><%= t("Workflow of %s", 1, @issuetype.name) %></h1>
   <p><%= "#{t('Workflows')} #{link_to_new_workflow(@issuetype.id)}" %></p>
   <%= show_list(@issuetype.workflows, '', :no_title => true, :edit => 'workflow') do |w|
         w.name

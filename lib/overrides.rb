@@ -17,6 +17,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # Used to put expiry caches on images/pictures
+=begin
+# Does not works well with Rails 2.2.2.
+# TODO : Check & re-activate it if needed
 if defined? Mongrel::DirHandler
   module Mongrel
     class DirHandler
@@ -33,6 +36,7 @@ if defined? Mongrel::DirHandler
     end
   end
 end
+=end
 
 class Module
   def include_all_modules_from(parent_module)

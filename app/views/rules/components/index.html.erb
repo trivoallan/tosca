@@ -1,6 +1,6 @@
 <h1><%= t('List of components offers') %></h1>
 
-<% text = t('an %s offer') % App::ServiceName  %>
+<% text = t('an %s offer', 1, App::ServiceName) %>
 <% paginated_section(@components, :create_label => text) do %>
  <% titles = [t('Component|Name')] %>
  <%= show_table(@components, Rules::Component, titles) do |c|
