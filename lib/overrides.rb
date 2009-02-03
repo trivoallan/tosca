@@ -187,17 +187,12 @@ class Time
   # Time.in_words(10.hours, 5)
   # Time.in_words(2.days + 10.hours)
   # Time.in_words(0.5.days, true)
-  @@first_time = true
   def self.in_words(distance_in_seconds, dayly_time = 24)
     # Needed for putting libs into the tranlaste world of TOSCA
     # We cannot load it into config/environnement.rb, current version
     # of gettext bug with current version of gettext_localize
     # as of 10/04/08
     # TODO : find the bug or check it later
-    if @@first_time
-      GetText.bindtextdomain 'tosca'
-      @@first_time = nil
-    end
 
     return t('Immediate') if distance_in_seconds == 0
     return '-' unless distance_in_seconds.is_a?(Numeric) and distance_in_seconds > 0
@@ -211,35 +206,36 @@ class Time
     half_day_inf = (day/2) - 60
     half_day_sup = (day/2) + 60
 
-    case distance # in minutes
-    when 0..1
-      t('less than a minute')
-    when 1..45
-      t('%d minutes') % distance
-    when 45..half_day_inf, half_day_sup..day-60
-      value = (distance.to_f / 60.0).round
-      n_('%d hour', '%d hours', value) % value
-    when half_day_inf..half_day_sup
-      (opened ? t('1 half a working day') : t('1 half day'))
-    when (day-60)..(day+60), (day*2-60)..(day*2+60),
-        (day*3-60)..(day*3), (3*day)..mo
-      val = (distance / day).round
-      (opened ? n_('%d working day', '%d working days', val) :
-          n_('%d day', '%d days', val)) % val
-    when day..(3*day)
-      days = (distance / day).floor
-      hours = ((distance % 1.day)/60).round
-      out = (opened ? t("{{count}} working day", :count => days) :
-                       t("{{count}} day", :count => days))
-      out << ' ' << t('and') << ' ' << t("{{count}} hour", :count => hours)
-      out
-    else
-      val = (distance / mo).round
-             (opened ? t("{{count}} working month", :count => val) :
-                       t("{{count}} month", :count => val))
+    I18n.with_options :scope => 'datetime.distance_in_words' do |locale|
+      case distance # in minutes
+      when 0..1
+        locale.t(:less_than_x_minutes, :count => 0)
+      when 1..45
+        locale.t(:x_minutes, :count => distance)
+      when 45..half_day_inf, half_day_sup..day-60
+        value = (distance.to_f / 60.0).round
+        locale.t(:about_x_hours, :count => value)
+      when half_day_inf..half_day_sup
+        (opened ? t(:half_a_working_day) : t(:half_a_day))
+      when (day-60)..(day+60), (day*2-60)..(day*2+60),
+           (day*3-60)..(day*3), (3*day)..mo
+        val = (distance / day).round
+        (opened ? locale.t(:x_working_days, :count => val) :
+                  locale.t(:x_days, :count => val))
+      when day..(3*day)
+        days = (distance / day).floor
+        hours = ((distance % 1.day)/60).round
+        out = (opened ? locale.t(:x_working_days, :count => days) :
+                        locale.t(:x_days, :count => days))
+        out << ' ' << t('and') << ' ' << t(:about_x_hours, :count => hours)
+        out
+      else
+        val = (distance / mo).round
+        (opened ? t(:x_working_months, :count => val) :
+                  t(:x_months, :count => val))
+      end
     end
   end
-
 end
 
 #############################################

@@ -1,5 +1,16 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  datetime:
+    distance_in_words:
+      # Overloaded in lib/overrides.rb for Working days
+      half_a_working_day: "half a working day"
+      half_a_day: "half a day"
+      x_working_days:
+        one:    "1 working day"
+        other:  "{{count}} working days"
+      x_working_months:
+        one:    "1 working month"
+        other:      "{{count}} working months"
+
+  and: and
