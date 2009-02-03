@@ -229,7 +229,7 @@ class Time
     when day..(3*day)
       days = (distance / day).floor
       hours = ((distance % 1.day)/60).round
-      out = ((opened ? t("{{count}} working day", :count => days) :
+      out = (opened ? t("{{count}} working day", :count => days) :
                        t("{{count}} day", :count => days))
       out << ' ' << t('and') << ' ' << t("{{count}} hour", :count => hours)
       out
