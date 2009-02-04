@@ -67,7 +67,7 @@ class Date
     Date.new(0, 11, 1) => true, # 1st november
     Date.new(0, 11, 11) => true, #11th november
     Date.new(0, 12, 25) => true #25th december
-  }
+  } unless defined? FixedHolidays
 
   # Dynamic cache for variable holidays, for performance reason
   @@variable_holidays = {}

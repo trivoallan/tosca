@@ -12,6 +12,7 @@ fr:
         other:  "{{count}} mois ouvrés"
 
   and: et
+  welcome: bienvenue
   Submitted: "Enregistr\xC3\xA9"
   Selected issues can wait: "Les demandes s\xC3\xA9lectionn\xC3\xA9es peuvent attendre"
   License|Name: Nom
@@ -254,7 +255,7 @@ fr:
   Display only software supported by your contract: "Aficher seulement les logiciels support\xC3\xA9s par votre contrat"
   "The progressions bar represent the progress ratio of the contract: ": "La barre de progression repr\xC3\xA9sente le taux de finition du contrat: "
   State: Etat
-  When you are %s, you can access an activity report: "Quand vous \xC3\xAAtes %s, vous avez acc\xC3\xA8s \xC3\xA0 un rapport d'activit\xC3\xA9"
+  When you are {{value}}, you can access an activity report: "Quand vous \xC3\xAAtes {{value}}, vous avez acc\xC3\xA8s \xC3\xA0 un rapport d'activit\xC3\xA9"
   Edit a software: Modifier un logiciel
   You have to create a client before creating a contract: "Vous devez cr\xC3\xA9er un client avant de cr\xC3\xA9er un contrat"
   Forgotten password ?: "Mot de passe oubli\xC3\xA9 ?"
@@ -593,7 +594,7 @@ fr:
   Consult issues: Consulter les demandes
   Bypassed: "Contourn\xC3\xA9e"
   Next page: Page suivante
-  "%s login": Connection au %s
+  "{{value}} login": Connection au {{value}}
   Owner: Responsable
   Number of new issues: Nombre de nouvelles demandes
   Please select the team you want to monitor: "Veuillez s\xC3\xA9lectionner l'\xC3\xA9quipe que vous voulez surveiller"

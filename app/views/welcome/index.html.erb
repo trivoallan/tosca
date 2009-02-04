@@ -30,7 +30,7 @@
           <p><%= t("You can also see the {{value}}", :value => link_to( t('Distribution of issues in time'), calendar_reporting_path)) %></p>
           <p><%= t("You can see the %s") % link_to( t('weekly report of issues'), weekly_reporting_path) %></p>
         <% else %>
-          <p><%= t("When you are %s, you can access an activity report") % connected %><br />
+          <p><%= t("When you are {{value}}, you can access an activity report", :value => connected) %><br />
           <%= t("dynamically showing the activity of our service for you in real time.")%></p><br />
         <% end %>
       </div>
