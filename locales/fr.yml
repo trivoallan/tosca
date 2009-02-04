@@ -10,9 +10,37 @@ fr:
       x_working_months:
         one:    "1 mois ouvré"
         other:  "{{count}} mois ouvrés"
+# Views specifics
+  welcome:
+    title: "Bienvenue"
+    consult_list_of: "Vous pouvez consulter la liste des {{value}}"
+    issues_box:
+      submit_an_issue: "Vous pouvez aussi faire {{value}}"
+      access_denied: "Vous n'\xC3\xAAtes pas {{value}}, donc vous ne pouvez pas acc\xC3\xA9der \xC3\xA0 l'interface des issues de notre service"
+    documents_box:
+      activity_report: "Vous pouvez consulter votre {{value}} en ligne"
+      monthly_calendar: "Vous pouvez aussi voir la {{value}}"
+      weekly_calendar: "Vous pouvez voir le {{value}}"
+    idea_box:
+      title: "la boite à idées"
+      content: "Vous avez une id\xC3\xA9e pour am\xC3\xA9liorer nos services ?<br />\n   Vos commentaires et suggestions sont les bienvenues dans {{value}}."
+    software_box:
+      classification: "Ces logiciels sont r\xC3\xA9partis selon une %s pr\xC3\xA9cise et simple, par groupe d'activit\xC3\xA9"
+      contributions: "Vous pouvez consulter et suivre toutes les %s faites par notre \xC3\xA9quipe dans les communaut\xC3\xA9s Open Source"
+    update_box:
+      this_site_has_changed: "Ce site a changé"
+      this_tool_has_been_updated: "Comme vous pouvez le voir, cet outil a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour. Voici une courte liste des changements : "
+      translation_framework_sucks: "Cet environnement de traduction craint à mort !!!"
 
+  software: "logiciel"
+  issue:
+    one: "demande"
+    other: "demandes"
   and: et
   welcome: bienvenue
+  a new issue: "une nouvelle demande"
+  weekly report of issues: "rapport hebdomadaire des demandes"
+
   Submitted: "Enregistr\xC3\xA9"
   Selected issues can wait: "Les demandes s\xC3\xA9lectionn\xC3\xA9es peuvent attendre"
   License|Name: Nom
@@ -71,8 +99,6 @@ fr:
   In time: "D\xC3\xA9lais respect\xC3\xA9s"
   of: de
   Forgotten password: "Mot de passe oubli\xC3\xA9"
-  You can consult your {{value}} online: "Vous pouvez consulter votre {{value}} en ligne"
-  You can also see the {{value}}: "Vous pouvez aussi voir la {{value}}"
   You are now subscribed to this %s: "Vous \xC3\xAAtes d\xC3\xA9sormais inscrit \xC3\xA0 ce/cette %s"
   "Vous have an idea in order to improve our services ? Don't hesitate to fill in the form!<br />\n\
     Every proposition will be consider with a lot of attention": "Vous avez une id\xC3\xA9e pour am\xC3\xA9liorer nos services ? N'h\xC3\xA9sitez pas \xC3\xA0 remplir le formulaire ci-dessous !<br />\n\
@@ -350,7 +376,6 @@ fr:
   The life cycle of an issue: Cycle de vie d'une demande
   Please contact us if your problem remains.: Merci de nous contacter si vous avez d'autres anomalies.
   The software %s has been created succesfully.: "Le logiciel %s a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9 avec succ\xC3\xA8s"
-  Software: Logiciel
   Monthly Digest: "Activit\xC3\xA9 mensuelle"
   Submit a contribution: "D\xC3\xA9poser une contribution"
   "%s has been spent by %s on this issue.": "%s se sont \xC3\xA9coul\xC3\xA9(e)s sur cette demande."
@@ -416,13 +441,10 @@ fr:
   Editing an issue type: "\xC3\x89diter un type de demande"
   Editing a statut: "\xC3\x89diter un statut"
   Estimate made in working days: "Estimation faite en jours ouvr\xC3\xA9s"
-  the idea box: "la boite \xC3\xA0 id\xC3\xA9es"
   Unknown account: Compte inconnu
   System management: "Gestion des Syst\xC3\xA8mes"
   The activity of your contracts: "L'activit\xC3\xA9 de vos contrats"
-  "As you can see, this tool has been updated. Here is a shortlist of changes : ": "Comme vous pouvez le voir, cet outil a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour. Voici une courte liste des changements : "
   Unknown: "Non sp\xC3\xA9cifi\xC3\xA9"
-  This software is sorted into a precise and simple %s, distributed by activity group.: "Ces logiciels sont r\xC3\xA9partis selon une %s pr\xC3\xA9cise et simple, par groupe d'activit\xC3\xA9."
   Add a knowledge: Ajouter une connaissance
   Disconnect: "D\xC3\xA9connexion"
   Distribution of issues in time: "R\xC3\xA9partition de vos demandes dans le temps"
@@ -491,7 +513,6 @@ fr:
   "Roles ": "R\xC3\xB4les"
   Supported software: "Mes logiciels support\xC3\xA9s"
   Time of taking into account the issues: Temps de prise en compte des demandes
-  Contribution|Software: Logiciel
   " workday": " jour ouvr\xC3\xA9"
   "Number of the week:": "Num\xC3\xA9ro de la semaine:"
   An issue type was successfully updated.: "Le type de demande a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
@@ -602,7 +623,6 @@ fr:
   User|Team: "\xC3\x89quipe"
   Step: "\xC3\x89tape"
   Add a new knowledge: Ajouter une connaissance
-  "You have an idea which can improve our services?<br />\n          Your comments and suggestions are welcome in %s.": "Vous avez une id\xC3\xA9e pour am\xC3\xA9liorer nos services ?<br />\n   Vos commentaires et suggestions sont les bienvenues dans %s."
   days: jours
   Closed ?: "Ferm\xC3\xA9e ?"
   Suspended: Suspendue
@@ -637,7 +657,6 @@ fr:
   Releases: Releases
   Knowledges: Connaissances
   "'%s' was successfully created.": "'%s' a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9 avec succ\xC3\xA8s."
-  This site has changed: "Ce site a chang\xC3\xA9"
   Cache cleared !: "Cache nettoy\xC3\xA9 !"
   New group: Nouveau groupe
   "No": Non
@@ -696,7 +715,6 @@ fr:
   By severities: "Par s\xC3\xA9v\xC3\xA9rit\xC3\xA9s"
   Is this release inactive ?: Est ce que cette release est inactive ?
   Editing skill: "\xC3\x89diter la comp\xC3\xA9tence"
-  You can consult and follow all the %s done by our team in Open Source communities.: "Vous pouvez consulter et suivre toutes les %s faites par notre \xC3\xA9quipe dans les communaut\xC3\xA9s Open Source."
   End: Fin
   Editing a commitment: Modifier un engagement
   by the OSSA Team.: "par l'\xC3\xA9quipe OSSA."
@@ -714,7 +732,6 @@ fr:
   Alert on submit: "Alerte sur d\xC3\xA9p\xC3\xB4t"
   Private ?: "Priv\xC3\xA9 ?"
   "[ Tam ]": "[ Tam ]"
-  You are not %s, so you cannot access the issues interface of our service.: "Vous n'\xC3\xAAtes pas %s, donc vous ne pouvez pas acc\xC3\xA9der \xC3\xA0 l'interface des issues de notre service."
   unlimited offer: "offre illimit\xC3\xA9e"
   has a pretty print page: "poss\xC3\xA8de une page pour s'imprimer"
   Please fill in the fields below.: Remplissez les champs ci-dessous.
