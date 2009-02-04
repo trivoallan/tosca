@@ -32,6 +32,9 @@ fr:
       this_tool_has_been_updated: "Comme vous pouvez le voir, cet outil a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour. Voici une courte liste des changements : "
       translation_framework_sucks: "Cet environnement de traduction craint à mort !!!"
 
+  consult_list_of: "Vous pouvez consulter la liste des {{value}}"
+  Welcome to the {{value}} management tool: Bienvenue sur l'outil de gestion du {{value}}
+
   software: "logiciel"
   issue:
     one: "demande"
@@ -100,9 +103,9 @@ fr:
   of: de
   Forgotten password: "Mot de passe oubli\xC3\xA9"
   You are now subscribed to this %s: "Vous \xC3\xAAtes d\xC3\xA9sormais inscrit \xC3\xA0 ce/cette %s"
-  "Vous have an idea in order to improve our services ? Don't hesitate to fill in the form!<br />\n\
-    Every proposition will be consider with a lot of attention": "Vous avez une id\xC3\xA9e pour am\xC3\xA9liorer nos services ? N'h\xC3\xA9sitez pas \xC3\xA0 remplir le formulaire ci-dessous !<br />\n\
-    Chaque proposition sera \xC3\xA9tudi\xC3\xA9e avec beaucoup d'attention."
+#  "Vous have an idea in order to improve our services ? Don't hesitate to fill in the form!<br />\n\
+#    Every proposition will be consider with a lot of attention": "Vous avez une id\xC3\xA9e pour am\xC3\xA9liorer nos services ? N'h\xC3\xA9sitez pas \xC3\xA0 remplir le formulaire ci-dessous !<br />\n\
+#    Chaque proposition sera \xC3\xA9tudi\xC3\xA9e avec beaucoup d'attention."
   By technology: Par technologie
   "Contracts :": "Contrats : "
   Correction: Correction
@@ -158,7 +161,6 @@ fr:
   About: A propos de
   a new severity: "une nouvelle s\xC3\xA9v\xC3\xA9rit\xC3\xA9"
   The software %s has been updated successfully.: "Le logiciel %s a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
-  Welcome to the %s management tool: Bienvenue sur l'outil de gestion du %s
   Offer: Offre
   The contribution has been updated successfully.: "La contribution a bien \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour."
   Resp.: Resp.
@@ -216,9 +218,9 @@ fr:
   Display only active clients: N'afficher que les clients actifs
   Subscribe to this issue: "S'inscrire \xC3\xA0 cette demande"
   Alert page for team %s: "Page d'alerte pour l'\xC3\xA9quipe %s"
-  "No data \n\
-    available": "Aucune donn\xC3\xA9e \n\
-    disponible"
+#  "No data \n\
+#    available": "Aucune donn\xC3\xA9e \n\
+#    disponible"
   with a copy to: avec en copie
   By expert: Par expert
   Supported software in this contract: "Logiciels support\xC3\xA9s dans le cadre de ce contrat"

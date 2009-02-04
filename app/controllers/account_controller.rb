@@ -236,15 +236,15 @@ class AccountController < ApplicationController
 private
   def _login(user)
     set_sessions(user)
-    flash[:notice] = (t("Welcome %s %s") %
-                      [ user.title, user.name]).gsub(' ', '&nbsp;')
+    flash[:notice] = t("Welcome {{title}} {{name}}", :title => user.title,
+        :name => user.name)
 
     user.active_contracts.each do |c|
       if (c.end_date - Time.now).between?(0.month, 1.month)
         message = '<br/><strong>'
         message << '</strong>'
-        message << (t("Your contract '%s' is near its end date : %s") %
-            [c.name, c.end_date_formatted])
+        message << t("Your contract '{{name}}' is near its end date : {{end_date}}",
+            :name => c.name, :end_date => c.end_date_formatted)
         flash[:notice] << message
       end
     end
