@@ -10,27 +10,28 @@ fr:
       x_working_months:
         one:    "1 mois ouvré"
         other:  "{{count}} mois ouvrés"
-# Views specifics
-  welcome:
-    title: "Bienvenue"
-    consult_list_of: "Vous pouvez consulter la liste des {{value}}"
-    issues_box:
-      submit_an_issue: "Vous pouvez aussi faire {{value}}"
-      access_denied: "Vous n'\xC3\xAAtes pas {{value}}, donc vous ne pouvez pas acc\xC3\xA9der \xC3\xA0 l'interface des issues de notre service"
-    documents_box:
-      activity_report: "Vous pouvez consulter votre {{value}} en ligne"
-      monthly_calendar: "Vous pouvez aussi voir la {{value}}"
-      weekly_calendar: "Vous pouvez voir le {{value}}"
-    idea_box:
-      title: "la boite à idées"
-      content: "Vous avez une id\xC3\xA9e pour am\xC3\xA9liorer nos services ?<br />\n   Vos commentaires et suggestions sont les bienvenues dans {{value}}."
-    software_box:
-      classification: "Ces logiciels sont r\xC3\xA9partis selon une %s pr\xC3\xA9cise et simple, par groupe d'activit\xC3\xA9"
-      contributions: "Vous pouvez consulter et suivre toutes les %s faites par notre \xC3\xA9quipe dans les communaut\xC3\xA9s Open Source"
-    update_box:
-      this_site_has_changed: "Ce site a changé"
-      this_tool_has_been_updated: "Comme vous pouvez le voir, cet outil a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour. Voici une courte liste des changements : "
-      translation_framework_sucks: "Cet environnement de traduction craint à mort !!!"
+
+  view:
+    welcome:
+      title: "Bienvenue"
+      consult_list_of: "Vous pouvez consulter la liste des {{value}}"
+      issues_box:
+        submit_an_issue: "Vous pouvez aussi faire {{value}}"
+        access_denied: "Vous n'\xC3\xAAtes pas {{value}}, donc vous ne pouvez pas acc\xC3\xA9der \xC3\xA0 l'interface des issues de notre service"
+      documents_box:
+        activity_report: "Vous pouvez consulter votre {{value}} en ligne"
+        monthly_calendar: "Vous pouvez aussi voir la {{value}}"
+        weekly_calendar: "Vous pouvez voir le {{value}}"
+      idea_box:
+        title: "la boite à idées"
+        content: "Vous avez une id\xC3\xA9e pour am\xC3\xA9liorer nos services ?<br />\n   Vos commentaires et suggestions sont les bienvenues dans {{value}}."
+      software_box:
+        classification: "Ces logiciels sont r\xC3\xA9partis selon une %s pr\xC3\xA9cise et simple, par groupe d'activit\xC3\xA9"
+        contributions: "Vous pouvez consulter et suivre toutes les %s faites par notre \xC3\xA9quipe dans les communaut\xC3\xA9s Open Source"
+      update_box:
+        this_site_has_changed: "Ce site a changé"
+        this_tool_has_been_updated: "Comme vous pouvez le voir, cet outil a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour. Voici une courte liste des changements : "
+        translation_framework_sucks: "Cet environnement de traduction craint à mort !!!"
 
   consult_list_of: "Vous pouvez consulter la liste des {{value}}"
   Welcome to the {{value}} management tool: Bienvenue sur l'outil de gestion du {{value}}
@@ -40,7 +41,6 @@ fr:
     one: "demande"
     other: "demandes"
   and: et
-  welcome: bienvenue
   a new issue: "une nouvelle demande"
   weekly report of issues: "rapport hebdomadaire des demandes"
 

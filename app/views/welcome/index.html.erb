@@ -3,7 +3,7 @@
 <link rel="alternate" href="contributions/all/list.atom" title="" type="application/atom+xml" />
 <table><tr><td rowspan="2"><%= StaticPicture::tosca %> </td><td><h2 class="spacer"><%=t('Contents')%></h2></td></tr>
   <tr><td>
-      <%= t('Welcome to the %s management tool', :value => App::ServiceFullName) %><%= user ? ", #{user.title} #{user.name}" : '.' %>
+      <%= t('Welcome to the {{value}} management tool', :value => App::ServiceFullName) %><%= user ? ", #{user.title} #{user.name}" : '.' %>
   </td></tr>
 </table>
 
@@ -13,37 +13,37 @@
   <div class="subcolumns">
     <div class="c50l">
       <div class="show">
-      <% I18n.with_options(:scope => [:welcome, :issues_box]) do |locale| %>
-        <h3><%= t(:issue, :count => 2).capitalize! %></h3>
-        <% if user %>
-          <p><%= t('welcome.consult_list_of', :value => link_to(t("issues"), issues_path)) %>.</p>
-          <% if role_id < 5 # 5 : viewer access %>
-            <p><%= locale.t(:submit_an_issue, :value => link_to(t("a new issue"), new_issue_path)) %>.</p>
+        <% I18n.with_options(:scope => [:view,:welcome, :issues_box]) do |locale| %>
+          <h3><%= t(:issue, :count => 2).capitalize! %></h3>
+          <% if user %>
+            <p><%= t('view.welcome.consult_list_of', :value => link_to(t("issues"), issues_path)) %>.</p>
+            <% if role_id < 5 # 5 : viewer access %>
+              <p><%= locale.t(:submit_an_issue, :value => link_to(t("a new issue"), new_issue_path)) %>.</p>
+            <% end %>
+          <% else %>
+            <p><%= locale.t(:access_denied, :value => connected) %>.</p>
           <% end %>
-        <% else %>
-          <p><%= locale.t(:access_denied, :value => connected) %>.</p>
         <% end %>
-      <% end %>
       </div>
       <div class="show">
         <h3><%= t('Documents')%></h3>
-        <% I18n.with_options(:scope => [:welcome, :documents_box]) do |locale| %>
-         <% if user %>
-          <p><%= locale.t(:activity_report, :value => link_to(t('activity report'), general_reporting_path)) %>.</p>
-          <p><%= locale.t(:monthly_calendar, :value => link_to( t('Distribution of issues in time'), calendar_reporting_path)) %></p>
-          <p><%= locale.t(:weekly_calendar, :value => link_to( t('weekly report of issues'), weekly_reporting_path)) %></p>
-         <% else %>
-          <p><%= t("When you are %s, you can access an activity report") % connected %><br />
-             <%= t("dynamically showing the activity of our service for you in real time.")%></p><br />
-         <% end %>
+        <% I18n.with_options(:scope => [:view,:welcome, :documents_box]) do |locale| %>
+          <% if user %>
+            <p><%= locale.t(:activity_report, :value => link_to(t('activity report'), general_reporting_path)) %>.</p>
+            <p><%= locale.t(:monthly_calendar, :value => link_to( t('Distribution of issues in time'), calendar_reporting_path)) %></p>
+            <p><%= locale.t(:weekly_calendar, :value => link_to( t('weekly report of issues'), weekly_reporting_path)) %></p>
+          <% else %>
+            <p><%= t("When you are %s, you can access an activity report") % connected %><br />
+            <%= t("dynamically showing the activity of our service for you in real time.")%></p><br />
+          <% end %>
         <% end %>
       </div>
       <% if user %>
         <div class="show">
-        <% I18n.with_options(:scope => [:welcome, :idea_box]) do |locale| %>
-          <h3><%= locale.t(:title).capitalize! %></h3>
-          <p><%= locale.t(:content, :value => link_to(locale.t(:title), suggestions_welcome_path)) %></p>
-        <% end %>
+          <% I18n.with_options(:scope => [:view,:welcome, :idea_box]) do |locale| %>
+            <h3><%= locale.t(:title).capitalize! %></h3>
+            <p><%= locale.t(:content, :value => link_to(locale.t(:title), suggestions_welcome_path)) %></p>
+          <% end %>
         </div>
       <% end %>
     </div>
@@ -68,24 +68,24 @@
       <% end %>
 
       <div class="show">
-      <% I18n.with_options(:scope => [:welcome,:software_box]) do |locale| %>
-        <h3><%=t('software').capitalize! %></h3>
-        <p><%= t('welcome.consult_list_of', :value => public_link_to_softwares) %>.<br />
-           <%= locale.t(:classification, :value => public_link_to_groups) %>.</p>
-        <p><%= locale.t(:contributions, :value => public_link_to_contributions) %>.</p>
-      <% end %>
+        <% I18n.with_options(:scope => [:view,:welcome,:software_box]) do |locale| %>
+          <h3><%=t('software').capitalize! %></h3>
+          <p><%= t('view.welcome.consult_list_of', :value => public_link_to_softwares) %>.<br />
+          <%= locale.t(:classification, :value => public_link_to_groups) %>.</p>
+          <p><%= locale.t(:contributions, :value => public_link_to_contributions) %>.</p>
+        <% end %>
       </div>
 
       <div class="show">
-      <% I18n.with_options(:scope => [:welcome, :update_box]) do |locale| %>
-        <h3><%=locale.t(:this_site_has_changed)%></h3>
-        <p> <%=locale.t(:this_tool_has_been_updated) %>
-        <ul>
-          <% if user and user.engineer? %>
-            <li><%= locale.t(:translation_framework_sucks) %></li>
-          <% end %>
-        </ul>
-      <% end %>
+        <% I18n.with_options(:scope => [:view,:welcome, :update_box]) do |locale| %>
+          <h3><%=locale.t(:this_site_has_changed)%></h3>
+          <p> <%=locale.t(:this_tool_has_been_updated) %>
+          <ul>
+            <% if user and user.engineer? %>
+              <li><%= locale.t(:translation_framework_sucks) %></li>
+            <% end %>
+          </ul>
+        <% end %>
       </div>
     </div>
   </div>
