@@ -26,7 +26,7 @@ class VersionTest < ActiveSupport::TestCase
     assert_equal("v2.0.0.13", v.full_name)
 
     v = versions(:version_ff_all)
-    assert_equal("all versions", v.full_name)
+    assert_equal(I18n.t("all versions"), v.full_name)
   end
 
   def test_full_software_name

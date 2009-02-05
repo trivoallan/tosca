@@ -19,11 +19,13 @@
 class Comment < ActiveRecord::Base
   belongs_to :issue
   belongs_to :user
-  belongs_to :attachment, :dependent => :destroy
   belongs_to :statut
   belongs_to :severity
   belongs_to :engineer, :class_name => 'User',
     :conditions => 'users.client_id IS NULL'
+
+  #TODO : For multiple attachment change this to has_many
+  has_one :attachment, :dependent => :destroy
 
   validates_presence_of :user
 
