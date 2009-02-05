@@ -19,11 +19,13 @@
 class Comment < ActiveRecord::Base
   belongs_to :issue
   belongs_to :user
-  belongs_to :attachment, :dependent => :destroy
   belongs_to :statut
   belongs_to :severity
   belongs_to :engineer, :class_name => 'User',
     :conditions => 'users.client_id IS NULL'
+
+  #TODO : For multiple attachment change this to has_many
+  has_one :attachment, :dependent => :destroy
 
   validates_length_of :text, :minimum => 5,
     :warn => I18n.t('You must have a comment with at least 5 characters')
@@ -51,10 +53,10 @@ class Comment < ActiveRecord::Base
     #If the status was changed and we do not specify a text, we generate a default text
     text = html2text(record.text).strip
     if record.statut and not Statut::NEED_COMMENT.include? record.statut_id and text.empty?
-      record.text << ( I18n.t("The issue is now %s.<br/>") % I18n.t(record.statut.name) )
+      record.text << I18n.t("The issue is now {{status}}.<br/>", :status => I18n.t(record.statut.name))
     end
     if record.engineer and text.empty?
-      record.text << ( I18n.t("The issue is now managed by %s.<br/>") % I18n.t(record.engineer.name))
+      record.text << I18n.t("The issue is now managed by {{user}}.<br/>", :user => I18n.t(record.engineer.name))
     end
   end
 

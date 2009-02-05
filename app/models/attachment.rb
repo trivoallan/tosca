@@ -24,7 +24,7 @@ class Attachment < ActiveRecord::Base
       }
     }
 
-  has_one :comment
+  belongs_to :comment
 
   validates_presence_of :file, :comment
 
