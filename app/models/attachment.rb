@@ -36,7 +36,7 @@ class Attachment < ActiveRecord::Base
   # see FilesController
   def self.set_scope(client_id)
     joins = ''
-    joins << 'LEFT OUTER JOIN comments ON comments.attachment_id = attachments.id '
+    joins << 'LEFT OUTER JOIN comments ON attachments.comment_id = comments.id '
     joins << 'LEFT OUTER JOIN issues ON issues.id = comments.issue_id '
     joins << 'LEFT OUTER JOIN users ON users.id = issues.recipient_id '
     self.scoped_methods << { :find => {

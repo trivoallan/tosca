@@ -194,7 +194,7 @@ class Time
     # as of 10/04/08
     # TODO : find the bug or check it later
 
-    return t('Immediate') if distance_in_seconds == 0
+    return I18n.t('Immediate') if distance_in_seconds == 0
     return '-' unless distance_in_seconds.is_a?(Numeric) and distance_in_seconds > 0
     return '-' unless dayly_time == true or (dayly_time > 0 and dayly_time < 25)
     opened = (dayly_time != 24 ? true : false)

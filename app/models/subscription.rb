@@ -29,8 +29,9 @@ class Subscription < ActiveRecord::Base
     :message => I18n.t('You can be suscribe only one time on this model.')
 
   def name
-    I18n.t('Subscription for %s on %s #%s') %
-      [ self.user.name, self.model_type, self.model_id ]
+    I18n.t('Subscription for {{user_name}} on {{model_type}} #{{model_id}}',
+      :user_name => self.user.name, :model_type => self.model_type,
+      :model_id => self.model_id)
   end
 
   def self.destroy_by_user_and_model(user, model)

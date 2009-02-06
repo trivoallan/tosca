@@ -15,9 +15,9 @@
       <div class="show">
         <h3><%= t(:issue, :count => 2).to_s.capitalize! %></h3>
         <% if user %>
-          <p><%= t('view.welcome.consult_list_of', :value => link_to(t("issues"), issues_path)) %>.</p>
+          <p><%= t(:consult_list_of, :value => link_to(t(:issues), issues_path)) %>.</p>
           <% if role_id < 5 # 5 : viewer access %>
-            <p><%= t(:submit_an_issue, :value => link_to(t("a new issue"), new_issue_path)) %>.</p>
+            <p><%= t(:submit_an_issue, :value => link_to(t(:a_new_issue), new_issue_path)) %>.</p>
           <% end %>
         <% else %>
           <p><%= t(:access_denied, :value => connected) %>.</p>
@@ -44,7 +44,7 @@
     <div class="c50r">
       <% if user and user.recipient? %>
         <div class="show">
-          <h3><%= t('Offer')%></h3>
+          <h3><%= t(:offer)%></h3>
           <% client = user.client %>
           <table>
             <tr><td style="width: 1%;" rowspan="2"><%=logo_client client%> </td><td>

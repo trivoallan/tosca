@@ -1,10 +1,10 @@
 # All translations of this locale combined.
-# Last updated: Fri Feb 06 17:41:32 +0100 2009
+# Last updated: Fri Feb 06 18:17:55 +0100 2009
  
 en: 
+  and: and
   Distribution of your issues: 
   Selected issues can wait: 
-  and: and
   License|Name: 
   List of contributions: 
   "It is now an Open Source software you can get at ": 
@@ -247,7 +247,6 @@ en:
   Quality Assurance: 
   activerecord: 
     errors: 
-      models: 
       messages: 
         greater_than_or_equal_to: must be greater than or equal to {{count}}
         confirmation: doesn't match confirmation
@@ -268,6 +267,7 @@ en:
         taken: has already been taken
         inclusion: is not included in the list
         not_a_number: is not a number
+      models: 
       template: 
         body: "There were problems with the following fields:"
         header: 
@@ -343,6 +343,7 @@ en:
   Editing a commitment: 
   unlimited number of time-credits of %s: 
   Unlink the contribution: 
+  Logo '{{value}}': 
   "Contracts of the Team :": 
   Save: 
   Editing tag: 
@@ -485,18 +486,19 @@ en:
       content: 
       view_welcome_consult_list_of: 
       skip_to_the_content: 
+      contents: 
       translation_framework_sucks: 
       classification: 
-      contents: 
       welcome_to_the_value_management_tool: 
       skip_to_the_navigation: 
+      consult_list_of: 
       weekly_report: 
       weekly_calendar: 
       this_tool_has_been_updated: 
-    contents: 
     issues_box: 
       access_denied: You are not {{value}}, so you cannot access the issues interface of our service
       submit_an_issue: You can also make {{value}}
+    contents: 
     consult_list_of: You can see the list of {{value}}
     document_box: 
       activity_report: You can consult your {{value}} online
@@ -564,9 +566,9 @@ en:
   Don't hesitate to: 
   Ordered by end date: 
   A new url: 
+  a new issue: une nouvelle demande
   Schedules: 
   Add a role: 
-  a new issue: une nouvelle demande
   and your access code is %s: 
   Your password is too short (min. 5): 
   Inactive clients: 
@@ -592,6 +594,7 @@ en:
   Supported software: 
   rah {{value}} roh: 
   Time of taking into account the issues: 
+  "Subscription for {{user_name}} on {{model_type}} #{{model_id}}": 
   "Weekly digest for ": 
   All issues: 
   An issue type was successfully updated.: 
@@ -756,12 +759,12 @@ en:
   "The progressions bar represent the progress ratio of the contract: ": 
   private: 
   State: 
+  weekly report of issues: weekly report of issues
   a permission: 
   Password is different from its confirmation: 
   Tosca on Rails: 
   Group: 
   Edit a software: 
-  weekly report of issues: weekly report of issues
   You have to create a client before creating a contract: 
   Contract was successfully created.: 
   Maximum number of time credits: 
@@ -989,11 +992,11 @@ en:
   Answer: 
   Add: 
   Contract was successfully updated.: 
+  software: software
   Is this comment private ?: 
   "The beginning of the report is organized in four regions for each type of information: ": 
   "'%s' was successfully updated.": 
   Preferences: 
-  software: software
   Expand all: 
   Last page: 
   Subscribe to this %s: 
@@ -1002,93 +1005,93 @@ en:
   Maximum number of components: 
   a new contribution: 
   a skill: 
-  Title: 
-  This archive has been successfully updated.: 
   Issues correction time: 
+  This archive has been successfully updated.: 
+  Title: 
   Short description: 
   Edit anattachment: 
   Attachments: 
-  Major: 
   The last field must be fill with CSV format.: 
+  Major: 
   Closed: 
-  This issue seems to be unstable.: 
   Active clients: 
+  This issue seems to be unstable.: 
   Unknown rules for contract "%s": 
-  Life cycle: 
-  Affected version: 
-  Customers: 
-  Inactive: 
-  New status: 
   Analysis: 
-  Your password is too long (max. 20): 
+  New status: 
+  Inactive: 
+  Customers: 
+  Affected version: 
+  Life cycle: 
   Pending Issues: 
-  You can be suscribe only one time on this model.: 
+  Your password is too long (max. 20): 
   Address: 
+  You can be suscribe only one time on this model.: 
   "%s has been spent by %s on this issue.": 
-  link: 
-  Resources: 
   By word: 
+  Resources: 
+  link: 
   Add a logo: 
-  including (: 
-  Flow: 
   TOTAL: 
-  New contract: 
-  Your issue has no commitment for workaround time: 
-  a release: 
+  Flow: 
+  including (: 
   Receive a summary of daily activities: 
-  "%d minutes": 
+  a release: 
+  Your issue has no commitment for workaround time: 
+  New contract: 
   Clear cache: 
-  You cannot specify a software and a domain.: 
-  Email: 
-  Create a new subscription: 
-  "[ Team ]": 
+  "%d minutes": 
   Show an account: 
-  Finished issues: 
-  You must indicate a %s for your issue: 
+  "[ Team ]": 
+  Create a new subscription: 
+  Email: 
+  You cannot specify a software and a domain.: 
   "Daily digest for ": 
-  Contributions: 
-  Permissions: 
+  You must indicate a %s for your issue: 
+  Finished issues: 
   Confirm this last: 
+  Permissions: 
+  Contributions: 
   "Roles ": 
-  " workday": 
-  Update the issue %s (administration): 
-  You have successfully submitted your %s issue.: 
   A Type of contribution was successfully updated.: 
-  Editing a component offer: 
-  display this map: 
-  Add a file: 
-  Group list: 
+  You have successfully submitted your %s issue.: 
+  Update the issue %s (administration): 
+  " workday": 
   Summary: 
-  Over a period of: 
-  There is no new issue: 
+  Group list: 
+  Add a file: 
+  display this map: 
+  Editing a component offer: 
   Status: 
-  Manager of the team: 
+  There is no new issue: 
+  Over a period of: 
   The comment was successfully updated.: 
-  Commitment: 
-  Displaying entries <b>{{from}}&nbsp;-&nbsp;{{to}}</b> of <b>{{total}}</b> in total: 
-  Domain: 
+  Manager of the team: 
   Reporting: 
-  Add a user: 
+  Domain: 
+  Displaying entries <b>{{from}}&nbsp;-&nbsp;{{to}}</b> of <b>{{total}}</b> in total: 
+  Commitment: 
   An error has occured: 
-  Tags: 
-  Documents: 
+  Add a user: 
   Synthesis: 
-  to the: 
-  You are now unsubscribed to this %s: 
-  Editing a statut: 
-  Actions: 
-  Download: 
+  Documents: 
+  Tags: 
   " to ": 
-  Unknown account: 
-  allows to export datas in ODS: 
-  Issues of all your contracts: 
-  "This journey would not have been possible without\n      the <b>developers</b> who have taken part in this project,\n      without the testers who have contributed to it's quality and\n      without quite a bit of <b>free software</b> which has enabled the\n      development to be fast and agile. They are all warmly thanked here.\n      %s would be nothing without them.": 
+  Download: 
+  Actions: 
+  Editing a statut: 
+  You are now unsubscribed to this %s: 
+  to the: 
   Assign: 
+  "This journey would not have been possible without\n      the <b>developers</b> who have taken part in this project,\n      without the testers who have contributed to it's quality and\n      without quite a bit of <b>free software</b> which has enabled the\n      development to be fast and agile. They are all warmly thanked here.\n      %s would be nothing without them.": 
+  Issues of all your contracts: 
+  allows to export datas in ODS: 
+  Unknown account: 
   Choose a domain OR a software: 
-  Disconnect: 
-  Add a knowledge: 
   Closed on: 
-  "Inconsistencies: ": 
+  Add a knowledge: 
+  Disconnect: 
   The management report enables you to consult an overview of the activity.: 
-  Weekly digest: 
+  "Inconsistencies: ": 
   Internal mailing list: 
+  Weekly digest: 
