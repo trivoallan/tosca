@@ -19,3 +19,4 @@ tmp/*
 doc/*
 *.*~
 db/*.db
+config/locales/missing*
