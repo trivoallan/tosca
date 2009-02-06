@@ -75,12 +75,10 @@ Rails::Initializer.run do |config|
 
   ### External libs ###
   # Used to i18n and l10n
-  config.gem 'locale'
-  config.gem 'locale_rails'
+  config.gem 'ya2yaml'
 
   # Used to get up2date pagination on list
   config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
-
 
   # Used to generate graphs of activity report & resize some pictures
   # We keep 1.15.10 version, coz debian makes an old & staging distribution
