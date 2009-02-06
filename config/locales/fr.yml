@@ -1,5 +1,5 @@
 # All translations of this locale combined.
-# Last updated: Fri Feb 06 17:32:15 +0100 2009
+# Last updated: Fri Feb 06 17:41:32 +0100 2009
  
 fr: 
   Distribution of your issues: "R\xC3\xA9partition de vos demandes"
@@ -13,7 +13,7 @@ fr:
   This issue has been changed in %s by %s.: "Cette demande a \xC3\xA9t\xC3\xA9 %s par %s."
   Administration interface: Interface d'administration
   Change(s): Changement(s)
-  Logo '%s': Logo '%s'
+  Logo '{{value}}': Logo '{{value}}'
   displays informations: affiche des informations
   Edit the client %s: Modifier le client %s
   Contrat: Contrat
@@ -187,28 +187,28 @@ fr:
       x_working_days: 
         one: "1 jour ouvr\xC3\xA9"
         other: "{{count}} jours ouvr\xC3\xA9s"
-      less_than_x_seconds: 
-        one: 
-        other: 
-      x_minutes: 
+      x_months: 
         one: 
         other: 
       about_x_hours: 
         one: 
         other: 
-      x_months: 
+      x_minutes: 
         one: 
         other: 
-      about_x_months: 
+      less_than_x_seconds: 
         one: 
         other: 
       about_x_years: 
         one: 
         other: 
-      half_a_working_day: "un demi jour ouvr\xC3\xA9e"
+      about_x_months: 
+        one: 
+        other: 
       over_x_years: 
         one: 
         other: 
+      half_a_working_day: "un demi jour ouvr\xC3\xA9e"
       half_a_minute: 
       half_a_day: "une demie journ\xC3\xA9e"
       x_working_months: 
@@ -249,27 +249,27 @@ fr:
   Quality Assurance: "Assurance Qualit\xC3\xA9"
   activerecord: 
     errors: 
+      models: 
       messages: 
         greater_than_or_equal_to: 
-        less_than_or_equal_to: 
         confirmation: 
+        less_than_or_equal_to: 
         blank: 
-        invalid: 
         exclusion: 
+        invalid: 
         odd: 
-        even: 
-        wrong_length: 
-        too_short: 
         empty: 
+        too_short: 
+        wrong_length: 
+        even: 
         less_than: 
-        equal_to: 
         greater_than: 
-        taken: 
-        too_long: 
+        equal_to: 
         accepted: 
-        not_a_number: 
+        too_long: 
+        taken: 
         inclusion: 
-      models: 
+        not_a_number: 
       template: 
         body: 
         header: 
@@ -428,15 +428,15 @@ fr:
     percentage: 
       format: 
         delimiter: 
-    precision: 
-      format: 
-        delimiter: 
     currency: 
       format: 
         format: 
         unit: 
         separator: 
         precision: 
+        delimiter: 
+    precision: 
+      format: 
         delimiter: 
   Add software: Ajouter un logiciel
   Contractual commitments: Engagements contractuels
@@ -460,52 +460,35 @@ fr:
   Detailed description: "Description d\xC3\xA9taill\xC3\xA9e"
   Packages: Paquets
   welcome: 
-    software_box: 
-      contributions: 
-      classification: 
-    update_box: 
-      this_site_has_changed: 
-      translation_framework_sucks: 
-      this_tool_has_been_updated: 
     title: 
-    idea_box: 
-      title: 
-      content: 
     index: 
       report: Vous pouvez consulter votre {{value}} en ligne
       weekly_report_of_issues: :weekly_report_of_issues
-      this_site_has_changed: "Ce site a chang\xC3\xA9"
-      access_denied: "Vous n'\xC3\xAAtes pas {{value}}, donc vous ne pouvez pas acc\xC3\xA9der \xC3\xA0 l'interface des issues de notre service"
       title: "la boite \xC3\xA0 id\xC3\xA9es"
+      access_denied: "Vous n'\xC3\xAAtes pas {{value}}, donc vous ne pouvez pas acc\xC3\xA9der \xC3\xA0 l'interface des issues de notre service"
+      this_site_has_changed: "Ce site a chang\xC3\xA9"
       calendar_report: rapport en calendrier
-      my_account: :my_account
-      documents: :documents
       a_new_issue: :a_new_issue
-      contributions: :contributions
+      documents: :documents
+      my_account: :my_account
       submit_an_issue: Vous pouvez aussi faire {{value}}
-      distribution_of_issues_in_time: :distribution_of_issues_in_time
+      contributions: :contributions
       activity_report: :activity_report
-      skip_to_the_content: :skip_to_the_content
-      view_welcome_consult_list_of: :view_welcome_consult_list_of
-      content: "Vous avez une id\xC3\xA9e pour am\xC3\xA9liorer nos services ?<br />\n   Vos commentaires et suggestions sont les bienvenues dans {{value}}."
+      distribution_of_issues_in_time: :distribution_of_issues_in_time
       monthly_calendar: :monthly_calendar
-      skip_to_the_navigation: :skip_to_the_navigation
-      welcome_to_the_value_management_tool: :welcome_to_the_value_management_tool
-      contents: :contents
-      classification: "Ces logiciels sont r\xC3\xA9partis selon une %s pr\xC3\xA9cise et simple, par groupe d'activit\xC3\xA9"
+      content: "Vous avez une id\xC3\xA9e pour am\xC3\xA9liorer nos services ?<br />\n   Vos commentaires et suggestions sont les bienvenues dans {{value}}."
+      view_welcome_consult_list_of: :view_welcome_consult_list_of
+      skip_to_the_content: :skip_to_the_content
+      contents: 
       translation_framework_sucks: :translation_framework_sucks
+      classification: "Ces logiciels sont r\xC3\xA9partis selon une %s pr\xC3\xA9cise et simple, par groupe d'activit\xC3\xA9"
+      welcome_to_the_value_management_tool: :welcome_to_the_value_management_tool
+      skip_to_the_navigation: :skip_to_the_navigation
+      consult_list_of: Vous pouvez consulter la liste des {{value}}
       weekly_report: rapport par semaine
-      this_tool_has_been_updated: "Comme vous pouvez le voir, cet outil a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour. Voici une courte liste des changements : "
       weekly_calendar: :weekly_calendar
-    issues_box: 
-      access_denied: 
-      submit_an_issue: 
+      this_tool_has_been_updated: "Comme vous pouvez le voir, cet outil a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour. Voici une courte liste des changements : "
     contents: 
-    consult_list_of: Vous pouvez consulter la liste des {{value}}
-    document_box: 
-      activity_report: 
-      monthly_calendar: 
-      weekly_calendar: 
   "Your answer :": "Votre r\xC3\xA9ponse :"
   Edition of this archive: "\xC3\x89dition de cette archive"
   Size: Taille
@@ -643,13 +626,13 @@ fr:
   Resp.: Resp.
   view: 
     welcome: 
-      software_box: 
-        contributions: 
-        classification: 
       update_box: 
         this_site_has_changed: 
         translation_framework_sucks: 
         this_tool_has_been_updated: 
+      software_box: 
+        contributions: 
+        classification: 
       title: 
       idea_box: 
         title: 
@@ -904,8 +887,8 @@ fr:
   contribution: contribution
   date: 
     month_names: 
-    order: 
     abbr_day_names: 
+    order: 
     formats: 
       default: 
       short: 
@@ -956,100 +939,100 @@ fr:
   Preferences: 
   software: logiciel
   Expand all: "Tout d\xC3\xA9velopper"
-  List of the attachments: "Liste des pi\xC3\xA8ces jointes"
   Last page: "Derni\xC3\xA8re page"
   Subscribe to this %s: "S'inscrire \xC3\xA0 ce/cette %s"
   List of components offers: Liste des offres par composants
-  a skill: "une comp\xC3\xA9tence"
-  a new contribution: une nouvelle contribution
+  List of the attachments: "Liste des pi\xC3\xA8ces jointes"
   Maximum number of components: Nombre maximum de composants
-  Edit anattachment: "\xC3\x89diter une pi\xC3\xA8ce jointe"
-  Short description: Description courte
-  Title: Titre
-  This archive has been successfully updated.: "Cette archive a \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour."
+  a new contribution: une nouvelle contribution
+  a skill: "une comp\xC3\xA9tence"
   Issues correction time: Temps de correction
+  This archive has been successfully updated.: "Cette archive a \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour."
+  Title: Titre
+  Short description: Description courte
+  Edit anattachment: "\xC3\x89diter une pi\xC3\xA8ce jointe"
   Attachments: Documents
-  Closed: "Ferm\xC3\xA9e"
-  Major: Majeure
   The last field must be fill with CSV format.: "Compl\xC3\xA9tez le dernier champs au format CSV"
-  Unknown rules for contract "%s": "R\xC3\xA8gles inconnu pour le contrat \"%s\""
-  Active clients: Clients actifs
+  Major: Majeure
+  Closed: "Ferm\xC3\xA9e"
   This issue seems to be unstable.: "Cette demande semble \xC3\xAAtre inconsistante."
-  Life cycle: Cycle de vie
-  Affected version: "Version concern\xC3\xA9e"
-  Customers: Clients
-  Inactive: Inactif
-  New status: Nouveau statut
+  Active clients: Clients actifs
+  Unknown rules for contract "%s": "R\xC3\xA8gles inconnu pour le contrat \"%s\""
   Analysis: 
-  Your password is too long (max. 20): "Votre mot de passe est trop long (max. 20 caract\xC3\xA8res)"
+  New status: Nouveau statut
+  Inactive: Inactif
+  Customers: Clients
+  Affected version: "Version concern\xC3\xA9e"
+  Life cycle: Cycle de vie
   Pending Issues: "Demandes \xC3\xA0 traiter"
-  You can be suscribe only one time on this model.: "Vous ne pouvez souscrire qu'une seule fois \xC3\xA0 un m\xC3\xAAme objet."
+  Your password is too long (max. 20): "Votre mot de passe est trop long (max. 20 caract\xC3\xA8res)"
   Address: Adresse
+  You can be suscribe only one time on this model.: "Vous ne pouvez souscrire qu'une seule fois \xC3\xA0 un m\xC3\xAAme objet."
   "%s has been spent by %s on this issue.": "%s se sont \xC3\xA9coul\xC3\xA9(e)s sur cette demande."
-  link: liens
-  Resources: Ressources
   By word: Par mot
+  Resources: Ressources
+  link: liens
   Add a logo: Ajouter un logo
-  including (: inclus (
-  Flow: Flux
   TOTAL: TOTAL
-  New contract: Nouveau contrat
-  Your issue has no commitment for workaround time: Votre demande n'a pas d'engagement de contournement
-  a release: une release
+  Flow: Flux
+  including (: inclus (
   Receive a summary of daily activities: "Recevoir un r\xC3\xA9sum\xC3\xA9 de l'activit\xC3\xA9 quotidienne"
-  "%d minutes": "%d minutes"
+  a release: une release
+  Your issue has no commitment for workaround time: Votre demande n'a pas d'engagement de contournement
+  New contract: Nouveau contrat
   Clear cache: Nettoyer le cache
-  You cannot specify a software and a domain.: "Vous ne pouvez sp\xC3\xA9cifier un logiciel et un domaine."
-  Email: Email
-  Create a new subscription: "Cr\xC3\xA9\xC3\xA9r une nouvelle souscription"
-  "[ Team ]": "[ \xC3\x89quipe ]"
+  "%d minutes": "%d minutes"
   Show an account: Voir un compte
-  Finished issues: "Demandes termin\xC3\xA9es"
-  You must indicate a %s for your issue: Vous devez indiquer un %s pour votre demande
+  "[ Team ]": "[ \xC3\x89quipe ]"
+  Create a new subscription: "Cr\xC3\xA9\xC3\xA9r une nouvelle souscription"
+  Email: Email
+  You cannot specify a software and a domain.: "Vous ne pouvez sp\xC3\xA9cifier un logiciel et un domaine."
   "Daily digest for ": "Rapport d'activit\xC3\xA9 pour "
-  Contributions: Contributions
-  Permissions: Permissions
+  You must indicate a %s for your issue: Vous devez indiquer un %s pour votre demande
+  Finished issues: "Demandes termin\xC3\xA9es"
   Confirm this last: Confirmer ce dernier
+  Permissions: Permissions
+  Contributions: Contributions
   "Roles ": 
-  " workday": " jour ouvr\xC3\xA9"
-  Update the issue %s (administration): "Mise \xC3\xA0 jour de la demande %s (administrateur)"
-  You have successfully submitted your %s issue.: "Vous avez soumis avec succ\xC3\xA8s votre %s demande"
   A Type of contribution was successfully updated.: "Le type de contribution a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
-  Editing a component offer: Modifier une offre par composants
-  display this map: affiche ce plan
-  Add a file: Ajouter un fichier
-  Group list: Liste des Groups
+  You have successfully submitted your %s issue.: "Vous avez soumis avec succ\xC3\xA8s votre %s demande"
+  Update the issue %s (administration): "Mise \xC3\xA0 jour de la demande %s (administrateur)"
+  " workday": " jour ouvr\xC3\xA9"
   Summary: 
-  Over a period of: "Sur une p\xC3\xA9riode de"
-  There is no new issue: Il n'y a aucune nouvelle demande
+  Group list: Liste des Groups
+  Add a file: Ajouter un fichier
+  display this map: affiche ce plan
+  Editing a component offer: Modifier une offre par composants
   Status: Statut
-  Manager of the team: "Manager de l'\xC3\xA9quipe"
+  There is no new issue: Il n'y a aucune nouvelle demande
+  Over a period of: "Sur une p\xC3\xA9riode de"
   The comment was successfully updated.: "Le commentaire a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
-  Commitment: Engagements
-  Displaying entries <b>{{from}}&nbsp;-&nbsp;{{to}}</b> of <b>{{total}}</b> in total: "R\xC3\xA9sultats <b>{{from}}d&nbsp;-&nbsp;{{to}}</b> sur un total de <b>{{total}}</b>"
-  Domain: Domaine
+  Manager of the team: "Manager de l'\xC3\xA9quipe"
   Reporting: Reporting
-  Add a user: Ajouter un utilisateur
+  Domain: Domaine
+  Displaying entries <b>{{from}}&nbsp;-&nbsp;{{to}}</b> of <b>{{total}}</b> in total: "R\xC3\xA9sultats <b>{{from}}d&nbsp;-&nbsp;{{to}}</b> sur un total de <b>{{total}}</b>"
+  Commitment: Engagements
   An error has occured: Une erreur est survenue
-  Tags: "\xC3\x89tiquettes"
-  Documents: Documents
+  Add a user: Ajouter un utilisateur
   Synthesis: "Synth\xC3\xA8se"
-  to the: au
-  You are now unsubscribed to this %s: "Vous \xC3\xAAtes maintenant d\xC3\xA9sinscrit de ce/cette %s"
-  Editing a statut: "\xC3\x89diter un statut"
-  Actions: Actions
-  Download: 
+  Documents: Documents
+  Tags: "\xC3\x89tiquettes"
   " to ": 
-  Unknown account: Compte inconnu
-  allows to export datas in ODS: permet de faire des exports ODS
-  Issues of all your contracts: Les demandes de tous vos contrats
-  "This journey would not have been possible without\n      the <b>developers</b> who have taken part in this project,\n      without the testers who have contributed to it's quality and\n      without quite a bit of <b>free software</b> which has enabled the\n      development to be fast and agile. They are all warmly thanked here.\n      %s would be nothing without them.": "Cette aventure n'aurait \xC3\xA9t\xC3\xA9 possible sans tous les <b>d\xC3\xA9veloppeurs</b> qui ont soutenu ce projet,  sans tous les <b>testeurs</b> qui ont contribu\xC3\xA9 \xC3\xA0 assurer sa qualit\xC3\xA9 et sans un grand nombre de <b>logiciels libre</b> qui ont permis \xC3\xA0 son d\xC3\xA9veloppement d'\xC3\xAAtre rapide et agile. Ils sont tous ici grandement remerci\xC3\xA9s."
+  Download: 
+  Actions: Actions
+  Editing a statut: "\xC3\x89diter un statut"
+  You are now unsubscribed to this %s: "Vous \xC3\xAAtes maintenant d\xC3\xA9sinscrit de ce/cette %s"
+  to the: au
   Assign: 
+  "This journey would not have been possible without\n      the <b>developers</b> who have taken part in this project,\n      without the testers who have contributed to it's quality and\n      without quite a bit of <b>free software</b> which has enabled the\n      development to be fast and agile. They are all warmly thanked here.\n      %s would be nothing without them.": "Cette aventure n'aurait \xC3\xA9t\xC3\xA9 possible sans tous les <b>d\xC3\xA9veloppeurs</b> qui ont soutenu ce projet,  sans tous les <b>testeurs</b> qui ont contribu\xC3\xA9 \xC3\xA0 assurer sa qualit\xC3\xA9 et sans un grand nombre de <b>logiciels libre</b> qui ont permis \xC3\xA0 son d\xC3\xA9veloppement d'\xC3\xAAtre rapide et agile. Ils sont tous ici grandement remerci\xC3\xA9s."
+  Issues of all your contracts: Les demandes de tous vos contrats
+  allows to export datas in ODS: permet de faire des exports ODS
+  Unknown account: Compte inconnu
   Choose a domain OR a software: Choisisser un domaine OU un logiciel
-  Disconnect: "D\xC3\xA9connexion"
-  Add a knowledge: Ajouter une connaissance
   Closed on: 
-  "Inconsistencies: ": "Inconsistances: "
+  Add a knowledge: Ajouter une connaissance
+  Disconnect: "D\xC3\xA9connexion"
   The management report enables you to consult an overview of the activity.: "Le rapport d'activit\xC3\xA9 vous permet de consulter une vue d'ensemble de l'activit\xC3\xA9."
-  Weekly digest: "Activit\xC3\xA9 hebdomadaire"
+  "Inconsistencies: ": "Inconsistances: "
   Internal mailing list: Mailing liste interne
+  Weekly digest: "Activit\xC3\xA9 hebdomadaire"

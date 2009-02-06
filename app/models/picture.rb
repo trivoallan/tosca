@@ -42,8 +42,8 @@ class Picture < ActiveRecord::Base
   }, :root_path => File.join(RAILS_ROOT, "public")
 
   def name
-    return I18n.t("Logo '%s'") % software.name if software
-    return I18n.t("Logo '%s'") % client.name if client
+    return I18n.t("Logo '{{value}}'", :value => software.name) if software
+    return I18n.t("Logo '{{value}}'", :value => client.name) if client
     description
   end
 end

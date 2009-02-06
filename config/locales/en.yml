@@ -1,10 +1,10 @@
 # All translations of this locale combined.
-# Last updated: Fri Feb 06 17:32:15 +0100 2009
+# Last updated: Fri Feb 06 17:41:32 +0100 2009
  
 en: 
-  and: and
   Distribution of your issues: 
   Selected issues can wait: 
+  and: and
   License|Name: 
   List of contributions: 
   "It is now an Open Source software you can get at ": 
@@ -247,6 +247,7 @@ en:
   Quality Assurance: 
   activerecord: 
     errors: 
+      models: 
       messages: 
         greater_than_or_equal_to: must be greater than or equal to {{count}}
         confirmation: doesn't match confirmation
@@ -267,7 +268,6 @@ en:
         taken: has already been taken
         inclusion: is not included in the list
         not_a_number: is not a number
-      models: 
       template: 
         body: "There were problems with the following fields:"
         header: 
@@ -456,13 +456,13 @@ en:
   Detailed description: 
   Packages: 
   welcome: 
+    software_box: 
+      contributions: You can consult and follow all the {{value}} done by our team in Open Source communities
+      classification: Software are sorted into a precise and simple {{value}}, distributed by activity group
     update_box: 
       this_site_has_changed: This site has changed
       translation_framework_sucks: This translation framework really sucks
       this_tool_has_been_updated: "As you can see, this tool has been updated. Here is a shortlist of changes : "
-    software_box: 
-      contributions: You can consult and follow all the {{value}} done by our team in Open Source communities
-      classification: Software are sorted into a precise and simple {{value}}, distributed by activity group
     title: Welcome
     idea_box: 
       title: Idea box
@@ -470,36 +470,38 @@ en:
     index: 
       report: 
       weekly_report_of_issues: 
-      this_site_has_changed: 
-      access_denied: 
       title: 
-      my_account: 
-      documents: 
+      access_denied: 
+      this_site_has_changed: 
+      calendar_report: 
       a_new_issue: 
-      contributions: 
+      documents: 
+      my_account: 
       submit_an_issue: 
-      distribution_of_issues_in_time: 
+      contributions: 
       activity_report: 
-      skip_to_the_content: 
-      view_welcome_consult_list_of: 
-      content: 
+      distribution_of_issues_in_time: 
       monthly_calendar: 
-      skip_to_the_navigation: 
-      welcome_to_the_value_management_tool: 
-      contents: 
-      classification: 
+      content: 
+      view_welcome_consult_list_of: 
+      skip_to_the_content: 
       translation_framework_sucks: 
-      this_tool_has_been_updated: 
+      classification: 
+      contents: 
+      welcome_to_the_value_management_tool: 
+      skip_to_the_navigation: 
+      weekly_report: 
       weekly_calendar: 
+      this_tool_has_been_updated: 
+    contents: 
     issues_box: 
       access_denied: You are not {{value}}, so you cannot access the issues interface of our service
       submit_an_issue: You can also make {{value}}
-    contents: 
+    consult_list_of: You can see the list of {{value}}
     document_box: 
       activity_report: You can consult your {{value}} online
       monthly_calendar: You can also see the {{value}}
       weekly_calendar: You can see the {{value}}
-    consult_list_of: You can see the list of {{value}}
   "Your answer :": 
   Edition of this archive: 
   Size: 
@@ -562,9 +564,9 @@ en:
   Don't hesitate to: 
   Ordered by end date: 
   A new url: 
-  a new issue: une nouvelle demande
   Schedules: 
   Add a role: 
+  a new issue: une nouvelle demande
   and your access code is %s: 
   Your password is too short (min. 5): 
   Inactive clients: 
@@ -754,12 +756,12 @@ en:
   "The progressions bar represent the progress ratio of the contract: ": 
   private: 
   State: 
-  weekly report of issues: weekly report of issues
   a permission: 
   Password is different from its confirmation: 
   Tosca on Rails: 
   Group: 
   Edit a software: 
+  weekly report of issues: weekly report of issues
   You have to create a client before creating a contract: 
   Contract was successfully created.: 
   Maximum number of time credits: 
@@ -987,11 +989,11 @@ en:
   Answer: 
   Add: 
   Contract was successfully updated.: 
-  software: software
   Is this comment private ?: 
   "The beginning of the report is organized in four regions for each type of information: ": 
   "'%s' was successfully updated.": 
   Preferences: 
+  software: software
   Expand all: 
   Last page: 
   Subscribe to this %s: 
@@ -1000,9 +1002,9 @@ en:
   Maximum number of components: 
   a new contribution: 
   a skill: 
-  Issues correction time: 
-  This archive has been successfully updated.: 
   Title: 
+  This archive has been successfully updated.: 
+  Issues correction time: 
   Short description: 
   Edit anattachment: 
   Attachments: 
