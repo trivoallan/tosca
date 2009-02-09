@@ -31,7 +31,7 @@ module AccountHelper
     if @session_user.id == @user.id
       result << I18n.t('My account')
     else
-      result << I18n.t('Account of %s') % @user.name
+      result << I18n.t('Account of %s', @user.name)
     end
     result << " (#{I18n.t('User|Inactive')})" if @user.inactive
     result

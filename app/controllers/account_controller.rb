@@ -46,8 +46,8 @@ class AccountController < ApplicationController
       else
         clear_sessions
         id = User.find_by_login(params['user_login'])
-        flash.now[:warn] = t("Connexion failure")
-        flash.now[:warn] += t(", your account has been desactivated") if id and id.inactive?
+        flash.now[:warn] = t(:connection_failure)
+        flash.now[:warn] += t(:your_account_has_been_desactivated) if id and id.inactive?
       end
     else # Display form
     end
@@ -62,7 +62,7 @@ class AccountController < ApplicationController
 
     # in case of "su" style use, relog to previous one
     _login(last_user) if last_user
-    redirect_to "/"
+    redirect_to '/'
   end
 
   def new
@@ -81,7 +81,7 @@ class AccountController < ApplicationController
       _associate_user
       if @user.save
         # The commit has to be after sending email, not before
-        flash[:notice] = t("Account successfully created.")
+        flash[:notice] = t(:account_successfully_created)
         flash[:notice] += message_notice(@user.email, nil)
         redirect_to account_path(@user)
       else
@@ -162,7 +162,7 @@ class AccountController < ApplicationController
     end
     if res # update of account fully ok
       set_sessions @user if @session_user == @user
-      flash[:notice]  = t("Edition succeeded")
+      flash[:notice]  = t(:edition_succeeded)
       redirect_to account_path(@user)
     else
       # Don't write this :  _form and render :action => 'edit'
