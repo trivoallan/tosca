@@ -1,7 +1,12 @@
 # All translations of this locale combined.
 # Last updated: Fri Feb 06 18:17:55 +0100 2009
  
-fr: 
+fr:
+  access:
+    denied:
+     access_denied: "Acc\xC3\xA8s interdit"
+     access_to_this_page_is_restricted: "Cette page a un acc\xC3\xA8s restreint aux personnes autoris\xC3\xA9es."
+
   :add_a_permission: Ajouter une permission
   :source_management: Gestion des sources
   :dress_this_site_as_you_wish: Habillez ce site comme bon vous semble
@@ -193,7 +198,6 @@ fr:
   :the_s_has_been_submitted_by_the_community: "Le %s a \xC3\xA9t\xC3\xA9 propos\xC3\xA9 \xC3\xA0 la communaut\xC3\xA9"
   :binary_packages_with_the_patch: Paquets binaires avec le patch
   :new_archive: Nouvelle archive
-  :access_denied: "Acc\xC3\xA8s interdit"
   :list_of_the_types_of_contribution: Liste des types de contributions
   :permission_list: Liste des permissions
   :url: Url
@@ -220,7 +224,6 @@ fr:
   :new_issues: Nouvelles demandes
   :list_of_contributions: Liste des contributions
   :unknown_rules_for_contract_s: "R\xC3\xA8gles inconnu pour le contrat \"%s\""
-  :access_to_this_page_is_restricted: "Cette page a un acc\xC3\xA8s restreint aux personnes autoris\xC3\xA9es."
   :add_an_url_for_the_community_issue: Ajouter une url de suivi communautaire
   :a_technology: une technologie
   :a_new_alert_page_is_available_allowing_all_teams_to_monitor_its_own_contract: "Une nouvelle page d'alerte est disponible, permettant \xC3\xA0 toutes les \xC3\xA9quipes de surveiller leurs propres contrats"

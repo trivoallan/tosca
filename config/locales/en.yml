@@ -1,7 +1,12 @@
 # All translations of this locale combined.
 # Last updated: Fri Feb 06 18:17:55 +0100 2009
  
-en: 
+en:
+  access:
+    denied:
+      acces_denied: Access denied
+      access_to_this_page_is_restricted: Access to this page is restricted.
+      
   and: and
   Distribution of your issues: 
   Selected issues can wait: 
@@ -53,7 +58,6 @@ en:
   Changelog: 
   Send me a new password: 
   Edit: 
-  Access denied: 
   of: 
   Contracts of the team: 
   Correction: 
@@ -539,7 +543,6 @@ en:
   Blocking: 
   Processing time: 
   Team members: 
-  Access to this page is restricted.: 
   Generate a hash: 
   no data: 
   You are not allowed to edit this comment: 
