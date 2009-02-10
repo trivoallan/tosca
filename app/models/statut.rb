@@ -20,8 +20,8 @@ class Statut < ActiveRecord::Base
   has_many :issues
 
   #######################################
-  I18n.t('Submitted') #1  	Enregistrée     #
-  I18n.t('Accepted')  #2	Accepté         #
+  I18n.t(:submitted) #1  	Enregistrée     #
+  I18n.t(:accepted)  #2	Accepté         #
   I18n.t('Suspended') #3	Suspendue       #
   I18n.t('Analysed')  #4	Analysée        #
   I18n.t('Bypassed')  #5 	Contournée      #

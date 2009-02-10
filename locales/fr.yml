@@ -1,21 +1,47 @@
-# All translations of this locale combined.
-# Last updated: Fri Feb 06 18:17:55 +0100 2009
- 
 fr:
-  access:
-    denied:
-     access_denied: "Acc\xC3\xA8s interdit"
-     access_to_this_page_is_restricted: "Cette page a un acc\xC3\xA8s restreint aux personnes autoris\xC3\xA9es."
-  account:
-    login:
-      connection_failure: "\xC3\x89chec lors de la connexion"
-      your_account_has_been_desactivated: ", votre compte a \xC3\xA9t\xC3\xA9 d\xC3\xA9sactiv\xC3\xA9"
-    signup:
-      account_successfully_created: "Le compte a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9 avec succ\xC3\xA8s."
-    update:
+  datetime:
+    distance_in_words:
+      less_than_x_minutes:
+        one:
+        other:
+      x_days:
+        one:
+        other:
+      x_seconds:
+        one:
+        other:
+      x_working_days:
+        one: "1 jour ouvr\xC3\xA9"
+        other: "{{count}} jours ouvr\xC3\xA9s"
+      less_than_x_seconds:
+        one:
+        other:
+      x_minutes:
+        one:
+        other:
+      about_x_hours:
+        one:
+        other:
+      x_months:
+        one:
+        other:
+      about_x_months:
+        one:
+        other:
+      about_x_years:
+        one:
+        other:
+      over_x_years:
+        one:
+        other:
+      half_a_working_day: "un demi jour ouvr\xC3\xA9e"
+      half_a_minute:
+      half_a_day: "une demie journ\xC3\xA9e"
+      x_working_months:
+        one: "1 mois ouvr\xC3\xA9"
+        other: "{{count}} mois ouvr\xC3\xA9s"
 
   edition_succeeded: "Les modifications ont \xC3\xA9t\xC3\xA9 effectu\xC3\xA9es avec succ\xC3\xA8s"
-
   add_a_permission: Ajouter une permission
   source_management: Gestion des sources
   dress_this_site_as_you_wish: Habillez ce site comme bon vous semble
@@ -142,54 +168,7 @@ fr:
   characteristic: Caracteristique
   attachments: Documents
   customers: Clients
-  welcome:
-    update_box:
-      this_site_has_changed:
-      translation_framework_sucks:
-      this_tool_has_been_updated:
-    software_box:
-      contributions:
-      classification:
-    title:
-    idea_box:
-      title:
-      content:
-    index:
-      report: Vous pouvez consulter votre {{value}} en ligne
-      weekly_report_of_issues: :weekly_report_of_issues
-      title: "la boite \xC3\xA0 id\xC3\xA9es"
-      this_site_has_changed: "Ce site a chang\xC3\xA9"
-      access_denied: "Vous n'\xC3\xAAtes pas {{value}}, donc vous ne pouvez pas acc\xC3\xA9der \xC3\xA0 l'interface des issues de notre service"
-      calendar_report: rapport en calendrier
-      my_account: :my_account
-      documents: :documents
-      a_new_issue: :a_new_issue
-      contributions: :contributions
-      submit_an_issue: Vous pouvez aussi faire {{value}}
-      distribution_of_issues_in_time: :distribution_of_issues_in_time
-      activity_report: :activity_report
-      skip_to_the_content: :skip_to_the_content
-      view_welcome_consult_list_of: :view_welcome_consult_list_of
-      content: "Vous avez une id\xC3\xA9e pour am\xC3\xA9liorer nos services ?<br />\n   Vos commentaires et suggestions sont les bienvenues dans {{value}}."
-      monthly_calendar: :monthly_calendar
-      contents:
-      skip_to_the_navigation: :skip_to_the_navigation
-      welcome_to_the_value_management_tool: :welcome_to_the_value_management_tool
-      classification: "Ces logiciels sont r\xC3\xA9partis selon une %s pr\xC3\xA9cise et simple, par groupe d'activit\xC3\xA9"
-      translation_framework_sucks: :translation_framework_sucks
-      weekly_report: rapport par semaine
-      consult_list_of: Vous pouvez consulter la liste des {{value}}
-      this_tool_has_been_updated: "Comme vous pouvez le voir, cet outil a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour. Voici une courte liste des changements : "
-      weekly_calendar: :weekly_calendar
-    issues_box:
-      access_denied:
-      submit_an_issue:
-    contents:
-    document_box:
-      activity_report:
-      monthly_calendar:
-      weekly_calendar:
-    consult_list_of:
+  
   write_your_comment_here: "\xC3\x89crivez votre commentaire ici"
   administration_interface: Interface d'administration
   to_be_closed: "Restant \xC3\xA0 clore"
@@ -260,47 +239,7 @@ fr:
   daily_digest: "Activit\xC3\xA9 quotidienne"
   version_of_a_software: Versiond d'un logiciel
   a_new_licence: une nouvelle licence
-  datetime:
-    distance_in_words:
-      less_than_x_minutes:
-        one:
-        other:
-      x_days:
-        one:
-        other:
-      x_seconds:
-        one:
-        other:
-      x_working_days:
-        one: "1 jour ouvr\xC3\xA9"
-        other: "{{count}} jours ouvr\xC3\xA9s"
-      less_than_x_seconds:
-        one:
-        other:
-      x_minutes:
-        one:
-        other:
-      about_x_hours:
-        one:
-        other:
-      x_months:
-        one:
-        other:
-      about_x_months:
-        one:
-        other:
-      about_x_years:
-        one:
-        other:
-      over_x_years:
-        one:
-        other:
-      half_a_working_day: "un demi jour ouvr\xC3\xA9e"
-      half_a_minute:
-      half_a_day: "une demie journ\xC3\xA9e"
-      x_working_months:
-        one: "1 mois ouvr\xC3\xA9"
-        other: "{{count}} mois ouvr\xC3\xA9s"
+  
   this_issue_has_been_requalified_in_s_by_s: "Cette demande a \xC3\xA9t\xC3\xA9 requalifi\xC3\xA9e en %s par %s."
   permission_was_successfully_created: "La permission a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9e avec succ\xC3\xA8s."
   workaround_time: Temps de contournement
@@ -359,7 +298,6 @@ fr:
   show_all_the_issues: montrer toutes les demandes
   person_not_found: "Personne non trouv\xC3\xA9e"
   active: Actif
-  maximum_number_of_components: Nombre maximum de composants
   distribution_of_issues_in_time: "R\xC3\xA9partition de vos demandes dans le temps"
   free_software_used_by_s: "Logiciels libre utilis\xC3\xA9s par %s"
   assign:
@@ -501,27 +439,6 @@ fr:
   issues_of_this_s: Issues de ce/cette %s
   reporting: Reporting
   contracts_of_the_team: "Contrats de l'\xC3\xA9quipe"
-  view:
-    welcome:
-      software_box:
-        contributions:
-        classification:
-      update_box:
-        this_site_has_changed:
-        translation_framework_sucks:
-        this_tool_has_been_updated:
-      title:
-      idea_box:
-        title:
-        content:
-      documents_box:
-        activity_report:
-        monthly_calendar:
-        weekly_calendar:
-      issues_box:
-        access_denied:
-        submit_an_issue:
-      consult_list_of:
   are_you_sure: "\xC3\x8Ates vous s\xC3\xBBr ?"
   action: Action
   distribution_of_your_issues: "R\xC3\xA9partition de vos demandes"
@@ -649,7 +566,6 @@ fr:
   users: Utilisateurs
   hash: Hash
   since_the_beginning_of_your_contract: "Depuis le d\xC3\xA9but de votre contrat"
-  editing_a_component_offer: Modifier une offre par composants
   a_new_view_on_issue_is_available_s: "Une nouvelle vue sur les demandes est disponible : %s"
   inactive_clients: Clients inactifs
   subscribe_to_this_s: "S'inscrire \xC3\xA0 ce/cette %s"
@@ -666,7 +582,6 @@ fr:
   from_s_to_s: " de %s \xC3\xA0 %s"
   delete: Effacer
   bypassed: "Contourn\xC3\xA9e"
-  an_s_offer: une offre %s
   select_customer: "S\xC3\xA9lectionner un client"
   issues_of_all_your_contracts: Les demandes de tous vos contrats
   an_issue_type_was_successfully_updated: "Le type de demande a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."

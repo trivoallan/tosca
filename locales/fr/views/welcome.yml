@@ -1,0 +1,30 @@
+fr:
+  welcome:
+    title:
+    index:
+      report: Vous pouvez consulter votre {{value}} en ligne
+      weekly_report_of_issues: :weekly_report_of_issues
+      title: "la boite \xC3\xA0 id\xC3\xA9es"
+      this_site_has_changed: "Ce site a chang\xC3\xA9"
+      access_denied: "Vous n'\xC3\xAAtes pas {{value}}, donc vous ne pouvez pas acc\xC3\xA9der \xC3\xA0 l'interface des issues de notre service"
+      calendar_report: rapport en calendrier
+      my_account: :my_account
+      documents: :documents
+      a_new_issue: :a_new_issue
+      contributions: :contributions
+      submit_an_issue: Vous pouvez aussi faire {{value}}
+      distribution_of_issues_in_time: :distribution_of_issues_in_time
+      activity_report: :activity_report
+      skip_to_the_content: :skip_to_the_content
+      view_welcome_consult_list_of: :view_welcome_consult_list_of
+      content: "Vous avez une id\xC3\xA9e pour am\xC3\xA9liorer nos services ?<br />\n   Vos commentaires et suggestions sont les bienvenues dans {{value}}."
+      monthly_calendar: :monthly_calendar
+      contents:
+      skip_to_the_navigation: :skip_to_the_navigation
+      welcome_to_the_value_management_tool: :welcome_to_the_value_management_tool
+      classification: "Ces logiciels sont r\xC3\xA9partis selon une %s pr\xC3\xA9cise et simple, par groupe d'activit\xC3\xA9"
+      translation_framework_sucks: :translation_framework_sucks
+      weekly_report: rapport par semaine
+      consult_list_of: Vous pouvez consulter la liste des {{value}}
+      this_tool_has_been_updated: "Comme vous pouvez le voir, cet outil a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour. Voici une courte liste des changements : "
+      weekly_calendar: :weekly_calendar

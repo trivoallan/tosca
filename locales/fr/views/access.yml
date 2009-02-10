@@ -1,0 +1,5 @@
+fr:
+  access:
+    denied:
+      access_denied: "Acc\xC3\xA8s interdit"
+      access_to_this_page_is_restricted: "Cette page a un acc\xC3\xA8s restreint aux personnes autoris\xC3\xA9es."

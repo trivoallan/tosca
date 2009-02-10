@@ -75,9 +75,9 @@ module Scope
     end
   end
 
-
   #We load all the models
   Dir.glob(RAILS_ROOT + '/app/models/*.rb').each { |file| require file }
+  Dir.glob(RAILS_ROOT + '/vendor/extensions/**/app/model/*.rb')
   @@models = Object.subclasses_of(ActiveRecord::Base)
 
 end

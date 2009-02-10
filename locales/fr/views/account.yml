@@ -1,0 +1,7 @@
+fr:
+  account:
+    login:
+      connection_failure: "\xC3\x89chec lors de la connexion"
+      your_account_has_been_desactivated: ", votre compte a \xC3\xA9t\xC3\xA9 d\xC3\xA9sactiv\xC3\xA9"
+    signup:
+      account_successfully_created: "Le compte a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9 avec succ\xC3\xA8s."

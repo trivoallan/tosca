@@ -1,0 +1,11 @@
+en:
+  components:
+    form:
+      maximum_number_of_components: 'Maximum number of components'
+    edit:
+      editing_a_component_offer: 'Editing a component offer'
+    new:
+      new_component_offer: 'New component offer'
+    index:
+      list_of_components_offers: 'List of components offers'
+      an_offer: 'an {{name}} offer'

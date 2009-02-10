@@ -197,8 +197,6 @@ module Test # :nodoc: all
 end
 
 # In test environment, enable strict exception handling if strict mode is set
-if defined? RAILS_ENV && RAILS_ENV == "test" && Translator.strict_mode
+if (defined? RAILS_ENV) && (RAILS_ENV == "test") && Translator.strict_mode
   Translator.toggle_strict_translation(true)
 end
-
-

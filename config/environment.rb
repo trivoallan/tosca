@@ -75,7 +75,9 @@ Rails::Initializer.run do |config|
 
   ### External libs ###
   # Used to i18n and l10n
-  config.gem 'ya2yaml'
+#  config.gem 'ya2yaml'
+#  config.gem 'locale'
+#  config.gem 'locale_rails'
 
   # Used to get up2date pagination on list
   config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
