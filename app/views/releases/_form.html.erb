@@ -12,10 +12,10 @@
   <%= select(:release, :contract_id, @contracts) %>
 </p>
 
-<p><label for="release_packaged"><%= t("Is this release packaged ?") %></label>
+<p><label for="release_packaged"><%= t("Packaged") %> ?</label>
   <%= check_box :release, :packaged %>
 </p>
 
-<p><label for="release_inactive"><%= t("Is this release inactive ?") %></label>
+<p><label for="release_inactive"><%= t("Inactive") %> ?</label>
   <%= check_box :release, :inactive %>
 </p>

@@ -60,7 +60,7 @@ class VersionsController < ApplicationController
   def create
     @version = Version.new(params[:version])
     if @version.save
-      flash[:notice] = t('The version %s has been created.') % @version.name
+      flash[:notice] = t(:version_was_successfully_created, :name => @version.name)
       redirect_to software_path(@version.software)
     else
       _form
@@ -76,7 +76,7 @@ class VersionsController < ApplicationController
   def update
     @version = Version.find(params[:id])
     if @version.update_attributes(params[:version])
-      flash[:notice] = t('The version %s has been updated.') % @version.full_name
+      flash[:notice] = t(:version_was_successfully_updated, :name => @version.full_name)
       redirect_to version_path(@version)
     else
       _form and render :action => 'edit'

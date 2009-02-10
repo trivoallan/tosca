@@ -21,12 +21,12 @@ module WillPaginate::ViewHelpers
   def page_entries_info(collection)
     if collection.total_pages < 2
       case collection.size
-      when 0; t('No entries found')
-      when 1; t('Displaying <b>1</b> entry')
-      else;   t("Displaying <b>all {{count}}</b> entries", :count => collection.size)
+      when 0; t('will_paginate.no_entries_found')
+      when 1; t('will_paginate.displaying_1_entries')
+      else;   t('will_paginate.displaying_x_entries', :count => collection.size)
       end
     else
-      t('Displaying entries <b>{{from}}&nbsp;-&nbsp;{{to}}</b> of <b>{{total}}</b> in total', :from => collection.offset + 1,
+      t('will_paginate.displaying_x_y_entries', :from => collection.offset + 1,
         :to => collection.offset + collection.length,
         :total => collection.total_entries
         )

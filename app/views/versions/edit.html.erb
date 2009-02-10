@@ -1,8 +1,8 @@
-<h1><%= t('Edit a version')%></h1>
+<h1><%= t(:versions_edit)%></h1>
 
 <% form_tag version_path(@version), :method => :put, :id => 'main_form' do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag t('Save') %>
+  <%= submit_tag t(:Save) %>
 <% end %>
 <br />
 <%= link_to_show_and_list @version%>

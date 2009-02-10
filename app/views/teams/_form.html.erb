@@ -1,26 +1,26 @@
 <%= error_messages_for :team %>
 
 <p>
-  <label for="team_name"><%= t("Name of the Team") %></label>
+  <label for="team_name"><%= t(:Name) %></label>
   <%= text_field :team, :name %>
 </p>
 <p>
-  <label for="team_motto"><%= t("Motto of the Team") %></label>
+  <label for="team_motto"><%= t(:Motto) %></label>
   <%= text_field :team, :motto %>
 </p>
 <p>
-  <label for="team_contact_id"><%= t("Manager of the Team") %></label>
+  <label for="team_contact_id"><%= t(:Manager) %></label>
   <%= select :team, :contact_id, @users %>
 </p>
 <p>
   <fieldset>
-    <legend><%=t('Team members')%></legend>
+    <legend><%=t(:Members)%></legend>
     <%= auto_complete_list :user, :name, @team.users, "team[user_ids]" %>
   </fieldset>
 </p>
 <p>
   <fieldset>
-    <legend><%=t('Contracts of the team')%></legend>
+    <legend><%=t(:Contracts)%></legend>
     <%= auto_complete_list :contract, :name, @team.contracts, "team[contract_ids]" %>
   </fieldset>
 </p>

@@ -151,20 +151,14 @@ class StaticPicture < Static::ActionView
 
   @@tosca = nil
   def self.tosca
-    desc = I18n.t("Home page")
+    desc = I18n.t(:Homepage)
     @@tosca ||= image_tag('logo_tosca.gif', options(desc))
   end
 
   @@ruby = nil
   def self.ruby
-    desc = I18n.t("Tosca on Rails")
+    desc = I18n.t(:tosca_on_rails)
     @@ruby ||= image_tag('icons/ruby.gif', options(desc, '15x15'))
-  end
-
-  @@linagora = nil
-  def self.linagora
-    desc = I18n.t("Tosca on Rails")
-    @@linagora ||= image_tag('logo_linagora.gif', options(desc, '176x44'))
   end
 
   @@favimage_png = nil

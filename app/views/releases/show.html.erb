@@ -1,6 +1,6 @@
 <% version = @release.version %>
 <% software = @release.software %>
-<%= public_link_to t('Home'), welcome_path %> >
+<%= public_link_to t(:Homepage), welcome_path %> >
  <%= public_link_to t('Software'), softwares_path %> >
   <%= public_link_to software.group.name, software_path(software.group_id) %> >
    <%= public_link_to software, software_path(software) %> >
@@ -13,9 +13,9 @@
  <p><b><%=t('Contract')%>:</b> <%= link_to @release.contract.client, contract_path(@release.contract) %></p>
  <p><b><%=t('Version')%>:</b> <%= link_to version, version_path(version) %></p>
  <p><b><%=t('Release')%>:</b> <%= @release %></p>
- <p><b><%=t('Packaged ?')%></b> <%= t('Yes') if @release.packaged? %></p>
- <p><b><%=t('Active ?')%></b> <%= t('Yes') unless @release.inactive? %></p>
- 
+ <p><b><%=t('Packaged')%> ?</b> <%= t('Yes') if @release.packaged? %></p>
+ <p><b><%=t('Active')%> ?</b> <%= t('Yes') unless @release.inactive? %></p>
+
  <% if @release.changelog %>
  <fieldset>
    <legend><%=t('Changelog') %></legend>

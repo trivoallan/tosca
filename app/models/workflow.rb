@@ -29,7 +29,7 @@ class Workflow < ActiveRecord::Base
   end
 
   def name
-    "<b>#{self.statut.name}</b> => (#{self.allowed_status.join(', ')})"
+    "<b>#{t(self.statut.name)}</b> => (#{self.allowed_status.join(', ')})"
   end
 
   include Comparable

@@ -1,8 +1,8 @@
-<h1><%= t("Editing a Team") %></h1>
+<h1><%= t(:teams_edit) %></h1>
 
 <% form_tag team_path(@team), :id => 'form_team', :method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag t("Validate") %>
+  <%= submit_tag t(:Validate) %>
 <% end %>
 
 <%= link_to t('Show'), @team %> |

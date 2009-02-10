@@ -1,0 +1,10 @@
+fr:
+  Versions: Versions
+  versions: "versions"
+  a_version: "une version"
+  software_version: "Version d'un logiciel"
+  versions_new: "Nouvelle version"
+  versions_edit: "Modifier la version"
+  versions_index: "Liste des versions"
+  version_was_successfully_created: "Version {{name}} créée avec succès"
+  version_was_successfully_updated: "Version {{name}} mise à jour avec succès"

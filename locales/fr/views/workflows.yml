@@ -1,0 +1,6 @@
+fr:
+  workflow:
+    new_workflow: Nouveau flux
+    edit_workflow: Modifier le flux
+    workflow_was_successfully_created: "Flux créé avec succès"
+    workflow_was_successfully_updated: "Flux mis à jour avec succès"

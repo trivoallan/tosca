@@ -1,0 +1,10 @@
+fr:
+  releases: "révisions"
+  Releases: "Révisions"
+  a_release: "une révision"
+  releases_new: "Nouvelle révision"
+  releases_edit: "Modifier la révision"
+  releases_index: "Liste des révisions"
+  release_was_successfully_created: "Révision créée avec succès"
+  release_was_successfully_updated: "Révision mise à jour avec succès"
+  release_conflict_with_generic: "Cette révision ne peut être créée, car elle est associée à une version générique.<br /> Merci de créer une version spécifique."

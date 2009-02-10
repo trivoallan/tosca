@@ -1,8 +1,8 @@
-<h1><%= t("A new type of issue") %></h1>
+<h1><%= t(:issuetypes_new) %></h1>
 
 <% form_tag issuetypes_path do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag t("Create") %>
+  <%= submit_tag t(:Create) %>
 <% end %>
 
 <%= link_to_back %>

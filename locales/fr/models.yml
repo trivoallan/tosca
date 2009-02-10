@@ -1,2 +1,27 @@
 fr:
-  toto: toto
+  # Statuses
+  Submitted: "Enregistrée"
+  Accepted: "Acceptée"
+  Suspended: Suspendue
+  Analysed: "Analysée"
+  Bypassed: "Contournée"
+  Fixed: "Corrigée"
+  Closed: "Clôturée"
+  Cancelled: "Annulée"
+  # Teams
+  Team: "Équipe"
+  Contact: Contact
+  Manager: Responsable
+  Motto: Devise
+  Members : Membres
+  # Version
+  Version: Version
+  Generic: Générique
+  # Release
+  Release: "Révision"
+  Packaged: "Empaquetée"
+  Active: "Actif"
+  Inactive: "Inactive"
+  Changelog: "Journal des modifications"
+  # Contract
+  Contract: Contrat

@@ -69,9 +69,7 @@ fr:
   day: jour
   modification_date: Date de modification
   the_management_report_enables_you_to_consult_an_overview_of_the_activity: "Le rapport d'activit\xC3\xA9 vous permet de consulter une vue d'ensemble de l'activit\xC3\xA9."
-  list_of_releases: Liste des releases
   out_of_time: "Hors d\xC3\xA9lais"
-  a_release: une release
   updated_on: "Mis \xC3\xA0 jour le"
   statut_was_successfully_updated: "Le statut a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
   allows_to_become_an_other_one: permet de devenir un autre
@@ -168,7 +166,7 @@ fr:
   characteristic: Caracteristique
   attachments: Documents
   customers: Clients
-  
+
   write_your_comment_here: "\xC3\x89crivez votre commentaire ici"
   administration_interface: Interface d'administration
   to_be_closed: "Restant \xC3\xA0 clore"
@@ -224,7 +222,6 @@ fr:
   add_a_new_knowledge: Ajouter une connaissance
   declared_by: "D\xC3\xA9clar\xC3\xA9e par"
   author: Auteur
-  this_release_can_not_be_created_because_it_is_associated_with_a_generic_version_br_please_create_a_specific_version_below: "Cette r\xC3\xA9vision ne peut \xC3\xAAtre cr\xC3\xA9\xC3\xA9e, car elle est associ\xC3\xA9e \xC3\xA0 une version g\xC3\xA9n\xC3\xA9rique.<br /> Merci de cr\xC3\xA9er une version sp\xC3\xA9cifique."
   the_comment_was_successfully_destroyed: "Le commentaire a \xC3\xA9t\xC3\xA9 d\xC3\xA9truit avec succ\xC3\xA8s."
   a_comment_can_not_be_private_if_there_is_a_change_in_br_the_b_status_b_or_in_the_b_severity_b: "Un commentaire ne peut \xC3\xAAtre priv\xC3\xA9 s'il y a un changement<br/>\\\n\
     \"\n\
@@ -239,14 +236,14 @@ fr:
   daily_digest: "Activit\xC3\xA9 quotidienne"
   version_of_a_software: Versiond d'un logiciel
   a_new_licence: une nouvelle licence
-  
+
   this_issue_has_been_requalified_in_s_by_s: "Cette demande a \xC3\xA9t\xC3\xA9 requalifi\xC3\xA9e en %s par %s."
   permission_was_successfully_created: "La permission a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9e avec succ\xC3\xA8s."
   workaround_time: Temps de contournement
   by_severities:
   software_categorization: Classification des logiciels
   create_a_new_type_of_contribution: "Cr\xC3\xA9er un nouveau type de contribution"
-  displaying_entries_b_from_nbsp_nbsp_to_b_of_b_total_b_in_total: "R\xC3\xA9sultats <b>{{from}}d&nbsp;-&nbsp;{{to}}</b> sur un total de <b>{{total}}</b>"
+  displaying_entries_b_from_nbsp_nbsp_to_b_of_b_total_b_in_total:
   the_version_s_has_been_created: "La version %s a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9e avec succ\xC3\xA8s"
   send_me_a_new_password: Envoyer moi un nouveau mot de passe
   short_description: Description courte
@@ -380,7 +377,6 @@ fr:
   create_several_accounts: "Cr\xC3\xA9er plusieurs comptes"
   reference:
   sumbitted_on:
-  release: Release
   customer_mailing_list: Mailing liste cliente
   incorrect_parameters: "param\xC3\xA8tres incorrects"
   a_new_typeof_contribution: Un nouveau type de contribution
@@ -411,7 +407,6 @@ fr:
   unsubscribe_to_this_s: "D\xC3\xA9sinscrire de ce/cette %s"
   consult_list_of: Vous pouvez consulter la liste des {{value}}
   you_can_not_subscribe_to_this_s: "Vous ne pouvez vous inscrire \xC3\xA0 ce/cette %s"
-  this_release_has_been_successfully_created: "Cette release a bien \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9e."
   title: Titre
   the_issue_is_now_managed_by_s_br: "Le responsable de la demande est d\xC3\xA9sormais %s.<br/>"
   the_issue_has_been_updated_successfully: "La demande a bien \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour."
@@ -496,10 +491,8 @@ fr:
   a_new_contribution: une nouvelle contribution
   activity_report: "Rapport d'activit\xC3\xA9 "
   a_client: un client
-  is_this_release_packaged: "Est ce que cette release est packag\xC3\xA9e ?"
   delay:
   new_component_offer: Nouvelle offre par composants
-  is_this_release_inactive: Est ce que cette release est inactive ?
   all: Tous
   editing_group: "\xC3\x89diter un groupe"
   no_issue_found: "Aucune demande trouv\xC3\xA9e"
@@ -538,7 +531,6 @@ fr:
   list_of_images: Liste des images
   displaying_b_all_d_b_entries: "<b>%d</b> r\xC3\xA9sultats"
   help_on_the_status: Explications des statuts
-  releases: Releases
   human_ressources: Ressources humaines
   add_a_knowledge: Ajouter une connaissance
   show_issues_that_were_processed: "montrer les demandes qui ont d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 trait\xC3\xA9es"
@@ -560,7 +552,6 @@ fr:
   offer: Offre
   please_fill_in_the_fields_below: Remplissez les champs ci-dessous.
   new_image: Nouvelle image
-  no: Non
   the_contribution_has_been_created_successfully: "La contribution a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9e avec succ\xC3\xA8s"
   active_issues: Demandes actives
   users: Utilisateurs
@@ -604,7 +595,7 @@ fr:
   client: Client
   new_tag: Nouveau Tag
   add_s: Ajouter %s
-  
+
   workday: " jour ouvr\xC3\xA9"
   attributes: Attributs
   schedules: Horaires
@@ -656,7 +647,6 @@ fr:
   s_activity_per_week: "Activit\xC3\xA9 de %s par semaine"
   finished_issues: "Demandes termin\xC3\xA9es"
   user_name: Nom
-  releases_list: Liste des releases
   and_associated_permissions: "et des permissions associ\xC3\xA9es"
   d_time_credits_of_s: "%d cr\xC3\xA9dit temps de %s"
   s_has_already_been_spent_on_your_s: "%s ont d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 depens\xC3\xA9s sur votre %s"
@@ -698,7 +688,6 @@ fr:
   a_new_type_of_contribution_was_successfully_created: "Un nouveau type de contribution a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9 avec succ\xC3\xA8s."
   user_pwd: Mot de passe
   recipients: "B\xC3\xA9n\xC3\xA9ficiaires: "
-  new_release: Nouvelle release
   clear_cache: Nettoyer le cache
   and_its_has_been_approved_on_s: "et a \xC3\xA9t\xC3\xA9 accept\xC3\xA9 le %s"
   your_suggestions_on_our_tool: "Vos suggestion sur notre outil : "
@@ -714,7 +703,7 @@ fr:
   does_not_exist: N'existe pas
   info: Info
   you_must_have_specify_a_password: "Vous devez pr\xC3\xA9ciser un mot de passe"
-  
+
   group_was_successfully_updated: "Le groupe a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
   estimation_in_minutes: Estimation en minutes
   you_can_not_unsubscribe_to_this_contract_because_your_are_the_only_one_watching_it: "Vous ne pouvez vous d\xC3\xA9sinscrire de ce contrat, parce que vous \xC3\xAAtes le seul \xC3\xA0 \xC3\xAAtre notifi\xC3\xA9"
@@ -824,7 +813,6 @@ fr:
   save: Enregistrer
   the_beginning_of_the_report_is_organized_in_four_regions_for_each_type_of_information: "Le d\xC3\xA9but du rapport est organis\xC3\xA9 suivant quatre zones pour chaque type d'information : "
   weekly_report_of_issues: rapport hebdomadaire des demandes
-  edition_of_this_release: "\xC3\x89dition de cette release"
   new_skill: "Nouvelle comp\xC3\xA9tence"
   delivery: Livraison
   technologies: Technologies
@@ -902,7 +890,6 @@ fr:
   back: Retour
   actions: Actions
   you_are_now_subscribed_to_this_s: "Vous \xC3\xAAtes d\xC3\xA9sormais inscrit \xC3\xA0 ce/cette %s"
-  this_release_has_been_successfully_updated: "Cette release a \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour."
   week_of_the_s: Semaine du %s
   engineer: "Ing\xC3\xA9nieur"
   synthesis: "Synth\xC3\xA8se"
@@ -941,4 +928,3 @@ fr:
   see_the_sla_report: Consulter le rapport CNS
   links: Liens
   name_of_the_team: "Nom de l'\xC3\xA9quipe"
-

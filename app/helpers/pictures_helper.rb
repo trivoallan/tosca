@@ -21,7 +21,7 @@ module PicturesHelper
 
   #Create icon with a nice tooltip
   def image_create(message)
-    desc = I18n.t("Add %s", :value => message)
+    desc = "#{I18n.t(:Create)} #{message}"
     image_tag("icons/add.png", StaticPicture::options(desc, '16x16'))
   end
 

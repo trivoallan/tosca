@@ -30,6 +30,7 @@ class WorkflowsController < ApplicationController
   # GET /workflows/new
   def new
     @workflow = Workflow.new
+    @workflow.issuetype_id = params[:issuetype_id]
     _form
   end
 
@@ -42,12 +43,12 @@ class WorkflowsController < ApplicationController
   # POST /workflows
   def create
     @workflow = Workflow.new(params[:workflow])
-    @workflow.allowed_status_ids.delete_if(&:zero?)
+    @workflow.allowed_status_ids.delete_if{|s| s == '0'}
     if @workflow.save
-      flash[:notice] = 'Workflow was successfully created.'
+      flash[:notice] = t(:workflow_was_successfully_created)
       redirect_to(@workflow.issuetype)
     else
-      _form and render :action => "new"
+      _form and render :action => :new
     end
   end
 
@@ -55,10 +56,10 @@ class WorkflowsController < ApplicationController
   def update
     @workflow = Workflow.find(params[:id])
     if @workflow.update_attributes(params[:workflow])
-      flash[:notice] = 'Workflow was successfully updated.'
+      flash[:notice] = t(:workflow_was_successfully_updated)
       redirect_to(@workflow.issuetype)
     else
-      _form and render :action => "edit"
+      _form and render :action => :edit
     end
   end
 

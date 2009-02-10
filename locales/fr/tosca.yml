@@ -7,3 +7,29 @@ fr:
   components: Composants
   welcome: Bienvenue
   a_new_issue: une nouvelle demande
+  Validate: Valider
+  Submit: Valider
+  Name: Nom
+  Description: Description
+  Homepage: "Page d'accueil"
+  tosca_on_rails: "Tosca on Rails"
+  Create: Créer
+  Delete: Effacer
+  Update: Modifier
+  Show: Consulter
+  View: Consulter
+  Back: Retour
+  Edit: Modifier
+  List: Liste
+  Search: Rechercher
+  Save: Sauvegarder
+  Activated: Activée
+  # NB: Quotes around Yes/No are mandatory since
+  #     they are keyword, as of Ruby 1.8.6
+  "Yes": Oui
+  "No": "Non"
+  will_paginate:
+    no_entries_found: "Aucun résultat trouvé"
+    displaying_1_entries: "<b>1</b> résultat"
+    displaying_x_entries: "<b>{{count}}</b> résultats"
+    displaying_x_y_entries: "Résultats <b>{{from}}&nbsp;-&nbsp;{{to}}</b> sur un total de <b>{{total}}</b>"
