@@ -47,7 +47,7 @@
 <% end %>
  <% theme = session[:theme] %>
  <%= stylesheet_link_tag(theme, :media => 'all') unless theme.blank? %>
- <title><%= @page_title || t(:title, :scope => controller.controller_name) %></title>
+ <title><%= @page_title || t(controller.controller_name) %></title>
 </head>
 <body>
   <div id="page_margins">

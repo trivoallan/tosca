@@ -4,3 +4,4 @@ en:
   name: Name
   validate: 'Validate'
   create: 'Create'
+  components: Components
