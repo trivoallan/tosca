@@ -1,21 +1,4 @@
 en:
-  access:
-    denied:
-      acces_denied: Access denied
-      access_to_this_page_is_restricted: Access to this page is restricted.
-  account:
-    login:
-      connection_failure: Connection failure
-      your_account_has_been_desactivated: ", your account has been desactivated"
-    signup:
-      account_successfully_created: "Account successfully created."
-  reporting:
-    configuration:
-      title: "Reporting"
-      validate_report: "Validate &#187;"
-
-  edition_succeeded: 'Edition succeeded'
-  and: and
   datetime: 
     distance_in_words: 
       less_than_x_minutes: 
@@ -57,56 +40,7 @@ en:
       x_working_months: 
         one: 1 working month
         other: "{{count}} working months"
-  activerecord: 
-    errors: 
-      messages: 
-        greater_than_or_equal_to: must be greater than or equal to {{count}}
-        confirmation: doesn't match confirmation
-        less_than_or_equal_to: must be less than or equal to {{count}}
-        blank: can't be blank
-        exclusion: is reserved
-        invalid: is invalid
-        odd: must be odd
-        empty: can't be empty
-        too_short: is too short (minimum is {{count}} characters)
-        wrong_length: is the wrong length (should be {{count}} characters)
-        even: must be even
-        less_than: must be less than {{count}}
-        greater_than: must be greater than {{count}}
-        equal_to: must be equal to {{count}}
-        accepted: must be accepted
-        too_long: is too long (maximum is {{count}} characters)
-        taken: has already been taken
-        inclusion: is not included in the list
-        not_a_number: is not a number
-      models: 
-      template: 
-        body: "There were problems with the following fields:"
-        header: 
-          one: 1 error prohibited this {{model}} from being saved
-          other: "{{count}} errors prohibited this {{model}} from being saved"
-  number: 
-    format: 
-      separator: .
-      precision: 3
-      delimiter: ","
-    human: 
-      format: 
-        precision: 1
-        delimiter: ""
-    percentage: 
-      format: 
-        delimiter: ""
-    currency: 
-      format: 
-        format: "%u%n"
-        unit: $
-        separator: .
-        precision: 2
-        delimiter: ","
-    precision: 
-      format: 
-        delimiter: ""
+
   welcome: 
     software_box: 
       contributions: You can consult and follow all the {{value}} done by our team in Open Source communities
@@ -115,7 +49,6 @@ en:
       this_site_has_changed: This site has changed
       translation_framework_sucks: This translation framework really sucks
       this_tool_has_been_updated: "As you can see, this tool has been updated. Here is a shortlist of changes : "
-    title: Welcome
     idea_box: 
       title: Idea box
       content: You have an idea which can improve our services?<br />Your comments and suggestions are welcome in {{value}}.
@@ -136,64 +69,5 @@ en:
     array: 
       skip_last_comma: false
       sentence_connector: and
-  time: 
-    am: am
-    formats: 
-      default: "%a, %d %b %Y %H:%M:%S %z"
-      short: "%d %b %H:%M"
-      long: "%B %d, %Y %H:%M"
-    pm: pm
-  date: 
-    month_names: 
-    - 
-    - January
-    - February
-    - March
-    - April
-    - May
-    - June
-    - July
-    - August
-    - September
-    - October
-    - November
-    - December
-    abbr_day_names: 
-    - Sun
-    - Mon
-    - Tue
-    - Wed
-    - Thu
-    - Fri
-    - Sat
-    order: 
-    - :year
-    - :month
-    - :day
-    formats: 
-      default: "%Y-%m-%d"
-      short: "%b %d"
-      long: "%B %d, %Y"
-    day_names: 
-    - Sunday
-    - Monday
-    - Tuesday
-    - Wednesday
-    - Thursday
-    - Friday
-    - Saturday
-    abbr_month_names: 
-    - 
-    - Jan
-    - Feb
-    - Mar
-    - Apr
-    - May
-    - Jun
-    - Jul
-    - Aug
-    - Sep
-    - Oct
-    - Nov
-    - Dec
+
   software: software

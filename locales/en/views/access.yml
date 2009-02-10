@@ -1,0 +1,5 @@
+en:
+  access:
+    denied:
+      acces_denied: Access denied
+      access_to_this_page_is_restricted: Access to this page is restricted.

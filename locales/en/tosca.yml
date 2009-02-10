@@ -5,3 +5,116 @@ en:
   validate: 'Validate'
   create: 'Create'
   components: Components
+  welcome: Home
+  a_new_issue: a new issue
+
+  time:
+    am: am
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      short: "%d %b %H:%M"
+      long: "%B %d, %Y %H:%M"
+    pm: pm
+  date:
+    month_names:
+    -
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
+    abbr_day_names:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Fri
+    - Sat
+    order:
+    - :year
+    - :month
+    - :day
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+    day_names:
+    - Sunday
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    abbr_month_names:
+    -
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - May
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Oct
+    - Nov
+    - Dec
+  number:
+    format:
+      separator: .
+      precision: 3
+      delimiter: ","
+    human:
+      format:
+        precision: 1
+        delimiter: ""
+    percentage:
+      format:
+        delimiter: ""
+    currency:
+      format:
+        format: "%u%n"
+        unit: $
+        separator: .
+        precision: 2
+        delimiter: ","
+    precision:
+      format:
+        delimiter: ""
+  activerecord:
+    errors:
+      messages:
+        greater_than_or_equal_to: must be greater than or equal to {{count}}
+        confirmation: doesn't match confirmation
+        less_than_or_equal_to: must be less than or equal to {{count}}
+        blank: can't be blank
+        exclusion: is reserved
+        invalid: is invalid
+        odd: must be odd
+        empty: can't be empty
+        too_short: is too short (minimum is {{count}} characters)
+        wrong_length: is the wrong length (should be {{count}} characters)
+        even: must be even
+        less_than: must be less than {{count}}
+        greater_than: must be greater than {{count}}
+        equal_to: must be equal to {{count}}
+        accepted: must be accepted
+        too_long: is too long (maximum is {{count}} characters)
+        taken: has already been taken
+        inclusion: is not included in the list
+        not_a_number: is not a number
+      models:
+      template:
+        body: "There were problems with the following fields:"
+        header:
+          one: 1 error prohibited this {{model}} from being saved
+          other: "{{count}} errors prohibited this {{model}} from being saved"
