@@ -1,0 +1,8 @@
+fr:
+  statuts:
+    Index: "Liste des statuts"
+    index:
+      a_statut: "un statut"
+    New: "Nouveau statut"
+    Edit: "Modifier le statut"
+    Show: "Statut"

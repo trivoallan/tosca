@@ -1,14 +1,19 @@
 en:
   successfully_created: "'{{name}}' was successfully created."
   successfully_upated: "'{{name}}' was successfully updated."
+  Description: Description
+  Id: Id
   Name: Name
   Validate: Validate
   Create: Create
   Validate: Valider
   Submit: Valider
   Description: Description
+  Destroy: Destroy
+  Model: Model
   Homepage: "Home page"
   Tosca_on_rails: "Tosca on Rails"
+  Type: Type
   Consultation: "Consultation"
   Create: Create
   Delete: Delete
@@ -28,6 +33,7 @@ en:
   Public: Public
   Private: "Private"
 
+  are_you_sure: "Are you sure ?"
 
   time:
     am: am

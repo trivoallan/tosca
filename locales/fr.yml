@@ -136,7 +136,7 @@ fr:
   write_your_comment_here: "\xC3\x89crivez votre commentaire ici"
   administration_interface: Interface d'administration
   to_be_closed: "Restant \xC3\xA0 clore"
-  
+
   user_informations: Informations
   plan_access_allowed: "Plan/Acc\xC3\xA8s autoris\xC3\xA9"
   id: Id
@@ -170,11 +170,10 @@ fr:
   number_of_the_week: "Num\xC3\xA9ro de la semaine:"
   new_issues: Nouvelles demandes
   list_of_contributions: Liste des contributions
-  
+
   add_an_url_for_the_community_issue: Ajouter une url de suivi communautaire
   a_technology: une technologie
   a_new_alert_page_is_available_allowing_all_teams_to_monitor_its_own_contract: "Une nouvelle page d'alerte est disponible, permettant \xC3\xA0 toutes les \xC3\xA9quipes de surveiller leurs propres contrats"
-  subscriptions: "Souscriptions :"
   to_close: "\xC3\x80 clore"
   plan: Plan
   others: Autres
@@ -186,10 +185,9 @@ fr:
   a_comment_can_not_be_private_if_there_is_a_change_in_br_the_b_status_b_or_in_the_b_severity_b: "Un commentaire ne peut \xC3\xAAtre priv\xC3\xA9 s'il y a un changement<br/>\\\n\
     \"\n\
     \"        du <b>statut</b> ou de la <b>s\xC3\xA9v\xC3\xA9rit\xC3\xA9</b>\""
-  create_a_new_subscription: "Cr\xC3\xA9\xC3\xA9r une nouvelle souscription"
   log_in: S'identifier
   list_of_the_status: Liste des statuts
-  
+
   system_management: "Gestion des Syst\xC3\xA8mes"
   workflow_of_s: Flux de %s
   daily_digest: "Activit\xC3\xA9 quotidienne"
@@ -223,7 +221,6 @@ fr:
   team: "[ \xC3\x89quipe ]"
   the_indicated_time_is_the_one_elapsed_before_the_end_of_the_sla: "Le temps indiqu\xC3\xA9 est celui restant avant la fin de la CNS"
   receive_a_summary_of_daily_activities: "Recevoir un r\xC3\xA9sum\xC3\xA9 de l'activit\xC3\xA9 quotidienne"
-  list_of_the_subscriptions: Liste des souscriptions
   edit_a_copyright: Modifier une license
   link: liens
   create:
@@ -357,7 +354,7 @@ fr:
   consult_list_of: Vous pouvez consulter la liste des {{value}}
   you_can_not_subscribe_to_this_s: "Vous ne pouvez vous inscrire \xC3\xA0 ce/cette %s"
   title: Titre
-  
+
   the_issue_has_been_updated_successfully: "La demande a bien \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour."
   end: Fin
   consult_issues_which_are_waiting_an_action_from_you: "Consulter les demandes qui n\xC3\xA9cessitent une action de votre part"
@@ -528,7 +525,7 @@ fr:
   rah_value_roh: rididou {{value}}
   introduction: Introduction
   filters: Filtres
-  
+
   no_data: "aucune donn\xC3\xA9e"
   editing_a_team: "\xC3\x89diter une \xC3\xA9quipe"
   commitment: Engagements
@@ -614,7 +611,7 @@ fr:
   skip_to_the_content: Passer au contenu
   contributionstate_description: Description
   address: Adresse
-  
+
   when_you_are_value_you_can_access_an_activity_report: "Quand vous \xC3\xAAtes {{value}}, vous avez acc\xC3\xA8s \xC3\xA0 un rapport d'activit\xC3\xA9"
   by_word: Par mot
   a_new_commitment: A nouvel engagement
@@ -711,12 +708,12 @@ fr:
   a_new_flow: un nouveau flux
   progress_bar: barre de progression
   editing_a_statut: "\xC3\x89diter un statut"
-  
-  
+
+
   time_of_taking_into_account_the_issues: Temps de prise en compte des demandes
   you_are_not_allowed_to_edit_this_comment: "Vous n'\xC3\xAAtes pas autoris\xC3\xA9 \xC3\xA0 modifier ce commentaire"
   this_issue_has_been_changed_in_s_by_s: "Cette demande a \xC3\xA9t\xC3\xA9 %s par %s."
-  
+
   teams_management: "Gestion des \xC3\x89quipes"
   commitments: Engagements
   listing_the_urls: Liste des urls
@@ -736,7 +733,7 @@ fr:
   "1_month": 1 Mois
   number_of_updated_issues: "Nombre de demandes mises \xC3\xA0 jour"
   editing_an_offer_with_time_credits: "Modification d'une offre avec des cr\xC3\xA9dits temps"
-  
+
   choose_a_date: "Sp\xC3\xA9cifier une date"
   informations: Informations
   alerts: Alertes

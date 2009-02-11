@@ -1,0 +1,8 @@
+en:
+  statuts:
+    Index: "Statuses"
+    index:
+      a_statut: "a status"
+    New: "New status"
+    Edit: "Edit status"
+    Show: "Status"

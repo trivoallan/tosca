@@ -107,6 +107,11 @@ en:
     Active: Active
     Inactive: Inactive
 
+  Statut:
+    Active: Active
+    Description: Description
+    Name: Name
+
   Tag:
     Submitter: "Submitter"
 

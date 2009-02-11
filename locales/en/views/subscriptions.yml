@@ -1,0 +1,9 @@
+en:
+  subscriptions:
+    Index: "Subscriptions"
+    index:
+      a_subscription: "a subscription"
+      subscribed_to: Subscribed to
+    New: "New subscription"
+    Edit: "Edit subscription"
+    Show: "Subscription"

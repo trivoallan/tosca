@@ -1,13 +1,21 @@
 fr:
+  a_new_issue: une nouvelle demande
+  are_you_sure: "Êtes-vous sûr ?"
   successfully_created: "'{{name}}' a été créé(e) avec succès."
   successfully_updated: "'{{name}}' a été mis(e) à jour avec succès."
+  updated_on: "Mis(e) à jour le"
+  created_on: "Créé(e) le"
+  Description: Description
+  Id: Id
+  Model: "Modèle"
   Name: Nom
-  Nalidate: Valider
+  Type: Type
+  Validate: Valider
   Create: "Créer"
-  a_new_issue: une nouvelle demande
   Validate: Valider
   Submit: Valider
   Description: Description
+  Destroy: "Effacer"
   Homepage: "Page d'accueil"
   Tosca_on_rails: "Tosca on Rails"
   Consultation: "Consultation"
