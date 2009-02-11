@@ -23,7 +23,11 @@ en:
   Activated: Activated
   Recipient: Recipient
   Expert: Expert
-  a_new_issue: a new issue
+  Recipient: Recipient
+  Eexpert: Expert
+  Public: Public
+  Private: "Private"
+
 
   time:
     am: am

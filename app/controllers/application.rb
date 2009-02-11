@@ -107,7 +107,6 @@ protected
     remove_scopes(@session_user)
   end
 
-
   #Compute the receiver of an email for the flash
   def message_notice(recipients, cc)
     result = '<br />' << t("An e-mail was sent to ") << " <b>#{html2text(recipients)}</b> "
