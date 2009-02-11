@@ -1,4 +1,5 @@
 en:
+  helpers:
     #Account
     my_account: 'My account'
     account_of: 'Account of {{name}}'

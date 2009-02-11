@@ -29,9 +29,9 @@ module AccountHelper
   def get_title
     result = ''
     if @session_user.id == @user.id
-      result << t(:my_account)
+      result << t(:'helpers.my_account')
     else
-      result << t(:account_of, :name => @user.name)
+      result << t(:'helpers.account_of', :name => @user.name)
     end
     result << " (#{t(:'User.Inactive')})" if @user.inactive
     result
@@ -54,7 +54,7 @@ module AccountHelper
     result = ''
     if @session_user.engineer? && user && !user.inactive?
       result << %Q{<form action="#{become_account_path(user)}" method="post">}
-      result << %Q{<input name="commit" value='#{t(:Become)}' type="submit" /></form>}
+      result << %Q{<input name="commit" value='#{t(:'account.Become')}' type="submit" /></form>}
     end
     result
   end
