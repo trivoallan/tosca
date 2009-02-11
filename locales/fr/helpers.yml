@@ -1,0 +1,4 @@
+fr:
+  #Account
+  my_account: 'Mon compte'
+  account_of: 'Compte de {{name}}'

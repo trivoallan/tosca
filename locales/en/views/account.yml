@@ -20,10 +20,6 @@ en:
     _edit_account_informations:
       type: Type
 
-    #Helpers
-    my_account: 'My account'
-    account_of: 'Account of {{name}}'
-
     #Actions
     Login: Login
     Become: Become
