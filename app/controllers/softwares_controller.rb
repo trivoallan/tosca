@@ -30,7 +30,7 @@ class SoftwaresController < ApplicationController
     @title = t(:Index)
     if @session_user and @session_user.recipient? && params['active'] != '0'
       scope = :supported
-      @title = t(:'softwares.your_software')
+      @title = t(:'your_software')
     end
 
     options = { :order => 'softwares.name', :include =>

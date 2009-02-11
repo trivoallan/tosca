@@ -1,5 +1,10 @@
 fr:
   helpers:
-    #Account
+    # Account
     my_account: 'Mon compte'
     account_of: 'Compte de {{name}}'
+    # Software
+    all_software: "Tous les logiciels"
+    all_software_desc: "Affiche tous les logiciels"
+    my_supported_software: "Mes logiciels supportés"
+    my_supported_software_desc: "Affiche uniquement les logiciels supportés dans le cadre de votre contrat."

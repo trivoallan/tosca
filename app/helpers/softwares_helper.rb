@@ -36,12 +36,12 @@ module SoftwaresHelper
   def remote_link_to_software( param)
     ajax_call = PagesHelper::AJAX_OPTIONS.dup.update(:url => softwares_path)
     if param == :supported
-      text = I18n.t('My supported software')
-      description = I18n.t('Display only software supported by your contract')
+      text = I18n.t(:'helpers.my_supported_software')
+      description = I18n.t(:'helpers.my_supported_software_desc')
       value = 1
     else
-      text = I18n.t('All software')
-      description = I18n.t('Display all software')
+      text = I18n.t(:'helpers.all_software')
+      description = I18n.t(:'helpers.all_software_desc')
       value = 0
     end
     js_call = "document.forms['filters'].active.value=#{value};" <<

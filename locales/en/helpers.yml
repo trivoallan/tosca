@@ -3,3 +3,8 @@ en:
     #Account
     my_account: 'My account'
     account_of: 'Account of {{name}}'
+    # Software
+    all_software: "All software"
+    all_software_desc: "Display all software"
+    my_supported_software: "My supported software"
+    my_supported_software_desc: "Display only software supported by your contract"
