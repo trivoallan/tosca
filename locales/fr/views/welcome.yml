@@ -2,6 +2,7 @@ fr:
   Welcome: Bienvenue
   welcome:
     Index: "Page d'accueil"
+    Clear_Cache: Nettoyer le cache
     index:
       report: Vous pouvez consulter votre {{value}} en ligne
       weekly_report_of_issues: 
@@ -54,3 +55,23 @@ fr:
       Developers: "Dévelopeurs"
       quality_assurance: "Assurance Qualit\xC3\xA9"
       free_software_used: "Logiciels libre utilis\xC3\xA9s par {{value}}"
+    admin:
+      Contents: Sommaire
+      Administration: Administration
+      user_list: Liste des utilisateurs
+      add_a_user: Ajouter un utilisateur
+      user_management: Gestion des utilisateurs
+      teams_management: "Gestion des \xC3\x89quipes"
+      permission_management: Gestion des permission
+      skill_management: "Gestion des comp\xC3\xA9tences"
+      you_have_rights_on_this_portal: Vous avez les droits {{value}} sur ce portail
+      you_have_to_create_a_client_before_creating_a_contract: "Vous devez cr\xC3\xA9er un client avant de cr\xC3\xA9er un contrat."
+      customers_management: Gestion des clients
+      plateform: Platforme
+      system_management: "Gestion des Syst\xC3\xA8mes"
+      source_management: Gestion des sources
+      software_list: Liste des Logiciels
+      software_categorization: Classification des logiciels
+      digest_report: "Rapport d'activit\xC3\xA9"
+      weekly_digest: "Activit\xC3\xA9 hebdomadaire"
+      distribution_of_issues_in_time: "R\xC3\xA9partition de vos demandes dans le temps"

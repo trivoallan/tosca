@@ -6,8 +6,6 @@ en:
   Name: Name
   Validate: Validate
   Create: Create
-  Validate: Valider
-  Submit: Valider
   Description: Description
   Id: Id
   By: By
@@ -37,6 +35,8 @@ en:
   Immediate: Immediate
   Help: Help
   About: About
+  Reporting: Reporting
+  Customers: Customers
 
   are_you_sure: "Are you sure ?"
 
