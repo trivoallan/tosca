@@ -7,10 +7,12 @@
       <tr>
         <td><%= f.select :statut_id, @statuses %> </td>
         <th> ==> </th>
-        <td><%= hbtm_check_box( @workflow.allowed_status, @statuses,
-          'workflow[allowed_status_ids]', :size => 1, :no_empty_field => true) %></td>
+        <td>
+          <%= hbtm_check_box( @workflow.allowed_status, @statuses,
+            'workflow[allowed_status_ids]', :size => 1, :no_empty_field => true) %>
+        </td>
       </tr>
     </table>
-    <%= f.submit t(:validate) %>
+    <%= f.submit t(:Validate) %>
   <% end %>
 </div>

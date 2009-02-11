@@ -81,7 +81,6 @@ module Extract
     def self.files_from(path)
       deb_cmd = 'dpkg-deb --contents '
 
-      basename = ::Extract.remove_extension(path, Extensions)
       deb_cmd << " '#{path}'"
       result = []
       %x[#{deb_cmd}].split("\n").collect { |e| e.split(/\s/) }.each { 

@@ -19,7 +19,7 @@
 module Tosca
   module App
     Name = "TOSCA"
-    Version = "0.7.5beta1"
+    Version = "0.8.0beta1"
     Copyright = " ©2006-2009 Linagora SA".gsub(' ','&nbsp;')
   end
 end

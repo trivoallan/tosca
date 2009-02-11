@@ -1,31 +1,56 @@
 fr:
   Welcome: Bienvenue
   welcome:
-    title:
+    Index: "Page d'accueil"
     index:
       report: Vous pouvez consulter votre {{value}} en ligne
-      weekly_report_of_issues: :weekly_report_of_issues
+      weekly_report_of_issues: 
       title: "la boite \xC3\xA0 id\xC3\xA9es"
       this_site_has_changed: "Ce site a chang\xC3\xA9"
       access_denied: "Vous n'\xC3\xAAtes pas {{value}}, donc vous ne pouvez pas acc\xC3\xA9der \xC3\xA0 l'interface des issues de notre service"
       calendar_report: rapport en calendrier
-      my_account: :my_account
-      documents: :documents
-      a_new_issue: :a_new_issue
-      contributions: :contributions
+      my_account: 
+      documents: 
+      a_new_issue: 
+      contributions: 
       submit_an_issue: Vous pouvez aussi faire {{value}}
-      distribution_of_issues_in_time: :distribution_of_issues_in_time
-      activity_report: :activity_report
-      skip_to_the_content: :skip_to_the_content
-      view_welcome_consult_list_of: :view_welcome_consult_list_of
+      distribution_of_issues_in_time: 
+      activity_report: 
+      skip_to_the_content: 
+      view_welcome_consult_list_of: 
       content: "Vous avez une id\xC3\xA9e pour am\xC3\xA9liorer nos services ?<br />\n   Vos commentaires et suggestions sont les bienvenues dans {{value}}."
-      monthly_calendar: :monthly_calendar
+      monthly_calendar: 
       contents:
-      skip_to_the_navigation: :skip_to_the_navigation
-      welcome_to_the_value_management_tool: :welcome_to_the_value_management_tool
+      skip_to_the_navigation: 
+      welcome_to_the_value_management_tool: 
       classification: "Ces logiciels sont r\xC3\xA9partis selon une %s pr\xC3\xA9cise et simple, par groupe d'activit\xC3\xA9"
-      translation_framework_sucks: :translation_framework_sucks
       weekly_report: rapport par semaine
       consult_list_of: Vous pouvez consulter la liste des {{value}}
       this_tool_has_been_updated: "Comme vous pouvez le voir, cet outil a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour. Voici une courte liste des changements : "
-      weekly_calendar: :weekly_calendar
+      weekly_calendar:
+    suggestions:
+      thank_your_for_taking_time_in_order_to_help_us_to_improve_this_product_your_comments_has_been_sent_successfully: "Merci de prendre de votre temps pour nous aider \xC3\xA0 am\xC3\xA9liorer ce produit. Vos remarques ont bien \xC3\xA9t\xC3\xA9 transmises."
+      idea_box: "Boîte à idées"
+      have_an_idea: "You have an idea in order to improve our services ? Don't hesitate to fill in the form!<br />Every proposition will be consider with a lot of attention"
+      your_suggestions_on_our_tool: "Vos suggestion sur notre outil : "
+      your_suggestions_on_our_service: "Vos suggestions sur notre service :"
+    clear_cache:
+      cache_cleared: "Cache nettoy\xC3\xA9 !"
+    theme:
+      dress_this_site_as_you_wish: 'Habillez ce site comme bon vous semble.'
+    plan:
+      plan_access_allowed: "Plan/Acc\xC3\xA8s autoris\xC3\xA9"
+      this_part_of_the_application: "Cette partie de l'application"
+      others_parts: Autre composants
+    about:
+      don_t_hesitate_to: "N'h\xC3\xA9sitez pas \xC3\xA0"
+      contact_us: nous contacter
+      if_needed: si besoin
+      this_software_was_created_at: "Cette application a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9e \xC3\xA0"
+      by_the_ossa_team: "par l'\xC3\xA9quipe OSSA."
+      this_journey: "Cette aventure n'aurait \xC3\xA9t\xC3\xA9 possible sans tous les <b>d\xC3\xA9veloppeurs</b> qui ont soutenu ce projet,  sans tous les <b>testeurs</b> qui ont contribu\xC3\xA9 \xC3\xA0 assurer sa qualit\xC3\xA9 et sans un grand nombre de <b>logiciels libre</b> qui ont permis \xC3\xA0 son d\xC3\xA9veloppement d'\xC3\xAAtre rapide et agile. Ils sont tous ici grandement remerci\xC3\xA9s."
+      it_is_an_open_source_software_you_can_get_at: "C'est un logiciel Open Source que vous pouvez r\xC3\xA9cup\xC3\xA9rer sur "
+      the_homepage_of_the_project: "la page principale du projet."
+      Developers: "Dévelopeurs"
+      quality_assurance: "Assurance Qualit\xC3\xA9"
+      free_software_used: "Logiciels libre utilis\xC3\xA9s par {{value}}"

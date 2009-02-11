@@ -1,5 +1,5 @@
 <h1><%= Tosca::App::Name %></h1>
-<h2><%= t('Plan/access allowed') %></h2>
+<h2><%= t(:plan_access_allowed) %></h2>
 
 <div class="subcolumns">
 
@@ -19,9 +19,9 @@
       <div class="show">
         <% header = r.last.include?('index') ? link_to(humanize_controller, :controller => r.first) : humanize_controller %>
         <h2><%= header %> <%= images.join(' ') unless images.empty? %></h2>
-        <%= t('This part of the application') %>
+        <%= t(:this_part_of_the_application) %>
         <ul>
-          <li><%= texts.join("</li><li>") %></li>
+          <li><%= texts.join('</li><li>') %></li>
         </ul>
       </div>
     <% end %>
@@ -29,7 +29,7 @@
 
   <%= cycle('<div class="c50l">',' "<div class="c50r">"', :name => 'start') %>
   <div class="show">
-    <h2><%= t('Others parts') %></h2>
+    <h2><%= t(:others_parts) %></h2>
     <ul>
       <% image_only_bloc.each do |i| %>
         <li><%= link_to(i.first.humanize, :controller => i.first) %> : <%= i.last.join(' ') %></li>

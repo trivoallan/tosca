@@ -1,3 +1,56 @@
-en:
+fr:
+  Welcome: Welcome
   welcome:
-    Welcome: Home
+    Index: Home page
+    index:
+      report: Vous pouvez consulter votre {{value}} en ligne
+      weekly_report_of_issues:
+      title: "la boite \xC3\xA0 id\xC3\xA9es"
+      this_site_has_changed: "Ce site a chang\xC3\xA9"
+      access_denied: "Vous n'\xC3\xAAtes pas {{value}}, donc vous ne pouvez pas acc\xC3\xA9der \xC3\xA0 l'interface des issues de notre service"
+      calendar_report: rapport en calendrier
+      my_account:
+      documents:
+      a_new_issue:
+      contributions:
+      submit_an_issue: Vous pouvez aussi faire {{value}}
+      distribution_of_issues_in_time:
+      activity_report:
+      skip_to_the_content:
+      view_welcome_consult_list_of:
+      content: "Vous avez une id\xC3\xA9e pour am\xC3\xA9liorer nos services ?<br />\n   Vos commentaires et suggestions sont les bienvenues dans {{value}}."
+      monthly_calendar:
+      contents:
+      skip_to_the_navigation:
+      welcome_to_the_value_management_tool:
+      classification: "Ces logiciels sont r\xC3\xA9partis selon une %s pr\xC3\xA9cise et simple, par groupe d'activit\xC3\xA9"
+      weekly_report: rapport par semaine
+      consult_list_of: Vous pouvez consulter la liste des {{value}}
+      this_tool_has_been_updated: "Comme vous pouvez le voir, cet outil a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour. Voici une courte liste des changements : "
+      weekly_calendar:
+    suggestions:
+      thank_your_for_taking_time_in_order_to_help_us_to_improve_this_product_your_comments_has_been_sent_successfully: 'Thank your for taking time in order to help us to improve this product. Your comments has been sent successfully.'
+      idea_box: Idea box
+      have_an_idea: "You have an idea in order to improve our services ? Don't hesitate to fill in the form!<br />Every proposition will be consider with a lot of attention"
+      your_suggestions_on_our_tool: 'Your suggestions on our tool : '
+      your_suggestions_on_our_service: 'Your suggestions on our service :'
+    clear_cache:
+      cache_cleared: "Cache cleared !"
+    theme:
+      dress_this_site_as_you_wish: 'Dress this site as you wish.'
+    plan:
+      plan_access_allowed: "Plan/access allowed"
+      this_part_of_the_application: 'This part of the application'
+      others_parts: 'Others parts'
+    about:
+      don_t_hesitate_to: "Don't hesitate to"
+      contact_us: 'contact us'
+      if_needed: "if needed"
+      this_software_was_created_at: 'This software was created at'
+      by_the_ossa_team: "by the OSSA Team."
+      this_journey: "This journey would not have been possible without the <b>developers</b> who have taken part in this project, without the testers who have contributed to it's quality and without quite a bit of <b>free software</b> which has enabled the development to be fast and agile. They are all warmly thanked here. {{value}} would be nothing without them."
+      it_is_an_open_source_software_you_can_get_at: "It is now an Open Source software you can get at "
+      the_homepage_of_the_project: "the homepage of the project."
+      Developers: Developers
+      quality_assurance: 'Quality Assurance'
+      free_software_used: 'Free software used by {{value}}'
