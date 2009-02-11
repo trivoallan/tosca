@@ -1,7 +1,8 @@
 fr:
   tags:
-    show:
-      index: "Liste des étiquettes"
+    Edit: "Modifier l'étiquette"
+    Index: "Liste des étiquettes"
+    index:
       a_tag: "une étiquette"
-      new: "Nouvelle étiquette"
-      edit: "Modifier l'étiquette"
+    New: "Nouvelle étiquette"
+    Show: "Étiquette"

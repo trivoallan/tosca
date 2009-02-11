@@ -1,16 +1,15 @@
 fr:
   successfully_created: "'{{name}}' a été créé(e) avec succès."
   successfully_upated: "'{{name}}' a été mis(e) à jour avec succès."
-  name: nom
-  validate: valider
-  create: "créer"
-  welcome: Bienvenue
+  Name: Nom
+  Nalidate: Valider
+  Create: "Créer"
   a_new_issue: une nouvelle demande
   Validate: Valider
   Submit: Valider
   Description: Description
   Homepage: "Page d'accueil"
-  tosca_on_rails: "Tosca on Rails"
+  Tosca_on_rails: "Tosca on Rails"
   Create: Créer
   Delete: Effacer
   Update: Modifier
@@ -22,8 +21,8 @@ fr:
   Search: Rechercher
   Save: Sauvegarder
   Activated: Activée
-  recipient: "bénéficiaire"
-  expert: "expert"
+  Recipient: "Bénéficiaire"
+  Expert: "Expert"
 
   # NB: Quotes around Yes/No are mandatory since
   #     they are keyword, as of Ruby 1.8.6
