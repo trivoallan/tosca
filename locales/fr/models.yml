@@ -18,6 +18,12 @@ fr:
   Delivery: Livraison
   Documentation: Documentation
 
+  #Severities
+  Blocking: Bloquante
+  Major: Majeure
+  Minor: Mineure
+  None: Aucune
+
   Alert:
     Hash_value: "Valeur de la clé de hashage"
 

@@ -18,6 +18,12 @@ en:
   Delivery: Delivery
   Documentation: Documentation
 
+  #Severities
+  Blocking: Blocking
+  Major: Major
+  Minor: Minor
+  None: None
+
   Alert:
     Hash_value: "Value of the has key"
 
