@@ -37,7 +37,7 @@ class StatutsController < ApplicationController
   def create
     @statut = Statut.new(params[:statut])
     if @statut.save
-      flash[:notice] = t('Status was successfully created.')
+      flash[:notice] = t(:successfully_created, :name => @statut)
       redirect_to statuts_path
     else
       render :action => 'new'
@@ -51,7 +51,7 @@ class StatutsController < ApplicationController
   def update
     @statut = Statut.find(params[:id])
     if @statut.update_attributes(params[:statut])
-      flash[:notice] = t('Statut was successfully updated.')
+      flash[:notice] = t(:successfully_updated, :name => @statut)
       redirect_to statut_path(@statut)
     else
       render :action => 'edit'

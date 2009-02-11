@@ -43,6 +43,11 @@ fr:
     Active: "Activée"
     Inactive: "Inactive"
 
+  Statut:
+    Active: "Actif"
+    Description: Description
+    Name: Nom
+
   Tag:
     Submitter: "Déclarant"
 
