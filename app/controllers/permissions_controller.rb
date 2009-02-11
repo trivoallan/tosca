@@ -17,6 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class PermissionsController < ApplicationController
+
   def index
     options = { :order => 'permissions.name', :include => [:roles],
       :page => params[:page] }
@@ -35,7 +36,7 @@ class PermissionsController < ApplicationController
   def create
     @permission = Permission.new(params[:permission])
     if @permission.save
-      flash[:notice] = t('Permission was successfully created.')
+      flash[:notice] = t(:successfully_created, :name => @permission)
       redirect_to permissions_path
     else
       _form and render :action => 'new'
@@ -50,7 +51,7 @@ class PermissionsController < ApplicationController
   def update
     @permission = Permission.find(params[:id])
     if @permission.update_attributes(params[:permission])
-      flash[:notice] = t('Permission was successfully updated.')
+      flash[:notice] = t(:successfully_updated, :name => @permission)
       redirect_to permissions_path
     else
       _form and render :action => 'edit'
@@ -66,4 +67,5 @@ class PermissionsController < ApplicationController
   def _form
     @roles = Role.find_select
   end
+
 end

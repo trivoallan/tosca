@@ -129,6 +129,7 @@ en:
     Osi_certified: "OSI certified"
 
   Permission:
+    Name: Rule
     Info: Information
 
   Picture:

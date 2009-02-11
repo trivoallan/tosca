@@ -1,0 +1,10 @@
+fr:
+  permissions:
+    Index: "Liste des permissions"
+    index:
+      a_permission: "une permission"
+      associated_roles: "rôles associés"
+      activated_for: "Activées pour"
+    New: "Nouvelle permission"
+    Edit: "Modifier une permission"
+    Show: "Permission"

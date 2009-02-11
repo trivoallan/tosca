@@ -1,8 +1,9 @@
-<h1><%= t('Permission List')%></h1>
+<h1><%= t(:Index)%></h1>
+<small>[<%= link_to t(:associated_roles), roles_path %>]</small><br />
 
 
-<% paginated_section(@permissions, :create_label => t('a permission')) do %>
- <% titles = [ t('Allow to')]%>
+<% paginated_section(@permissions, :create_label => t(:a_permission)) do %>
+ <% titles = [ t(:activated_for)]%>
  <%= show_table(@permissions, Permission, titles, :content_columns => true) do |p|
   result = ''
   result << "<td>#{p.roles.sort!{|a,b| a.id <=> b.id}.collect{|r| link_to(r.name, edit_role_path(r.id))}.join(', ')}</td>"
@@ -11,4 +12,4 @@
  <%= page_entries_info @permissions %><br />
 <% end %>
 
-<%= link_to t('Role list'), roles_path %>
+<%= link_to t(:'roles.Index'), roles_path %>

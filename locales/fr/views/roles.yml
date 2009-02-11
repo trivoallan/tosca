@@ -2,10 +2,8 @@ fr:
   roles:
     Index: "Liste des rôles"
     index:
-      Rule: "Règle"
-      a_software: "un rôle"
+      a_role: "un rôle"
       associated_permissions: "permissions associées"
-      your_software: "Liste de vos rôles supportés"
     New: "Nouveau rôle"
     Edit: "Modifier un rôle"
     Show: "Rôle"

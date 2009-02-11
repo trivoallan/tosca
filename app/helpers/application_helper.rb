@@ -125,9 +125,9 @@ module ApplicationHelper
 
     if titles
       result << '<thead><tr>'
-      if (content_columns)
-        ar.content_columns.each{|c| result <<  "<th>#{c.human_name}</th>"}
-      end
+      ar.content_columns.each do |c|
+        result << "<th>#{t(:"#{ar}.#{c.human_name}")}</th>"
+      end if (content_columns)
       #On doit mettre nowrap="nowrap" pour que ça soit valide XHTML
       titles.each {|t| result << "<th nowrap=\"nowrap\">#{t}</th>" }
       result << '</tr></thead>'

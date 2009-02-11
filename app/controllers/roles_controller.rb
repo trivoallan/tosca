@@ -19,7 +19,6 @@
 class RolesController < ApplicationController
   def index
     options = { :order => 'permissions.name', :include => :roles }
-    @permissions = Permission.all(options)
     @roles = Role.all
   end
 

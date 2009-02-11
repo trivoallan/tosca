@@ -129,6 +129,7 @@ fr:
     Osi_certified: "Certifié OSI"
 
   Permission:
+    Name: "Règle"
     Info: Information
 
   Picture:

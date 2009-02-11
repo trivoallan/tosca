@@ -11,8 +11,6 @@ fr:
         other: "{{count}} mois ouvr\xC3\xA9s"
 
   edition_succeeded: "Les modifications ont \xC3\xA9t\xC3\xA9 effectu\xC3\xA9es avec succ\xC3\xA8s"
-  add_a_permission: Ajouter une permission
-
   description: Description
   add_a_new_client: Ajouter un nouveau client
   password: Mot de passe
@@ -94,7 +92,6 @@ fr:
   monthly_digest: "Activit\xC3\xA9 mensuelle"
   access_code: "Code d'acc\xC3\xA8s"
 
-  editing_permission: "\xC3\x89diter la permission"
   new_issue: Nouvelle demande
   accepted: "Accept\xC3\xA9"
   the_associated_issue_does_not_exist: "La demande associ\xC3\xA9e n'existe pas"
@@ -140,7 +137,6 @@ fr:
   binary_packages_with_the_patch: Paquets binaires avec le patch
   new_archive: Nouvelle archive
   list_of_the_types_of_contribution: Liste des types de contributions
-  permission_list: Liste des permissions
   url: Url
   daily_digest_for: "Rapport d'activit\xC3\xA9 pour "
   new_group: Nouveau groupe
@@ -184,7 +180,6 @@ fr:
   a_new_licence: une nouvelle licence
 
   this_issue_has_been_requalified_in_s_by_s: "Cette demande a \xC3\xA9t\xC3\xA9 requalifi\xC3\xA9e en %s par %s."
-  permission_was_successfully_created: "La permission a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9e avec succ\xC3\xA8s."
   workaround_time: Temps de contournement
   by_severities:
 
@@ -357,7 +352,6 @@ fr:
   add: Ajouter
   this_bug_has_been_discovered_in_the_version_s: "Ce bug a \xC3\xA9t\xC3\xA9 d\xC3\xA9couvert dans la version %s"
   newsletter: Lettre d'information
-  permissions: Permissions
   your_issue_has_no_commitment_for_correction_time: Votre demande n'a pas d'engagement de correction
   add_a_tag_to_this_issue: "Ajouter un tag \xC3\xA0 cette demande"
   closed: "Ferm\xC3\xA9e"
@@ -409,7 +403,6 @@ fr:
   human_ressources: Ressources humaines
   add_a_knowledge: Ajouter une connaissance
   show_issues_that_were_processed: "montrer les demandes qui ont d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 trait\xC3\xA9es"
-  permission_was_successfully_updated: "La permission a \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour avec succ\xC3\xA8s."
   including: inclus (
   size: Taille
   a_version: une version
@@ -476,8 +469,6 @@ fr:
   supported_software_in_this_contract: "Logiciels support\xC3\xA9s dans le cadre de ce contrat"
   sla: CNS
   tam: "[ Tam ]"
-  a_permission: une permission
-
   with_a_copy_to: avec en copie
   history: Historique
   engineers_assigned_to_this_contract: "Ing\xC3\xA9nieurs affili\xC3\xA9s \xC3\xA0 ce contrat"
@@ -507,9 +498,6 @@ fr:
   s_activity_per_week: "Activit\xC3\xA9 de %s par semaine"
   finished_issues: "Demandes termin\xC3\xA9es"
   user_name: Nom
-  and_associated_permissions: "et des permissions associ\xC3\xA9es"
-
-
   editing_a_severity:
   submit_a_contribution: "D\xC3\xA9poser une contribution"
   dynamically_showing_the_activity_of_our_service_for_you_in_real_time: "dynamique montrant l'activit\xC3\xA9 de notre service en temps r\xC3\xA9el."
