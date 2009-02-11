@@ -34,7 +34,7 @@ class TagsController < ApplicationController
     @tag = Tag.new(params[:tag])
     @tag.user_id = @session_user.id
     if @tag.save
-      flash[:notice] = t('Skill was successfully created.')
+      flash[:notice] = t(:successfully_created, :name => @tag)
       redirect_to tags_path
     else
       render :action => 'new'
@@ -49,7 +49,7 @@ class TagsController < ApplicationController
   def update
     @tag = Tag.find(params[:id])
     if @tag.update_attributes(params[:tag])
-      flash[:notice] = t('Skill was successfully updated.')
+      flash[:notice] = t(:successfully_upated, :name => @tag)
       redirect_to tag_path(@tag)
     else
       render :action => 'edit'

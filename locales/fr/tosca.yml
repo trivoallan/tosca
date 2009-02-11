@@ -1,6 +1,6 @@
 fr:
-  successfully_created: "'{{name}}' a été créé avec succès."
-  successfully_upated: "'{{name}}' a été mis à jour avec succès."
+  successfully_created: "'{{name}}' a été créé(e) avec succès."
+  successfully_upated: "'{{name}}' a été mis(e) à jour avec succès."
   name: nom
   validate: valider
   create: "créer"

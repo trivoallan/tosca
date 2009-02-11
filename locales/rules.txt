@@ -1,0 +1,9 @@
+==
+Here are the rules behind Tosca locales.
+1) a word symbol is ALWAYS capitalized
+2) a sentence symbol is ALWAYS lowerized
+For instance :
+en:
+  Validate:
+  tags:
+    index:
