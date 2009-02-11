@@ -37,20 +37,20 @@ class Rules::CreditsController < ApplicationController
   def create
     @credit = Rules::Credit.new(params[:credit])
     if @credit.save
-      flash[:notice] = t("'%s' was successfully created.") % @credit.name
+      flash[:notice] = t(:successfully_created, :name => @credit.name)
       redirect_to(@credit)
     else
-      render :action => "new"
+      render :action => 'new'
     end
   end
 
   def update
     @credit = Rules::Credit.find(params[:id])
     if @credit.update_attributes(params[:credit])
-      flash[:notice] = t("'%s' was successfully updated.") % @credit.name
+      flash[:notice] = t(:successfully_upated, :name => @credit.name)
       redirect_to(@credit)
     else
-      render :action => "edit"
+      render :action => 'edit'
     end
   end
 

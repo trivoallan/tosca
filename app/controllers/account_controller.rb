@@ -176,7 +176,7 @@ class AccountController < ApplicationController
     if request.method == :post
       user = params[:user]
       return unless user && user.has_key?(:email) && user.has_key?(:login)
-      flash[:warn] = t('Unknown account')
+      flash[:warn] = t(:unknown_account)
       conditions = { :email => user[:email], :login => user[:login] }
       @user = User.first(:conditions => conditions)
       return unless @user
