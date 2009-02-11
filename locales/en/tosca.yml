@@ -7,6 +7,8 @@ en:
   Validate: Validate
   Create: Create
   Description: Description
+  Id: Id
+  By: By
   Destroy: Destroy
   Model: Model
   Homepage: "Home page"

@@ -1,3 +1,9 @@
 fr:
   softwares:
     Index: "Liste des logiciels"
+    index:
+      a_software: "un logiciel"
+      your_software: "Liste de vos logiciels supportés"
+    New: "Nouveau logiciel"
+    Edit: "Modifier un logiciel"
+    Show: "Logiciel"

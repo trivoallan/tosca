@@ -1,12 +1,12 @@
 <h1><%= @title %> <%= StaticPicture::spinner %></h1>
 
-<% paginated_section(@softwares, :create_label => t('a new software'), :remote_url => softwares_path) do %>
- <% titles = [ t('Logo'), t('Name'), t('Description'),
-               t('Technologie(s)'), t('Group') ] %>
+<% paginated_section(@softwares, :create_label => t(:a_software), :remote_url => softwares_path) do %>
+ <% titles = [ t(:'Software.Logo'), t(:Name), t(:Description),
+               t(:'Software.Knowledges'), t(:'Models.Group') ] %>
  <%= show_table(@softwares, Software, titles) { |l|
    result = "<td>#{software_logo l}</td>"
    result << "<td>#{public_link_to l.name, software_path(l)}</td>"
-   result << "<td>#{l.resume}</td>"
+   result << "<td>#{l.summary}</td>"
    result << "<td>#{liste_skills l.skills}</td>"
    result << "<td>#{l.group.name if l.group}</td>"
    result << "#{link_to_actions_table l}"

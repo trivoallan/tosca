@@ -150,15 +150,20 @@ en:
     Active: Active
     Inactive: Inactive
 
+  Skill:
+    Ressources: "Ressources"
+
   Role:
     Info: Information
 
   Software:
+    Logo: Logo
+    Knowledges: Technologies
     you_have_to_specify_a_name: 'You have to specify a name'
     you_have_to_specify_a_group: 'You have to specify a group'
     you_have_to_specify_at_least_one_technology: 'You have to specify at least one technology'
     Referent: Referent
-    Resume: Resume
+    Summary: Resume
     Description: Description
     Private: Private
 
@@ -216,7 +221,7 @@ en:
     Contributionstate: Contribution state
     Elapsed: Elpasd
     Group: Group
-    Hyperlink: Hyperlink
+    Hyperlink: Link
     Issue: Issue
     Issuetype: Issue type
     Knowledge: Knowledge

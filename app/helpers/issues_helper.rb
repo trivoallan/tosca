@@ -91,7 +91,7 @@ module IssuesHelper
 
   def link_to_new_issue(arg)
     options = arg ? new_issue_path(arg) : new_issue_path
-    link_to image_create(I18n.t('New issue')), options
+    link_to image_create(I18n.t('issues.New')), options
   end
 
   # Link to access a ticket

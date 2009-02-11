@@ -82,7 +82,7 @@ fr:
     on: ' sur '
     Description: Description
     Patch: Patch
-    Contributed_on: "Contribué le"
+    Contributed_on: "Contribué&nbsp;le"
     Closed_on: "Fermé le"
     Synthesis: "Synthèse"
 
@@ -152,13 +152,17 @@ fr:
 
   Role:
     Info: Information
-    
+
+  Skill:
+    Ressources: "Ressources"
+
   Software:
+    Logo: Logo
+    Knowledges: Technologies
     you_have_to_specify_a_name: "Vous devez sp\xC3\xA9cifier un nom"
     you_have_to_specify_a_group: "Vous devez sp\xC3\xA9cifier un groupe"
     you_have_to_specify_at_least_one_technology: "Vous devez sp\xC3\xA9cifier au moins une technologie"
-    Referent: "Référent"
-    Resume: "Résumé"
+    Summary: "Résumé"
     Description: Description
     Private: "Privé"
 
@@ -166,7 +170,6 @@ fr:
     Active: "Actif"
     Description: Description
     Name: Nom
-
   Subscription:
     you_can_be_subscribed_only_one_time_on_this_model: "Vous ne pouvez souscrire qu'une seule fois \xC3\xA0 un m\xC3\xAAme objet."
     subscription_for_user_name_on_model_type_model_id: "Souscription pour {{user_name}} de {{model_type}} \xC3\xA0 #{{model_id}}"
@@ -216,7 +219,7 @@ fr:
     Contributiontype: "Type de contributon"
     Elapsed: "Écoulé"
     Group: Groupe
-    Hyperlink: "Url"
+    Hyperlink: "Lien"
     Issue: "Demande"
     Issuetype: "Type de demande"
     Knowledge: Connaissance

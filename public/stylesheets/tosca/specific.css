@@ -146,6 +146,7 @@ div.bloc_scroll, div.long_bloc_scroll {
   width: 99%;
   height: auto;
   max-height: 10em;
+  min-width: 35em;
   overflow: auto;
   background-color: #f2fff2;
 }

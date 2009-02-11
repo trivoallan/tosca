@@ -37,8 +37,7 @@ class Software < ActiveRecord::Base
     I18n.t(:you_have_to_specify_a_name)
   validates_presence_of :group, :message =>
     I18n.t(:you_have_to_specify_a_group)
-  validates_length_of :skills, :minimum => 1, :message =>
-    I18n.t(:you_have_to_specify_at_least_one_technology)
+  validates_length_of :skills, :minimum => 1
 
   # See ApplicationController#scope
   def self.set_scope(contract_ids)

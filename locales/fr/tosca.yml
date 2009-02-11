@@ -7,10 +7,12 @@ fr:
   created_on: "Créé(e) le"
   Description: Description
   Id: Id
+  By: Par
   Model: "Modèle"
   Name: Nom
   Type: Type
   Validate: Valider
+  Attributes: Attributs
   Create: "Créer"
   Validate: Valider
   Description: Description

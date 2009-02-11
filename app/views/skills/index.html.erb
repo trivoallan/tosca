@@ -1,7 +1,7 @@
-<h1><%= t('Skill list')%></h1>
+<h1><%= t(:Index)%></h1>
 
-<% paginated_section(@skills, :create_label => t('a skill')) do %>
- <% titles = [ t('Resources')]%>
+<% paginated_section(@skills, :create_label => t(:a_skill)) do %>
+ <% titles = [ t(:'Skill.Resources')]%>
  <%= show_table(@skills, Skill, titles, :content_columns => true) do |c|
    result = ''
    result << "<td>#{c.engineers.count}</td>"
