@@ -1,2 +1,11 @@
 fr:
+  #Views
+  form:
+    unknown_rules_for_contract: 'R\xC3\xA8gles inconnu pour le contrat "{{contract}}"'
+  update:
+    contract_was_successfully_updated: 'Le contrat {{contract}} a été mis à jour.'
+  create:
+    contract_was_successfully_created: 'Le contrat {{contract}} a créé avec succès.'
+
   Contracts: Contrats
+

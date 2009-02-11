@@ -20,7 +20,7 @@ class ContractsController < ApplicationController
   helper :clients, :commitments, :versions, :issues, :subscriptions, :dates
 
   auto_complete_for :user, :name, :contract, :engineer_user,
-                    :conditions => { :client => false }
+    :conditions => { :client => false }
 
   def index
     options = { :per_page => 25, :include => [:client],
@@ -37,9 +37,9 @@ class ContractsController < ApplicationController
       #   [ field, database field, operation ]
       # All the fields must be coherent with lib/filters.rb related Struct.
       conditions = Filters.build_conditions(contracts_filters, [
-        [:text, 'clients.name', 'contracts.name', :multiple_like],
-        [:tam_id, 'contracts.tam_id', :equal]
-      ])
+          [:text, 'clients.name', 'contracts.name', :multiple_like],
+          [:tam_id, 'contracts.tam_id', :equal]
+        ])
       @filters = contracts_filters
     end
     flash[:conditions] = options[:conditions] = conditions
@@ -70,7 +70,7 @@ class ContractsController < ApplicationController
   def new
     # TODO : put default contract into a config yml file ?
     @contract = Contract.new(:client_id => params[:id], :rule_type =>
-          'Rules::Component', :opening_time => 9, :closing_time => 18)
+        'Rules::Component', :opening_time => 9, :closing_time => 18)
     _form
   end
 
@@ -97,7 +97,7 @@ class ContractsController < ApplicationController
       @contract.engineer_users = []
       if @contract.save
         @contract.update_attribute :engineer_users, engineers
-        flash[:notice] = t('Contract was successfully created.')
+        flash[:notice] = i18n.t(:contract_was_successfully_created, :contract => @contract.name)
         redirect_to contracts_path
       else
         @contract.engineer_users = engineers
@@ -116,7 +116,7 @@ class ContractsController < ApplicationController
     @contract.creator = @session_user unless @contract.creator
     _aggregate_commitments
     if @contract.update_attributes(params[:contract])
-      flash[:notice] = t('Contract was successfully updated.')
+      flash[:notice] = i18n.t(:contract_was_successfully_updated, :contract => @contract.name)
       redirect_to contract_path(@contract)
     else
       _form and render :action => 'edit'
@@ -143,7 +143,7 @@ class ContractsController < ApplicationController
   def supported_software
     @contract = Contract.find(params[:id]) unless @contract
     ordered_by_software = { :include => [:software], :order =>
-      'softwares.name ASC, versions.name DESC' }
+        'softwares.name ASC, versions.name DESC' }
     @versions = @contract.versions.all(ordered_by_software)
     @softwares = Software.find_select
   end
@@ -188,15 +188,15 @@ class ContractsController < ApplicationController
 
   def ajax_subscribe
     _ajax(Subscription.create(:user => @session_user,
-                              :model => Contract.find(params[:id])))
+        :model => Contract.find(params[:id])))
   end
 
   def ajax_unsubscribe
     _ajax(Subscription.destroy_by_user_and_model(@session_user,
-                                                 Contract.find(params[:id])))
+        Contract.find(params[:id])))
   end
 
-private
+  private
   def _ajax(test)
     status = (test ? :ok : :bad_request)
     show
@@ -216,7 +216,7 @@ private
     begin
       @rules = @contract.rule_type.constantize.find_select
     rescue Exception => e
-      flash[:warn] = t('Unknown rules for contract "%s"') % e.message
+      flash[:warn] = i18n.t('Unknown rules for contract "{{contract}}"', :contract => e.message)
     end
   end
 
