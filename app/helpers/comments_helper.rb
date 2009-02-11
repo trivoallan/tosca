@@ -55,7 +55,6 @@ module CommentsHelper
     '<div class="history">' << out.join('<br />') << '</div>'
   end
 
-
   def display_comment(c)
     result = ''
     result << c.text

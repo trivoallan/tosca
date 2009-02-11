@@ -39,7 +39,7 @@ en:
     Generic: Generic
 
 
-  #Name of models
+    #Name of models
   Models:
     Alert: Alert
     Archive: Archive
@@ -50,13 +50,13 @@ en:
     Commitment: Commitment
     Contract: Contract
     Contribution: Contribution
-    Contributionstate: "Contribution state"
-    Contributiontype: "Contribution type"
-    Elapsed: Elapsed
+    Contributiontype: Contribution type
+    Contributionstate: Contribution state
+    Elapsed: Elpasd
     Group: Group
     Hyperlink: Hyperlink
     Issue: Issue
-    Issuetype: "Issue type"
+    Issuetype: Issue type
     Knowledge: Knowledge
     License: License
     Notifier: Notifier
@@ -72,7 +72,7 @@ en:
     Skill: Skill
     Software: Software
     Statut: Status
-    Subscription: subscription
+    Subscription: Subscription
     Tag: Tag
     Team: Team
     User: User

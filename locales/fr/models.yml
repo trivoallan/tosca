@@ -38,8 +38,6 @@ fr:
   Version:
     Generic: "Générique"
 
-
-
   #Name of models
   Models:
     Alert: Alerte
