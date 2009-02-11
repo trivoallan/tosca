@@ -1,5 +1,10 @@
 fr:
   reporting:
+    Configuration: "Configuration du rapport d'activité"
     configuration:
       title: "Reporting"
       validate_report: "Valider &#187;"
+      activity_report_description: "Le rapport d'activité vous permet de consulter une vue d'ensemble de l'activité."
+      start_date: "Date de début"
+      over_a_period_of: "Sur une période de"
+      report_explanation: "Le rapport met en valeur la période considérée par rapport à la période écoulée depuis le debut de votre contrat."

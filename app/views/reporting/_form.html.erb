@@ -1,15 +1,15 @@
-<h1><%= t('Configuration of the activity report') %></h1>
+<h1><%= t(:Configuration) %></h1>
 <br />
-<p><small><%= t('The management report enables you to consult an overview of the activity.') %></small></p>
+<p><small><%= t(:activity_report_description) %></small></p>
 <table>
 <tr>
-  <td><label for="end_date"><%= t('Start date') %>: </label>
+  <td><label for="end_date"><%= t(:start_date) %>: </label>
    <%= select_month(Time.now) %> <%= select_year(Time.now) %></td>
 </tr><tr>
-  <td><label for="reporting_period"> <%= t('Over a period of') %></label>
+  <td><label for="reporting_period"> <%= t(:over_a_period_of) %></label>
       <%= text_field 'reporting', 'period', :size => 3,:value => 3 %> <%= t('months') %></td>
 </tr><tr>
-  <td><label for="reporting_contract_id"><%= t('Concerning the contract') %> </label><br />
+  <td><label for="reporting_contract_id"><%= t(:'Models.Contract').pluralize %> </label><br />
       <select name="reporting[contract_ids][]" size="6" multiple="multiple" style="width: 35em;">
          <%= options_from_collection_for_select(@contracts, :id, :to_s, "reporting") %>
       </select>
@@ -17,5 +17,5 @@
 </tr>
 </table>
 <p><small>
-<%= t('The report emphasizes the period considered compared to the period passed since the beginning of your contract. ') %>
+<%= t(:report_explanation) %>
 </small></p>

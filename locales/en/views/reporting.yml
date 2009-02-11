@@ -1,5 +1,10 @@
 en:
   reporting:
+    Configuration: Configuration of activity report
     configuration:
       title: "Reporting"
       validate_report: "Validate &#187;"
+      activity_report_description: 'The management report enables you to consult an overview of the activity.'
+      start_date: "Start date"
+      over_a_period_of : 'Over a period of'
+      report_explanation: 'The report emphasizes the period considered compared to the period passed since the beginning of your contract.'
