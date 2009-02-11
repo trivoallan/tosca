@@ -18,9 +18,5 @@ fr:
       welcome_s_s: "Bienvenue {{title}} {{name}}"
       your_contract_is_near_its_end_date: "Le contrat '{{name}}' est pr\xC3\xA8s de sa date de fin : {{end_date}}"
 
-    #Helper
-    my_account: 'Mon compte'
-    account_of: 'Compte de {{name}}'
-
     #Actions
     Become: Devenir
