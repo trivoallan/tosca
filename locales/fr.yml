@@ -1,41 +1,10 @@
 fr:
   datetime:
     distance_in_words:
-      less_than_x_minutes:
-        one:
-        other:
-      x_days:
-        one:
-        other:
-      x_seconds:
-        one:
-        other:
       x_working_days:
         one: "1 jour ouvr\xC3\xA9"
         other: "{{count}} jours ouvr\xC3\xA9s"
-      less_than_x_seconds:
-        one:
-        other:
-      x_minutes:
-        one:
-        other:
-      about_x_hours:
-        one:
-        other:
-      x_months:
-        one:
-        other:
-      about_x_months:
-        one:
-        other:
-      about_x_years:
-        one:
-        other:
-      over_x_years:
-        one:
-        other:
       half_a_working_day: "un demi jour ouvr\xC3\xA9e"
-      half_a_minute:
       half_a_day: "une demie journ\xC3\xA9e"
       x_working_months:
         one: "1 mois ouvr\xC3\xA9"
@@ -79,14 +48,12 @@ fr:
   software: logiciel
   submission_of_an_issue: "D\xC3\xA9poser une demande"
   edit_a_contract: "\xC3\x89diter un contrat"
-  severity:
   edit_a_rule: "Modifier un r\xC3\xB4le"
   an_attachment: "une pi\xC3\xA8ce jointe"
   a_new_severity: "une nouvelle s\xC3\xA9v\xC3\xA9rit\xC3\xA9"
   connected: "connect\xC3\xA9"
   an_image_was_successfully_updated: "Une image a bien \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour."
   members: Membres
-  summary:
   allow_to: Autoriser pour
   model_id: Id
   this_contribution_is_now_linked: "Cette contribution est maintenant li\xC3\xA9e"
@@ -157,7 +124,6 @@ fr:
   user_title: Titre
   access_to_administration_interface: Interface d'administration
   forgotten_password: "Mot de passe oubli\xC3\xA9 ?"
-  to:
   this_issue_has_been_assigned_to_s_by_s: "Cette demande a \xC3\xA9t\xC3\xA9 prise en charge par %s."
   legend: "L\xC3\xA9gende"
   subscription_for_s_on_s_s:
@@ -173,8 +139,6 @@ fr:
   you_cannot_privately_change_the_status: "Vous ne pouvez changer le statut avec un commentaire priv\xC3\xA9"
   user_informations: Informations
   plan_access_allowed: "Plan/Acc\xC3\xA8s autoris\xC3\xA9"
-  start:
-  user_role:
   id: Id
   we_have_a_large_range_of_offers_for_support_with_a_sla_this_service_level_agreement_can_be_very_strong_and_is_guaranteed_by_contract: "Nous avons une large gamme d'offres d'assistance, de support et de maintenance avec une CNS. Cette Convention de Niveau de Service peut \xC3\xAAtre tr\xC3\xA8s courte et garantie par contrat."
   update: "Mettre \xC3\xA0 jour"
@@ -202,10 +166,8 @@ fr:
   display_only_software_supported_by_your_contract: "Aficher seulement les logiciels support\xC3\xA9s par votre contrat"
   list_of_software: Liste des logiciels
   by_the_ossa_team: "par l'\xC3\xA9quipe OSSA."
-  your_contract_s_is_near_its_end_date_s: "Le contrat '%s' est pr\xC3\xA8s de sa date de fin : %s"
-  on:
+  
   role_management: "Gestion des r\xC3\xB4les"
-  download:
   number_of_the_week: "Num\xC3\xA9ro de la semaine:"
   new_issues: Nouvelles demandes
   list_of_contributions: Liste des contributions
@@ -215,7 +177,6 @@ fr:
   a_new_alert_page_is_available_allowing_all_teams_to_monitor_its_own_contract: "Une nouvelle page d'alerte est disponible, permettant \xC3\xA0 toutes les \xC3\xA9quipes de surveiller leurs propres contrats"
   subscriptions: "Souscriptions :"
   to_close: "\xC3\x80 clore"
-  rule:
   plan: Plan
   others: Autres
   logo: Logo
@@ -232,7 +193,6 @@ fr:
   must_be_0: "doit \xC3\xAAtre >= 0."
   system_management: "Gestion des Syst\xC3\xA8mes"
   workflow_of_s: Flux de %s
-  step:
   daily_digest: "Activit\xC3\xA9 quotidienne"
   version_of_a_software: Versiond d'un logiciel
   a_new_licence: une nouvelle licence
@@ -293,12 +253,10 @@ fr:
   do_you_really_want_to_delete_s: "\xC3\x8Ates vous s\xC3\xBBr de vouloir supprimer %s"
   group_list: Liste des Groups
   show_all_the_issues: montrer toutes les demandes
-  person_not_found: "Personne non trouv\xC3\xA9e"
+  
   active: Actif
   distribution_of_issues_in_time: "R\xC3\xA9partition de vos demandes dans le temps"
   free_software_used_by_s: "Logiciels libre utilis\xC3\xA9s par %s"
-  assign:
-  assigned_to:
   your_suggestions_on_our_service: "Vos suggestions sur notre service :"
   technological_survey: Veilles technologiques
   settings: "Param\xC3\xA8tres"
@@ -306,7 +264,6 @@ fr:
   s_was_successfully_created:
   type_of_the_issue: Type de la demande
   do_you_really_want_to_destroy_this_object: "\xC3\x8Ates vous s\xC3\xBBr de vouloir effacer cet objet ?"
-  perimeter:
   time_elapsed: "Temps \xC3\xA9coul\xC3\xA9"
   disconnect: "D\xC3\xA9connexion"
   documents: Documents
@@ -440,7 +397,7 @@ fr:
   skip_to_the_navigation: "Passer \xC3\xA0 la navigation"
   blocking: Bloquante
   detailed_view_of_your_issues_is_improved_with_a_new_dynamic_comment_approach: "La vue d\xC3\xA9taill\xC3\xA9e des demandes est am\xC3\xA9lior\xC3\xA9e, avec une approche par commentaire dynamique"
-  welcome_s_s: Bienvenue %s %s
+  
   add: Ajouter
   this_bug_has_been_discovered_in_the_version_s: "Ce bug a \xC3\xA9t\xC3\xA9 d\xC3\xA9couvert dans la version %s"
   newsletter: Lettre d'information
@@ -461,20 +418,11 @@ fr:
   by: Par
   your_answer: "Votre r\xC3\xA9ponse :"
   during_the_chosen_period: "Pendant la p\xC3\xA9riode consid\xC3\xA9r\xC3\xA9e"
-  closed_on:
   technical_account_tam: Gestionnaire de compte
   full_name: Nom Complet
   state: Etat
   consultation: Consultation
-  inactive: Inactif
   no_pending_issue: Aucune demande en attente
-  time:
-    am:
-    formats:
-      default:
-      short:
-      long:
-    pm:
   subscribe_to_this_issue: "S'inscrire \xC3\xA0 cette demande"
   analysed: "Analys\xC3\xA9"
   status_legend: "L\xC3\xA9gende des Statuts"
@@ -561,7 +509,7 @@ fr:
   my_account: Mon&nbsp;compte
   open_source_license: Licence libre
   your_comment_was_successfully_added: "Votre commentaire a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9 avec succ\xC3\xA8s."
-  you_are_not_allowed_to_change_your_identity: "Vous n'\xC3\xAAtes pas autoris\xC3\xA9 \xC3\xA0 changer votre identit\xC3\xA9"
+
   logo_value: Logo '{{value}}'
   all_issues: Toutes les demandes
   permission_management: Gestion des permission

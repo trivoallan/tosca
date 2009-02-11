@@ -7,6 +7,9 @@ en:
   components: Components
   welcome: Home
   a_new_issue: a new issue
+  recipient: recipient
+  expert: expert
+
 
   time:
     am: am

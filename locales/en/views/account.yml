@@ -1,7 +1,25 @@
 en:
   account:
+    #Views
     login:
       connection_failure: Connection failure
       your_account_has_been_desactivated: ", your account has been desactivated"
     signup:
       account_successfully_created: "Account successfully created."
+    update:
+      edition_succeeded: Your account was successfully updated
+    forgotten_password:
+      your_new_password_has_been_generated: 'Your new password has been generated.'
+    become:
+      you_are_not_allowed_to_change_your_identity: 'You are not allowed to change your identity'
+      person_not_found: 'Person not found'
+    _login:
+      welcome_s_s: "Welcome {{title}} {{name}}"
+      your_contract_is_near_its_end_date: "Your contract '{{name}}' is near its end date : {{end_date}}"
+    _edit_account_informations:
+      type: Type
+
+    #Helpers
+    become: Become
+    my_account: 'My account'
+    account_of: 'Account of {{name}}'

@@ -1,67 +1,80 @@
 fr:
   # Statuses
-  submitted: "enregistrée"
-  accepted: "acceptée"
-  suspended: suspendue
-  analysed: "analysée"
-  bypassed: "contournée"
-  fixed: "corrigée"
-  closed: "clôturée"
-  cancelled: "annulée"
+  Submitted: "Enregistrée"
+  Accepted: "Acceptée"
+  Suspended: Suspendue
+  Analysed: "Analysée"
+  Bypassed: "Contournée"
+  Fixed: "Corrigée"
+  Closed: "Clôturée"
+  Cancelled: "Annulée"
 
-  tag:
-    submitter: "déclarant"
 
-  team:
-    contact: contact
-    manager: responsable
-    motto: devise
-    members : membres
+  Release:
+    Packaged: "Empaquetée"
+    Active: "Actif"
+    Inactive: "Inactive"
 
-  version:
-    generic: "générique"
+  Tag:
+    Submitter: "Déclarant"
 
-  release:
-    packaged: "empaquetée"
-    active: "actif"
-    inactive: "inactive"
+  Team:
+    Contact: Contact
+    Manager: Responsable
+    Motto: Devise
+    Members: Membres
+
+  User:
+    Name: Nom
+    Title: Titre
+    Inactive: Inactif
+    Email: E-mail
+    Phone: "Téléphone"
+    Login: Login
+    Informations: Description
+
+  Version:
+    Generic: "Générique"
+  
+
 
   #Name of models
-  models:
-    alert: alerte
-    client: client
-    contribution: contribution
-    group: groupe
-    knowledge: connaissance
-    picture: image
-    rules:
-      component: composant
-      credit: "crédit"
-    statut: statut
-    archive: archive
-    comment: commentaire
-    contributionstate: "état d'une contribution"
-    hyperlink: "url"
-    license: licence
-    preference: "préférence"
-    severity: "sévérité"
-    subscription: souscription
-    user: utilisateur
-    attachment: "pièce jointe"
-    commitment: "engagement"
-    contributiontype: "type de contributon"
-    issue: "demande"
-    notifier: "notifier"
-    release: "révision"
-    skill: "compétence"
-    tag: étiquette
-    version: version
-    changelog: "note de révisions"
-    contract: "contrat"
-    elapsed: "écoulé"
-    issuetype: "type de demande"
-    permission: permission
-    role: "rôle"
-    software: "logiciel"
-    team: "équipe"
-    workflow: "flux de travail"
+  Models:
+    Alert: Alerte
+    Archive: Archive
+    Attachment: "Pièce jointe"
+    Client: Client
+    Contribution: Contribution
+    Group: Groupe
+    Knowledge: Connaissance
+    Picture: Image
+    Rules:
+      Component: Composant
+      Credit: "Crédit"
+    Statut: Statut
+    
+    Comment: Commentaire
+    Contributionstate: "État d'une contribution"
+    Hyperlink: "Url"
+    License: Licence
+    Preference: "Préférence"
+    Severity: "Sévérité"
+    Subscription: Souscription
+    User: Utilisateur
+    Commitment: "Engagement"
+    Contributiontype: "Type de contributon"
+    Issue: "Demande"
+    Notifier: "Notifier"
+    Release: "Révision"
+    Skill: "Compétence"
+    Tag: Tag
+    Version: Version
+    Changelog: "Note de révisions"
+    Contract: "Contrat"
+    Elapsed: "Écoulé"
+    Issuetype: "Type de demande"
+    Permission: Permission
+    Role: "Rôle"
+    Software: "Logiciel"
+    Team: "Équipe"
+    Workflow: "Flux de travail"
