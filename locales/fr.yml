@@ -21,7 +21,7 @@ fr:
   the_contribution_has_been_updated_successfully: "La contribution a bien \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour."
   the_comment_was_successfully_updated: "Le commentaire a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
   a_new_type_of_issue: Une nouvelle type de demande
-  you_have_to_specify_a_group: "Vous devez sp\xC3\xA9cifier un groupe"
+  
   issue_number: "Num\xC3\xA9ro de la demande"
   edit_anattachment: "\xC3\x89diter une pi\xC3\xA8ce jointe"
   a_new_state: "un nouvel \xC3\xA9tat"
@@ -78,7 +78,7 @@ fr:
   maximum_number_of_time_credits: "Nombre maximum de cr\xC3\xA9dits temps"
   evolution: "\xC3\x89volution"
   pending_issues: "Demandes \xC3\xA0 traiter"
-  you_have_to_specify_at_least_one_technology: "Vous devez sp\xC3\xA9cifier au moins une technologie"
+  
   number_of_new_issues: Nombre de nouvelles demandes
   make_private: "Rendre priv\xC3\xA9"
   developers: "D\xC3\xA9veloppeurs"
@@ -94,10 +94,8 @@ fr:
   roles_list: "Liste des r\xC3\xB4les"
   severity_was_successfully_created:
   monthly_digest: "Activit\xC3\xA9 mensuelle"
-  calls: Appels
   access_code: "Code d'acc\xC3\xA8s"
 
-  cc: CC
   editing_permission: "\xC3\x89diter la permission"
   new_issue: Nouvelle demande
   accepted: "Accept\xC3\xA9"
@@ -115,20 +113,19 @@ fr:
   last_week: "\"semaine pr\xC3\xA9c\xC3\xA9dente\""
   days: jours
   running: En cours
-  unlimited_number_of_time_credits_of_s: "Nombre illimit\xC3\xA9 de cr\xC3\xA9dit temps de %s"
+  
   me: "[ Moi ]"
   new_issues_are_in: Les nouvelles demandes sont en
   tosca_on_rails: Tosca on Rails
-  you_have_to_specify_a_name: "Vous devez sp\xC3\xA9cifier un nom"
+  
   contracts: "Contrats : "
   user_title: Titre
   access_to_administration_interface: Interface d'administration
   forgotten_password: "Mot de passe oubli\xC3\xA9 ?"
   this_issue_has_been_assigned_to_s_by_s: "Cette demande a \xC3\xA9t\xC3\xA9 prise en charge par %s."
   legend: "L\xC3\xA9gende"
-  subscription_for_s_on_s_s:
   unknown_account: Compte inconnu
-  subscription_for_user_name_on_model_type_model_id: "Souscription pour {{user_name}} de {{model_type}} \xC3\xA0 #{{model_id}}"
+
   characteristic: Caracteristique
   attachments: Documents
   customers: Clients
@@ -139,7 +136,6 @@ fr:
 
   user_informations: Informations
   plan_access_allowed: "Plan/Acc\xC3\xA8s autoris\xC3\xA9"
-  id: Id
   we_have_a_large_range_of_offers_for_support_with_a_sla_this_service_level_agreement_can_be_very_strong_and_is_guaranteed_by_contract: "Nous avons une large gamme d'offres d'assistance, de support et de maintenance avec une CNS. Cette Convention de Niveau de Service peut \xC3\xAAtre tr\xC3\xA8s courte et garantie par contrat."
   update: "Mettre \xC3\xA0 jour"
   create_a_new_contract: "Cr\xC3\xA9\xC3\xA9r un nouveau contrat"
@@ -159,7 +155,7 @@ fr:
   plateform: Platforme
   by_status: Par statuts
   this_contribution_has_been_submitted_on_s_by_b_s_b: "Cette contribution a \xC3\xA9t\xC3\xA9 d\xC3\xA9pos\xC3\xA9e le %s par <b>%s</b>"
-  s_time_credits_of_s_have_already_been_spent: "%s cr\xC3\xA9dits temps de %s ont d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 depens\xC3\xA9s"
+  
   none: Aucune
   motto_of_the_team: "Devise de l'\xC3\xA9quipe"
   display_only_software_supported_by_your_contract: "Aficher seulement les logiciels support\xC3\xA9s par votre contrat"
@@ -362,7 +358,7 @@ fr:
   skill_management: "Gestion des comp\xC3\xA9tences"
   display_only_inactive_clients: N'afficher que les clients inactifs
   subscribed_to: "Inscrit \xC3\xA0"
-  you_have_to_specify_a_software_or_a_domain: "Vous devez sp\xC3\xA9cifier un nom ou un domaine"
+  
   show_an_account: Voir un compte
   configuration_of_the_activity_report: "Configuration du rapport d'activit\xC3\xA9"
   cancelled: "Annul\xC3\xA9e"
@@ -472,7 +468,6 @@ fr:
   open_source_license: Licence libre
   your_comment_was_successfully_added: "Votre commentaire a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9 avec succ\xC3\xA8s."
 
-  logo_value: Logo '{{value}}'
   all_issues: Toutes les demandes
   permission_management: Gestion des permission
   history_of_s_for_s: Historique du %s pour %s
@@ -545,7 +540,7 @@ fr:
   finished_issues: "Demandes termin\xC3\xA9es"
   user_name: Nom
   and_associated_permissions: "et des permissions associ\xC3\xA9es"
-  d_time_credits_of_s: "%d cr\xC3\xA9dit temps de %s"
+  
 
   editing_a_severity:
   submit_a_contribution: "D\xC3\xA9poser une contribution"
@@ -602,7 +597,7 @@ fr:
 
   group_was_successfully_updated: "Le groupe a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
   estimation_in_minutes: Estimation en minutes
-  you_can_not_unsubscribe_to_this_contract_because_your_are_the_only_one_watching_it: "Vous ne pouvez vous d\xC3\xA9sinscrire de ce contrat, parce que vous \xC3\xAAtes le seul \xC3\xA0 \xC3\xAAtre notifi\xC3\xA9"
+  
   if_needed: si besoin
   there_is_no_new_issue: Il n'y a aucune nouvelle demande
   in_time: "D\xC3\xA9lais respect\xC3\xA9s"
@@ -632,7 +627,7 @@ fr:
   your_issue_has_no_commitment_for_workaround_time: Votre demande n'a pas d'engagement de contournement
   edit_a_version: "\xC3\x89diter une version"
   list_of_offers_with_time_credits: "Liste des offres avec des cr\xC3\xA9dits temps"
-  s_s_time_credits_of_s_have_already_been_spent: "%s / %s cr\xC3\xA9dit-temps de %s ont d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 d\xC3\xA9pens\xC3\xA9s"
+  
   an_error_has_occured_we_are_now_advised_of_your_issue_and_have_all_the_required_information_to_investigate_in_order_to_fix_it: "Une erreur est survenue. L'\xC3\xA9quipe a \xC3\xA9t\xC3\xA9 mis au courant du probl\xC3\xA8me et un rapport d\xC3\xA9taill\xC3\xA9 lui a \xC3\xA9t\xC3\xA9 soumis afin de le r\xC3\xA9soudre."
   preferences:
   the_first_graph_is_a_summary_over_the_chosen_period_corresponding_to_the_number_of_months_you_selected: "le premier graphique est un r\xC3\xA9capitulatif sur la p\xC3\xA9riode consid\xC3\xA9r\xC3\xA9e correspondant au nombre de mois que vous avez s\xC3\xA9lectionn\xC3\xA9, "
@@ -669,7 +664,7 @@ fr:
   a_new_software: un nouveau logiciel
   your_knowledge_was_successfully_updated: "Votre connaissance a \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour avec succ\xC3\xA8s."
   issue: Demande
-  you_can_be_suscribe_only_one_time_on_this_model: "Vous ne pouvez souscrire qu'une seule fois \xC3\xA0 un m\xC3\xAAme objet."
+  
   phone:
   a_package: un paquet
   and: et
@@ -768,7 +763,7 @@ fr:
   a_logo: un logo
   this_issue_has_been_taken_into_account_by_s: "Cette demande a \xC3\xA9t\xC3\xA9 prise en compte par %s."
   copyright: License
-  you_cannot_specify_a_software_and_a_domain: "Vous ne pouvez sp\xC3\xA9cifier un logiciel et un domaine."
+  
   submit: "D\xC3\xA9poser"
   the_url_was_successfully_updated: "L'url \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour avec succ\xC3\xA8s."
   add_a_contribution: Ajouter une contribution

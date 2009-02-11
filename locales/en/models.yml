@@ -18,6 +18,12 @@ en:
   Delivery: Delivery
   Documentation: Documentation
 
+  #Severities
+  Blocking: Blocking
+  Major: Major
+  Minor: Minor
+  None: None
+
   Alert:
     Hash_value: "Value of the has key"
 
@@ -86,6 +92,17 @@ en:
   Contributiontype:
     Description: Description
 
+  Credit:
+    Max: Maximum
+    Time: Time
+    unlimited_number_of_time_credits: 'Unlimited number of time-credits of {{time}}'
+    time_credits_of: '{{max}} time-credits of {{time}}'
+    time_credits_have_already_been_spent: "<b>{{value}}</b> time-credits of <b>{{time}}</b> have already been spent"
+    time_credits_of_s_have_already_been_spent: "<b>{{value}}</b> / <b>{{max}}</b> time-credits of <b>{{time}}</b> have already been spent"
+    time-credit:
+      one: "{{value}} of time-credit"
+      other: "{{value}} of time-credits"
+
   Elapsed:
     Taken_into_account: Taken into account
     Workaround: Workaround
@@ -102,15 +119,61 @@ en:
     Mail_cc: Mail cc
     Expected_on: Expected on
 
+  Knowledge:
+    Level: Niveau
+    you_have_to_specify_a_software_or_a_domain: 'You have to specify a software or a domain'
+    you_can_not_specify_a_software_and_a_domain: 'You can not specify a software and a domain'
+
+  License:
+    Url: Url
+    Osi_certified: "OSI certified"
+
+  Permission:
+    Info: Information
+
+  Picture:
+    you_must_select_a_file_to_upload: 'You must select a file to upload'
+    logo_value: Logo '{{value}}'
+    Image: Image
+    Description: Description
+
+  Preference:
+    Attribute: Attribute
+    Owner_id: Id
+    Owner_type: Type
+    Preferenced_id: Id
+    Preferenced_type: Type
+    Value: Value
+
   Release:
     Packaged: Packaged
     Active: Active
     Inactive: Inactive
 
+  Role:
+    Info: Information
+
+  Software:
+    you_have_to_specify_a_name: 'You have to specify a name'
+    you_have_to_specify_a_group: 'You have to specify a group'
+    you_have_to_specify_at_least_one_technology: 'You have to specify at least one technology'
+    Referent: Referent
+    Resume: Resume
+    Description: Description
+    Private: Private
+
   Statut:
     Active: Active
     Description: Description
     Name: Name
+
+  Subscription:
+    you_can_be_subscribed_only_one_time_on_this_model: 'You can be suscribed only one time on this model.'
+    subscription_for_user_name_on_model_type_model_id: 'Subscription for {{user_name}} on {{model_type}} #{{model_id}}'
+    you_can_not_unsubscribe_to_this_contract_because_your_are_the_only_one_watching_it: 'You can not unsubscribe to this contract, because your are the only one watching it.'
+    Model_id: Id
+    Model_type: Type
+
 
   Tag:
     Submitter: "Submitter"

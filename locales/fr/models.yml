@@ -18,6 +18,12 @@ fr:
   Delivery: Livraison
   Documentation: Documentation
 
+  #Severities
+  Blocking: Bloquante
+  Major: Majeure
+  Minor: Mineure
+  None: Aucune
+
   Alert:
     Hash_value: "Valeur de la clé de hashage"
 
@@ -86,6 +92,17 @@ fr:
   Contributiontype:
     Description: Description
 
+  Credit:
+    Max: Maximum
+    Time: Temps
+    unlimited_number_of_time_credits: "Nombre illimit\xC3\xA9 de cr\xC3\xA9dit temps de {{time}}"
+    time_credits_of: "{{max}} cr\xC3\xA9dit temps de {{time}}"
+    time_credits_have_already_been_spent: "<b>{{value}}</b> cr\xC3\xA9dits temps de <b>{{time}}</b> ont d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 depens\xC3\xA9s"
+    time_credits_of_s_have_already_been_spent: "<b>{{value}}</b> / <b>{{max}}</b> cr\xC3\xA9dit-temps de <b>{{time}}</b> ont d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 d\xC3\xA9pens\xC3\xA9s"
+    time-credit:
+      one: "{{value}} de crédit temps"
+      other: "{{value}} de crédits temps"
+
   Elapsed:
     Taken_into_account: Prise en compte
     Workaround: Contournement
@@ -102,17 +119,60 @@ fr:
     Mail_cc: Mail cc
     Expected_on: Attendue le
 
+  Knowledge:
+    Level: Niveau
+    you_have_to_specify_a_software_or_a_domain: "Vous devez sp\xC3\xA9cifier un nom ou un domaine"
+    you_can_not_specify_a_software_and_a_domain: "Vous ne pouvez sp\xC3\xA9cifier un logiciel et un domaine"
 
+  License:
+    Url: Url
+    Osi_certified: "Certifié OSI"
+
+  Permission:
+    Info: Information
+
+  Picture:
+    you_must_select_a_file_to_upload: "Vous devez choisir un fichier à uploader"
+    logo_value: Logo '{{value}}'
+    Image: Image
+    Description: Description
+
+  Preference:
+    Attribute: Attribut
+    Owner_id: Id
+    Owner_type: Type
+    Preferenced_id: Id
+    Preferenced_type: Type
+    Value: Valeur
 
   Release:
     Packaged: "Empaquetée"
     Active: "Activée"
     Inactive: "Inactive"
 
+  Role:
+    Info: Information
+    
+  Software:
+    you_have_to_specify_a_name: "Vous devez sp\xC3\xA9cifier un nom"
+    you_have_to_specify_a_group: "Vous devez sp\xC3\xA9cifier un groupe"
+    you_have_to_specify_at_least_one_technology: "Vous devez sp\xC3\xA9cifier au moins une technologie"
+    Referent: "Référent"
+    Resume: "Résumé"
+    Description: Description
+    Private: "Privé"
+
   Statut:
     Active: "Actif"
     Description: Description
     Name: Nom
+
+  Subscription:
+    you_can_be_subscribed_only_one_time_on_this_model: "Vous ne pouvez souscrire qu'une seule fois \xC3\xA0 un m\xC3\xAAme objet."
+    subscription_for_user_name_on_model_type_model_id: "Souscription pour {{user_name}} de {{model_type}} \xC3\xA0 #{{model_id}}"
+    you_can_not_unsubscribe_to_this_contract_because_your_are_the_only_one_watching_it: "Vous ne pouvez vous d\xC3\xA9sinscrire de ce contrat, parce que vous \xC3\xAAtes le seul \xC3\xA0 \xC3\xAAtre notifi\xC3\xA9"
+    Model_id: Id
+    Model_type: Type
 
   Tag:
     Submitter: "Déclarant"

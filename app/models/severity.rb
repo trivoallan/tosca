@@ -20,13 +20,6 @@ class Severity < ActiveRecord::Base
   has_many :issues
   has_many :commitments
 
-  ####################
-  I18n.t('Blocking') # 1 #
-  I18n.t('Major')    # 2 #
-  I18n.t('Minor')    # 3 #
-  I18n.t('None')     # 4 #
-  ####################
-
   # It's one of the rare "heavily used & fixed" AR model,
   # So we can include it in the translation mechanism
   def name
