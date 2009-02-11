@@ -1,7 +1,4 @@
 fr:
-  models:
-    tag: "étiquette"
-
   # Statuses
   submitted: "enregistrée"
   accepted: "acceptée"
@@ -11,7 +8,10 @@ fr:
   fixed: "corrigée"
   closed: "clôturée"
   cancelled: "annulée"
-  
+
+  tag:
+    submitter: "déclarant"
+
   team:
     contact: contact
     manager: responsable
@@ -20,7 +20,7 @@ fr:
 
   version:
     generic: "générique"
-  
+
   release:
     packaged: "empaquetée"
     active: "actif"
@@ -54,7 +54,7 @@ fr:
     notifier: "notifier"
     release: "révision"
     skill: "compétence"
-    tag: tag
+    tag: étiquette
     version: version
     changelog: "note de révisions"
     contract: "contrat"

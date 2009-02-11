@@ -1,14 +1,13 @@
 fr:
   successfully_created: "'{{name}}' a été créé avec succès."
   successfully_upated: "'{{name}}' a été mis à jour avec succès."
-  name: Nom
-  validate: Valider
-  create: "Créer"
+  name: nom
+  validate: valider
+  create: "créer"
   welcome: Bienvenue
   a_new_issue: une nouvelle demande
   Validate: Valider
   Submit: Valider
-  Name: Nom
   Description: Description
   Homepage: "Page d'accueil"
   tosca_on_rails: "Tosca on Rails"
