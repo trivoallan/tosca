@@ -15,6 +15,9 @@ fr:
     Active: "Actif"
     Inactive: "Inactive"
 
+  Tag:
+    Submitter: "Déclarant"
+
   Team:
     Contact: Contact
     Manager: Responsable

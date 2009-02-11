@@ -349,7 +349,6 @@ fr:
   tags_list: Listes des Tags
   concerning: Concernant
   the_progressions_bar_represent_the_progress_ratio_of_the_contract: "La barre de progression repr\xC3\xA9sente le taux de finition du contrat: "
-  tag: Tag
   this_file_does_not_exist: Le fichier CSV n'est pas correct.
   receive_a_summary_of_weekly_activities: "Recevoir un r\xC3\xA9sum\xC3\xA9 de l'activit\xC3\xA9 hebdomadaire"
   team_s_was_successfully_updated: "L'\xC3\xA9quipe '%s' a \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour avec succ\xC3\xA8s."
@@ -483,7 +482,6 @@ fr:
   add_a_knowledge: Ajouter une connaissance
   show_issues_that_were_processed: "montrer les demandes qui ont d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 trait\xC3\xA9es"
   permission_was_successfully_updated: "La permission a \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour avec succ\xC3\xA8s."
-  submitter: "D\xC3\xA9clarant"
   including: inclus (
   size: Taille
   a_version: une version
@@ -541,7 +539,6 @@ fr:
   no_s_at_the_moment: Aucun %s pour le moment
   you_cannot_delete_the_first_comment: Vous ne pouvez effacer le premier commentaire
   client: Client
-  new_tag: Nouveau Tag
   add_s: Ajouter %s
 
   workday: " jour ouvr\xC3\xA9"
@@ -565,7 +562,6 @@ fr:
   rss: RSS
   start_date: "Date de d\xC3\xA9but"
   one_of_our_consultants_will_then_contact_you_in_less_than_one_hour: Un de nos consultants vous contactera dans moins d'une heure.
-  a_tag: "une \xC3\xA9tiquette"
   you_are_now_unsubscribed_to_this_s: "Vous \xC3\xAAtes maintenant d\xC3\xA9sinscrit de ce/cette %s"
   rah_value_roh: rididou {{value}}
   introduction: Introduction
@@ -644,7 +640,6 @@ fr:
   edition_of_this_archive: "\xC3\x89dition de cette archive"
   search: Rechercher
   you_have_s_rights_on_this_portal: Vous avez les droits %s sur ce portail
-  name: Nom
   customer: Client
   unknown: "Non sp\xC3\xA9cifi\xC3\xA9"
   alert_page_for_team_s: "Page d'alerte pour l'\xC3\xA9quipe %s"
@@ -720,7 +715,6 @@ fr:
   contributionstate_name: Nom
   yes: Oui
   red: rouge
-  editing_tag: "\xC3\x89diter un tag"
   flow: Flux
   previous_page: "Page pr\xC3\xA9cedente"
   contract_was_successfully_created:
@@ -780,7 +774,6 @@ fr:
   you_must_indicate_a_valid_issue: Vous devez indiquer une demande valide
   public: public
   time_of_taking_into_account_the_issues: Temps de prise en compte des demandes
-  tags: "\xC3\x89tiquettes"
   you_are_not_allowed_to_edit_this_comment: "Vous n'\xC3\xAAtes pas autoris\xC3\xA9 \xC3\xA0 modifier ce commentaire"
   this_issue_has_been_changed_in_s_by_s: "Cette demande a \xC3\xA9t\xC3\xA9 %s par %s."
   analysis:
