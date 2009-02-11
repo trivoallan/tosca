@@ -9,8 +9,11 @@ en:
   Validate: Valider
   Submit: Valider
   Description: Description
+  Destroy: Destroy
+  Model: Model
   Homepage: "Home page"
   Tosca_on_rails: "Tosca on Rails"
+  Type: Type
   Consultation: "Consultation"
   Create: Create
   Delete: Delete
@@ -30,6 +33,7 @@ en:
   Public: Public
   Private: "Private"
 
+  are_you_sure: "Are you sure ?"
 
   time:
     am: am

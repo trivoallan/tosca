@@ -1,23 +1,23 @@
 <p>
-  <b>User:</b>
-  <%=h @subscription.user_id %>
+  <b><%= t(:'Models.User') %> :</b>
+  <%= @subscription.user_id %>
 </p>
 
 <p>
-  <b>Model:</b>
-  <%=h @subscription.model_id %>
+  <b><%= t(:Model) %> :</b>
+  <%= @subscription.model_id %>
 </p>
 
 <p>
-  <b>Model type:</b>
-  <%=h @subscription.model_type %>
+  <b><%= t(:Type) %> :</b>
+  <%= t("Models.#{@subscription.model_type}") %>
 </p>
 
 <p>
-  <b>Updated on:</b>
+  <b><%= t(:updated_on) %> :</b>
   <%=h @subscription.updated_on %>
 </p>
 
 
-<%= link_to 'Edit', edit_subscription_path(@subscription) %> |
-<%= link_to 'Back', subscriptions_path %>
+<%= link_to t(:Edit), edit_subscription_path(@subscription) %> |
+<%= link_to t(:Back), subscriptions_path %>

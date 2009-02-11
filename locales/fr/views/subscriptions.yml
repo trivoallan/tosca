@@ -1,0 +1,9 @@
+fr:
+  subscriptions:
+    Index: "Liste des souscriptions"
+    index:
+      a_souscription: "une souscription"
+      subscribed_to: "Souscrit à"
+    New: "Nouvelle souscription"
+    Edit: "Modifier la souscription"
+    Show: "Souscription"
