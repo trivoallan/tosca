@@ -1,11 +1,10 @@
 en:
   successfully_created: "'{{name}}' was successfully created."
   successfully_upated: "'{{name}}' was successfully updated."
-  name: Name
-  validate: 'Validate'
-  create: 'Create'
-  components: Components
-  welcome: Home
+  Name: Name
+  Validate: 'Validate'
+  Create: 'Create'
+  Components: Components
   a_new_issue: a new issue
   recipient: recipient
   expert: expert

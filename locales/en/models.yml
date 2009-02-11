@@ -17,6 +17,15 @@ en:
     Active: Active
     Inactive: Inactive
 
+  Tag:
+    Submitter: "Submitter"
+
+  Team:
+    Contact: Contact
+    Manager: Manager
+    Motto: Motto
+    Members: Members
+
   User:
     Name: Name
     Title: Title
@@ -25,12 +34,6 @@ en:
     Phone: Phone
     Login: Login
     Informations: Description
-
-  Team:
-    Contact: Contact
-    Manager: Manager
-    Motto: Motto
-    Members: Members
 
   Version:
     Generic: Generic
@@ -75,3 +78,4 @@ en:
     User: User
     Version: Version
     Workflow: Workflow
+
