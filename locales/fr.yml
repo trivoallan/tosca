@@ -508,12 +508,11 @@ fr:
   sla: CNS
   tam: "[ Tam ]"
   a_permission: une permission
-  cache_cleared: "Cache nettoy\xC3\xA9 !"
-  show: Consulter
+  
   with_a_copy_to: avec en copie
   history: Historique
   engineers_assigned_to_this_contract: "Ing\xC3\xA9nieurs affili\xC3\xA9s \xC3\xA0 ce contrat"
-  rss: RSS
+
   start_date: "Date de d\xC3\xA9but"
   one_of_our_consultants_will_then_contact_you_in_less_than_one_hour: Un de nos consultants vous contactera dans moins d'une heure.
   you_are_now_unsubscribed_to_this_s: "Vous \xC3\xAAtes maintenant d\xC3\xA9sinscrit de ce/cette %s"
@@ -569,14 +568,14 @@ fr:
   skill: "Comp\xC3\xA9tence"
   modify_your_password: Modifier votre mot de passe
   the_software_s_has_been_successfully_deleted: "Le logiciel %s a \xC3\xA9t\xC3\xA9 effac\xC3\xA9 avec succ\xC3\xA8s"
-  h: h
+
   workdays: " jours ouvr\xC3\xA9s"
   status_was_successfully_created:
   list_of_the_comments: Liste des commentaires
   make_public: Rendre public
   "1_half_day": "1 demie journ\xC3\xA9e"
   by_software: Par logiciel
-  year:
+
   a_new_type_of_contribution_was_successfully_created: "Un nouveau type de contribution a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9 avec succ\xC3\xA8s."
   user_pwd: Mot de passe
   recipients: "B\xC3\xA9n\xC3\xA9ficiaires: "
@@ -601,7 +600,7 @@ fr:
   if_needed: si besoin
   there_is_no_new_issue: Il n'y a aucune nouvelle demande
   in_time: "D\xC3\xA9lais respect\xC3\xA9s"
-  thank_your_for_taking_time_in_order_to_help_us_to_improve_this_product_your_comments_has_been_sent_successfully: "Merci de prendre de votre temps pour nous aider \xC3\xA0 am\xC3\xA9liorer ce produit. Vos remarques ont bien \xC3\xA9t\xC3\xA9 transmises."
+  
   a_skill: "une comp\xC3\xA9tence"
   skip_to_the_content: Passer au contenu
   contributionstate_description: Description
@@ -629,7 +628,7 @@ fr:
   list_of_offers_with_time_credits: "Liste des offres avec des cr\xC3\xA9dits temps"
   
   an_error_has_occured_we_are_now_advised_of_your_issue_and_have_all_the_required_information_to_investigate_in_order_to_fix_it: "Une erreur est survenue. L'\xC3\xA9quipe a \xC3\xA9t\xC3\xA9 mis au courant du probl\xC3\xA8me et un rapport d\xC3\xA9taill\xC3\xA9 lui a \xC3\xA9t\xC3\xA9 soumis afin de le r\xC3\xA9soudre."
-  preferences:
+
   the_first_graph_is_a_summary_over_the_chosen_period_corresponding_to_the_number_of_months_you_selected: "le premier graphique est un r\xC3\xA9capitulatif sur la p\xC3\xA9riode consid\xC3\xA9r\xC3\xA9e correspondant au nombre de mois que vous avez s\xC3\xA9lectionn\xC3\xA9, "
   list: Liste
   you_can_also_s: Vous pouvez aussi %s
@@ -647,15 +646,13 @@ fr:
   list_of_your_supported_software: "Liste de vos logiciels support\xC3\xA9s"
   caption: "L\xC3\xA9gende"
   list_of_components_offers: Liste des offres par composants
-  information: Information
-  contributionstate_name: Nom
-  yes: Oui
-  red: rouge
+
+
   flow: Flux
   previous_page: "Page pr\xC3\xA9cedente"
   contract_was_successfully_created:
   the_version_s_has_been_updated: "La version %s a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s"
-  user_phone:
+
   select_a_date: "S\xC3\xA9lectionner une date"
   new_offer_based_on_time_credits: "Nouvelle offre bas\xC3\xA9 sur les cr\xC3\xA9dits temps"
   software_are_selected_over_the_duration_of_the_deal: "Les logiciels sont s\xC3\xA9lectionn\xC3\xA9s sur toute la dur\xC3\xA9e des contrats"
@@ -665,12 +662,12 @@ fr:
   your_knowledge_was_successfully_updated: "Votre connaissance a \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour avec succ\xC3\xA8s."
   issue: Demande
   
-  phone:
+
   a_package: un paquet
   and: et
   displays_informations: affiche des informations
   a_new_user: un nouvel utilisateur
-  generic:
+
   edit_this_contribution: Modifier cette contribution
   issue_list: Liste des demandes
   the_software_s_has_been_created_succesfully: "Le logiciel %s a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9 avec succ\xC3\xA8s"

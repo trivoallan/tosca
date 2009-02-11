@@ -20,40 +20,6 @@
 #For html2text
 require 'cgi'
 
-# Converts the date value of a calendar into a Time object
-# Value is expected to be a string in the form : "YYYY-MM-DD"
-#
-# Call it like this :
-#   calendar2time('2007-05-21')
-#   => Mon May 21 00:00:00 +0200 2007
-def calendar2time(value)
-  values = value.split('-')
-  Time.mktime(values[0], values[1], values[2], 0, 0, 0)
-end
-
-
-# Remove entirely a tree. Like 'rm -Rf directory'
-def rmtree(directory)
-  Dir.foreach(directory) do |entry|
-    next if entry =~ /^\.\.?$/     # Ignore . and .. as usual
-    path = directory + "/" + entry
-    if FileTest.directory?(path)
-      rmtree(path)
-    else
-      File.delete(path)
-    end
-  end
-
-  Dir.delete(directory)
-end
-
-# compute the average of an Array
-def avg(data)
-  return 0 unless data.is_a? Array
-  data.inject(0){|n, value| n + value} / data.size.to_f
-end
-
-
 #Found here
 #http://blog.yanime.org/articles/2005/10/10/html2text-function-in-ruby
 #TODO : Make ordered list
@@ -95,6 +61,8 @@ def html2text(html)
   text
 end
 
+#Is this method useful ?
+#rails I18n should do this
 def _ordinalize(number)
   if Locale.get.language =~ /fr/
     case number

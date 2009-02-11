@@ -24,7 +24,6 @@ module PermissionCache
     # testing cache
     perm = "#{options[:controller]}/#{options[:action]}"
     user = @session_user
-    role_id = (user ? user.role_id : 6) # 6 : public access
 
     return true if LoginSystem::public_user.authorized?(perm)
     return false unless user

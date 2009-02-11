@@ -97,7 +97,6 @@ class ReportingController < ApplicationController
 
     init_colors
 
-    # we clean
     # TODO rework the clean
     # reporting = File.expand_path('public/reporting', RAILS_ROOT)
     # rmtree(reporting)
@@ -532,7 +531,7 @@ class ReportingController < ApplicationController
     g.no_data_message = t("No data \navailable")
 
     # this writes the file to the hard drive for caching
-    g.write "#{RAILS_ROOT}/public/images/#{@path[name]}"
+    g.write File.join(RAILS_ROOT, 'public', 'images', @path[name])
   end
 
   # 3 initialisations are needed : titles, colors & datas.
@@ -561,7 +560,7 @@ class ReportingController < ApplicationController
     @data.each_pair do |name, data|
       # sha1 = Digest::SHA1.hexdigest("-#{qui}-#{name}-")
       # TODO : it's not safe to store it that way
-      @path[name] = "reporting/#{name}.png"
+      @path[name] = File.join('reporting', "#{name}.png")
       size = data.size
       case name.to_s
       when /by_type/

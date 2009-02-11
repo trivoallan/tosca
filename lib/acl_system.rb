@@ -46,8 +46,4 @@ module ACLSystem
     user.authorized?(required_perm)
   end
 
-
-
-
-
 end
