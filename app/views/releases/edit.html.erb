@@ -1,8 +1,8 @@
-<h1><%=t('Edition of this release')%></h1>
+<h1><%=t(:Edit)%></h1>
 
 <% form_tag(release_path(@release), :method => :put, :multipart => true, :id => 'main_form') do%>
   <%= render :partial => 'form' %>
-  <%= submit_tag t('Validate') %>
+  <%= submit_tag t(:Validate) %>
 <% end %>
 
 <%= link_to_show_and_list(@release) %>

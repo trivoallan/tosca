@@ -43,7 +43,7 @@ class ReleasesController < ApplicationController
       redirect_to new_version_path(:version_id => @release.version_id)
     else
       if @release.save
-        flash[:notice] = t(:release_was_successfully_created)
+        flash[:notice] = t(:successfully_created, :name => @release.full_name)
         redirect_to(@release.version ? version_path(@release.version) : @release)
       else
         _form
@@ -60,7 +60,7 @@ class ReleasesController < ApplicationController
   def update
     @release = Release.find(params[:id])
     if @release.update_attributes(params[:release])
-      flash[:notice] = t(:release_was_successfully_updated)
+      flash[:notice] = t(:successfully_updated, :name => @release.full_name)
       redirect_to release_path(@release)
     else
       _form and render :action => 'edit'
