@@ -832,7 +832,6 @@ fr:
   you_must_indicate_a_valid_issue: Vous devez indiquer une demande valide
   public: public
   time_of_taking_into_account_the_issues: Temps de prise en compte des demandes
-  tags: "\xC3\x89tiquettes"
   you_are_not_allowed_to_edit_this_comment: "Vous n'\xC3\xAAtes pas autoris\xC3\xA9 \xC3\xA0 modifier ce commentaire"
   this_issue_has_been_changed_in_s_by_s: "Cette demande a \xC3\xA9t\xC3\xA9 %s par %s."
   analysis:

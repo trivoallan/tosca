@@ -1,4 +1,7 @@
 fr:
+  models:
+    tag: "étiquette"
+
   # Statuses
   Submitted: "Enregistrée"
   Accepted: "Acceptée"
