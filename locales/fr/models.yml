@@ -11,6 +11,8 @@ fr:
 
   Component:
     unlimited_offer: "offre illimit\xC3\xA9e"
+    unlimited_offer_covering_a_maximum_of_components: "Offre illimit\xC3\xA9e couvrant un maximum de {{number}} composants"
+    has_already_been_spent_on_your: "{{value}} ont d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 depens\xC3\xA9s sur votre {{contract}}"
 
   Release:
     Packaged: "Empaquetée"
@@ -34,6 +36,13 @@ fr:
     Phone: "Téléphone"
     Login: Login
     Informations: Description
+    Pwd: Mot de passe
+    Pwdconfirmation: Confirmation du mot de passe
+    password_missing: Mot de passe manquant
+    password_is_different_from_its_confirmation: "Mot de passe diff\xC3\xA9rent de sa confirmation"
+    your_password_is_too_long: "Votre mot de passe est trop long (max. 40 caract\xC3\xA8res)"
+    your_password_is_too_short: Votre mot de passe est trop court (min. 5)
+    you_must_specify_a_password: "Vous devez pr\xC3\xA9ciser un mot de passe"
 
   Version:
     Generic: "Générique"

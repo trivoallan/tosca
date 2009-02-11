@@ -11,6 +11,8 @@ en:
 
   Component:
     unlimited_offer: "unlimited offer"
+    unlimited_offer_covering_a_maximum_of_components: 'Unlimited offer covering a maximum of {{number}} components'
+    has_already_been_spent_on_your: "{{value}} has already been spent on your {{contract}}"
 
   Release:
     Packaged: Packaged
@@ -34,12 +36,18 @@ en:
     Phone: Phone
     Login: Login
     Informations: Description
+    Pwd: Password
+    Pwdconfirmation: Confirmation of the password
+    password_missing: Password missing
+    password_is_different_from_its_confirmation: 'Password is different from its confirmation'
+    your_password_is_too_long: Your password is too long (max. 40)
+    your_password_is_too_short: 'Your password is too short (min. 5)'
+    you_must_specify_a_password: 'You must specify a password.'
 
   Version:
     Generic: Generic
 
-
-    #Name of models
+  #Name of models
   Models:
     Alert: Alert
     Archive: Archive

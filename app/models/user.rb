@@ -48,9 +48,6 @@ class User < ActiveRecord::Base
 
   attr_accessor :pwd_confirmation
 
-  I18n.t('User|Pwd')
-  I18n.t('User|Pwd confirmation')
-
   #Preferences
   preference :digest_daily, :default => false
   preference :digest_weekly, :default => false
@@ -125,21 +122,20 @@ class User < ActiveRecord::Base
 
   # Eck ... We must add message manually in order to
   # not have the "pwd" prefix ... TODO : find a pretty way ?
-  # TODO : check if gettext is an answer ?
   def validate
-    errors.add(:pwd, I18n.t("Password missing")) if password.blank?
+    errors.add(:pwd, t(:password_missing)) if password.blank?
     if pwd != pwd_confirmation
-      errors.add(:pwd_confirmation, I18n.t('Password is different from its confirmation'))
+      errors.add(:pwd_confirmation, t(:password_is_different_from_its_confirmation))
     end
     unless pwd.blank?
       if pwd.length > 40
-        errors.add(:pwd, I18n.t('Your password is too long (max. 20)'))
+        errors.add(:pwd, t(:your_password_is_too_long))
       elsif pwd.length < 5
-        errors.add(:pwd, I18n.t('Your password is too short (min. 5)'))
+        errors.add(:pwd, t(:your_password_is_too_short))
       end
     end
     if pwd.blank? and self.password.blank?
-      errors.add(:pwd, I18n.t('You must have specify a password.'))
+      errors.add(:pwd, t(:you_must_specify_a_password))
     end
   end
 
@@ -180,8 +176,8 @@ class User < ActiveRecord::Base
   end
 
   def self.tams
-    self.find_select( { :joins => :own_contracts, :group => "users.id, users.name",
-        :conditions => "contracts.tam_id = users.id" } )
+    self.find_select( { :joins => :own_contracts, :group => 'users.id, users.name',
+        :conditions => 'contracts.tam_id = users.id' } )
   end
 
   def self.admins

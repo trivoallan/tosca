@@ -96,7 +96,7 @@ fr:
   monthly_digest: "Activit\xC3\xA9 mensuelle"
   calls: Appels
   access_code: "Code d'acc\xC3\xA8s"
-  password_missing: Mot de passe manquant
+  
   cc: CC
   editing_permission: "\xC3\x89diter la permission"
   new_issue: Nouvelle demande
@@ -158,7 +158,6 @@ fr:
   answer: "R\xC3\xA9pondre"
   plateform: Platforme
   by_status: Par statuts
-  user_pwd_confirmation: Confirmation du mot de passe
   this_contribution_has_been_submitted_on_s_by_b_s_b: "Cette contribution a \xC3\xA9t\xC3\xA9 d\xC3\xA9pos\xC3\xA9e le %s par <b>%s</b>"
   s_time_credits_of_s_have_already_been_spent: "%s cr\xC3\xA9dits temps de %s ont d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 depens\xC3\xA9s"
   none: Aucune
@@ -290,7 +289,7 @@ fr:
   skill_list: "Liste des comp\xC3\xA9tences"
   a_type_of_contribution_was_successfully_updated: "Le type de contribution a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
   new_workflow: Nouveau flux
-  your_password_is_too_short_min_5: Votre mot de passe est trop court (min. 5)
+  
   the_contract_has_not_been_started_yet: "Le contrat n'a pas encore \xC3\xA9t\xC3\xA9 d\xC3\xA9marr\xC3\xA9"
   expand_all: "Tout d\xC3\xA9velopper"
   user_login: Identifiant
@@ -525,7 +524,7 @@ fr:
   my_supported_software: "Mes logiciels support\xC3\xA9s"
   you_must_have_a_comment_with_at_least_5_characters: "Votre commentaire doit au moins avoir 5 caract\xC3\xA8res"
   logo_s:
-  your_password_is_too_long_max_20: "Votre mot de passe est trop long (max. 20 caract\xC3\xA8res)"
+  
   contributions_of_s: Contributions de %s
   statictics: Statistiques
   please_contact_us_if_your_problem_remains: Merci de nous contacter si vous avez d'autres anomalies.
@@ -593,7 +592,7 @@ fr:
   user_name: Nom
   and_associated_permissions: "et des permissions associ\xC3\xA9es"
   d_time_credits_of_s: "%d cr\xC3\xA9dit temps de %s"
-  s_has_already_been_spent_on_your_s: "%s ont d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 depens\xC3\xA9s sur votre %s"
+  
   editing_a_severity:
   submit_a_contribution: "D\xC3\xA9poser une contribution"
   dynamically_showing_the_activity_of_our_service_for_you_in_real_time: "dynamique montrant l'activit\xC3\xA9 de notre service en temps r\xC3\xA9el."
@@ -645,7 +644,7 @@ fr:
   alert_page_for_team_s: "Page d'alerte pour l'\xC3\xA9quipe %s"
   does_not_exist: N'existe pas
   info: Info
-  you_must_have_specify_a_password: "Vous devez pr\xC3\xA9ciser un mot de passe"
+  
 
   group_was_successfully_updated: "Le groupe a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
   estimation_in_minutes: Estimation en minutes
@@ -682,7 +681,6 @@ fr:
   list_of_offers_with_time_credits: "Liste des offres avec des cr\xC3\xA9dits temps"
   s_s_time_credits_of_s_have_already_been_spent: "%s / %s cr\xC3\xA9dit-temps de %s ont d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 d\xC3\xA9pens\xC3\xA9s"
   an_error_has_occured_we_are_now_advised_of_your_issue_and_have_all_the_required_information_to_investigate_in_order_to_fix_it: "Une erreur est survenue. L'\xC3\xA9quipe a \xC3\xA9t\xC3\xA9 mis au courant du probl\xC3\xA8me et un rapport d\xC3\xA9taill\xC3\xA9 lui a \xC3\xA9t\xC3\xA9 soumis afin de le r\xC3\xA9soudre."
-  unlimited_offer: "offre illimit\xC3\xA9e"
   preferences:
   the_first_graph_is_a_summary_over_the_chosen_period_corresponding_to_the_number_of_months_you_selected: "le premier graphique est un r\xC3\xA9capitulatif sur la p\xC3\xA9riode consid\xC3\xA9r\xC3\xA9e correspondant au nombre de mois que vous avez s\xC3\xA9lectionn\xC3\xA9, "
   list: Liste
@@ -764,7 +762,7 @@ fr:
   editing_a_commitment: Modifier un engagement
   choose_one_year: "Sp\xC3\xA9cifier une ann\xC3\xA9e : "
   knowledge: Connaissance
-  password_is_different_from_its_confirmation: "Mot de passe diff\xC3\xA9rent de sa confirmation"
+  
   the_s_has_been_accepted_by_the_community: "Le %s a \xC3\xA9t\xC3\xA9 accept\xC3\xA9 par la communaut\xC3\xA9"
   logout: "D\xC3\xA9connexion ..."
   a_new_flow: un nouveau flux
@@ -802,7 +800,7 @@ fr:
   informations: Informations
   alerts: Alertes
   no_contracts_currently_open: Aucun contrat actuellement actif.
-  unlimited_offer_covering_a_maximum_of_d_components: "Offre illimit\xC3\xA9e couvrant un maximum de %d composants"
+  
   issues: demandes
   number:
     format:
