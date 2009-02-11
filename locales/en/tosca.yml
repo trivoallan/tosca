@@ -2,13 +2,31 @@ en:
   successfully_created: "'{{name}}' was successfully created."
   successfully_upated: "'{{name}}' was successfully updated."
   Name: Name
-  Validate: 'Validate'
-  Create: 'Create'
-  a_new_issue: a new issue
+  Validate: Validate
+  Create: Create
+  Validate: Valider
+  Submit: Valider
+  Description: Description
+  Homepage: "Home page"
+  Tosca_on_rails: "Tosca on Rails"
+  Consultation: "Consultation"
+  Create: Create
+  Delete: Delete
+  Update: Update
+  Show: Show
+  View: View
+  Back: Back
+  Edit: Edit
+  List: List
+  Search: Search
+  Save: Save
+  Activated: Activated
+  Recipient: Recipient
+  Expert: Expert
   Recipient: Recipient
   Eexpert: Expert
-  Public: Publique
-  Private: "Privé"
+  Public: Public
+  Private: "Private"
 
 
   time:

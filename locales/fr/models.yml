@@ -33,6 +33,7 @@ fr:
 
   Contract:
     the_schedules_of_this_contract_are_invalid: "Les horaires de ce contrat sont invalides."
+    Perimeter: "Périmètre"
 
   Contribution:
     on: ' sur '

@@ -193,7 +193,6 @@ fr:
   system_management: "Gestion des Syst\xC3\xA8mes"
   workflow_of_s: Flux de %s
   daily_digest: "Activit\xC3\xA9 quotidienne"
-  version_of_a_software: Versiond d'un logiciel
   a_new_licence: une nouvelle licence
 
   this_issue_has_been_requalified_in_s_by_s: "Cette demande a \xC3\xA9t\xC3\xA9 requalifi\xC3\xA9e en %s par %s."
@@ -203,7 +202,6 @@ fr:
   software_categorization: Classification des logiciels
   create_a_new_type_of_contribution: "Cr\xC3\xA9er un nouveau type de contribution"
   displaying_entries_b_from_nbsp_nbsp_to_b_of_b_total_b_in_total:
-  the_version_s_has_been_created: "La version %s a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9e avec succ\xC3\xA8s"
   send_me_a_new_password: Envoyer moi un nouveau mot de passe
   short_description: Description courte
   login: Identifiant
@@ -219,13 +217,10 @@ fr:
   user_team: "\xC3\x89quipe"
   a_team: "une \xC3\xA9quipe"
   modification_text: Texte de modification
-  versions: Versions
-  validate: Valider
   prints_the_life_cycle_of_an_issue: affiche le cycle de vie d'une demande
   concerning_the_contract: Portant sur le contrat
   internal_mailing_list: Mailing liste interne
   team: "[ \xC3\x89quipe ]"
-  all_versions: toute versions
   the_indicated_time_is_the_one_elapsed_before_the_end_of_the_sla: "Le temps indiqu\xC3\xA9 est celui restant avant la fin de la CNS"
   receive_a_summary_of_daily_activities: "Recevoir un r\xC3\xA9sum\xC3\xA9 de l'activit\xC3\xA9 quotidienne"
   list_of_the_subscriptions: Liste des souscriptions
@@ -549,7 +544,6 @@ fr:
   digest_report: "Rapport d'activit\xC3\xA9"
   distributed_on: "R\xC3\xA9partie sur "
   an_e_mail_was_sent_to: "Un e-mail a \xC3\xA9t\xC3\xA9 envoy\xC3\xA9 \xC3\xA0 "
-  softwares: Logiciels
   the_second_graph_draws_all_data_since_the_begining_of_the_deal_it_thus_doesn_t_change_with_the_period_you_ve_chosen: "le second graphique r\xC3\xA9capitule l'ensemble des donn\xC3\xA9es depuis l'ouverture du march\xC3\xA9 : il ne varie donc pas quelque soit la p\xC3\xA9riode que vous aurez choisie, "
   s_activity_per_week: "Activit\xC3\xA9 de %s par semaine"
   finished_issues: "Demandes termin\xC3\xA9es"
@@ -747,7 +741,6 @@ fr:
   an_image: une image
   add_a_new_version: Ajouter une nouvelle version
   contributions: Contributions
-  list_of_the_versions: Liste des versions
   a_new_system_tag_based_allowing_to_regroup_software_or_issue_at_your_convenience: "Un nouveau syst\xC3\xA8me, bas\xC3\xA9 sur les \xC3\xA9tiquettes, permet de regrouper les logiciels ou les demandes \xC3\xA0 votre convenance"
   contact: Contact
   create_an_account: "Cr\xC3\xA9er un compte"
