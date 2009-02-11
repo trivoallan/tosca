@@ -1,7 +1,7 @@
-<h1><%=t('List of releases')%></h1>
+<h1><%=t(:Index)%></h1>
 
 <% paginated_section(@releases, :create_label => t(:a_release)) do %>
- <% titles = [ t(:'models.release'), t(:'release.packaged'), t(:'release.activated') ] %>
+ <% titles = [ t(:'Models.Release'), t(:'Release.Packaged'), t(:'Release.Active') ] %>
  <%= show_table(@releases, Release, titles) do |r|
    result = ''
    result << "<td>#{link_to_release(r)}</td>"

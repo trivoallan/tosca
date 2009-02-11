@@ -1,8 +1,8 @@
-<h1><%=t(:releases_new)%></h1>
+<h1><%=t(:New)%></h1>
 
 <% form_tag(releases_path, :multipart => true, :id => 'main_form') do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag t('Validate') %>
+  <%= submit_tag t(:Create) %>
 <% end %>
 
 <%= link_to_back %>

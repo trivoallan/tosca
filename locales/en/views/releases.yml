@@ -1,0 +1,9 @@
+en:
+  releases:
+    Show: "Release"
+    New: "New release"
+    Edit: "Edit release"
+    Index: "Release's list"
+    index:
+      a_release: "a release"
+    conflict_with_generic: "This release cannot be created, because she's associated to a generic version.<br /> Please create a specific one."
