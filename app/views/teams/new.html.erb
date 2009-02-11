@@ -1,8 +1,8 @@
-<h1><%= t(:teams_new) %></h1>
+<h1><%= t(:New) %></h1>
 
 <% form_tag teams_path, :id => 'form_team' do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag t("Create") %>
+  <%= submit_tag t(:Create) %>
 <% end %>
 
-<%= link_to t('Back'), teams_path %>
+<%= link_to t(:Back), teams_path %>
