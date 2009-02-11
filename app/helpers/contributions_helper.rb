@@ -22,7 +22,8 @@ module ContributionsHelper
   # software in parameters
   def public_table_of_contributions(contribs)
     return '' unless contribs.size > 0
-    columns = [ I18n.t('Date'), I18n.t('Version'), I18n.t('Summary') ]
+    columns = [ I18n.t(:'Contribution.Contributed_on'),
+                I18n.t(:'Models.Version'), I18n.t(:'Software.Summary') ]
     out = '<div class="bloc_scroll"><table class="full"><tr>'
     columns.each { |c| out << "<th>#{c}</th>" }
     out << '</tr>'

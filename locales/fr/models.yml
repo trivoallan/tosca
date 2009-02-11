@@ -82,7 +82,7 @@ fr:
     on: ' sur '
     Description: Description
     Patch: Patch
-    Contributed_on: "Contribué le"
+    Contributed_on: "Contribué&nbsp;le"
     Closed_on: "Fermé le"
     Synthesis: "Synthèse"
 
