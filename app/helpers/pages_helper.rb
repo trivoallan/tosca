@@ -50,7 +50,7 @@ module PagesHelper
     return nil unless ar
     url = (ar.is_a?(String) ? ar : { :action => 'destroy', :id => ar })
     link_to StaticPicture::delete,  url, :method => :delete,
-        :confirm => I18n.t('Do you really want to destroy this object ?')
+        :confirm => I18n.t(:are_you_sure)
   end
 
   def link_to_back

@@ -1,27 +1,18 @@
-<h1><%= t('Roles list') %></h1>
-<small>[<%= link_to t('and associated permissions'), permissions_path %>]</small>
+<h1><%= t(:Index) %></h1>
+<small>[<%= link_to t(:associated_permissions), permissions_path %>]</small>
 
-<% titres = [ t('Rule'), t('Description') ]
-  titres.concat(@roles.collect{|r| link_to(r.name, edit_role_path(r))})
-%>
-<%= show_table(@permissions, Permission, titres) { |p|
+<% titles = [ t(:Name), t(:Description) ] %>
+<%= show_table(@roles, Role, titles) { |r|
   result = ''
-  result << "<td>#{link_to p.name, edit_permission_path(p) }</td>"
-  result << "<td>#{p.info}</td>"
-  @roles.each { |r|
-    if p.roles.include? r
-      result << "<td>X</td>"
-    else
-      result << "<td></td>"
-    end
-  }
-  result << "#{link_to_actions_table p}"
+  result << "<td>#{r.name}</td>"
+  result << "<td>#{r.info}</td>"
+  result << "#{link_to_actions_table r}"
   result
 }%>
 
-<%= link_to t('Permission list'), permissions_path %> |
-<%= link_to t('Add a permission'), new_permission_path %>
+<%= link_to t(:'permissions.Index'), permissions_path %> |
+<%= link_to t(:'permissions.New'), new_permission_path %>
 
 <p>&nbsp;</p>
 
-<%= link_to t('Add a role'), new_role_path %> <br />
+<%= link_to t(:'New'), new_role_path %> <br />

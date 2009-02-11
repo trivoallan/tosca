@@ -90,7 +90,6 @@ fr:
   or: " ou "
   subscribers: Souscrits
   by_name: Par nom
-  roles_list: "Liste des r\xC3\xB4les"
   severity_was_successfully_created:
   monthly_digest: "Activit\xC3\xA9 mensuelle"
   access_code: "Code d'acc\xC3\xA8s"
@@ -148,7 +147,7 @@ fr:
   ordered_by_end_date: "Ordonn\xC3\xA9 par date de fin"
   it_seems_that_you_are_not_associated_to_a_contract_which_prevents_you_from_filling_an_issue_please_contact_s_if_you_think_it_s_not_normal: "Il semble que vous ne soyez pas associ\xC3\xA9(e) \xC3\xA0 un contrat, ce qui vous emp\xC3\xAAche de d\xC3\xA9poser une demande. Veuillez contacter %s si vous pensez que ce n'est pas normal."
   answer: "R\xC3\xA9pondre"
-  
+
   by_status: Par statuts
   this_contribution_has_been_submitted_on_s_by_b_s_b: "Cette contribution a \xC3\xA9t\xC3\xA9 d\xC3\xA9pos\xC3\xA9e le %s par <b>%s</b>"
 
@@ -158,7 +157,6 @@ fr:
   list_of_software: Liste des logiciels
 
 
-  role_management: "Gestion des r\xC3\xB4les"
   number_of_the_week: "Num\xC3\xA9ro de la semaine:"
   new_issues: Nouvelles demandes
   list_of_contributions: Liste des contributions
@@ -180,7 +178,7 @@ fr:
   log_in: S'identifier
   list_of_the_status: Liste des statuts
 
-  
+
   workflow_of_s: Flux de %s
   daily_digest: "Activit\xC3\xA9 quotidienne"
   a_new_licence: une nouvelle licence
@@ -189,7 +187,7 @@ fr:
   permission_was_successfully_created: "La permission a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9e avec succ\xC3\xA8s."
   workaround_time: Temps de contournement
   by_severities:
-  
+
   create_a_new_type_of_contribution: "Cr\xC3\xA9er un nouveau type de contribution"
   displaying_entries_b_from_nbsp_nbsp_to_b_of_b_total_b_in_total:
   send_me_a_new_password: Envoyer moi un nouveau mot de passe
@@ -251,7 +249,6 @@ fr:
   your_knowledge_was_successfully_created: "Votre connaissance a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9e avec succ\xC3\xA8s."
   issues_closed_br_this_week: Issues closes <br /> cette semaine
   return_to_the_issue: "Retour \xC3\xA0 la demande"
-  the_role_s_was_succefully_updated: "Le r\xC3\xB4le %s a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
   skill_list: "Liste des comp\xC3\xA9tences"
   a_type_of_contribution_was_successfully_updated: "Le type de contribution a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
   new_workflow: Nouveau flux
@@ -316,7 +313,6 @@ fr:
   to_the: au
   by_technology: Par technologie
   s_activity_from: "Activit\xC3\xA9 %s du "
-  roles:
   generate_a_hash: "G\xC3\xA9n\xC3\xA9rer un hash"
 
   active_clients: Clients actifs
@@ -342,7 +338,7 @@ fr:
   possible_error_in_your_e_mail: Erreur possible dans votre adresse e-mail
   skill_was_successfully_created: "La comp\xC3\xA9tence a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9e avec succ\xC3\xA8s."
   team_s: "\xC3\x89quipe %s"
-  
+
   allows_to_post_suggestions: permet de faire des suggestion
   value_login: Connection au {{value}}
   nota_one_day_work_corresponds_to_the_time_of_opening_of_the_daily_service_defined_in_the_contract_s_s_that_is_to_say_s_hours: "Nota : Un jour ouvr\xC3\xA9 correspond au temps d'ouverture quotidien du service d\xC3\xA9fini dans le contract %s : %s, soit %s heures."
@@ -443,10 +439,10 @@ fr:
   your_comment_was_successfully_added: "Votre commentaire a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9 avec succ\xC3\xA8s."
 
   all_issues: Toutes les demandes
-  
+
   history_of_s_for_s: Historique du %s pour %s
   workaround: "Contourn\xC3\xA9e"
-  
+
   from_s_to_s: " de %s \xC3\xA0 %s"
   delete: Effacer
   bypassed: "Contourn\xC3\xA9e"
@@ -458,7 +454,6 @@ fr:
   statictics: Statistiques
   please_contact_us_if_your_problem_remains: Merci de nous contacter si vous avez d'autres anomalies.
   new_contract: Nouveau contrat
-  the_role_s_was_succefully_created: "Le r\xC3\xB4le %s a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9 avec succ\xC3\xA8s."
   home: Accueil
   top_5_of_the_most_discussed_software: "Top 5 des logiciels les plus discut\xC3\xA9es"
   fill_up_the_fileds_which_are_common_in_all_the_accounts_br_please: "Veuillez remplir les champs qui sont commun \xC3\xA0 tous les comptes.<br />"
@@ -505,7 +500,7 @@ fr:
   my_nbsp_offer: Mon&nbsp;Offre
   suspended: Suspendue
   user: Utilisateur
-  
+
   distributed_on: "R\xC3\xA9partie sur "
   an_e_mail_was_sent_to: "Un e-mail a \xC3\xA9t\xC3\xA9 envoy\xC3\xA9 \xC3\xA0 "
   the_second_graph_draws_all_data_since_the_begining_of_the_deal_it_thus_doesn_t_change_with_the_period_you_ve_chosen: "le second graphique r\xC3\xA9capitule l'ensemble des donn\xC3\xA9es depuis l'ouverture du march\xC3\xA9 : il ne varie donc pas quelque soit la p\xC3\xA9riode que vous aurez choisie, "
@@ -559,7 +554,7 @@ fr:
   editing_an_issue_type: "\xC3\x89diter un type de demande"
   edition_of_this_archive: "\xC3\x89dition de cette archive"
   search: Rechercher
-  
+
   customer: Client
   unknown: "Non sp\xC3\xA9cifi\xC3\xA9"
   alert_page_for_team_s: "Page d'alerte pour l'\xC3\xA9quipe %s"
@@ -611,9 +606,8 @@ fr:
   model_type: Type
   the_url_was_successfully_created: "L'url a bien \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9e avec succ\xC3\xA8s."
   this_address_is_not_valid_if_you_think_this_is_an_error_do_not_hesitate_to_contact_us: "Cette adresse n'est pas valide. Si vous pensez que c'est une erreur, n'h\xC3\xA9sitez pas \xC3\xA0 nous contacter"
-  
+
   display_this_map: affiche ce plan
-  role_list: "Liste des r\xC3\xB4les"
   list_of_your_supported_software: "Liste de vos logiciels support\xC3\xA9s"
   caption: "L\xC3\xA9gende"
   list_of_components_offers: Liste des offres par composants
@@ -651,8 +645,6 @@ fr:
   you_are_not_anymore_connected: "Vous n'\xC3\xAAtes plus connect\xC3\xA9"
   update_the_issue_s_administration: "Mise \xC3\xA0 jour de la demande %s (administrateur)"
   taken_into_account: Prise en compte
-  add_a_role: "Ajouter un r\xC3\xB4le"
-  new_role: "Nouveau r\xC3\xB4le"
   save: Enregistrer
   the_beginning_of_the_report_is_organized_in_four_regions_for_each_type_of_information: "Le d\xC3\xA9but du rapport est organis\xC3\xA9 suivant quatre zones pour chaque type d'information : "
   weekly_report_of_issues: rapport hebdomadaire des demandes
@@ -675,7 +667,7 @@ fr:
   you_are_not_allowed_to_edit_this_comment: "Vous n'\xC3\xAAtes pas autoris\xC3\xA9 \xC3\xA0 modifier ce commentaire"
   this_issue_has_been_changed_in_s_by_s: "Cette demande a \xC3\xA9t\xC3\xA9 %s par %s."
 
-  
+
   commitments: Engagements
   listing_the_urls: Liste des urls
   quick_access_to_an_issue_type_the_issue_number_here: "Acc\xC3\xA8s rapide \xC3\xA0 une demande : tapez ici le num\xC3\xA9ro de la demande"
@@ -736,7 +728,7 @@ fr:
   last_day: "Dernier jour : "
   estimate_made_in_working_days: "Estimation faite en jours ouvr\xC3\xA9s"
   choose_a_period: "S\xC3\xA9lectionner une date"
-  
+
   fixed: "Corrig\xC3\xA9e"
   see_the_sla_report: Consulter le rapport CNS
   links: Liens

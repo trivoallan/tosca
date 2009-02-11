@@ -1,8 +1,8 @@
-<h1><%= t('Edit a rule') %></h1>
+<h1><%= t(:Edit) %></h1>
 
 <% form_tag(role_path(@role), :method => :put) do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag t('Submit') %>
+  <%= submit_tag t(:Validate) %>
 <% end %>
 
 <%= link_to_show_and_list(@role) %>
