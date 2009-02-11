@@ -26,16 +26,13 @@ class Contribution < ActiveRecord::Base
   belongs_to :engineer, :class_name => 'User',
     :conditions => 'users.client_id IS NULL'
 
-  belongs_to :affected_version, :class_name => "Version"
-  belongs_to :fixed_version, :class_name => "Version"
+  belongs_to :affected_version, :class_name => 'Version'
+  belongs_to :fixed_version, :class_name => 'Version'
 
   file_column :patch, :fix_file_extensions => nil
 
   validates_length_of :name, :within => 3..100
   validates_presence_of :software
-
-  I18n.t('Contribution|Software')
-
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||
@@ -49,12 +46,12 @@ class Contribution < ActiveRecord::Base
   end
 
   def fragments
-    [ %r{contributions/selectI18n.t(\d*|all)} ]
+    [ %r{contributions/select_(\d*|all)} ]
   end
 
   def summary
     out = ''
-    out << contributiontype.name + I18n.t(' on ') if contributiontype
+    out << contributiontype.name + t(:on) if contributiontype
     out << software.name
     out << " #{affected_version}" if affected_version
     out

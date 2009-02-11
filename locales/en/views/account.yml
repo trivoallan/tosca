@@ -6,6 +6,7 @@ en:
       your_account_has_been_desactivated: ", your account has been desactivated"
     signup:
       account_successfully_created: "Account successfully created."
+      create_an_account: Create an account
     update:
       edition_succeeded: Your account was successfully updated
     forgotten_password:

@@ -136,7 +136,7 @@ fr:
   write_your_comment_here: "\xC3\x89crivez votre commentaire ici"
   administration_interface: Interface d'administration
   to_be_closed: "Restant \xC3\xA0 clore"
-  you_cannot_privately_change_the_status: "Vous ne pouvez changer le statut avec un commentaire priv\xC3\xA9"
+  
   user_informations: Informations
   plan_access_allowed: "Plan/Acc\xC3\xA8s autoris\xC3\xA9"
   id: Id
@@ -189,7 +189,7 @@ fr:
   create_a_new_subscription: "Cr\xC3\xA9\xC3\xA9r une nouvelle souscription"
   log_in: S'identifier
   list_of_the_status: Liste des statuts
-  must_be_0: "doit \xC3\xAAtre >= 0."
+  
   system_management: "Gestion des Syst\xC3\xA8mes"
   workflow_of_s: Flux de %s
   daily_digest: "Activit\xC3\xA9 quotidienne"
@@ -363,7 +363,7 @@ fr:
   consult_list_of: Vous pouvez consulter la liste des {{value}}
   you_can_not_subscribe_to_this_s: "Vous ne pouvez vous inscrire \xC3\xA0 ce/cette %s"
   title: Titre
-  the_issue_is_now_managed_by_s_br: "Le responsable de la demande est d\xC3\xA9sormais %s.<br/>"
+  
   the_issue_has_been_updated_successfully: "La demande a bien \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour."
   end: Fin
   consult_issues_which_are_waiting_an_action_from_you: "Consulter les demandes qui n\xC3\xA9cessitent une action de votre part"
@@ -442,34 +442,7 @@ fr:
   all: Tous
   editing_group: "\xC3\x89diter un groupe"
   no_issue_found: "Aucune demande trouv\xC3\xA9e"
-  activerecord:
-    errors:
-      messages:
-        greater_than_or_equal_to:
-        less_than_or_equal_to:
-        confirmation:
-        blank:
-        invalid:
-        exclusion:
-        odd:
-        even:
-        wrong_length:
-        too_short:
-        empty:
-        less_than:
-        equal_to:
-        greater_than:
-        taken:
-        too_long:
-        accepted:
-        not_a_number:
-        inclusion:
-      models:
-      template:
-        body:
-        header:
-          one:
-          other:
+
   on_your_complete_system: "sur l'int\xC3\xA9gralit\xC3\xA9 de votre syst\xC3\xA8me"
   knowledges: Connaissances
   major: Majeure
@@ -522,8 +495,6 @@ fr:
   issues_of_all_your_contracts: Les demandes de tous vos contrats
   an_issue_type_was_successfully_updated: "Le type de demande a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
   my_supported_software: "Mes logiciels support\xC3\xA9s"
-  you_must_have_a_comment_with_at_least_5_characters: "Votre commentaire doit au moins avoir 5 caract\xC3\xA8res"
-  logo_s:
   
   contributions_of_s: Contributions de %s
   statictics: Statistiques
@@ -565,7 +536,7 @@ fr:
   rah_value_roh: rididou {{value}}
   introduction: Introduction
   filters: Filtres
-  this_issue_seems_to_be_unstable: "Cette demande semble \xC3\xAAtre inconsistante."
+  
   no_data: "aucune donn\xC3\xA9e"
   editing_a_team: "\xC3\x89diter une \xC3\xA9quipe"
   commitment: Engagements
@@ -573,11 +544,6 @@ fr:
   account_of_s: Compte de %s
   body: Corps
   your_s_is_more_detailed_and_include_a_new_section_about_software: "Votre %s est plus d\xC3\xA9taill\xC3\xA9 et inclut une nouvelle section concernant les logiciels"
-  the_issue_is_now_s_br: "La demande est d\xC3\xA9sormais %s.<br/>"
-  support:
-    array:
-      skip_last_comma:
-      sentence_connector:
   a_new_search_engine_is_available_in_contracts_list: Un nouveau moteur de recherche est disponible dans la liste des contrats
   my_nbsp_offer: Mon&nbsp;Offre
   suspended: Suspendue
@@ -657,7 +623,7 @@ fr:
   skip_to_the_content: Passer au contenu
   contributionstate_description: Description
   address: Adresse
-  you_must_select_a_file_to_upload: "Vous devez s\xC3\xA9lectionner un fichier \xC3\xA0 t\xC3\xA9l\xC3\xA9charger"
+  
   when_you_are_value_you_can_access_an_activity_report: "Quand vous \xC3\xAAtes {{value}}, vous avez acc\xC3\xA8s \xC3\xA0 un rapport d'activit\xC3\xA9"
   by_word: Par mot
   a_new_commitment: A nouvel engagement
@@ -676,7 +642,6 @@ fr:
   you_can_now_choose_a_theme_between_three_if_you_click_on_this_icon_s_in_the_top_bar: "Vous pouvez d\xC3\xA9sormais choisir un th\xC3\xA8me parmi trois si vous cliquez sur l'ic\xC3\xB4ne %s, dans la barre du haut"
   you_can_see_the_list_of_s: Vous pouvez consulter la liste des %s.
   your_issue_has_no_commitment_for_workaround_time: Votre demande n'a pas d'engagement de contournement
-  created_on:
   edit_a_version: "\xC3\x89diter une version"
   list_of_offers_with_time_credits: "Liste des offres avec des cr\xC3\xA9dits temps"
   s_s_time_credits_of_s_have_already_been_spent: "%s / %s cr\xC3\xA9dit-temps de %s ont d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 d\xC3\xA9pens\xC3\xA9s"
@@ -769,12 +734,12 @@ fr:
   progress_bar: barre de progression
   incident: Anomalie
   editing_a_statut: "\xC3\x89diter un statut"
-  you_must_indicate_a_valid_issue: Vous devez indiquer une demande valide
-  public: public
+  
+  
   time_of_taking_into_account_the_issues: Temps de prise en compte des demandes
   you_are_not_allowed_to_edit_this_comment: "Vous n'\xC3\xAAtes pas autoris\xC3\xA9 \xC3\xA0 modifier ce commentaire"
   this_issue_has_been_changed_in_s_by_s: "Cette demande a \xC3\xA9t\xC3\xA9 %s par %s."
-  analysis:
+  
   teams_management: "Gestion des \xC3\x89quipes"
   commitments: Engagements
   listing_the_urls: Liste des urls
@@ -795,36 +760,12 @@ fr:
   "1_month": 1 Mois
   number_of_updated_issues: "Nombre de demandes mises \xC3\xA0 jour"
   editing_an_offer_with_time_credits: "Modification d'une offre avec des cr\xC3\xA9dits temps"
-  the_status_of_this_issue_has_already_been_changed: "Le statut de cette demande a d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 chang\xC3\xA9."
+  
   choose_a_date: "Sp\xC3\xA9cifier une date"
   informations: Informations
   alerts: Alertes
   no_contracts_currently_open: Aucun contrat actuellement actif.
   
-  issues: demandes
-  number:
-    format:
-      separator:
-      precision:
-      delimiter:
-    human:
-      format:
-        precision:
-        delimiter:
-    percentage:
-      format:
-        delimiter:
-    precision:
-      format:
-        delimiter:
-    currency:
-      format:
-        format:
-        unit:
-        separator:
-        precision:
-        delimiter:
-  user_email: Email
   you_have_now_to_create_the_associated_contract: "Vous devez d\xC3\xA9sormais cr\xC3\xA9er son contrat associ\xC3\xA9."
   back: Retour
   actions: Actions

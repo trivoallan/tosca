@@ -9,10 +9,28 @@ en:
   Closed: "Closed"
   Cancelled: "Cancelled"
 
+  Archive:
+    you_must_select_a_file_to_upload: 'You must select a file to upload'
+    you_must_have_a_comment_with_at_least_5_characters: 'You must have a comment with at least 5 characters'
+    you_must_indicate_a_valid_issue: 'You must indicate a valid issue'
+    the_status_of_this_issue_has_already_been_changed: 'The status of this issue has already been changed.'
+    you_cannot_privately_change_the_status: 'You cannot privately change the status'
+    the_issue_is_now_managed_by: "The issue is now managed by {{user}}.<br/>"
+    the_issue_is_now: "The issue is now {{status}}.<br/>"
+
+  Comment:
+    this_issue_seems_to_be_unstable: 'This issue seems to be unstable.'
+
+  Commitment:
+    must_be_0: 'must be >= 0.'
+
   Component:
     unlimited_offer: "unlimited offer"
     unlimited_offer_covering_a_maximum_of_components: 'Unlimited offer covering a maximum of {{number}} components'
     has_already_been_spent_on_your: "{{value}} has already been spent on your {{contract}}"
+
+  Contribution:
+    on: ' sur '
 
   Release:
     Packaged: Packaged

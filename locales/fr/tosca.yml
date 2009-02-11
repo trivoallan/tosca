@@ -23,6 +23,8 @@ fr:
   Activated: Activée
   Recipient: "Bénéficiaire"
   Expert: "Expert"
+  Public: Publique
+  Private: "Privé"
 
   # NB: Quotes around Yes/No are mandatory since
   #     they are keyword, as of Ruby 1.8.6

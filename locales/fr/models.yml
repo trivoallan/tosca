@@ -9,10 +9,28 @@ fr:
   Closed: "Clôturée"
   Cancelled: "Annulée"
 
+  Archive:
+    you_must_select_a_file_to_upload: "Vous devez s\xC3\xA9lectionner un fichier \xC3\xA0 t\xC3\xA9l\xC3\xA9charger"
+    you_must_have_a_comment_with_at_least_5_characters: "Votre commentaire doit au moins avoir 5 caract\xC3\xA8res"
+    you_must_indicate_a_valid_issue: Vous devez indiquer une demande valide
+    the_status_of_this_issue_has_already_been_changed: "Le statut de cette demande a d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 chang\xC3\xA9."
+    you_cannot_privately_change_the_status: "Vous ne pouvez changer le statut avec un commentaire priv\xC3\xA9"
+    the_issue_is_now_managed_by: "Le responsable de la demande est d\xC3\xA9sormais {{user}}.<br/>"
+    the_issue_is_now: "La demande est d\xC3\xA9sormais {{status}}.<br/>"
+
+  Comment:
+    this_issue_seems_to_be_unstable: "Cette demande semble \xC3\xAAtre inconsistante."
+
+  Commitment:
+    must_be_0: "doit \xC3\xAAtre >= 0."
+
   Component:
     unlimited_offer: "offre illimit\xC3\xA9e"
     unlimited_offer_covering_a_maximum_of_components: "Offre illimit\xC3\xA9e couvrant un maximum de {{number}} composants"
     has_already_been_spent_on_your: "{{value}} ont d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 depens\xC3\xA9s sur votre {{contract}}"
+
+  Contribution:
+    on: ' sur '
 
   Release:
     Packaged: "Empaquetée"
