@@ -22,21 +22,40 @@ en:
 
   Comment:
     this_issue_seems_to_be_unstable: 'This issue seems to be unstable.'
+    Text: Text
+    Elapsed: Elapsed
 
   Commitment:
     must_be_0: 'must be >= 0.'
+    Workaround: Workaround
+    Correction: Correction
 
   Component:
     unlimited_offer: "unlimited offer"
     unlimited_offer_covering_a_maximum_of_components: 'Unlimited offer covering a maximum of {{number}} components'
     has_already_been_spent_on_your: "{{value}} has already been spent on your {{contract}}"
+    Max: Maximum
 
   Contract:
     the_schedules_of_this_contract_are_invalid: "The schedules of this contract are invalid."
     Perimeter: Perimeter
+    Start_date: Start date
+    End_date: End date
+    Obligation: Obligation
+    Technological_survey: Technological survey
+    Newsletter: Newsletter
+    Opening_time: Opening time
+    Closing_time: Closing time
+    Internal_ml: Internal mailing list
+    Customer_ml: Customer mailing list
 
   Contribution:
     on: ' sur '
+    Description: Description
+    Patch: Patch
+    Contributed_on: "Contributed on"
+    Closed_on: "Fermé le"
+    Synthesis: "Synthèse"
 
   Release:
     Packaged: Packaged

@@ -22,21 +22,40 @@ fr:
 
   Comment:
     this_issue_seems_to_be_unstable: "Cette demande semble \xC3\xAAtre inconsistante."
+    Text: Texte
+    Elapsed: "Temps passé"
 
   Commitment:
     must_be_0: "doit \xC3\xAAtre >= 0."
+    Workaround: Contournement
+    Correction: Correction
 
   Component:
     unlimited_offer: "offre illimit\xC3\xA9e"
     unlimited_offer_covering_a_maximum_of_components: "Offre illimit\xC3\xA9e couvrant un maximum de {{number}} composants"
     has_already_been_spent_on_your: "{{value}} ont d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 depens\xC3\xA9s sur votre {{contract}}"
+    Max: Maximum
 
   Contract:
     the_schedules_of_this_contract_are_invalid: "Les horaires de ce contrat sont invalides."
     Perimeter: "Périmètre"
+    Start_date: "Date de début"
+    End_date: Date de fin
+    Obligation: Astreinte
+    Technological_survey: Veille technologique
+    Newsletter: "Lettre d'information"
+    Opening_time: "Heure d'ouverture"
+    Closing_time: Heure de fermeture
+    Internal_ml: Mailing list interne
+    Customer_ml: Mailing list du client
 
   Contribution:
     on: ' sur '
+    Description: Description
+    Patch: Patch
+    Contributed_on: "Contribué le"
+    Closed_on: "Closed on"
+    Synthesis: "Synthesis"
 
   Release:
     Packaged: "Empaquetée"
