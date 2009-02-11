@@ -1,0 +1,10 @@
+en:
+  #Views
+  form:
+    unknown_rules_for_contract: Unknown rules fr contract "{{contract}}"
+  update:
+    contract_was_successfully_updated: 'The contract {{contract}} was successfully updated.'
+  create:
+    contract_was_successfully_created: 'The contract {{contract}} was successfully created.'
+
+  Contracts: Contracts

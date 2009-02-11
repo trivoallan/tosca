@@ -170,7 +170,7 @@ fr:
   number_of_the_week: "Num\xC3\xA9ro de la semaine:"
   new_issues: Nouvelles demandes
   list_of_contributions: Liste des contributions
-  unknown_rules_for_contract_s: "R\xC3\xA8gles inconnu pour le contrat \"%s\""
+  
   add_an_url_for_the_community_issue: Ajouter une url de suivi communautaire
   a_technology: une technologie
   a_new_alert_page_is_available_allowing_all_teams_to_monitor_its_own_contract: "Une nouvelle page d'alerte est disponible, permettant \xC3\xA0 toutes les \xC3\xA9quipes de surveiller leurs propres contrats"
