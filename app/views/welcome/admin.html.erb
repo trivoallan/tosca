@@ -1,69 +1,68 @@
-<h2><%= t('Contents')%></h2>
+<h2><%= t(:Contents) %></h2>
 
-<%= t("You have %s rights on this portal", :value => @session_user.role) %>
+<%= t(:you_have_rights_on_this_portal, :value => @session_user.role) %>
 <div class="subcolumns">
   <div class="c50l">
     <div class="show">
-  <h3><%= t('Users') %></h3>
-  <% links = [
-        link_to(t('User list'), accounts_path),
-        link_to(t('Add a user'), signup_new_account_path) ] %>
-  <%= show_list(links, t('User management')) %>
-  <% if @session_user.role_id <= 2 # manager %>
-    <% links = [
-          link_to(t('Teams'), teams_path) ] %>
-    <%= show_list(links, t("Teams management")) %>
-  <% end %>
-  <% if @session_user.role_id == 1 # admin %>
-   <% links = [
-        link_to( t('Permissions'), permissions_path),
-        link_to( t('Roles'), roles_path) ] %>
-   <%= show_list(links, t('Permission management')) %>
-  <% end %>
-  <% links = [
-        link_to( t('Skills'), knowledges_path) ] %>
-  <%= show_list(links, t('Skill management')) %>
-</div>
+      <h3><%= t(:'Models.User').pluralize %></h3>
+      <% links = [
+        link_to(t(:user_list), accounts_path),
+        link_to(t(:add_a_user), signup_new_account_path) ] %>
+      <%= show_list(links, t(:user_management)) %>
+      <% if @session_user.role_id <= 2 # manager %>
+        <% links = [
+          link_to(t(:'Models.Team').pluralize, teams_path) ] %>
+        <%= show_list(links, t(:teams_management)) %>
+      <% end %>
+      <% if @session_user.role_id == 1 # admin %>
+        <% links = [
+          link_to( t(:'Models.Permission').pluralize, permissions_path),
+          link_to( t(:'Models.Role').pluralize, roles_path) ] %>
+        <%= show_list(links, t(:permission_management)) %>
+      <% end %>
+      <% links = [
+        link_to( t(:'Models.Skill').pluralize, knowledges_path) ] %>
+      <%= show_list(links, t(:skill_management)) %>
+    </div>
 
-<div class="show">
-  <h3><%= t('Customers') %></h3>
-  <p><%= t('You have to create a client before creating a contract') %>.</p>
-  <% links = [
-        link_to( t('Customers'), clients_path),
-        link_to( t('Contracts'), contracts_path)  ] %>
-  <%= show_list(links, t('Customer management')) %>
-</div>
+    <div class="show">
+      <h3><%= t(:Customers) %></h3>
+      <p><%= t(:you_have_to_create_a_client_before_creating_a_contract) %></p>
+      <% links = [
+        link_to( t(:Customers), clients_path),
+        link_to( t(:'Models.Contract').pluralize, contracts_path)  ] %>
+      <%= show_list(links, t(:customers_management)) %>
+    </div>
   </div>
   <div class="c50r">
- <div class="show">
-   <h3><%= t('Plateform')%></h3>
-   <p><%= t('System management')%></p>
-  <% links = [
-        link_to( t('Alerts'), alerts_path) ] %>
-  <%= show_list(links) %>
-  <p><%= t('Source management')%></p>
-  <% links = [
-         link_to( t('Software list'), softwares_path),
-         link_to( t('Software categorization'), groups_path),
-         link_to( t('Versions'), versions_path),
-         link_to( t('Releases'), releases_path) ] %>
-   <%= show_list(links) %>
- </div>
-  <div class="show">
-  <h3><%= t('Reporting')%></h3>
-  <% links = [
-      link_to( t('Digest report'), digest_reporting_path),
-      link_to( t('Weekly digest'), weekly_reporting_path),
-      link_to( t('Distribution of issues in time'), calendar_reporting_path) ] %>
-  <%= show_list(links) %>
- </div>
-   <% if @session_user.role_id == 1 %>
-   <div class="show">
-    <h3><%= t('Administration')%></h3>
-    <% links = [
-        link_to( t('Clear cache'), clear_cache_welcome_path) ] %>
-    <%= show_list(links) %>
-   </div>
-   <% end %>
+    <div class="show">
+      <h3><%= t(:plateform)%></h3>
+      <p><%= t(:system_management)%></p>
+      <% links = [
+        link_to( t(:'Models.Alert').pluralize, alerts_path) ] %>
+      <%= show_list(links) %>
+      <p><%= t(:source_management)%></p>
+      <% links = [
+        link_to( t(:software_list), softwares_path),
+        link_to( t(:software_categorization), groups_path),
+        link_to( t(:'Models.Version').pluralize, versions_path),
+        link_to( t(:'Models.Release').pluralize, releases_path) ] %>
+      <%= show_list(links) %>
+    </div>
+    <div class="show">
+      <h3><%= t(:Reporting) %></h3>
+      <% links = [
+        link_to( t(:digest_report), digest_reporting_path),
+        link_to( t(:weekly_digest), weekly_reporting_path),
+        link_to( t(:distribution_of_issues_in_time), calendar_reporting_path) ] %>
+      <%= show_list(links) %>
+    </div>
+    <% if @session_user.role_id == 1 %>
+      <div class="show">
+        <h3><%= t(:Administration)%></h3>
+        <% links = [ link_to( t(:Clear_Cache), clear_cache_welcome_path) ] %>
+        <%= show_list(links) %>
+      </div>
+    <% end %>
   </div>
 </div>

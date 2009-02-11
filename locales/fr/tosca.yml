@@ -13,7 +13,6 @@ fr:
   Validate: Valider
   Create: "Créer"
   Validate: Valider
-  Submit: Valider
   Description: Description
   Destroy: "Effacer"
   Homepage: "Page d'accueil"
@@ -37,6 +36,8 @@ fr:
   Immediate: "Immédiatement"
   Help: Aide
   About: "À propos"
+  Reporting: Reporting
+  Customers: Clients
 
   # NB: Quotes around Yes/No are mandatory since
   #     they are keyword, as of Ruby 1.8.6

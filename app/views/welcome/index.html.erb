@@ -1,10 +1,15 @@
 <% user = @session_user %>
 <% connected = public_link_to(t('connected'), login_accounts_path) %>
 <link rel="alternate" href="contributions/all/list.atom" title="" type="application/atom+xml" />
-<table><tr><td rowspan="2"><%= StaticPicture::tosca %> </td><td><h2 class="spacer"><%=t('Contents')%></h2></td></tr>
-  <tr><td>
+<table>
+  <tr>
+    <td rowspan="2"><%= StaticPicture::tosca %> </td><td><h2 class="spacer"><%= t(:Contents) %></h2></td>
+  </tr>
+  <tr>
+    <td>
       <%= t('Welcome to the {{value}} management tool', :value => App::ServiceFullName) %><%= user ? ", #{user.title} #{user.name}" : '.' %>
-  </td></tr>
+    </td>
+  </tr>
 </table>
 
 <%# 6 : public access %>
@@ -24,7 +29,7 @@
         <% end %>
       </div>
       <div class="show">
-        <h3><%= t('Documents')%></h3>
+        <h3><%= t(:Reporting)%></h3>
         <% if user %>
           <p><%= t(:report, :value => link_to(t(:activity_report), general_reporting_path)) %>.</p>
           <p><%= t(:report, :value => link_to(t(:calendar_report), calendar_reporting_path)) %></p>
@@ -47,8 +52,11 @@
           <h3><%= t(:offer)%></h3>
           <% client = user.client %>
           <table>
-            <tr><td style="width: 1%;" rowspan="2"><%=logo_client client%> </td><td>
-              <%= t("You benefit from one of our offers, which detail is available here: %s") % link_to_my_client %></td>
+            <tr>
+              <td style="width: 1%;" rowspan="2"><%= logo_client client %> </td>
+              <td>
+                <%= t("You benefit from one of our offers, which detail is available here: %s") % link_to_my_client %>
+              </td>
             </tr>
           </table>
           <p><%= t('We hope this tool wil give you entire satisfaction.')%></p>

@@ -1,7 +1,11 @@
 fr:
   Welcome: Welcome
   welcome:
+    #Actions
     Index: Home page
+    Clear_Cache: Clear cache
+
+    #Views
     index:
       report: Vous pouvez consulter votre {{value}} en ligne
       weekly_report_of_issues:
@@ -54,3 +58,23 @@ fr:
       Developers: Developers
       quality_assurance: 'Quality Assurance'
       free_software_used: 'Free software used by {{value}}'
+    admin:
+      Contents: Contents
+      Administration: Administration
+      user_list: Users list
+      add_a_user: Add a user
+      user_management: 'User management'
+      teams_management: "Teams management"
+      permission_management: 'Permission management'
+      skill_management: 'Skill management'
+      you_have_rights_on_this_portal: "You have {{value}} rights on this portal"
+      you_have_to_create_a_client_before_creating_a_contract: 'You have to create a client before creating a contract.'
+      customers_management: 'Customers management'
+      plateform: Platform
+      system_management: 'System management'
+      source_management: 'Source management'
+      software_list: 'Software list'
+      software_categorization: 'Software categorization'
+      digest_report: 'Digest report'
+      weekly_digest: 'Weekly digest'
+      distribution_of_issues_in_time: 'Distribution of issues in time'
