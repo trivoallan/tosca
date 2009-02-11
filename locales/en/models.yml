@@ -36,42 +36,42 @@ en:
     Generic: Generic
 
 
-  #Name of models
+    #Name of models
   Models:
     Alert: Alert
+    Archive: Archive
+    Attachment: Attachment
+    Changelog: Changelog
     Client: Client
+    Comment: Comment
+    Commitment: Commitment
+    Contract: Contract
     Contribution: Contribution
+    Contributiontype: Contribution type
+    Contributionstate: Contribution state
+    Elapsed: Elpasd
     Group: Group
+    Hyperlink: Hyperlink
+    Issue: Issue
+    Issuetype: Issue type
     Knowledge: Knowledge
+    License: License
+    Notifier: Notifier
+    Permission: Permission
     Picture: Picture
+    Preference: Preference
+    Release: Release
+    Role: Role
     Rules:
       Component: Component
       Credit: Credit
-    Statut: Status
-    Archive: Archive
-    Comment: Comment
-    Contributionstate: "Contribution state"
-    Hyperlink: Hyperlink
-    License: License
-    Preference: Preference
     Severity: Severity
-    Subscription: subscription
-    User: User
-    Attachment: Attachment
-    Commitment: Commitment
-    Contributiontype: "Contribution type"
-    Issue: Issue
-    Notifier: Notifier
-    Release: Release
     Skill: Skill
-    Tag: Tag
-    Version: Version
-    Changelog: Changelog
-    Contract: Contract
-    Elapsed: Elapsed
-    Issuetype: "Issue type"
-    Permission: Permission
-    Role: Role
     Software: Software
+    Statut: Statut
+    Subscription: Subscription
+    Tag: Tag
     Team: Team
+    User: User
+    Version: Version
     Workflow: Workflow

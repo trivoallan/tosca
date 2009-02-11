@@ -38,45 +38,42 @@ fr:
   Version:
     Generic: "Générique"
 
-
-
   #Name of models
   Models:
     Alert: Alerte
     Archive: Archive
     Attachment: "Pièce jointe"
+    Changelog: "Note de révisions"
     Client: Client
+    Comment: Commentaire
+    Commitment: "Engagement"
+    Contract: "Contrat"
     Contribution: Contribution
+    Contributiontype: "Type de contributon"
+    Contributionstate: "État d'une contribution"
+    Elapsed: "Écoulé"
     Group: Groupe
+    Hyperlink: "Url"
+    Issue: "Demande"
+    Issuetype: "Type de demande"
     Knowledge: Connaissance
+    License: Licence
+    Notifier: "Notifier"
+    Permission: Permission
     Picture: Image
+    Preference: "Préférence"
+    Release: "Révision"
+    Role: "Rôle"
     Rules:
       Component: Composant
       Credit: "Crédit"
-    Statut: Statut
-
-    Comment: Commentaire
-    Contributionstate: "État d'une contribution"
-    Hyperlink: "Url"
-    License: Licence
-    Preference: "Préférence"
     Severity: "Sévérité"
-    Subscription: Souscription
-    User: Utilisateur
-    Commitment: "Engagement"
-    Contributiontype: "Type de contributon"
-    Issue: "Demande"
-    Notifier: "Notifier"
-    Release: "Révision"
     Skill: "Compétence"
-    Tag: "Étiquette"
-    Version: Version
-    Changelog: "Note de révisions"
-    Contract: "Contrat"
-    Elapsed: "Écoulé"
-    Issuetype: "Type de demande"
-    Permission: Permission
-    Role: "Rôle"
     Software: "Logiciel"
+    Statut: Statut
+    Subscription: Souscription
+    Tag: "Étiquette"
     Team: "Équipe"
+    User: Utilisateur
+    Version: Version
     Workflow: "Flux de travail"
