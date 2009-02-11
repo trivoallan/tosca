@@ -17,6 +17,8 @@ fr:
     you_cannot_privately_change_the_status: "Vous ne pouvez changer le statut avec un commentaire priv\xC3\xA9"
     the_issue_is_now_managed_by: "Le responsable de la demande est d\xC3\xA9sormais {{user}}.<br/>"
     the_issue_is_now: "La demande est d\xC3\xA9sormais {{status}}.<br/>"
+    File: Fichier
+    Size: Taille
 
   Comment:
     this_issue_seems_to_be_unstable: "Cette demande semble \xC3\xAAtre inconsistante."
@@ -30,6 +32,7 @@ fr:
     has_already_been_spent_on_your: "{{value}} ont d\xC3\xA9j\xC3\xA0 \xC3\xA9t\xC3\xA9 depens\xC3\xA9s sur votre {{contract}}"
 
   Contract:
+    the_schedules_of_this_contract_are_invalid: "Les horaires de ce contrat sont invalides."
     Perimeter: "Périmètre"
 
   Contribution:

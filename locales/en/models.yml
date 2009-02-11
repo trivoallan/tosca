@@ -17,6 +17,8 @@ en:
     you_cannot_privately_change_the_status: 'You cannot privately change the status'
     the_issue_is_now_managed_by: "The issue is now managed by {{user}}.<br/>"
     the_issue_is_now: "The issue is now {{status}}.<br/>"
+    File: File
+    Size: Size
 
   Comment:
     this_issue_seems_to_be_unstable: 'This issue seems to be unstable.'
@@ -30,6 +32,7 @@ en:
     has_already_been_spent_on_your: "{{value}} has already been spent on your {{contract}}"
 
   Contract:
+    the_schedules_of_this_contract_are_invalid: "The schedules of this contract are invalid."
     Perimeter: Perimeter
 
   Contribution:
