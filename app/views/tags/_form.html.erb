@@ -1,10 +1,16 @@
 <%= f.error_messages %>
 
 <div class="show">
-<p><%= f.label :name %><br />
-   <%= f.text_field :name %></p>
-<p><%= f.label :skill %><br />
-   <%= select_empty(:tag, :skill_id, @skills) %></p>
-<p><%= f.label :contract %><br />
-   <%= select_empty(:tag, :contract_id, @contracts) %></p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :skill %><br />
+    <%= select_empty(:tag, :skill_id, @skills) %>
+  </p>
+  <p>
+    <%= f.label :contract %><br />
+    <%= select_empty(:tag, :contract_id, @contracts) %>
+  </p>
 </div>

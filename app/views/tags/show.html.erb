@@ -1,16 +1,15 @@
 <%= public_link_to t(:Homepage), welcome_path%> >
- <%= public_link_to t(:Index), tags_path %> >
-  <%=h @tag.name %> <%= link_to_edit(@tag) %>
+  <%= public_link_to t(:Index), tags_path %> >
+    <%=h @tag.name %> <%= link_to_edit(@tag) %>
 
 <h2><%=t(:'Models.Tag') %></h2>
 <div class="show">
- <p><b><%=t(:Name) %>:</b> <%= @tag.name %></p>
- <p><b><%=t(:'Tag.Submitter')%>:</b> <%= @tag.user %></p>
- <p><b><%=t(:'Models.Skill')%>:</b> <%= @tag.skill %></p>
- <% if @tag.contract %>
-   <p><b><%=t(:'Models.Contract')%>:</b> <%= @tag.contract.name %></p>
- <% end %>
+  <p><b><%=t(:Name) %>:</b> <%= @tag.name %></p>
+  <p><b><%=t(:'Tag.Submitter')%>:</b> <%= @tag.user %></p>
+  <p><b><%=t(:'Models.Skill')%>:</b> <%= @tag.skill %></p>
+  <% if @tag.contract %>
+    <p><b><%=t(:'Models.Contract')%>:</b> <%= @tag.contract.name %></p>
+  <% end %>
 </div>
-
 
 <%= link_to_edit_and_list(@tag) %>

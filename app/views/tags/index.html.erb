@@ -1,6 +1,6 @@
-<h1><%= t(:Index)%></h1>
+<h1><%= t(:Index) %></h1>
 
-<% paginated_section(@tags, :create_label => t('a skill')) do %>
+<% paginated_section(@tags, :create_label => t(:a_tag)) do %>
  <% titles = [ t(:Name), t(:'Tag.Submitter'), t(:'Models.Skill'), t(:'Models.Contract')]%>
  <%= show_table(@tags, Tag, titles) do |t|
    result = ''
