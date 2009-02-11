@@ -23,6 +23,9 @@ fr:
   Search: Rechercher
   Save: Sauvegarder
   Activated: Activée
+  recipient: "bénéficiaire"
+  expert: "expert"
+
   # NB: Quotes around Yes/No are mandatory since
   #     they are keyword, as of Ruby 1.8.6
   "Yes": Oui

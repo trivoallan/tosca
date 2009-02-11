@@ -162,7 +162,7 @@ class AccountController < ApplicationController
     end
     if res # update of account fully ok
       set_sessions @user if @session_user == @user
-      flash[:notice]  = t(:edition_succeeded)
+      flash[:notice] = t(:edition_succeeded)
       redirect_to account_path(@user)
     else
       # Don't write this :  _form and render :action => 'edit'
@@ -182,7 +182,7 @@ class AccountController < ApplicationController
       return unless @user
       if @user.generate_password and @user.save
         flash[:warn] = nil
-        flash[:notice] = t('Your new password has been generated.')
+        flash[:notice] = t(:your_new_password_has_been_generated)
         #TODO : find a way to put it in the model user
         Notifier::deliver_user_signup(@user)
       end
@@ -197,11 +197,11 @@ class AccountController < ApplicationController
         set_sessions(User.find(params[:id]))
         session[:last_user] = current_user
       else
-        flash[:warn] = t('You are not allowed to change your identity')
+        flash[:warn] = t(:you_are_not_allowed_to_change_your_identity)
       end
       redirect_to_home
     rescue ActiveRecord::RecordNotFound
-      flash[:warn] = t('Person not found')
+      flash[:warn] = t(:person_not_found)
       redirect_to_home
     end
   end
@@ -236,14 +236,14 @@ class AccountController < ApplicationController
 private
   def _login(user)
     set_sessions(user)
-    flash[:notice] = t("Welcome {{title}} {{name}}", :title => user.title,
+    flash[:notice] = t(:welcome_s_s, :title => user.title,
         :name => user.name)
 
     user.active_contracts.each do |c|
       if (c.end_date - Time.now).between?(0.month, 1.month)
         message = '<br/><strong>'
         message << '</strong>'
-        message << t("Your contract '{{name}}' is near its end date : {{end_date}}",
+        message << t(:your_contract_is_near_its_end_date,
             :name => c.name, :end_date => c.end_date_formatted)
         flash[:notice] << message
       end
@@ -330,68 +330,4 @@ private
       @user.associate_recipient(params[:user_recipient][:client_id])
     end
   end
-
-
-  # Bulk import users
-  # of improvements possibility. It's deactivated for now, until
-  # someone find some times in order have it work properly
-  # require 'fastercsv'
-=begin
-  def multiple_signup
-    _form
-    @user = User.new
-    case request.method
-    when :post
-      if (params['textarea_csv'].to_s.empty?)
-        flash.now[:warn] = _('Enter data under CSV format please')
-      end
-      COLUMNS.each { |key|
-        unless row.include? key
-          flash.now[:warn] = _('The CSV file is not correct')
-        end
-      }
-      if !params.has_key? :user or params[:user][:client].blank?
-        flash.now[:warn] = _('You have to specify a customer')
-      end
-      if !params.has_key? :user or params[:user][:role_ids].blank?
-        flash.now[:warn] = _('Vous must specify a role')
-      end
-
-      return unless flash.now[:warn] == ''
-      flash[:notice] = ''
-
-      FasterCSV.parse(params['textarea_csv'].to_s.gsub("\t", ";"),
-                      { :col_sep => ";", :headers => true }) do |row|
-        user = User.new do |i|
-           logger.debug(row.inspect)
-           i.name = row[_('Full name')].to_s
-           i.title = row[_('Title')].to_s
-           i.email = row[_('Email')].to_s
-           i.phone = row[_('Phone')].to_s
-           i.login = row[_('Login')].to_s
-           i.password = row[_('Password')].to_s
-           i.password_confirmation = row[_('Password')].to_s
-           i.informations = row[_('Informations')].to_s
-           i.client = true
-        end
-        if user.save
-          client = Client.find(params[:client][:id])
-          flash[:notice] += _("The user %s have been successfully created.<br />") % row[_('Full name')]
-          user.create_person(client)
-          options = { :user => user, :controller => self,
-            :password => row[_('Password')].to_s }
-          Notifier::deliver_new_user(options, flash)
-          flash[:notice] += '<br />'
-        else
-          flash.now[:warn] += _('The user %s  has not been created.<br /> ') %
-            user.name
-        end
-
-      end
-      redirect_back_or_default accounts_path
-    when :get
-    end
-  end
-=end
-
 end

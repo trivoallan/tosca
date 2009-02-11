@@ -1,7 +1,23 @@
 fr:
   account:
+    #Views
     login:
       connection_failure: "\xC3\x89chec lors de la connexion"
       your_account_has_been_desactivated: ", votre compte a \xC3\xA9t\xC3\xA9 d\xC3\xA9sactiv\xC3\xA9"
     signup:
       account_successfully_created: "Le compte a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9 avec succ\xC3\xA8s."
+    update:
+      edition_succeeded: "Votre compte a été mise à jour"
+    forgotten_password:
+      your_new_password_has_been_generated: "Votre nouveau mot de passe a \xC3\xA9t\xC3\xA9 g\xC3\xA9n\xC3\xA9r\xC3\xA9."
+    become:
+      you_are_not_allowed_to_change_your_identity: "Vous n'\xC3\xAAtes pas autoris\xC3\xA9 \xC3\xA0 changer votre identit\xC3\xA9"
+      person_not_found: "Personne non trouv\xC3\xA9e"
+    _login:
+      welcome_s_s: "Bienvenue {{title}} {{name}}"
+      your_contract_is_near_its_end_date: "Le contrat '{{name}}' est pr\xC3\xA8s de sa date de fin : {{end_date}}"
+
+    #Helper
+    become: Devenir
+    my_account: 'Mon compte'
+    account_of: 'Compte de {{name}}'

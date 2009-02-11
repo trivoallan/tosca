@@ -1,64 +1,75 @@
 en:
   # Statuses
-  submitted: "submitted"
-  accepted: "accepted"
-  suspended: suspended
-  analysed: "analysed"
-  bypassed: "by passed"
-  fixed: "fixed"
-  closed: "closed"
-  cancelled: "cancelled"
+  Submitted: "Submitted"
+  Accepted: "Accepted"
+  Suspended: Suspended
+  Analysed: "Analysed"
+  Bypassed: "By passed"
+  Fixed: "Fixed"
+  Closed: "Closed"
+  Cancelled: "Cancelled"
 
-  team:
-    contact: contact
-    manager: manager
-    motto: motto
-    members : members
 
-  version:
-    generic: generic
+  Release:
+    Packaged: Packaged
+    Active: Active
+    Inactive: Inactive
 
-  release:
-    packaged: packages
-    active: "active"
-    inactive: "inactive"
+  User:
+    Name: Name
+    Title: Title
+    Inactive: Inactive
+    Email: E-mail
+    Phone: Phone
+    Login: Login
+    Informations: Description
+
+  Team:
+    Contact: Contact
+    Manager: Manager
+    Motto: Motto
+    Members: Members
+
+  Version:
+    Generic: Generic
+
 
   #Name of models
-  models:
-    alert: alert
-    client: client
-    contribution: contribution
-    group: group
-    knowledge: knowledge
-    picture: picture
-    rules:
-      component: component
-      credit: credit
-    statut: status
-    archive: archive
-    comment: comment
-    contributionstate: "contribution state"
-    hyperlink: hyperlink
-    license: license
-    preference: preference
-    severity: severity
-    subscription: subscription
-    user: user
-    attachment: attachment
-    commitment: commitment
-    contributiontype: contribution type
-    issue: issue
-    notifier: notifier
-    release: release
-    skill: skill
-    tag: tag
-    version: version
-    changelog: changelog
-    contract: "contract"
-    elapsed: elapsed
-    issuetype: issue type
-    permission: permission
-    role: role
-    software: software
-    team: team
-    workflow: workflow
+  Models:
+    Alert: Alert
+    Client: Client
+    Contribution: Contribution
+    Group: Group
+    Knowledge: Knowledge
+    Picture: Picture
+    Rules:
+      Component: Component
+      Credit: Credit
+    Statut: Status
+    Archive: Archive
+    Comment: Comment
+    Contributionstate: "Contribution state"
+    Hyperlink: Hyperlink
+    License: License
+    Preference: Preference
+    Severity: Severity
+    Subscription: subscription
+    User: User
+    Attachment: Attachment
+    Commitment: Commitment
+    Contributiontype: "Contribution type"
+    Issue: Issue
+    Notifier: Notifier
+    Release: Release
+    Skill: Skill
+    Tag: Tag
+    Version: Version
+    Changelog: Changelog
+    Contract: Contract
+    Elapsed: Elapsed
+    Issuetype: "Issue type"
+    Permission: Permission
+    Role: Role
+    Software: Software
+    Team: Team
+    Workflow: Workflow

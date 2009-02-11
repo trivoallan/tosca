@@ -32,7 +32,7 @@ class AlertsController < ApplicationController
         alert.update_attribute(:hash_value, param.last)
       end
     end
-    redirect_to :action => "index"
+    redirect_to :action => 'index'
   end
 
   def show
