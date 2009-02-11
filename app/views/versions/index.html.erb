@@ -1,8 +1,8 @@
-<h1><%= t(:versions_index) %> <%=StaticPicture::spinner%></h1>
+<h1><%= t(:Index) %> <%=StaticPicture::spinner%></h1>
 
 <% options = { :create_label => t(:a_version), :remote_url => versions_path } %>
 <% paginated_section(@versions, options) do %>
- <% titles = [ t('Software'), t("Versions")] %>
+ <% titles = [ t(:'Models.Software'), t(:'Models.Version').pluralize ] %>
  <%= show_table(@versions, Version, titles) { |v|
    result = ''
    result << "<td>#{link_to v.software, software_path(v.software)}</td>"

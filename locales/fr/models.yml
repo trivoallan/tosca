@@ -9,6 +9,9 @@ fr:
   Closed: "Clôturée"
   Cancelled: "Annulée"
 
+  Contract:
+    Perimeter: "Périmètre"
+
   Component:
     unlimited_offer: "offre illimit\xC3\xA9e"
     unlimited_offer_covering_a_maximum_of_components: "Offre illimit\xC3\xA9e couvrant un maximum de {{number}} composants"

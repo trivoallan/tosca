@@ -6,17 +6,17 @@
     <%= @version %>
      <%= link_to_edit(@version) %>
 
-   <h2><%= t(:software_version)%></h2>
+   <h2><%= t(:Show)%></h2>
 
 <table>
   <tr><td>
    <div class="show">
-    <p><b><%= t('Software') + ' : '%></b> <%= @version.software.name %></p>
-    <p><b><%= t('Version') + ' : '%></b> <%= @version %></p>
-    <p><b><%= t('Generic') %> ?</b> <%= @version.generic? ? t(:Yes) : t(:No)%></p>
+    <p><b><%= t(:'Models.Software') %> :</b> <%= @version.software.name %></p>
+    <p><b><%= t(:'Models.Version') %> :</b> <%= @version %></p>
+    <p><b><%= t(:'Version.Generic') %> ?</b> <%= @version.generic? ? t(:Yes) : t(:No)%></p>
    </div>
 
-   <p><b><%= pluralize(@version.releases.count, t(:release) ) %></b> <%= link_to_new_release(@version.id) %></p>
+   <p><b><%= pluralize(@version.releases.size, t(:'Models.Release')) %></b> <%= link_to_new_release(@version.id) %></p>
    <p>
      <% options = { :no_title => true, :edit => 'release'} %>
      <% if @version.releases.size > 0 %>

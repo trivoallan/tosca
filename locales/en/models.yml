@@ -9,6 +9,9 @@ en:
   Closed: "Closed"
   Cancelled: "Cancelled"
 
+  Contract:
+    Perimeter: Perimeter
+
   Component:
     unlimited_offer: "unlimited offer"
     unlimited_offer_covering_a_maximum_of_components: 'Unlimited offer covering a maximum of {{number}} components'
