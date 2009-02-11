@@ -1,7 +1,8 @@
 fr:
+  issuetypes:
+    New: Nouveau type de demande
+    Edit: Modifier le type de demande
+    Index: Liste des types de demande
+
   workflow_of_x: "Flux des demande d'{{name}}"
   Workflows: Flux
-  issuetypes: Type de demandes
-  issuetypes_new: Nouveau type de demande
-  issuetypes_edit: Modifier le type de demande
-  issuetypes_index: Liste des types de demande

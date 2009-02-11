@@ -45,7 +45,7 @@ class WorkflowsController < ApplicationController
     @workflow = Workflow.new(params[:workflow])
     @workflow.allowed_status_ids.delete_if{|s| s == '0'}
     if @workflow.save
-      flash[:notice] = t(:workflow_was_successfully_created)
+      flash[:notice] = t(:successfully_created, :name => @workflow)
       redirect_to(@workflow.issuetype)
     else
       _form and render :action => :new
@@ -56,7 +56,7 @@ class WorkflowsController < ApplicationController
   def update
     @workflow = Workflow.find(params[:id])
     if @workflow.update_attributes(params[:workflow])
-      flash[:notice] = t(:workflow_was_successfully_updated)
+      flash[:notice] = t(:successfully_updated, :name => @workflow)
       redirect_to(@workflow.issuetype)
     else
       _form and render :action => :edit

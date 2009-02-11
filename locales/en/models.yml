@@ -58,6 +58,7 @@ en:
     Issue: Issue
     Issuetype: "Issue type"
     Knowledge: Knowledge
+    License: License
     Notifier: Notifier
     Permission: Permission
     Picture: Picture
@@ -68,13 +69,12 @@ en:
       Component: Component
       Credit: Credit
     Severity: Severity
-    Software: Software
-    Subscription: subscription
     Skill: Skill
+    Software: Software
     Statut: Status
+    Subscription: subscription
+    Tag: Tag
     Team: Team
     User: User
-    License: License
-    Tag: Tag
     Version: Version
     Workflow: Workflow
