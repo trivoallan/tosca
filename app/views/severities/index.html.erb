@@ -1,6 +1,6 @@
-<h1>Liste des sévérités</h1>
+<h1><%= t(:Index) %></h1>
 
-<% paginated_section(@severities, :create_label => t('a new severity')) do %>
+<% paginated_section(@severities, :create_label => t(:a_severity)) do %>
  <%= show_table(@severities, Severity, [], :content_columns => true) do |p|
    result = ''
    result << "#{link_to_actions_table p}"
