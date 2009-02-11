@@ -30,5 +30,27 @@ fr:
       weekly_calendar:
     suggestions:
       thank_your_for_taking_time_in_order_to_help_us_to_improve_this_product_your_comments_has_been_sent_successfully: 'Thank your for taking time in order to help us to improve this product. Your comments has been sent successfully.'
+      idea_box: Idea box
+      have_an_idea: "You have an idea in order to improve our services ? Don't hesitate to fill in the form!<br />Every proposition will be consider with a lot of attention"
+      your_suggestions_on_our_tool: 'Your suggestions on our tool : '
+      your_suggestions_on_our_service: 'Your suggestions on our service :'
     clear_cache:
       cache_cleared: "Cache cleared !"
+    theme:
+      dress_this_site_as_you_wish: 'Dress this site as you wish.'
+    plan:
+      plan_access_allowed: "Plan/access allowed"
+      this_part_of_the_application: 'This part of the application'
+      others_parts: 'Others parts'
+    about:
+      don_t_hesitate_to: "Don't hesitate to"
+      contact_us: 'contact us'
+      if_needed: "if needed"
+      this_software_was_created_at: 'This software was created at'
+      by_the_ossa_team: "by the OSSA Team."
+      this_journey: "This journey would not have been possible without the <b>developers</b> who have taken part in this project, without the testers who have contributed to it's quality and without quite a bit of <b>free software</b> which has enabled the development to be fast and agile. They are all warmly thanked here. {{value}} would be nothing without them."
+      it_is_an_open_source_software_you_can_get_at: "It is now an Open Source software you can get at "
+      the_homepage_of_the_project: "the homepage of the project."
+      Developers: Developers
+      quality_assurance: 'Quality Assurance'
+      free_software_used: 'Free software used by {{value}}'

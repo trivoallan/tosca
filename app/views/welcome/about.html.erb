@@ -1,56 +1,56 @@
 <div class="subcolumns">
   <div class="c50l">
     <div class="show">
-      <h3><%=t('Help')%></h3>
- <% links = [ public_link_to_help_new_issue,
-              public_link_to_howto_issue,
-              public_link_to_help_issue_status ] %>
-  <%= show_list(links) %>
-  <p><%=t("Don't hesitate to")%>
-    <%=  mail_to(App::TeamEmail, t('contact us'))%>
-    <%=  t("if needed")%>.</p>
- </div>
+      <h3><%= t(:Help) %></h3>
+      <% links = [ public_link_to_help_new_issue,
+        public_link_to_howto_issue,
+        public_link_to_help_issue_status ] %>
+      <%= show_list(links) %>
+      <p><%= t(:don_t_hesitate_to) %>
+        <%= mail_to(App::TeamEmail, t(:contact_us)) %>
+        <%= t(:if_needed) %>.</p>
+    </div>
 
- <div class="show">
-  <h1><%= t('About')%> <%=Tosca::App::Name%> v<%=Tosca::App::Version%></h1>
+    <div class="show">
+      <h1><%= t(:About) %> <%=Tosca::App::Name%> v<%=Tosca::App::Version%></h1>
 
-  <p><%= t('This software was created at')%>
-      <a href="http://www.linagora.com">Linagora</a>
-      <%= t("by the OSSA Team.")%></p>
-      <p><%= t('This journey would not have been possible without
-      the <b>developers</b> who have taken part in this project,
-      without the testers who have contributed to it\'s quality and
-      without quite a bit of <b>free software</b> which has enabled the
-      development to be fast and agile. They are all warmly thanked here.
-      %s would be nothing without them.') % Tosca::App::Name %></p>
-      <p><%= t("It is now an Open Source software you can get at ") %>
-      <a href="http://www.tosca-project.net"><%= t("the homepage of the project")%></a>.
+      <p>
+        <%= t(:this_software_was_created_at) %>
+        <a href="http://www.linagora.com">Linagora</a>
+        <%= t(:by_the_ossa_team)%>
       </p>
- </div>
- <div class="show">
-   <h2><%= t('Developers')%></h2>
-  <ul>
-    <li>Michel Loiseleur</li>
-    <li>Adrien Grellier</li>
-    <li>Guillaume Dufloux</li>
-    <li>Julien Heyman</li>
-    <li>Munteanu Olimpiu Andrei</li>
-    <li>Rémy-Christophe Schermesser</li>
-  </ul>
-</div>
+      
+      <p><%= t(:this_journey, :value =>Tosca::App::Name) %></p>
+      
+      <p>
+        <%= t(:it_is_an_open_source_software_you_can_get_at) %>
+        <a href="http://www.tosca-project.net"><%= t(:the_homepage_of_the_project)%></a>
+      </p>
+    </div>
+    <div class="show">
+      <h2><%= t(:Developers) %></h2>
+      <ul>
+        <li>Michel Loiseleur</li>
+        <li>Adrien Grellier</li>
+        <li>Guillaume Dufloux</li>
+        <li>Julien Heyman</li>
+        <li>Munteanu Olimpiu Andrei</li>
+        <li>Rémy-Christophe Schermesser</li>
+      </ul>
+    </div>
   </div>
   <div class="c50r">
     <div class="show">
-     <h2><%= t('Quality Assurance') %></h2>
-  <ul>
-    <li>Jonathan Clarke</li>
-    <li>Mehdi Rande</li>
-    <li>Philippe Brière</li>
-    <li>Richard Samson</li>
-  </ul>
- </div>
-     <div class="show">
-      <h2><%= t('Free software used by %s') % Tosca::App::Name %></h2>
+      <h2><%= t(:quality_assurance) %></h2>
+      <ul>
+        <li>Jonathan Clarke</li>
+        <li>Mehdi Rande</li>
+        <li>Philippe Brière</li>
+        <li>Richard Samson</li>
+      </ul>
+    </div>
+    <div class="show">
+      <h2><%= t(:free_software_used, :value => Tosca::App::Name) %></h2>
       <ul>
         <li><a href="http://www.ruby-lang.org">Ruby</a>
           <ul>
@@ -77,6 +77,6 @@
         <li><a href="http://www.mysql.com">MySQL (GPL)</a></li>
         <li><a href="http://httpd.apache.org/">Apache (APL)</a></li>
       </ul>
-     </div>
+    </div>
   </div>
 </div>
