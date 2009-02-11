@@ -32,8 +32,6 @@ fr:
   add_software: Ajouter un logiciel
   the_third_graph_show_another_view_of_the_summary_through_a_bar_chart_showing_the_evolution_of_these_data_over_the_duration_of_the_deal: "le troisi\xC3\xA8me graphique vous offre une autre vision de vos demandes \xC3\xA0 travers un histographe d'\xC3\xA9volution de ces donn\xC3\xA9es sur la dur\xC3\xA9e du march\xC3\xA9 "
   are_you_sure_you_want_to_delete_this_comment: "\xC3\x89tes vous s\xC3\xBBr de vouloir effacer ce commentaire ?"
-  day: jour
-  modification_date: Date de modification
   the_management_report_enables_you_to_consult_an_overview_of_the_activity: "Le rapport d'activit\xC3\xA9 vous permet de consulter une vue d'ensemble de l'activit\xC3\xA9."
   out_of_time: "Hors d\xC3\xA9lais"
   updated_on: "Mis \xC3\xA0 jour le"
@@ -41,8 +39,6 @@ fr:
   allows_to_become_an_other_one: permet de devenir un autre
   you_will_observe_in_particular_that_the_numbers_have_sometimes_on_their_right_side_a_second_number_between_brackets_the_first_corresponds_to_the_number_of_issues_whereas_the_second_indicates_if_needed_which_issues_are_still_active: "Vous observerez notamment que les nombres sont parfois accompagn\xC3\xA9s d'un second nombre entre parenth\xC3\xA8ses. Le premier correspond au nombre de demandes, alors que le second indique, si cela est n\xC3\xA9cessaire, quelles sont les demandes encore \xE2\x80\x9Cen activit\xC3\xA9\xE2\x80\x9C. "
   detailed_description: "Description d\xC3\xA9taill\xC3\xA9e"
-  file: Fichier
-  software: logiciel
   submission_of_an_issue: "D\xC3\xA9poser une demande"
   edit_a_contract: "\xC3\x89diter un contrat"
   edit_a_rule: "Modifier un r\xC3\xB4le"
@@ -50,19 +46,12 @@ fr:
   a_new_severity: "une nouvelle s\xC3\xA9v\xC3\xA9rit\xC3\xA9"
   connected: "connect\xC3\xA9"
   an_image_was_successfully_updated: "Une image a bien \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour."
-  members: Membres
   allow_to: Autoriser pour
-  model_id: Id
   this_contribution_is_now_linked: "Cette contribution est maintenant li\xC3\xA9e"
-  changelog: Changelog
-  blue: bleu
   severity_was_successfully_updated: "La s\xC3\xA9v\xC3\xA9rit\xC3\xA9 a \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour avec succ\xC3\xA8s."
   "1_workday": "1 jour ouvr\xC3\xA9"
   client_created_successfully: "Le client a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9 avec succ\xC3\xA8s"
   add_a_file: Ajouter un fichier
-  limit: Limite
-  a_group: un groupe
-  activated: Actif
   list_of_the_attachments: "Liste des pi\xC3\xA8ces jointes"
   submit_an_issue: "D\xC3\xA9poser une demande"
   finished: "Termin\xC3\xA9es"
@@ -100,7 +89,7 @@ fr:
   the_software_s_has_been_updated_successfully: "Le logiciel %s a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
   by_types: Par types
   you_have_successfully_submitted_your_s_issue: "Vous avez soumis avec succ\xC3\xA8s votre %s demande"
-  and_your_access_code_is_s: "et votre code d'acc\xC3\xA8s est %s"
+  
   list_of_contracts: Liste des contrats
   open_since_s: ouverte depuis %s
   s_was_successfully_updated: "'%s' a \xC3\xA9t\xC3\xA9 mis(e) \xC3\xA0 jour avec succ\xC3\xA8s."
@@ -385,7 +374,7 @@ fr:
   monthly_digest_for: "Activit\xC3\xA9 mensuelle pour "
   nbsp_on: "&nbsp; sur "
   a_new_contribution: une nouvelle contribution
-  activity_report: "Rapport d'activit\xC3\xA9 "
+  
   a_client: un client
   delay:
   new_component_offer: Nouvelle offre par composants
@@ -500,12 +489,12 @@ fr:
   user_name: Nom
   editing_a_severity:
   submit_a_contribution: "D\xC3\xA9poser une contribution"
-  dynamically_showing_the_activity_of_our_service_for_you_in_real_time: "dynamique montrant l'activit\xC3\xA9 de notre service en temps r\xC3\xA9el."
+  
   print: Imprimer
   updated_issues_are_in: "Les demandes mise \xC3\xA0 jour sont en"
   hide: Cacher
   credit_name: Nom
-  you_benefit_from_one_of_our_offers_which_detail_is_available_here_s: "Vous avez acc\xC3\xA8s \xC3\xA0 une de nos offres, dont vous pouvez consulter le d\xC3\xA9tail \xC3\xA0 tout moment : %s"
+  
   editing_skill: "\xC3\x89diter la comp\xC3\xA9tence"
   display_only_active_clients: N'afficher que les clients actifs
   selection_interface: "Interface de s\xC3\xA9lection"
@@ -514,7 +503,7 @@ fr:
   yearly_digest_for: "Activit\xC3\xA9 annuelle pour "
   client_updated_successfully: "Le client bien \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour."
   edit_workflow: Modifier le flux
-  welcome_to_the_value_management_tool: Bienvenue sur l'outil de gestion du {{value}}
+  
   processing_time: Temps de traitement
   selected_issues_can_wait: "Les demandes s\xC3\xA9lectionn\xC3\xA9es peuvent attendre"
   this_archive_has_been_successfully_updated: "Cette archive a \xC3\xA9t\xC3\xA9 mise \xC3\xA0 jour."
@@ -561,7 +550,7 @@ fr:
   contributionstate_description: Description
   address: Adresse
 
-  when_you_are_value_you_can_access_an_activity_report: "Quand vous \xC3\xAAtes {{value}}, vous avez acc\xC3\xA8s \xC3\xA0 un rapport d'activit\xC3\xA9"
+  
   by_word: Par mot
   a_new_commitment: A nouvel engagement
   you_may_also_add_a_file: Vous pouvez aussi ajouter un fichier
@@ -622,7 +611,7 @@ fr:
   edit_this_contribution: Modifier cette contribution
   issue_list: Liste des demandes
   the_software_s_has_been_created_succesfully: "Le logiciel %s a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9 avec succ\xC3\xA8s"
-  we_hope_this_tool_wil_give_you_entire_satisfaction: "Nous esp\xC3\xA9rons que cet outil vous donnera enti\xC3\xA8re satisfaction."
+  
   about_s: Concernant %s
   sla_report: Rapport CNS
   about: A propos de
@@ -637,7 +626,7 @@ fr:
   the_beginning_of_the_report_is_organized_in_four_regions_for_each_type_of_information: "Le d\xC3\xA9but du rapport est organis\xC3\xA9 suivant quatre zones pour chaque type d'information : "
   weekly_report_of_issues: rapport hebdomadaire des demandes
   new_skill: "Nouvelle comp\xC3\xA9tence"
-  your_call_number_is: "Votre num\xC3\xA9ro d'appel est le "
+
   by_expert: Par expert
   time_of_one_credit_expressed_in_hours: "Temps d'un cr\xC3\xA9dit, exprim\xC3\xA9 en heure"
   editing_a_commitment: Modifier un engagement

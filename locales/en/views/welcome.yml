@@ -7,31 +7,28 @@ fr:
 
     #Views
     index:
-      report: Vous pouvez consulter votre {{value}} en ligne
-      weekly_report_of_issues:
-      title: "la boite \xC3\xA0 id\xC3\xA9es"
-      this_site_has_changed: "Ce site a chang\xC3\xA9"
+      report: You can view your {{value}} online.
+      idea_box: the idea box
+      this_site_has_changed: "This web site has changed"
       access_denied: "Vous n'\xC3\xAAtes pas {{value}}, donc vous ne pouvez pas acc\xC3\xA9der \xC3\xA0 l'interface des issues de notre service"
-      calendar_report: rapport en calendrier
-      my_account:
-      documents:
-      a_new_issue:
-      contributions:
-      submit_an_issue: Vous pouvez aussi faire {{value}}
-      distribution_of_issues_in_time:
-      activity_report:
-      skip_to_the_content:
-      view_welcome_consult_list_of:
+      calendar_report: calendar report
+      submit_an_issue: You can also submit {{value}}
+      activity_report: activity report
       content: "Vous avez une id\xC3\xA9e pour am\xC3\xA9liorer nos services ?<br />\n   Vos commentaires et suggestions sont les bienvenues dans {{value}}."
-      monthly_calendar:
-      contents:
-      skip_to_the_navigation:
-      welcome_to_the_value_management_tool:
+      welcome_to_the_management_tool: 'Welcome to the {{value}} management tool'
       classification: "Ces logiciels sont r\xC3\xA9partis selon une %s pr\xC3\xA9cise et simple, par groupe d'activit\xC3\xA9"
-      weekly_report: rapport par semaine
+      weekly_report: weekly report
       consult_list_of: Vous pouvez consulter la liste des {{value}}
       this_tool_has_been_updated: "Comme vous pouvez le voir, cet outil a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour. Voici une courte liste des changements : "
-      weekly_calendar:
+      when_you_are_value_you_can_access_an_activity_report: "When you are {{value}}, you can access an activity report"
+      Contents: Contents
+      dynamically_showing_the_activity_of_our_service_for_you_in_real_time: "dynamically showing the activity of our service for you in real time."
+      you_benefit_from_one_of_our_offers_which_detail_is_available_here: "You benefit from one of our offers, which detail is available here: {{value}}"
+      we_hope_this_tool_wil_give_you_entire_satisfaction: 'We hope this tool wil give you entire satisfaction.'
+      your_call_number_is: 'Your call number is'
+      and_your_access_code_is: "and your access code is {{value}}"
+      contributions: "You can consult and follow all the {{value}} done by our team in Open Source communities."
+      tosca_changelog: bla bla
     suggestions:
       thank_your_for_taking_time_in_order_to_help_us_to_improve_this_product_your_comments_has_been_sent_successfully: 'Thank your for taking time in order to help us to improve this product. Your comments has been sent successfully.'
       idea_box: Idea box

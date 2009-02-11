@@ -136,12 +136,12 @@ EOS
   end
 
   def public_link_to_softwares
-    public_link_to(I18n.t('Softwares'), softwares_path, :title =>
+    public_link_to(t(:'Models.Software').pluralize.downcase, softwares_path, :title =>
                    I18n.t('Access to the list of software'))
   end
 
   def public_link_to_contributions
-    public_link_to(I18n.t('Contributions'), contributions_path,
+    public_link_to(I18n.t(:'Models.Contribution').pluralize.downcase, contributions_path,
                    :title => I18n.t('Access to the list of contributions.'))
   end
 
