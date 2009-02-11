@@ -17,6 +17,15 @@ en:
     Active: Active
     Inactive: Inactive
 
+  Tag:
+    Submitter: "Submitter"
+
+  Team:
+    Contact: Contact
+    Manager: Manager
+    Motto: Motto
+    Members: Members
+
   User:
     Name: Name
     Title: Title
@@ -26,12 +35,6 @@ en:
     Login: Login
     Informations: Description
 
-  Team:
-    Contact: Contact
-    Manager: Manager
-    Motto: Motto
-    Members: Members
-
   Version:
     Generic: Generic
 
@@ -39,39 +42,39 @@ en:
   #Name of models
   Models:
     Alert: Alert
+    Archive: Archive
+    Attachment: Attachment
+    Changelog: Changelog
     Client: Client
+    Comment: Comment
+    Commitment: Commitment
+    Contract: Contract
     Contribution: Contribution
+    Contributionstate: "Contribution state"
+    Contributiontype: "Contribution type"
+    Elapsed: Elapsed
     Group: Group
+    Hyperlink: Hyperlink
+    Issue: Issue
+    Issuetype: "Issue type"
     Knowledge: Knowledge
+    Notifier: Notifier
+    Permission: Permission
     Picture: Picture
+    Preference: Preference
+    Release: Release
+    Role: Role
     Rules:
       Component: Component
       Credit: Credit
-    Statut: Status
-    Archive: Archive
-    Comment: Comment
-    Contributionstate: "Contribution state"
-    Hyperlink: Hyperlink
-    License: License
-    Preference: Preference
     Severity: Severity
+    Software: Software
     Subscription: subscription
-    User: User
-    Attachment: Attachment
-    Commitment: Commitment
-    Contributiontype: "Contribution type"
-    Issue: Issue
-    Notifier: Notifier
-    Release: Release
     Skill: Skill
+    Statut: Status
+    Team: Team
+    User: User
+    License: License
     Tag: Tag
     Version: Version
-    Changelog: Changelog
-    Contract: Contract
-    Elapsed: Elapsed
-    Issuetype: "Issue type"
-    Permission: Permission
-    Role: Role
-    Software: Software
-    Team: Team
     Workflow: Workflow
