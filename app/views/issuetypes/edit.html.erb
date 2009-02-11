@@ -1,9 +1,9 @@
-<h1><%= t(:issuetypes_edit) %></h1>
+<h1><%= t(:Edit) %></h1>
 
 <% form_tag issuetype_path(@issuetype), :method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag t("Edit") %>
+  <%= submit_tag t(:Validate) %>
 <% end %>
 
-<%= link_to t("List"), issuetype_path(@issuetype) %> |
+<%= link_to t(:Index), issuetype_path(@issuetype) %> |
 <%= link_to_back %>
