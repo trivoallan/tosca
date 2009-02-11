@@ -33,7 +33,7 @@ module AccountHelper
     else
       result << t(:account_of, :name => @user.name)
     end
-    result << " (#{t(:'user.inactive')})" if @user.inactive
+    result << " (#{t(:'User.Inactive')})" if @user.inactive
     result
   end
 
@@ -54,7 +54,7 @@ module AccountHelper
     result = ''
     if @session_user.engineer? && user && !user.inactive?
       result << %Q{<form action="#{become_account_path(user)}" method="post">}
-      result << %Q{<input name="commit" value='#{t(:become)}' type="submit" /></form>}
+      result << %Q{<input name="commit" value='#{t(:Become)}' type="submit" /></form>}
     end
     result
   end

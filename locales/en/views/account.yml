@@ -10,6 +10,7 @@ en:
       edition_succeeded: Your account was successfully updated
     forgotten_password:
       your_new_password_has_been_generated: 'Your new password has been generated.'
+      unknown_account: 'Unknown account'
     become:
       you_are_not_allowed_to_change_your_identity: 'You are not allowed to change your identity'
       person_not_found: 'Person not found'
@@ -20,6 +21,9 @@ en:
       type: Type
 
     #Helpers
-    become: Become
     my_account: 'My account'
     account_of: 'Account of {{name}}'
+
+    #Actions
+    Login: Login
+    Become: Become

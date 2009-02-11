@@ -10,6 +10,7 @@ fr:
       edition_succeeded: "Votre compte a été mise à jour"
     forgotten_password:
       your_new_password_has_been_generated: "Votre nouveau mot de passe a \xC3\xA9t\xC3\xA9 g\xC3\xA9n\xC3\xA9r\xC3\xA9."
+      unknown_account: 'Compte inconnu'
     become:
       you_are_not_allowed_to_change_your_identity: "Vous n'\xC3\xAAtes pas autoris\xC3\xA9 \xC3\xA0 changer votre identit\xC3\xA9"
       person_not_found: "Personne non trouv\xC3\xA9e"
@@ -18,6 +19,8 @@ fr:
       your_contract_is_near_its_end_date: "Le contrat '{{name}}' est pr\xC3\xA8s de sa date de fin : {{end_date}}"
 
     #Helper
-    become: Devenir
     my_account: 'Mon compte'
     account_of: 'Compte de {{name}}'
+
+    #Actions
+    Become: Devenir
