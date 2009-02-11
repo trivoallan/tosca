@@ -1,6 +1,8 @@
 fr:
-  teams: "Équipes"
-  a_team: "une équipe"
-  teams_new: "Nouvel équipe"
-  teams_edit: "Modifier l'équipe"
-  teams_index: "Liste des équipes"
+  teams:
+    Show: "Équipe"
+    New: "Nouvelle équipe"
+    Edit: "Modifier l'équipe"
+    Index: "Liste des équipes"
+    index:
+      a_team: "une équipe"

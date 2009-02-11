@@ -1,7 +1,7 @@
-<h1><%= t(:teams_index) %></h1>
+<h1><%= t(:Index) %></h1>
 
-<% paginated_section(@teams, :create_label => t('a_team')) do %>
- <% titles = [t('Name'), t('Contact'), t('Motto')]%>
+<% paginated_section(@teams, :create_label => t(:a_team)) do %>
+ <% titles = [t(:Name), t(:Contact), t(:Motto)]%>
  <%= show_table(@teams, Team, titles) do |t|
    result = ''
    result << "<td>#{link_to t.name, team_path(t)}</td>"

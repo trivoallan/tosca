@@ -96,7 +96,7 @@ fr:
   monthly_digest: "Activit\xC3\xA9 mensuelle"
   calls: Appels
   access_code: "Code d'acc\xC3\xA8s"
-  
+
   cc: CC
   editing_permission: "\xC3\x89diter la permission"
   new_issue: Nouvelle demande
@@ -165,7 +165,7 @@ fr:
   display_only_software_supported_by_your_contract: "Aficher seulement les logiciels support\xC3\xA9s par votre contrat"
   list_of_software: Liste des logiciels
   by_the_ossa_team: "par l'\xC3\xA9quipe OSSA."
-  
+
   role_management: "Gestion des r\xC3\xB4les"
   number_of_the_week: "Num\xC3\xA9ro de la semaine:"
   new_issues: Nouvelles demandes
@@ -222,7 +222,6 @@ fr:
   versions: Versions
   validate: Valider
   prints_the_life_cycle_of_an_issue: affiche le cycle de vie d'une demande
-  teams: "\xC3\x89quipes"
   concerning_the_contract: Portant sur le contrat
   internal_mailing_list: Mailing liste interne
   team: "[ \xC3\x89quipe ]"
@@ -252,7 +251,7 @@ fr:
   do_you_really_want_to_delete_s: "\xC3\x8Ates vous s\xC3\xBBr de vouloir supprimer %s"
   group_list: Liste des Groups
   show_all_the_issues: montrer toutes les demandes
-  
+
   active: Actif
   distribution_of_issues_in_time: "R\xC3\xA9partition de vos demandes dans le temps"
   free_software_used_by_s: "Logiciels libre utilis\xC3\xA9s par %s"
@@ -289,7 +288,7 @@ fr:
   skill_list: "Liste des comp\xC3\xA9tences"
   a_type_of_contribution_was_successfully_updated: "Le type de contribution a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
   new_workflow: Nouveau flux
-  
+
   the_contract_has_not_been_started_yet: "Le contrat n'a pas encore \xC3\xA9t\xC3\xA9 d\xC3\xA9marr\xC3\xA9"
   expand_all: "Tout d\xC3\xA9velopper"
   user_login: Identifiant
@@ -396,7 +395,7 @@ fr:
   skip_to_the_navigation: "Passer \xC3\xA0 la navigation"
   blocking: Bloquante
   detailed_view_of_your_issues_is_improved_with_a_new_dynamic_comment_approach: "La vue d\xC3\xA9taill\xC3\xA9e des demandes est am\xC3\xA9lior\xC3\xA9e, avec une approche par commentaire dynamique"
-  
+
   add: Ajouter
   this_bug_has_been_discovered_in_the_version_s: "Ce bug a \xC3\xA9t\xC3\xA9 d\xC3\xA9couvert dans la version %s"
   newsletter: Lettre d'information
@@ -495,7 +494,6 @@ fr:
   issues_of_all_your_contracts: Les demandes de tous vos contrats
   an_issue_type_was_successfully_updated: "Le type de demande a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
   my_supported_software: "Mes logiciels support\xC3\xA9s"
-  
   contributions_of_s: Contributions de %s
   statictics: Statistiques
   please_contact_us_if_your_problem_remains: Merci de nous contacter si vous avez d'autres anomalies.
@@ -558,7 +556,7 @@ fr:
   user_name: Nom
   and_associated_permissions: "et des permissions associ\xC3\xA9es"
   d_time_credits_of_s: "%d cr\xC3\xA9dit temps de %s"
-  
+
   editing_a_severity:
   submit_a_contribution: "D\xC3\xA9poser une contribution"
   dynamically_showing_the_activity_of_our_service_for_you_in_real_time: "dynamique montrant l'activit\xC3\xA9 de notre service en temps r\xC3\xA9el."
@@ -610,7 +608,7 @@ fr:
   alert_page_for_team_s: "Page d'alerte pour l'\xC3\xA9quipe %s"
   does_not_exist: N'existe pas
   info: Info
-  
+
 
   group_was_successfully_updated: "Le groupe a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
   estimation_in_minutes: Estimation en minutes
@@ -701,7 +699,6 @@ fr:
   edit_this_contribution: Modifier cette contribution
   issue_list: Liste des demandes
   the_software_s_has_been_created_succesfully: "Le logiciel %s a \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9 avec succ\xC3\xA8s"
-  list_of_the_teams: "Liste des \xC3\xA9quipes"
   we_hope_this_tool_wil_give_you_entire_satisfaction: "Nous esp\xC3\xA9rons que cet outil vous donnera enti\xC3\xA8re satisfaction."
   about_s: Concernant %s
   sla_report: Rapport CNS
@@ -727,7 +724,7 @@ fr:
   editing_a_commitment: Modifier un engagement
   choose_one_year: "Sp\xC3\xA9cifier une ann\xC3\xA9e : "
   knowledge: Connaissance
-  
+
   the_s_has_been_accepted_by_the_community: "Le %s a \xC3\xA9t\xC3\xA9 accept\xC3\xA9 par la communaut\xC3\xA9"
   logout: "D\xC3\xA9connexion ..."
   a_new_flow: un nouveau flux
@@ -765,7 +762,6 @@ fr:
   informations: Informations
   alerts: Alertes
   no_contracts_currently_open: Aucun contrat actuellement actif.
-  
   you_have_now_to_create_the_associated_contract: "Vous devez d\xC3\xA9sormais cr\xC3\xA9er son contrat associ\xC3\xA9."
   back: Retour
   actions: Actions
