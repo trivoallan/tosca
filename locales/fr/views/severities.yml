@@ -1,0 +1,8 @@
+fr:
+  severities:
+    Index: "Liste des sévérités"
+    index:
+      a_severity: "une sévérité"
+    New: "Nouvelle sévérité"
+    Edit: "Modifier la sévérité"
+    Show: "Sévérité"
