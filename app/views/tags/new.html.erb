@@ -1,8 +1,8 @@
-<h1><%= t('New tag')%></h1>
+<h1><%= t(:New)%></h1>
 
-<% form_tag tags_path, :id => "main_form" do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag t('Create') %>
+<% form_for(@tag) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <%= submit_tag t(:Create) %>
 <% end %>
 
 <%= link_to_back %>

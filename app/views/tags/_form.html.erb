@@ -1,12 +1,10 @@
-<%= error_messages_for 'tag' %>
+<%= f.error_messages %>
 
-<p><label for="tag_name"><%= t('Name')%></label><br />
-<%= text_field 'tag', 'name'  %></p>
-<!-- Set when tag is saved
-<p><label for="tag_user_id"><%= t('Submitter')%></label><br />
-<% text_field 'tag', 'user_id'  %></p>
--->
-<p><label for="tag_skill_id"><%= t('Skill')%></label><br />
-<%= select_empty(:tag, :skill_id, @skills) %></p>
-<p><label for="tag_contract_id"><%= t('Contract')%></label><br />
-<%= select_empty(:tag, :contract_id, @contracts) %></p>
+<div class="show">
+<p><%= f.label :name %><br />
+   <%= f.text_field :name %></p>
+<p><%= f.label :skill %><br />
+   <%= select_empty(:tag, :skill_id, @skills) %></p>
+<p><%= f.label :contract %><br />
+   <%= select_empty(:tag, :contract_id, @contracts) %></p>
+</div>

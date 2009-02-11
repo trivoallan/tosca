@@ -37,7 +37,7 @@ fr:
 
   Version:
     Generic: "Générique"
-  
+
 
 
   #Name of models
@@ -54,7 +54,7 @@ fr:
       Component: Composant
       Credit: "Crédit"
     Statut: Statut
-    
+
     Comment: Commentaire
     Contributionstate: "État d'une contribution"
     Hyperlink: "Url"
@@ -69,7 +69,7 @@ fr:
     Notifier: "Notifier"
     Release: "Révision"
     Skill: "Compétence"
-    Tag: Tag
+    Tag: "Étiquette"
     Version: Version
     Changelog: "Note de révisions"
     Contract: "Contrat"
