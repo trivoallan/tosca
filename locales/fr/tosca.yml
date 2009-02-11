@@ -4,7 +4,6 @@ fr:
   name: Nom
   validate: Valider
   create: "Créer"
-  components: Composants
   welcome: Bienvenue
   a_new_issue: une nouvelle demande
   Validate: Valider
