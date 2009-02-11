@@ -2,44 +2,44 @@
 
 <% options = { :create_label => t('a new user'), :remote_url => accounts_path } %>
 <% paginated_section(@users, options) do %>
- <% manager = @session_user.manager? %>
- <table class="full">
-  <tr>
-    <th><%= t('User|Title')%></th>
-    <th><%= t('User|Name')%></th>
-    <% if manager %>
-     <th><%= t('User|Role')%></th>
-     <th><%= t('Engineer')%></th>
-     <th><%= t('Recipient')%></th>
-    <% end %>
-    <th><%= t('User|Email')%></th>
-    <th><%= t('User|Phone')%></th>
-  </tr>
-
-  <% options = PagesHelper::AJAX_OPTIONS.dup %>
-  <% options[:method] = :put %>
-  <% @users.each_index do |i| %>
-   <% user = @users[i] %>
-   <tr class="<%= cycle('even', 'odd') %>">
-      <td><%= user.title %></td>
-      <td><%= user.name %></td>
+  <% manager = @session_user.manager? %>
+  <table class="full">
+    <tr>
+      <th><%= t(:'User.Title')%></th>
+      <th><%= t(:'Name')%></th>
       <% if manager %>
-       <td><%= user.role.name %></td>
-       <td style="text-align: center"><%= 'X' if user.engineer? %></td>
-       <td style="text-align: center"><%= 'X' if user.recipient? %></td>
+        <th><%= t(:'Models.Role')%></th>
+        <th><%= t(:'Expert')%></th>
+        <th><%= t(:'Recipient')%></th>
       <% end %>
-      <td><%= mail_to user.email, user.email %></td>
-      <td><%= user.phone %></td>
-      <td><%= form_become(user) %></td>
-
-     <% if manager or @session_user.id == user.id %>
-      <td><%= link_to_show user %></td>
-      <td><%= link_to_edit user %></td>
-     <% else %>
-      <td></td><td></td>
-     <% end %>
+      <th><%= t(:'User.Email')%></th>
+      <th><%= t(:'User.Phone')%></th>
     </tr>
-  <% end %>
- </table>
- <%= page_entries_info @users %><br />
+
+    <% options = PagesHelper::AJAX_OPTIONS.dup %>
+    <% options[:method] = :put %>
+    <% @users.each_index do |i| %>
+      <% user = @users[i] %>
+      <tr class="<%= cycle('even', 'odd') %>">
+        <td><%= user.title %></td>
+        <td><%= user.name %></td>
+        <% if manager %>
+          <td><%= user.role.name %></td>
+          <td style="text-align: center"><%= 'X' if user.engineer? %></td>
+          <td style="text-align: center"><%= 'X' if user.recipient? %></td>
+        <% end %>
+        <td><%= mail_to user.email, user.email %></td>
+        <td><%= user.phone %></td>
+        <td><%= form_become(user) %></td>
+
+        <% if manager or @session_user.id == user.id %>
+          <td><%= link_to_show user %></td>
+          <td><%= link_to_edit user %></td>
+        <% else %>
+          <td></td><td></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <%= page_entries_info @users %><br />
 <% end %>

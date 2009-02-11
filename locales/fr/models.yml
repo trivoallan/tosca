@@ -16,7 +16,7 @@ fr:
 
   Release:
     Packaged: "Empaquetée"
-    Active: "Actif"
+    Active: "Active"
     Inactive: "Inactive"
 
   Tag:
@@ -29,7 +29,6 @@ fr:
     Members: Membres
 
   User:
-    Name: Nom
     Title: Titre
     Inactive: Inactif
     Email: E-mail
