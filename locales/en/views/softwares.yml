@@ -1,0 +1,9 @@
+en:
+  softwares:
+    Index: "Software"
+    index:
+      a_software: "a software"
+      your_software: "Supported software"
+    New: "New software"
+    Edit: "Edit software"
+    Show: "Software"

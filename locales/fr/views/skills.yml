@@ -1,0 +1,8 @@
+fr:
+  skills:
+    Index: "Liste des compétences"
+    index:
+      a_skill: "une compétence"
+    New: "Nouvelle compétence"
+    Edit: "Modifier la compétence"
+    Show: "Compétence"
