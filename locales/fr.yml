@@ -291,7 +291,7 @@ fr:
   progress: Progression
   an_image_was_successfully_created: "Une image a bien \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9e."
   group: Groupe
-  the_client_of_this_contract_is_not_consistant_with_the_client_of_this_recipient: "Le client de ce contrat est incoh\xC3\xA9rent avec le client du b\xC3\xA9n\xC3\xA9ficiaire."
+  
   unlink_the_contribution: "D\xC3\xA9lier la contribution"
   no_entries_found: "Aucun r\xC3\xA9sultat"
   resources: Ressources
@@ -417,7 +417,6 @@ fr:
   consultation: Consultation
   no_pending_issue: Aucune demande en attente
   subscribe_to_this_issue: "S'inscrire \xC3\xA0 cette demande"
-  analysed: "Analys\xC3\xA9"
   status_legend: "L\xC3\xA9gende des Statuts"
   update_your_knowledge: "Mise \xC3\xA0 jour de votre connaissance"
   see_all_contributions: Consulter toutes les contributions
@@ -646,19 +645,9 @@ fr:
   the_working_days_are_from_monday_to_friday_except_weekends_and_public_holidays: "Les jours ouvr\xC3\xA9s sont du Lundi au Vendredi, sauf week-ends et jours f\xC3\xA9ri\xC3\xA9s."
   period: "P\xC3\xA9riode"
   s_theme: "th\xC3\xA8me %s"
-  call_out: Intervention
+
   model_type: Type
   the_url_was_successfully_created: "L'url a bien \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9e avec succ\xC3\xA8s."
-  date:
-    month_names:
-    order:
-    abbr_day_names:
-    formats:
-      default:
-      short:
-      long:
-    day_names:
-    abbr_month_names:
   this_address_is_not_valid_if_you_think_this_is_an_error_do_not_hesitate_to_contact_us: "Cette adresse n'est pas valide. Si vous pensez que c'est une erreur, n'h\xC3\xA9sitez pas \xC3\xA0 nous contacter"
   customer_management: Gestion des clients
   display_this_map: affiche ce plan
@@ -710,8 +699,6 @@ fr:
   the_beginning_of_the_report_is_organized_in_four_regions_for_each_type_of_information: "Le d\xC3\xA9but du rapport est organis\xC3\xA9 suivant quatre zones pour chaque type d'information : "
   weekly_report_of_issues: rapport hebdomadaire des demandes
   new_skill: "Nouvelle comp\xC3\xA9tence"
-  delivery: Livraison
-  technologies: Technologies
   your_call_number_is: "Votre num\xC3\xA9ro d'appel est le "
   by_expert: Par expert
   time_of_one_credit_expressed_in_hours: "Temps d'un cr\xC3\xA9dit, exprim\xC3\xA9 en heure"
@@ -723,7 +710,6 @@ fr:
   logout: "D\xC3\xA9connexion ..."
   a_new_flow: un nouveau flux
   progress_bar: barre de progression
-  incident: Anomalie
   editing_a_statut: "\xC3\x89diter un statut"
   
   

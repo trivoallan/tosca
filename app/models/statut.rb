@@ -19,17 +19,6 @@
 class Statut < ActiveRecord::Base
   has_many :issues
 
-  #######################################
-  I18n.t(:submitted) #1  	Enregistrée     #
-  I18n.t(:accepted)  #2	Accepté         #
-  I18n.t('Suspended') #3	Suspendue       #
-  I18n.t('Analysed')  #4	Analysée        #
-  I18n.t('Bypassed')  #5 	Contournée      #
-  I18n.t('Fixed')     #6	Corrigée        #
-  I18n.t('Closed')    #7	Clôturée        #
-  I18n.t('Cancelled') #8    Annulée         #
-  #######################################
-
   # used in lib/comex_reporting and models/issue.rb
   # Please be EXTREMELY cautious if you touch them.
   OPENED = [ 1, 2, 3, 4, 5 ] # We need to work on it

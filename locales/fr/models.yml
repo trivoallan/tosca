@@ -9,6 +9,18 @@ fr:
   Closed: "Clôturée"
   Cancelled: "Annulée"
 
+  #Issue types
+  Information: Information
+  Incident: Anomalie
+  Evolution: "Évolution"
+  Call-out: Intervention
+  Analysis: Monitorat
+  Delivery: Livraison
+  Documentation: Documentation
+
+  Alert:
+    Hash_value: "Valeur de la clé de hashage"
+
   Archive:
     you_must_select_a_file_to_upload: "Vous devez s\xC3\xA9lectionner un fichier \xC3\xA0 t\xC3\xA9l\xC3\xA9charger"
     you_must_have_a_comment_with_at_least_5_characters: "Votre commentaire doit au moins avoir 5 caract\xC3\xA8res"
@@ -19,6 +31,20 @@ fr:
     the_issue_is_now: "La demande est d\xC3\xA9sormais {{status}}.<br/>"
     File: Fichier
     Size: Taille
+
+  Attachment:
+    File: Fichier
+
+  Changelog:
+    Modification_date: Date de modification
+    Modification_text: Modification
+
+  Client:
+    Context: Context
+    Address: Adress
+    Access_code: Access code
+    Recipients_count: Recipients count
+    Inactive: Inactive
 
   Comment:
     this_issue_seems_to_be_unstable: "Cette demande semble \xC3\xAAtre inconsistante."
@@ -51,8 +77,32 @@ fr:
     Description: Description
     Patch: Patch
     Contributed_on: "Contribué le"
-    Closed_on: "Closed on"
-    Synthesis: "Synthesis"
+    Closed_on: "Fermé le"
+    Synthesis: "Synthèse"
+
+  Contributionstate:
+    Description: Description
+
+  Contributiontype:
+    Description: Description
+
+  Elapsed:
+    Taken_into_account: Prise en compte
+    Workaround: Contournement
+    Correction: Correction
+    Until_now: "Jusqu'à maintenant"
+
+  Hyperlink:
+    Model_type: Type
+    Model_id: Id
+
+  Issue:
+    the_client_of_this_contract_is_not_consistant_with_the_client_of_this_recipient: "Le client de ce contrat est incoh\xC3\xA9rent avec le client du b\xC3\xA9n\xC3\xA9ficiaire."
+    Resume: "Résumé"
+    Mail_cc: Mail cc
+    Expected_on: Attendue le
+
+
 
   Release:
     Packaged: "Empaquetée"

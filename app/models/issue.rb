@@ -34,39 +34,33 @@ class Issue < ActiveRecord::Base
   belongs_to :recipient, :class_name => 'User',
     :conditions => 'users.client_id IS NOT NULL'
   belongs_to :engineer, :class_name => 'User',
-  :conditions => 'users.client_id IS NULL'
+    :conditions => 'users.client_id IS NULL'
   belongs_to :submitter, :class_name => 'User',
     :foreign_key => 'submitter_id'
 
   belongs_to :contract
   belongs_to :contribution
 
-  has_many :comments, :order => "created_on ASC", :dependent => :destroy
+  has_many :comments, :order => 'created_on ASC', :dependent => :destroy
   has_many :attachments, :through => :comments
   has_many :subscriptions, :as => :model, :dependent => :destroy
 
   named_scope :actives, lambda { |contract_ids| { :conditions =>
-      { :statut_id => Statut::OPENED, :contract_id => contract_ids }
+        { :statut_id => Statut::OPENED, :contract_id => contract_ids }
     }
   }
   named_scope :inactives, lambda { |contract_ids| { :conditions =>
-      { :statut_id => Statut::CLOSED, :contract_id => contract_ids }
+        { :statut_id => Statut::CLOSED, :contract_id => contract_ids }
     }
   }
 
-  # Used for digest report see
-  I18n.t('year')
-  I18n.t('month')
-  I18n.t('week')
-  I18n.t('day')
-
   # Key pointers to the issue history
   # /!\ used to store the description /!\
-  belongs_to :first_comment, :class_name => "Comment",
-    :foreign_key => "first_comment_id"
+  belongs_to :first_comment, :class_name => 'Comment',
+    :foreign_key => 'first_comment_id'
   # /!\ the last _public_ comment /!\
-  belongs_to :last_comment, :class_name => "Comment",
-    :foreign_key => "last_comment_id"
+  belongs_to :last_comment, :class_name => 'Comment',
+    :foreign_key => 'last_comment_id'
 
   # Validation
   validates_presence_of :resume, :contract, :description, :recipient,
@@ -82,7 +76,7 @@ class Issue < ActiveRecord::Base
   validate do |record|
     if record.contract.nil? || record.recipient.nil? ||
         (record.contract.client_id != record.recipient.client_id)
-      record.errors.add_to_base I18n.t('The client of this contract is not consistant with the client of this recipient.')
+      record.errors.add_to_base I18n.t(:the_client_of_this_contract_is_not_consistant_with_the_client_of_this_recipient)
     end
   end
 
@@ -93,7 +87,7 @@ class Issue < ActiveRecord::Base
   # See ApplicationController#scope
   def self.set_scope(contract_ids)
     scope = { :conditions =>
-      [ 'issues.contract_id IN (?)', contract_ids ] }
+        [ 'issues.contract_id IN (?)', contract_ids ] }
     self.scoped_methods << { :find => scope, :count => scope }
   end
 
@@ -122,7 +116,7 @@ class Issue < ActiveRecord::Base
   end
 
   def full_software_name
-    result = ""
+    result = ''
     result = software.name if self.software
     result = version.full_software_name if self.version
     result = release.full_software_name if self.release
@@ -183,14 +177,14 @@ class Issue < ActiveRecord::Base
 
   def find_status_comment_before(comment)
     options = { :order => 'created_on DESC', :conditions =>
-      [ 'comments.statut_id IS NOT NULL AND comments.created_on < ?',
+        [ 'comments.statut_id IS NOT NULL AND comments.created_on < ?',
         comment.created_on ]}
     self.comments.first(options)
   end
 
   def last_status_comment
     options = { :order => 'created_on DESC', :conditions =>
-      'comments.statut_id IS NOT NULL' }
+        'comments.statut_id IS NOT NULL' }
     self.comments.first(options)
   end
 
@@ -236,8 +230,8 @@ class Issue < ActiveRecord::Base
 
   def self.content_columns
     @content_columns ||= columns.reject { |c| c.primary ||
-      c.name =~ /(_id|_on|resume)$/ ||
-      c.name == inheritance_column }
+        c.name =~ /(_id|_on|resume)$/ ||
+        c.name == inheritance_column }
   end
 
   def client

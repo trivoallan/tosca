@@ -21,21 +21,10 @@ class Issuetype < ActiveRecord::Base
   has_many :issues
   has_many :workflows
 
-  ####################
-  I18n.t("Information")
-  I18n.t("Incident")
-  I18n.t("Evolution")
-  I18n.t("Call-out")
-  I18n.t("Analysis")
-  I18n.t("Delivery")
-  I18n.t("Documentation")
-  ####################
-
   # Only ids, it's use is restricted to expert view
   def allowed_statuses_ids(from_status_id)
-    w = self.workflows.first(:conditions => {:statut_id => from_status_id})
-    if w
-      res = w.allowed_status_ids
+    if self.workflows.first(:conditions => {:statut_id => from_status_id})
+      w.allowed_status_ids
     else # default case : nearly all statuses
       [2,3,4,5,6,7,8].delete_if{|s| s == from_status_id}
     end
