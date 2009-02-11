@@ -1,5 +1,5 @@
-<%= public_link_to t('Homepage') , welcome_path %> >
- <%= public_link_to t('Software') , softwares_path %> >
+<%= public_link_to t(:Homepage) , welcome_path %> >
+ <%= public_link_to t(:'Models.Software') , softwares_path %> >
   <%= public_link_to @software.group, group_path(@software.group_id) %> >
    <%= @software %> <%= link_to_edit(@software) %>
     <% expert = @session_user and @session_user.engineer? %>
@@ -15,8 +15,8 @@
             <% end %>
           </td>
         </tr>
-        <tr><th><%= t('Summary') %></th>
-        <td><%= @software.resume %></td></tr>
+        <tr><th><%= t('Software.Summary') %></th>
+        <td><%= @software.summary %></td></tr>
         <tr>
           <td colspan="2">
             <fieldset>
@@ -27,12 +27,6 @@
             </fieldset>
           </td>
         </tr>
-        <% if expert %>
-          <tr>
-            <th><%= t('Reference') %></th>
-            <td><%=h @software.referent %></td>
-          </tr>
-        <% end %>
 
         <tr>
           <th><%= t(:'Models.License') %></th>
@@ -57,7 +51,7 @@
         </tr>
 
         <tr>
-          <td><b><%= t('Links') %></b> <%= link_to_new_hyperlink("software", @software.id) %></td>
+          <td><b><%= t('Models.Hyperlink').pluralize %></b> <%= link_to_new_hyperlink("software", @software.id) %></td>
           <% options = {:no_title => true, :edit => 'hyperlink'} %>
           <td><%= show_list(@software.hyperlinks, 'hyperlink', options) {|u|
               "<a href=\"#{u.name.urlize}\" target=\"_blank\">#{u.name}</a>"
@@ -71,7 +65,8 @@
     <div class="show">
       <table>
         <tr>
-          <td colspan="2"><b><%=t('Issues')%></b> <%= link_to_new_issue(:software_id => @software.id)%> <br />
+          <td colspan="2"><b><%=t(:'Models.Issue').pluralize %></b>
+                          <%= link_to_new_issue(:software_id => @software.id)%> <br />
             <% options[:edit] = nil %>
             <% options[:public_summarized] = true %>
             <% if @issues.size > 0  %>
@@ -82,13 +77,13 @@
         </tr>
 
         <tr>
-          <td colspan="2"><b><%=t('Contributions')%></b>
+          <td colspan="2"><b><%=t(:'Models.Contribution').pluralize %></b>
             <%= link_to_new_contribution(nil, :software_id => @software.id)%><br />
             <%= public_table_of_contributions(@software.contributions) %> </td>
         </tr>
 
         <tr>
-          <td><b><%=t('Tags')%></b></td>
+          <td><b><%=t('Models.Tag').pluralize %></b></td>
           <td><%= @software.tag_list %></td>
         </tr>
       </table>

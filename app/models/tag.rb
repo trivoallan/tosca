@@ -60,12 +60,12 @@ class Tag
   end
 
   def self.get_generic_tag
-    return Tag.all(:conditions => ["skill_id IS NULL and contract_id IS NULL"] )
+    return Tag.all(:conditions => ['skill_id IS NULL and contract_id IS NULL'] )
   end
 
   def self.get_skill_tag(skills = nil)
     if skills.nil?
-      conditions = ["skill_id IS NOT NULL"]
+      conditions = ['skill_id IS NOT NULL']
     else
       conditions = ["skill_id IN (?) ", skills ]
     end
@@ -74,7 +74,7 @@ class Tag
 
   def self.get_contract_tag(contracts = nil)
     if contracts.nil?
-      conditions = ["contract_id IS NOT NULL"]
+      conditions = ['contract_id IS NOT NULL']
     else
       conditions = ["contract_id IN (?) ", contracts ]
     end

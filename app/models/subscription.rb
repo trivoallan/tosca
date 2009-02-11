@@ -26,10 +26,10 @@ class Subscription < ActiveRecord::Base
 
   validates_presence_of :user, :model
   validates_uniqueness_of :user_id, :scope => [ :model_type, :model_id ],
-    :message => I18n.t('You can be suscribe only one time on this model.')
+    :message => I18n.t(:'Subscription.you_can_be_subscribed_only_one_time_on_this_model')
 
   def name
-    I18n.t('Subscription for {{user_name}} on {{model_type}} #{{model_id}}',
+    I18n.t(:subscription_for_user_name_on_model_type_model_id,
       :user_name => self.user.name, :model_type => self.model_type,
       :model_id => self.model_id)
   end
@@ -45,7 +45,7 @@ class Subscription < ActiveRecord::Base
     return true if self.model_type != 'Contract'
     similars = { :model_type => self.model_type, :model_id => self.model_id }
     if self.class.count(:conditions => similars) <= 1
-      self.errors.add_to_base(I18n.t('You can not unsubscribe to this contract, because your are the only one watching it.'))
+      self.errors.add_to_base(I18n.t(:you_can_not_unsubscribe_to_this_contract_because_your_are_the_only_one_watching_it))
       false
     else
       true
