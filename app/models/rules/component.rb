@@ -43,7 +43,7 @@ class Rules::Component < ActiveRecord::Base
 
   def short_description
     if max == -1
-      t('unlimited offer')
+      t(:unlimited_offer)
     else
       t('unlimited offer covering a maximum of %d components') % max
     end

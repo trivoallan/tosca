@@ -9,6 +9,8 @@ en:
   Closed: "Closed"
   Cancelled: "Cancelled"
 
+  Component:
+    unlimited_offer: "unlimited offer"
 
   Release:
     Packaged: Packaged

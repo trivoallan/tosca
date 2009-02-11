@@ -9,6 +9,8 @@ fr:
   Closed: "Clôturée"
   Cancelled: "Annulée"
 
+  Component:
+    unlimited_offer: "offre illimit\xC3\xA9e"
 
   Release:
     Packaged: "Empaquetée"
