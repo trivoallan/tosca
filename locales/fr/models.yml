@@ -3,28 +3,65 @@ fr:
     tag: "étiquette"
 
   # Statuses
-  Submitted: "Enregistrée"
-  Accepted: "Acceptée"
-  Suspended: Suspendue
-  Analysed: "Analysée"
-  Bypassed: "Contournée"
-  Fixed: "Corrigée"
-  Closed: "Clôturée"
-  Cancelled: "Annulée"
-  # Teams
-  Team: "Équipe"
-  Contact: Contact
-  Manager: Responsable
-  Motto: Devise
-  Members : Membres
-  # Version
-  Version: Version
-  Generic: Générique
-  # Release
-  Release: "Révision"
-  Packaged: "Empaquetée"
-  Active: "Actif"
-  Inactive: "Inactive"
-  Changelog: "Journal des modifications"
-  # Contract
-  Contract: Contrat
+  submitted: "enregistrée"
+  accepted: "acceptée"
+  suspended: suspendue
+  analysed: "analysée"
+  bypassed: "contournée"
+  fixed: "corrigée"
+  closed: "clôturée"
+  cancelled: "annulée"
+  
+  team:
+    contact: contact
+    manager: responsable
+    motto: devise
+    members : membres
+
+  version:
+    generic: "générique"
+  
+  release:
+    packaged: "empaquetée"
+    active: "actif"
+    inactive: "inactive"
+
+  #Name of models
+  models:
+    alert: alerte
+    client: client
+    contribution: contribution
+    group: groupe
+    knowledge: connaissance
+    picture: image
+    rules:
+      component: composant
+      credit: "crédit"
+    statut: statut
+    archive: archive
+    comment: commentaire
+    contributionstate: "état d'une contribution"
+    hyperlink: "url"
+    license: licence
+    preference: "préférence"
+    severity: "sévérité"
+    subscription: souscription
+    user: utilisateur
+    attachment: "pièce jointe"
+    commitment: "engagement"
+    contributiontype: "type de contributon"
+    issue: "demande"
+    notifier: "notifier"
+    release: "révision"
+    skill: "compétence"
+    tag: tag
+    version: version
+    changelog: "note de révisions"
+    contract: "contrat"
+    elapsed: "écoulé"
+    issuetype: "type de demande"
+    permission: permission
+    role: "rôle"
+    software: "logiciel"
+    team: "équipe"
+    workflow: "flux de travail"
