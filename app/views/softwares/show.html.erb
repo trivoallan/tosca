@@ -1,8 +1,8 @@
 <%= public_link_to t('Homepage') , welcome_path %> >
-<%= public_link_to t('Software') , softwares_path %> >
-<%= public_link_to @software.group, group_path(@software.group_id) %> >
-<%= @software %> <%= link_to_edit(@software) %>
-<% expert = @session_user and @session_user.engineer? %>
+ <%= public_link_to t('Software') , softwares_path %> >
+  <%= public_link_to @software.group, group_path(@software.group_id) %> >
+   <%= @software %> <%= link_to_edit(@software) %>
+    <% expert = @session_user and @session_user.engineer? %>
 <div class="subcolumns">
   <div class="c50l">
     <div class="show">
@@ -35,24 +35,24 @@
         <% end %>
 
         <tr>
-          <th><%= t('Copyright') %></th>
+          <th><%= t(:'Models.License') %></th>
           <td><%=h @software.license.name if @software.license %></td>
         </tr>
 
         <tr>
-          <th><%= t('Technologies') %></th>
+          <th><%= t(:'Software.Knowledges') %></th>
           <td><%= @software.skills.collect{|c| c.name}.join(', ') %></td>
         </tr>
 
         <tr>
-          <th><%= t('Group') %></th>
+          <th><%= t(:'Models.Group') %></th>
           <td><%= public_link_to(@software.group.name, group_path(@software.group_id) ) if @software.group %></td>
         </tr>
 
         <tr>
           <%# collecting before calling .size to versions allows to skip a COUNT(*) request %>
           <% versions = @software.versions.collect{|v| link_to_version v}.join(', ') %>
-          <th><%=n_('Version', 'Versions', @software.versions.size)%> <%= link_to_new_version(@software) %></th>
+          <th><%= pluralize(@software.versions.size, t(:'Models.Version')) %> <%= link_to_new_version(@software) %></th>
           <td><%= versions %></td>
         </tr>
 

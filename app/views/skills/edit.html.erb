@@ -1,8 +1,8 @@
-<h1><%= t('Editing skill')%></h1>
+<h1><%= t(:Edit)%></h1>
 
 <% form_tag skill_path(@skill), :method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag t('Edit') %>
+  <%= submit_tag t(:Validate) %>
 <% end %>
 
 <br />

@@ -108,12 +108,17 @@ fr:
     Mail_cc: Mail cc
     Expected_on: Attendue le
 
-
-
   Release:
     Packaged: "Empaquetée"
     Active: "Activée"
     Inactive: "Inactive"
+
+  Skill:
+    Ressources: "Ressources"
+
+  Software:
+    Logo: Logo
+    Knowledges: Technologies
 
   Statut:
     Active: "Actif"

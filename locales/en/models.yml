@@ -113,6 +113,13 @@ en:
     Active: Active
     Inactive: Inactive
 
+  Skill:
+    Ressources: "Ressources"
+
+  Software:
+    Logo: Logo
+    Knowledges: Technologies
+
   Statut:
     Active: Active
     Description: Description

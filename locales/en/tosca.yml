@@ -9,6 +9,8 @@ en:
   Validate: Valider
   Submit: Valider
   Description: Description
+  Id: Id
+  By: By
   Destroy: Destroy
   Model: Model
   Homepage: "Home page"

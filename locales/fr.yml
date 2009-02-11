@@ -288,7 +288,7 @@ fr:
   progress: Progression
   an_image_was_successfully_created: "Une image a bien \xC3\xA9t\xC3\xA9 cr\xC3\xA9\xC3\xA9e."
   group: Groupe
-  
+
   unlink_the_contribution: "D\xC3\xA9lier la contribution"
   no_entries_found: "Aucun r\xC3\xA9sultat"
   resources: Ressources
@@ -617,7 +617,6 @@ fr:
   a_new_commitment: A nouvel engagement
   you_may_also_add_a_file: Vous pouvez aussi ajouter un fichier
   your_new_password_has_been_generated: "Votre nouveau mot de passe a \xC3\xA9t\xC3\xA9 g\xC3\xA9n\xC3\xA9r\xC3\xA9."
-  skills: "Comp\xC3\xA9tences"
   minor: Mineure
   packaged: "Packag\xC3\xA9"
   consult_all_issues: Consulter toutes les demandes

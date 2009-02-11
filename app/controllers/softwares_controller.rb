@@ -27,10 +27,10 @@ class SoftwaresController < ApplicationController
   # ajaxified list
   def index
     scope = nil
-    @title = t('List of software')
+    @title = t(:Index)
     if @session_user and @session_user.recipient? && params['active'] != '0'
       scope = :supported
-      @title = t('List of your supported software')
+      @title = t(:'softwares.your_software')
     end
 
     options = { :order => 'softwares.name', :include =>
@@ -90,10 +90,6 @@ class SoftwaresController < ApplicationController
     end
   end
 
-  def card
-    @software = Software.find(params[:id])
-  end
-
   def new
     @software = Software.new
     _form
@@ -102,7 +98,7 @@ class SoftwaresController < ApplicationController
   def create
     @software = Software.new(params[:software])
     if @software.save and add_logo
-      flash[:notice] = t('The software %s has been created succesfully.') % @software.name
+      flash[:notice] = t(:successfully_created, :name => @software.name)
       redirect_to software_path(@software)
     else
       add_image_errors
@@ -118,7 +114,7 @@ class SoftwaresController < ApplicationController
   def update
     @software = Software.find(params[:id])
     if @software.update_attributes(params[:software]) and add_logo
-      flash[:notice] = t('The software %s has been updated successfully.') % @software.name
+      flash[:notice] = t(:successfully_updated, :name => @software.name)
       redirect_to software_path(@software)
     else
       add_image_errors
@@ -129,7 +125,6 @@ class SoftwaresController < ApplicationController
   def destroy
     @software = Software.find(params[:id])
     @software.destroy
-    flash[:notice] = t('The software %s has been successfully deleted.') % @software.name
     redirect_to softwares_path
   end
 
