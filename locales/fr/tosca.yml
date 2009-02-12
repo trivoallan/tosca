@@ -41,6 +41,7 @@ fr:
   Reporting: Reporting
   Customers: Clients
   Connected: "connecté"
+  a_version: une version
 
   # NB: Quotes around Yes/No are mandatory since
   #     they are keyword, as of Ruby 1.8.6

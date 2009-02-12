@@ -8,3 +8,17 @@ fr:
     all_software_desc: "Affiche tous les logiciels"
     my_supported_software: "Mes logiciels supportés"
     my_supported_software_desc: "Affiche uniquement les logiciels supportés dans le cadre de votre contrat."
+
+    #Welcome
+    has_an_administration_interface: "possède une interface d'administration"
+    has_a_pretty_print_page: "possède une page pour s'imprimer"
+    allows_to_post_suggestions: permet de faire des suggestion
+    displays_informations: affiche des informations
+    allows_to_become_an_other_one: permet de devenir un autre
+    allows_to_log_in_in_the_application: "permet de se connecter à l'application"
+    display_this_map: affiche ce plan
+    allows_to_comment: permet de commenter
+    prints_the_life_cycle_of_an_issue: affiche le cycle de vie d'une demande
+    is_ajaxified: est Web 2.0 !
+    allows_to_export_datas_in_ods: permet de faire des exports ODS
+    s_theme: "thème {{value}}"

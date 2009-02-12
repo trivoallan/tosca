@@ -121,7 +121,7 @@ EOS
   end
 
   def link_to_issues
-    link_to(I18n.t('Issues'), issues_path, :title =>
+    link_to(I18n.t(:'Models.Issue').capitalize.downcase, issues_path, :title =>
             I18n.t('Consult issues'))
   end
 

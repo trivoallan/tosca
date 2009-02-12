@@ -37,7 +37,7 @@ fr:
   out_of_time: "Hors d\xC3\xA9lais"
   updated_on: "Mis \xC3\xA0 jour le"
   statut_was_successfully_updated: "Le statut a \xC3\xA9t\xC3\xA9 mis \xC3\xA0 jour avec succ\xC3\xA8s."
-  allows_to_become_an_other_one: permet de devenir un autre
+  
   you_will_observe_in_particular_that_the_numbers_have_sometimes_on_their_right_side_a_second_number_between_brackets_the_first_corresponds_to_the_number_of_issues_whereas_the_second_indicates_if_needed_which_issues_are_still_active: "Vous observerez notamment que les nombres sont parfois accompagn\xC3\xA9s d'un second nombre entre parenth\xC3\xA8ses. Le premier correspond au nombre de demandes, alors que le second indique, si cela est n\xC3\xA9cessaire, quelles sont les demandes encore \xE2\x80\x9Cen activit\xC3\xA9\xE2\x80\x9C. "
   detailed_description: "Description d\xC3\xA9taill\xC3\xA9e"
   submission_of_an_issue: "D\xC3\xA9poser une demande"
@@ -57,7 +57,7 @@ fr:
   submit_an_issue: "D\xC3\xA9poser une demande"
   finished: "Termin\xC3\xA9es"
   immediate: "Imm\xC3\xA9diat"
-  allows_to_comment: permet de commenter
+  
   by_contract: Par contrat
   next_page: Page suivante
   total_in_progress_br_end_week: Total en cours <br /> fin de semaine
@@ -190,7 +190,7 @@ fr:
   user_team: "\xC3\x89quipe"
   a_team: "une équipe"
   modification_text: Texte de modification
-  prints_the_life_cycle_of_an_issue: affiche le cycle de vie d'une demande
+  
   concerning_the_contract: Portant sur le contrat
   internal_mailing_list: Mailing liste interne
   team: "[ \xC3\x89quipe ]"
@@ -225,7 +225,7 @@ fr:
   see_the_digest: "Consulter le rapport synthétique"
   workaround_time_of_the_issues_in_working_days: "Temps de contournement des demandes en jours ouvrées"
   affected_version: "Version concernée"
-  is_ajaxified: est Web 2.0 !
+  
   to_date: " à ce jour"
   list_of_the_clients: Liste des clients
   teams_managing_this_contract: "\xC3\x89quipes gérant ce contrat"
@@ -251,10 +251,9 @@ fr:
   total: TOTAL
   consult_issues: Consulter les demandes
   user_list: Liste des utilisateurs
-  from: de
-
+  
   a_maintainer: un mainteneur
-  allows_to_export_datas_in_ods: permet de faire des exports ODS
+  
   attachment: Fichier joint
   private:
   weekly_digest_for: "Activité hebdomadaire pour "
@@ -286,7 +285,7 @@ fr:
   a_new_url: une nouvelle url
   submitted_on:
   contract_was_successfully_updated: "Le contrat a été mis à jour avec succès."
-  has_an_administration_interface: "possède une interface d'administration"
+  
   show_issues_waiting_to_be_processed: "montrer les demandes qui attendent d'\xC3\xAAtre traitées"
   view_the: Voir le
   tags_list: Listes des Tags
@@ -324,7 +323,7 @@ fr:
   skill_was_successfully_created: "La compétence a été créée avec succès."
   team_s: "\xC3\x89quipe %s"
 
-  allows_to_post_suggestions: permet de faire des suggestion
+  
   value_login: Connection au {{value}}
   nota_one_day_work_corresponds_to_the_time_of_opening_of_the_daily_service_defined_in_the_contract_s_s_that_is_to_say_s_hours: "Nota : Un jour ouvré correspond au temps d'ouverture quotidien du service défini dans le contract %s : %s, soit %s heures."
   resp: Resp.
@@ -397,7 +396,7 @@ fr:
   comments: Commentaires
   technologie_s: Technologie(s)
   you_cann_also_see_the_s: Vous pouvez aussi voir le %s
-  has_a_pretty_print_page: "possède une page pour s'imprimer"
+  
   fixed_version: "Corrigé dans la version"
   team_s_was_successfully_created: "L'équipe '%s' a été créé avec succès."
   list_of_the_possible_contractual_commitments_of_a_contract: Liste des engagements contractuels
@@ -573,13 +572,13 @@ fr:
   new_severity: "Nouvelle sévérité"
   the_working_days_are_from_monday_to_friday_except_weekends_and_public_holidays: "Les jours ouvrés sont du Lundi au Vendredi, sauf week-ends et jours fériés."
   period: "Période"
-  s_theme: "thème %s"
+  
 
   model_type: Type
   the_url_was_successfully_created: "L'url a bien été créée avec succès."
   this_address_is_not_valid_if_you_think_this_is_an_error_do_not_hesitate_to_contact_us: "Cette adresse n'est pas valide. Si vous pensez que c'est une erreur, n'hésitez pas à nous contacter"
 
-  display_this_map: affiche ce plan
+  
   list_of_your_supported_software: "Liste de vos logiciels supportés"
   caption: "Légende"
   list_of_components_offers: Liste des offres par composants
@@ -600,7 +599,7 @@ fr:
   issue: Demande
   a_package: un paquet
   and: et
-  displays_informations: affiche des informations
+  
   a_new_user: un nouvel utilisateur
 
   edit_this_contribution: Modifier cette contribution

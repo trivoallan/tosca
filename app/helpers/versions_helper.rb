@@ -29,7 +29,7 @@ module VersionsHelper
   def link_to_new_version(software = nil)
     return '' unless software
     path = new_version_path(:software_id => software.id)
-    link_to(image_create(I18n.t('a package')), path)
+    link_to(image_create(I18n.t(:a_version)), path)
   end
 
 end
