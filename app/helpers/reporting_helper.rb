@@ -182,7 +182,10 @@ module ReportingHelper
       first_col = @first_col
     end
     options.update(:width => '5%')
-    cleaned_data = remove_empty_columns(data.dup)
+    # The remove_empty_columns does not know what to do with
+    # with 2 rows mechanism
+    cleaned_data = (options.has_key?(:separated) ?
+                    data : remove_empty_columns(data))
     size = cleaned_data.size
     if options.has_key?(:cut_table) && size >= 4
       cut = size / 2
