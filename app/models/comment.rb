@@ -91,6 +91,13 @@ class Comment < ActiveRecord::Base
     (self.id == self.issue.first_comment_id)
   end
 
+  # See ApplicationController#scope
+  def self.set_private_scope()
+    scope = { :conditions => [ 'comments.private = ?', false ] }
+    self.scoped_methods << { :find => scope, :count => scope }
+  end
+
+
   private
 
   # We destroy a few things, if appropriate
