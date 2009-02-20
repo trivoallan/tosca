@@ -5,8 +5,12 @@
 <% class_collapsed = 'collapsed' %>
 <% class_collapsed = '' if not_collapsed %>
 
-<div id="comment_<%=comment.id%>"
-     class="comment-container <%=class_collapsed%> <%=(comment.private? ? 'private' : 'public')%>">
+<% private = comment.private? %>
+<% # It should not happen : comments list is filtered before requesting DB %>
+<% # It's a paranoid protection : a private comment won't be displayed. %>
+<% if (!private) or (private and @session_user.engineer?) %>
+ <div id="comment_<%=comment.id%>"
+     class="comment-container <%=class_collapsed%> <%=(private ? 'private' : 'public')%>">
   <div class="comment-header" onclick="tosca_toggle_comment('comment_<%=comment.id%>')">
     <% if user %><strong><%= user.name %></strong><% end %>
     - <span><%= comment.created_on.to_s(:short) %></span>
@@ -37,4 +41,5 @@
      </tr>
     </table>
   </div>
-</div>
+ </div>
+<% end %>
