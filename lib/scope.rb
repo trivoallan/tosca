@@ -52,6 +52,8 @@ module Scope
         end
         @@scope_contract.each {|m| m.set_scope(contract_ids) }
         @@scope_client.each {|m| m.set_scope(client_ids) }
+        # Forbid access to private comments for recipients. It's just paranoia.
+        Comment.set_private_scope if user.recipient?
       end
     else
       # Forbid access to issue if we are not connected. It's just a paranoia.
@@ -68,6 +70,7 @@ module Scope
       if ((user.engineer? and user.restricted?) || user.recipient?)
         @@scope_client.each(&:remove_scope)
         @@scope_contract.each(&:remove_scope)
+        Comment.remove_scope if user.recipient?
       end
     else
       Issue.remove_scope
