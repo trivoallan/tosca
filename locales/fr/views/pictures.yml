@@ -1,0 +1,9 @@
+fr:
+  pictures:
+    Index: "Liste des images"
+    index:
+      a_picture: "une image"
+      Preview: "Aperçu"
+    New: "Nouvelle image"
+    Edit: "Modifier l'image"
+    Show: "Image"

@@ -33,7 +33,7 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new(params[:picture])
     if @picture.save
-      flash[:notice] = t("An image was successfully created.")
+      flash[:notice] = t(:successfully_created, :name => @picture)
       redirect_to picture_path(@picture)
     else
       render :action => 'new'
@@ -47,7 +47,7 @@ class PicturesController < ApplicationController
   def update
     @picture = Picture.find(params[:id])
     if @picture.update_attributes(params[:picture])
-      flash[:notice] = t("An image was successfully updated.")
+      flash[:notice] = t(:successfully_updated, :name => @picture)
       redirect_to picture_path(@picture)
     else
       render :action => 'edit'

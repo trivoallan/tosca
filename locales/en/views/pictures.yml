@@ -1,0 +1,9 @@
+en:
+  pictures:
+    Index: "Pictures"
+    index:
+      a_picture: "a picture"
+      Preview: Preview
+    New: "New picture"
+    Edit: "Edit picture"
+    Show: "Picture"
