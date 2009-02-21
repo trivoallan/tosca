@@ -21,4 +21,4 @@ en:
     prints_the_life_cycle_of_an_issue: 'prints the life cycle of an issue'
     is_ajaxified: 'is ajaxified'
     allows_to_export_datas_in_ods: 'allows to export datas in ODS'
-    s_theme: {{value}} theme
+    s_theme: "{{value}} theme"
