@@ -69,8 +69,9 @@ class ContractsController < ApplicationController
 
   def new
     # TODO : put default contract into a config yml file ?
-    @contract = Contract.new(:client_id => params[:id], :rule_type =>
-          'Rules::Component', :opening_time => 9, :closing_time => 18)
+    @contract = Contract.new(:client_id => params[:client_id],
+                             :rule_type => 'Rules::Component',
+                             :opening_time => 9, :closing_time => 18)
     _form
   end
 
