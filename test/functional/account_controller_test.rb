@@ -22,27 +22,27 @@ require File.dirname(__FILE__) + '/../test_helper'
 class AccountControllerTest < ActionController::TestCase
 
   def test_login_and_logout
-    %w(admin manager expert customer viewer).each { |l|
+    %w(admin manager expert customer viewer).each do |l|
       login l, l
       assert_response :redirect
       # strange initialisation bug with welcome_path
-      assert_redirected_to({:action => "index", :controller => "welcome"})
+      assert_redirected_to '/welcome'
       assert session[:user] == User.find_by_login(l)
 
       logout
       assert_redirected_to '/'
       assert session[:user].nil?
-    }
+    end
   end
 
   def test_new
-    %w(admin manager).each { |l|
+    %w(admin manager).each do |l|
       login l, l
       get :new
       assert_response :redirect
       assert_redirected_to signup_new_account_path
       # TODO : test ajax things. See issues_controller_test if you need sample
-    }
+    end
   end
 
   def test_forgotten_password

@@ -62,7 +62,7 @@ class AccountController < ApplicationController
 
     # in case of "su" style use, relog to previous one
     _login(last_user) if last_user
-    redirect_to "/"
+    redirect_to '/'
   end
 
   def new

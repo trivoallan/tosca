@@ -75,24 +75,27 @@
      </tr>
     <% end %>
 
-    <% if @session_user.engineer? %>
+<%
+=begin
+     if @session_user.engineer?
     <tr>
       <td colspan="2"><hr/></td>
     </tr>
     <tr>
-      <td><label for="user_preferred_digest_daily"><%= _("Receive a summary of daily activities") %></label></td>
-      <td><%= check_box :user, :preferred_digest_daily %></td>
+      <td><label for="user_preferred_digest_daily"><%= _("Receive a summary of daily activities") ></label></td>
+      <td><%= check_box :user, :preferred_digest_daily ></td>
     </tr>
     <tr>
-      <td><label for="user_preferred_digest_weekly"><%= _("Receive a summary of weekly activities") %></label></td>
-      <td><%= check_box :user, :preferred_digest_weekly %></td>
+      <td><label for="user_preferred_digest_weekly"><%= _("Receive a summary of weekly activities") ></label></td>
+      <td><%= check_box :user, :preferred_digest_weekly ></td>
     </tr>
     <tr>
-      <td><label for="user_preferred_digest_monthly"><%= _("Receive a summary of monthly activities") %></label></td>
-      <td><%= check_box :user, :preferred_digest_monthly %></td>
+      <td><label for="user_preferred_digest_monthly"><%= _("Receive a summary of monthly activities") ></label></td>
+      <td><%= check_box :user, :preferred_digest_monthly ></td>
     </tr>
-    <% end %>
-
+    <% end >
+=end
+%>
     <% if manager %>
      <tr>
       <td colspan="2"><hr /></td>

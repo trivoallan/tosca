@@ -49,9 +49,13 @@ class User < ActiveRecord::Base
 
 
   #Preferences
+=begin
+  deactivated, since preference plugin is broken with Rails 2.2
+  TODO : fix it and restore it
   preference :digest_daily, :default => false
   preference :digest_weekly, :default => false
   preference :digest_monthly, :default => false
+=end
 
   def pwd
     @pwd
