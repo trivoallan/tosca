@@ -31,7 +31,7 @@ module IssuesHelper
       text = ''
       text << "##{issue.id} " if options.has_key? :show_id
       text << "#{StaticPicture::severity(issue)} " if options.has_key? :icon_severity
-      text << truncate(issue.resume, limit) if limit > 0
+      text << truncate(issue.resume, :length => limit) if limit > 0
     end
     link_to text, issue_path(issue)
   end
