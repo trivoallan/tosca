@@ -530,29 +530,49 @@ module TMail
   end
 end
 
-# Add the possibility to create an aut_complete on methods
-module AutoComplete
-  module ClassMethods
-    def auto_complete_for(object, method, model = nil, field = nil, options = {})
-      define_method("auto_complete_for_#{object}_#{method}") do
-        if object.to_s.camelize.constantize.methods.include? method.to_s
-          search = params[object][method]
-          collection = object.to_s.camelize.constantize.all(options)
-          result = []
-          collection.each do |c|
-            result.push c if c.send(method).downcase.include? search.downcase or search == "*"
-          end
-          limit = options[:limit].nil? ? 10 : options[:limit]
-          @items = result.sort_by {|r| r.send(method)}[0..limit]
-        else
-          find_options = {
-            :conditions => [ "LOWER(#{method}) LIKE ?", '%' + params[object][method].downcase + '%' ],
-            :order => "#{method} ASC",
-            :limit => 10 }.merge!(options)
-          @items = object.to_s.camelize.constantize.all(find_options)
+# Add the possibility to create an auto_complete on methods
+module AutoComplete::ClassMethods
+  def auto_complete_for(object, method, model = nil, field = nil, options = {})
+    define_method("auto_complete_for_#{object}_#{method}") do
+      if object.to_s.camelize.constantize.methods.include? method.to_s
+        search = params[object][method]
+        collection = object.to_s.camelize.constantize.all(options)
+        result = []
+        collection.each do |c|
+          result.push c if c.send(method).downcase.include? search.downcase or search == "*"
         end
-        render :inline => "<%= auto_complete_choice('#{object}', '#{method}', @items, '#{model}[#{field}_ids]') %>"
+        limit = options[:limit].nil? ? 10 : options[:limit]
+        @items = result.sort_by {|r| r.send(method)}[0..limit]
+      else
+        find_options = {
+          :conditions => [ "LOWER(#{method}) LIKE ?", '%' + params[object][method].downcase + '%' ],
+          :order => "#{method} ASC",
+          :limit => 10 }.merge!(options)
+        @items = object.to_s.camelize.constantize.all(find_options)
       end
+      render :inline => "<%= auto_complete_choice('#{object}', '#{method}', @items, '#{model}[#{field}_ids]') %>"
     end
   end
+end
+
+class Test::Unit::TestCase
+
+  class << self
+    #Add loading fixtures from extentions
+    def fixtures(*table_names)
+      if table_names.first == :all
+        table_names = Dir["#{fixture_path}/*.yml"] + Dir["#{fixture_path}/*.csv"] +
+          Dir["#{RAILS_ROOT}/vendor/extensions/*/test/fixtures/*.yml"] +
+          Dir["#{RAILS_ROOT}/vendor/extensions/*/test/fixtures/*.csv"]
+        table_names.map! { |f| File.basename(f).split('.')[0..-2].join('.') }
+      else
+        table_names = table_names.flatten.map { |n| n.to_s }
+      end
+
+      self.fixture_table_names |= table_names
+      require_fixture_classes(table_names)
+      setup_fixture_accessors(table_names)
+    end
+  end
+
 end

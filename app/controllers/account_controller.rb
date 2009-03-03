@@ -233,10 +233,6 @@ class AccountController < ApplicationController
     @user = (user_id.blank? ? User.new : User.find(user_id))
   end
 
-  # Format du fichier CSV
-  COLUMNS = [ _('Full name'), _('Title'), _('Email'), _('Phone'),
-              _('Login'), _('Password'), _('Informations') ]
-
 
 private
   def _login(user)
@@ -341,62 +337,5 @@ private
   # of improvements possibility. It's deactivated for now, until
   # someone find some times in order have it work properly
   # require 'fastercsv'
-=begin
-  def multiple_signup
-    _form
-    @user = User.new
-    case request.method
-    when :post
-      if (params['textarea_csv'].to_s.empty?)
-        flash.now[:warn] = _('Enter data under CSV format please')
-      end
-      COLUMNS.each { |key|
-        unless row.include? key
-          flash.now[:warn] = _('The CSV file is not correct')
-        end
-      }
-      if !params.has_key? :user or params[:user][:client].blank?
-        flash.now[:warn] = _('You have to specify a customer')
-      end
-      if !params.has_key? :user or params[:user][:role_ids].blank?
-        flash.now[:warn] = _('Vous must specify a role')
-      end
-
-      return unless flash.now[:warn] == ''
-      flash[:notice] = ''
-
-      FasterCSV.parse(params['textarea_csv'].to_s.gsub("\t", ";"),
-                      { :col_sep => ";", :headers => true }) do |row|
-        user = User.new do |i|
-           logger.debug(row.inspect)
-           i.name = row[_('Full name')].to_s
-           i.title = row[_('Title')].to_s
-           i.email = row[_('Email')].to_s
-           i.phone = row[_('Phone')].to_s
-           i.login = row[_('Login')].to_s
-           i.password = row[_('Password')].to_s
-           i.password_confirmation = row[_('Password')].to_s
-           i.informations = row[_('Informations')].to_s
-           i.client = true
-        end
-        if user.save
-          client = Client.find(params[:client][:id])
-          flash[:notice] += _("The user %s have been successfully created.<br />") % row[_('Full name')]
-          user.create_person(client)
-          options = { :user => user, :controller => self,
-            :password => row[_('Password')].to_s }
-          Notifier::deliver_new_user(options, flash)
-          flash[:notice] += '<br />'
-        else
-          flash.now[:warn] += _('The user %s  has not been created.<br /> ') %
-            user.name
-        end
-
-      end
-      redirect_back_or_default accounts_path
-    when :get
-    end
-  end
-=end
 
 end

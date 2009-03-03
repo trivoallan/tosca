@@ -2,7 +2,7 @@
 
 <% options = { :create_label => _("a client"), :url => clients_path } %>
 <% paginated_section(@clients, options) do %>
- <% titles = [ _("Logo"), _("Name"), _('Contracts'), _("Access code") ]%>
+ <% titles = [ _('Logo'), _('Name'), _('Contracts'), _('Access code') ]%>
  <%= show_table(@clients, Client, titles) { |c|
    result = ''
    result <<  (c.picture ? "<td>#{logo_client(c)}</td>" : '<td></td>')
@@ -19,4 +19,3 @@
  }%>
  <%= page_entries_info @clients %><br />
 <% end %>
-<%= link_to _('Add a logo'), new_picture_path %><br />

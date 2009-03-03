@@ -27,7 +27,7 @@
     <%= link_to_show(account_path(user)) if @session_user.engineer? %></li>
     <li><b><%= _('Phone') %>: </b><%= user.phone %></li>
     <% contract = @issue.contract %>
-    <li><b><%= _('Concerning') %>: </b><%= link_to contract, contract_path(contract) %></li>
+    <li><b><%= _('Concerning') %>: </b><%= link_to(contract, contract_path(contract)) || contract %></li>
   </ul>
 
   <%= div_toggle _("Life cycle"), 'life_cycle_menu', :class => "menu_title" %>

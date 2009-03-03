@@ -17,11 +17,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 module VersionsHelper
-  
+
   def link_to_version(version)
     return '-' unless version and version.is_a? Version
     name = "<i>#{version}</i>"
-    link_to name, version_path(version)
+    link_to(name, version_path(version)) || name
   end
 
   # call it like :
