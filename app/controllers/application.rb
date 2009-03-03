@@ -26,6 +26,7 @@ require_dependency 'login_system'
 # Manage roles and permissions
 # Infos : http://wiki.rubyonrails.com/rails/pages/LoginGeneratorACLSystem/
 require_dependency 'acl_system'
+require 'overrides'
 
 class ApplicationController < ActionController::Base
   # access protected everywhere, See
@@ -79,9 +80,6 @@ protected
     FastGettext.available_locales = ['en','fr'] #all you want to allow
     super
   end
-
-
-
 
   # global variables (not pretty, but those two are really usefull)
   @@first_time = true

@@ -116,7 +116,6 @@ end
 FastGettext.add_text_domain 'tosca', :path => File.join(RAILS_ROOT, 'locale')
 
 
-
 # MLO : Type of cache. See http://api.rubyonrails.org/classes/ActionController/Caching.html
 ActionController::Base.cache_store = :file_store, cache_path
 
@@ -134,10 +133,6 @@ require 'config'
 # TODO : make an extension loader, which loads automatically all _extensions.rb
 # files
 require 'string_extensions'
-
-# Internal libs, located in lib/
-require 'overrides'
-
 
 # Check and create used dirs, which are not on the SCM
 log_path = File.join RAILS_ROOT, 'log'
@@ -159,15 +154,7 @@ path = File.join RAILS_ROOT, "locale", "fr", "LC_MESSAGES", "tosca.mo"
 unless File.exists? path
   puts "***********************"
   puts "Missing traducted files. I am generating it for you with "
-  puts "$ rake l10n:mo"
-  %x[#{"rake l10n:mo"}]
+  puts "$ rake gettext:pack"
+  %x[#{"rake gettext:pack"}]
   puts "***********************"
-end
-
-# Default conf for gettextlocalize, used for Dates & Currency
-if defined? GettextLocalize
-  GettextLocalize::app_name = Tosca::App::Name
-  GettextLocalize::app_version = Tosca::App::Version
-  GettextLocalize::default_locale = 'en_US'
-  GettextLocalize::default_methods = [:param, :header, :session]
 end

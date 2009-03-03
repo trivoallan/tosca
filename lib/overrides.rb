@@ -183,18 +183,7 @@ class Time
   # Time.in_words(10.hours, 5)
   # Time.in_words(2.days + 10.hours)
   # Time.in_words(0.5.days, true)
-  @@first_time = true
   def self.in_words(distance_in_seconds, dayly_time = 24)
-    # Needed for putting libs into the tranlaste world of TOSCA
-    # We cannot load it into config/environnement.rb, current version
-    # of gettext bug with current version of gettext_localize
-    # as of 10/04/08
-    # TODO : find the bug or check it later
-    if @@first_time
-      GetText.bindtextdomain 'tosca'
-      @@first_time = nil
-    end
-
     return _('Immediate') if distance_in_seconds == 0
     return '-' unless distance_in_seconds.is_a?(Numeric) and distance_in_seconds > 0
     return '-' unless dayly_time == true or (dayly_time > 0 and dayly_time < 25)
@@ -531,26 +520,28 @@ module TMail
 end
 
 # Add the possibility to create an auto_complete on methods
-module AutoComplete::ClassMethods
-  def auto_complete_for(object, method, model = nil, field = nil, options = {})
-    define_method("auto_complete_for_#{object}_#{method}") do
-      if object.to_s.camelize.constantize.methods.include? method.to_s
-        search = params[object][method]
-        collection = object.to_s.camelize.constantize.all(options)
-        result = []
-        collection.each do |c|
-          result.push c if c.send(method).downcase.include? search.downcase or search == "*"
+module AutoComplete
+  module ClassMethods
+    def auto_complete_for(object, method, model = nil, field = nil, options = {})
+      define_method("auto_complete_for_#{object}_#{method}") do
+        if object.to_s.camelize.constantize.methods.include? method.to_s
+          search = params[object][method]
+          collection = object.to_s.camelize.constantize.all(options)
+          result = []
+          collection.each do |c|
+            result.push c if c.send(method).downcase.include? search.downcase or search == "*"
+          end
+          limit = options[:limit].nil? ? 10 : options[:limit]
+          @items = result.sort_by {|r| r.send(method)}[0..limit]
+        else
+          find_options = {
+            :conditions => [ "LOWER(#{method}) LIKE ?", '%' + params[object][method].downcase + '%' ],
+            :order => "#{method} ASC",
+            :limit => 10 }.merge!(options)
+          @items = object.to_s.camelize.constantize.all(find_options)
         end
-        limit = options[:limit].nil? ? 10 : options[:limit]
-        @items = result.sort_by {|r| r.send(method)}[0..limit]
-      else
-        find_options = {
-          :conditions => [ "LOWER(#{method}) LIKE ?", '%' + params[object][method].downcase + '%' ],
-          :order => "#{method} ASC",
-          :limit => 10 }.merge!(options)
-        @items = object.to_s.camelize.constantize.all(find_options)
+        render :inline => "<%= auto_complete_choice('#{object}', '#{method}', @items, '#{model}[#{field}_ids]') %>"
       end
-      render :inline => "<%= auto_complete_choice('#{object}', '#{method}', @items, '#{model}[#{field}_ids]') %>"
     end
   end
 end
