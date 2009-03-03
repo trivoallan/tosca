@@ -45,6 +45,8 @@ class Comment < ActiveRecord::Base
     if (record.statut_id && record.private)
       record.errors.add_to_base _('You cannot privately change the status')
     end
+    # Used by rails to know if validation is ok.
+    record.errors.empty?
   end
 
   before_validation do |record|

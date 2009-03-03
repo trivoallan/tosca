@@ -24,9 +24,6 @@ class VersionTest < ActiveSupport::TestCase
   def test_full_name
     v = versions(:version_ff_2_0_0_13)
     assert_equal("v2.0.0.13", v.full_name)
-
-    v = versions(:version_ff_all)
-    assert_equal(I18n.t("all versions"), v.full_name)
   end
 
   def test_full_software_name
@@ -41,27 +38,27 @@ class VersionTest < ActiveSupport::TestCase
     v_generic = versions(:version_ff_2_generic)
     assert_equal("2.*", v_generic.name)
   end
-  
+
   def test_validation
     v = Version.new(:software_id => 1)
     assert !v.save
-    
+
     v = Version.new(:software_id => 1)
     v.generic = true
     assert v.save
     assert_equal "*", v.to_s
-    
+
     v = Version.new(:software_id => 1)
     v.generic = false
     v.name = ""
     assert !v.save
-    
+
     v = Version.new(:software_id => 1)
     v.generic = false
     v.name = "2"
     assert v.save
     assert_equal "2", v.to_s
-    
+
     v = Version.new(:software_id => 1)
     v.generic = true
     v.name = "2"

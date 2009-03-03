@@ -25,6 +25,7 @@ class Attachment < ActiveRecord::Base
     }
 
   belongs_to :comment
+  has_one :issue, :through => :comment
 
   validates_presence_of :file, :comment
 
@@ -34,13 +35,12 @@ class Attachment < ActiveRecord::Base
 
   # special scope : only used for file downloads
   # see FilesController
-  def self.set_scope(client_id)
+  def self.set_scope(contract_ids)
     joins = ''
-    joins << 'LEFT OUTER JOIN comments ON comments.attachment_id = attachments.id '
+    joins << 'LEFT OUTER JOIN comments ON attachments.comment_id = comments.id '
     joins << 'LEFT OUTER JOIN issues ON issues.id = comments.issue_id '
-    joins << 'LEFT OUTER JOIN users ON users.id = issues.recipient_id '
     self.scoped_methods << { :find => {
-       :conditions => [ 'users.client_id = ?', client_id ],
+       :conditions => [ 'issues.contract_id IN (?)', contract_ids ],
        :joins => joins }
     }
   end

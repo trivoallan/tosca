@@ -199,7 +199,7 @@ class IssuesController < ApplicationController
 
 
       @comments = Comment.all(:order => "created_on ASC",
-        :conditions => filter_comments(issue_id), :include => [:user])
+        :conditions => filter_comments(@issue.id), :include => [:user])
 
       @statuts = @issue.issuetype.allowed_statuses(@issue.statut_id, @session_user)
       if user.engineer?

@@ -63,26 +63,6 @@ class CommentTest < Test::Unit::TestCase
     d.comments.each { d.destroy }
   end
 
-  def test_create_comment_without_text
-    #Should not work
-    Statut::NEED_COMMENT.each do |s|
-      c = Comment.new(:text => "",
-        :issue => Issue.first(:order => :id),
-        :user => User.first(:order => :id),
-        :private => false, :statut_id => s)
-      assert_equal(false, c.save)
-    end
-
-    #Should work
-    ([1,2,3,4,5,6,7,8] - Statut::NEED_COMMENT).each do |s|
-      c = Comment.new(:text => "",
-        :issue => Issue.first(:order => :id),
-        :user => User.first(:order => :id),
-        :private => false, :statut_id => s)
-      assert c.save!
-    end
-  end
-
   def test_automatic_subscription
     issue = Issue.first(:order => :id)
     user = User.first(:order => :id)
@@ -92,4 +72,5 @@ class CommentTest < Test::Unit::TestCase
     assert c.save!
     assert issue.subscribed?(user)
   end
+
 end

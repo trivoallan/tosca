@@ -20,16 +20,16 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class TeamTest < ActiveSupport::TestCase
   fixtures :teams, :users, :contracts
-  
+
   #I see no tests for this model (for the momentt
   def test_to_param
     ossa = teams(:team_ossa)
     support = teams(:team_support)
-    
+
     assert_equal ossa.to_param, "1-OSSA"
     assert_equal support.to_param, "2-Support"
   end
- 
+
   def test_engineers_id
     Team.all.each do |t|
       t.engineers_id.each do |id|
@@ -40,7 +40,7 @@ class TeamTest < ActiveSupport::TestCase
       end
     end
   end
- 
+
   def test_engineers_collection_select
     Team.all.each do |t|
       t.engineers_collection_select.each do |e|
@@ -55,7 +55,7 @@ class TeamTest < ActiveSupport::TestCase
     Team.all.each do |t|
       t.issues.each do |i|
         assert_kind_of Issue, i
-        assert t.contract_ids.include? i.contract_id
+        assert t.contract_ids.include?(i.contract_id)
       end
     end
   end

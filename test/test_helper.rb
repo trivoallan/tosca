@@ -163,4 +163,8 @@ class Test::Unit::TestCase
     }
   end
 
+  def setup
+    FastGettext.text_domain = 'tosca'
+  end
+
 end

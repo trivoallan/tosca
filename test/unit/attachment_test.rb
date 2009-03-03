@@ -26,7 +26,7 @@ class AttachmentTest < Test::Unit::TestCase
   end
 
   def test_scope
-    Attachment.set_scope(Client.first(:order => :id).id)
+    Attachment.set_scope(Contract.all.collect(&:id))
     Attachment.all
     Attachment.remove_scope
   end
@@ -41,14 +41,14 @@ class AttachmentTest < Test::Unit::TestCase
 
     attachment = fixture_file_upload('/files/sw-html-insert-unknown-tags.diff')
     attachments(:attachment_00002).destroy
-    options = { :file => attachment, :comment => comments(:comment_00002) }
+    options = { :file => attachment, :comment => comments(:comment_00005) }
     attachment = Attachment.new(options)
     attachment.id = 2
     assert attachment.save
 
     attachment = fixture_file_upload('/files/logo_linagora.gif')
     attachments(:attachment_00003).destroy
-    options = { :file => attachment, :comment => comments(:comment_00003) }
+    options = { :file => attachment, :comment => comments(:comment_00673) }
     attachment = Attachment.new(options)
     attachment.id = 3
     assert attachment.save

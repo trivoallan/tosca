@@ -1,29 +1,29 @@
---- 
-comment_00673: 
+---
+comment_00673:
   created_on: 2007-01-23 17:31:06 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-23 17:31:06 +01:00
   id: 673
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00892: 
+  statut_id:
+  severity_id:
+comment_00892:
   created_on: 2007-03-13 09:30:49 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-13 09:30:49 +01:00
   id: 892
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_07572: 
+  statut_id:
+  severity_id:
+comment_07572:
   created_on: 2008-04-16 16:55:46 +02:00
   private: false
   issue_id: 4
@@ -35,19 +35,19 @@ comment_07572:
   elapsed: 0
   statut_id: 1
   severity_id: 2
-comment_01324: 
+comment_01324:
   created_on: 2007-06-20 12:45:02 +02:00
   private: false
   issue_id: 10
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:22 +02:00
   id: 1324
   user_id: 4
   elapsed: 1
   statut_id: 3
-  severity_id: 
-comment_07990: 
+  severity_id:
+comment_07990:
   created_on: 2009-01-02 16:55:02 +01:00
   private: false
   issue_id: 12
@@ -59,55 +59,55 @@ comment_07990:
   elapsed: 0
   statut_id: 2
   severity_id: 2
-comment_00674: 
+comment_00674:
   created_on: 2007-01-23 18:58:29 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-23 18:58:29 +01:00
   id: 674
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00893: 
+  statut_id:
+  severity_id:
+comment_00893:
   created_on: 2007-03-13 09:41:03 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-13 09:41:03 +01:00
   id: 893
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_04307: 
+  statut_id:
+  severity_id:
+comment_04307:
   created_on: 2007-11-16 19:24:40 +01:00
   private: false
   issue_id: 10
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:22 +02:00
   id: 4307
   user_id: 2
   elapsed: 0
   statut_id: 2
-  severity_id: 
-comment_07651: 
+  severity_id:
+comment_07651:
   created_on: 2008-04-18 11:25:53 +02:00
   private: false
   issue_id: 5
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-04-18 11:25:53 +02:00
   id: 7651
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_07573: 
+  statut_id:
+  severity_id:
+comment_07573:
   created_on: 2008-04-16 16:56:22 +02:00
   private: false
   issue_id: 4
@@ -118,152 +118,152 @@ comment_07573:
   user_id: 2
   elapsed: 1
   statut_id: 2
-  severity_id: 
-comment_00852: 
+  severity_id:
+comment_00852:
   created_on: 2007-03-08 18:09:16 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-08 18:09:16 +01:00
   id: 852
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00675: 
+  statut_id:
+  severity_id:
+comment_00675:
   created_on: 2007-01-24 11:03:40 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-24 11:03:40 +01:00
   id: 675
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00873: 
+  statut_id:
+  severity_id:
+comment_00873:
   created_on: 2007-03-09 18:33:17 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-09 18:33:17 +01:00
   id: 873
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_07574: 
+  statut_id:
+  severity_id:
+comment_07574:
   created_on: 2008-04-16 16:57:56 +02:00
   private: true
   issue_id: 4
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-04-16 16:57:56 +02:00
   id: 7574
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00676: 
+  statut_id:
+  severity_id:
+comment_00676:
   created_on: 2007-01-24 19:03:37 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-24 19:03:37 +01:00
   id: 676
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00895: 
+  statut_id:
+  severity_id:
+comment_00895:
   created_on: 2007-03-13 10:50:02 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-13 10:50:02 +01:00
   id: 895
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_04309: 
+  statut_id:
+  severity_id:
+comment_04309:
   created_on: 2007-11-16 23:24:03 +01:00
   private: false
   issue_id: 10
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-11-16 23:24:03 +01:00
   id: 4309
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00853: 
+  statut_id:
+  severity_id:
+comment_00853:
   created_on: 2007-03-08 18:10:09 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-08 18:10:09 +01:00
   id: 853
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00896: 
+  statut_id:
+  severity_id:
+comment_00896:
   created_on: 2007-03-13 14:59:46 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:04 +02:00
   id: 896
   user_id: 2
   elapsed: 0
   statut_id: 6
-  severity_id: 
-comment_00854: 
+  severity_id:
+comment_00854:
   created_on: 2007-03-08 18:10:54 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-08 18:10:54 +01:00
   id: 854
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_02391: 
+  statut_id:
+  severity_id:
+comment_02391:
   created_on: 2007-06-18 15:11:09 +02:00
   private: false
   issue_id: 10
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:22 +02:00
   id: 2391
   user_id: 4
   elapsed: 0
   statut_id: 1
   severity_id: 2
-comment_00677: 
+comment_00677:
   created_on: 2007-01-24 19:05:34 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-24 19:05:34 +01:00
   id: 677
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_07853: 
+  statut_id:
+  severity_id:
+comment_07853:
   created_on: 2008-04-30 10:23:14 +02:00
   private: false
   issue_id: 4
@@ -274,8 +274,8 @@ comment_07853:
   user_id: 4
   elapsed: 1
   statut_id: 3
-  severity_id: 
-comment_00001: 
+  severity_id:
+comment_00001:
   created_on: 2008-01-01 00:00:01 +01:00
   private: false
   issue_id: 1
@@ -287,7 +287,7 @@ comment_00001:
   elapsed: 0
   statut_id: 2
   severity_id: 3
-comment_02208: 
+comment_02208:
   created_on: 2007-01-11 15:22:23 +01:00
   private: false
   issue_id: 9
@@ -299,7 +299,7 @@ comment_02208:
   elapsed: 0
   statut_id: 2
   severity_id: 2
-comment_02392: 
+comment_02392:
   created_on: 2007-06-18 15:11:59 +02:00
   private: false
   issue_id: 10
@@ -310,80 +310,68 @@ comment_02392:
   user_id: 4
   elapsed: 4
   statut_id: 2
-  severity_id: 
-comment_00678: 
+  severity_id:
+comment_00678:
   created_on: 2007-01-25 10:24:57 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:04 +02:00
   id: 678
   user_id: 2
   elapsed: 1
   statut_id: 4
-  severity_id: 
-comment_00897: 
+  severity_id:
+comment_00897:
   created_on: 2007-03-13 15:00:03 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:04 +02:00
   id: 897
   user_id: 2
   elapsed: 0
   statut_id: 7
-  severity_id: 
-comment_04016: 
+  severity_id:
+comment_04016:
   created_on: 2007-11-02 17:15:35 +01:00
   private: false
   issue_id: 10
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-11-02 17:15:35 +01:00
   id: 4016
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_07360: 
+  statut_id:
+  severity_id:
+comment_07360:
   created_on: 2008-04-07 20:32:31 +02:00
   private: false
   issue_id: 6
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:29:52 +02:00
   id: 7360
   user_id: 4
   elapsed: 1137868
   statut_id: 3
-  severity_id: 
-comment_07359: 
+  severity_id:
+comment_07359:
   created_on: 2008-04-07 20:30:48 +02:00
   private: false
   issue_id: 6
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-04-07 20:30:48 +02:00
   id: 7359
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00002: 
-  created_on: 2008-01-01 00:00:01 +01:00
-  private: false
-  issue_id: 2
-  text: Bla Bla
-  engineer_id: 2
-  updated_on: 2008-04-07 11:18:02 +02:00
-  id: 2
-  user_id: 4
-  elapsed: 1
-  statut_id: 2
-  severity_id: 3
-comment_02209: 
+  statut_id:
+  severity_id:
+comment_02209:
   created_on: 2007-03-12 10:12:37 +01:00
   private: false
   issue_id: 9
@@ -394,8 +382,8 @@ comment_02209:
   user_id: 2
   elapsed: 0
   statut_id: 3
-  severity_id: 
-comment_00658: 
+  severity_id:
+comment_00658:
   created_on: 2007-01-17 18:12:14 +01:00
   private: false
   issue_id: 8
@@ -406,92 +394,80 @@ comment_00658:
   user_id: 1
   elapsed: 97
   statut_id: 2
-  severity_id: 
-comment_00877: 
+  severity_id:
+comment_00877:
   created_on: 2007-03-12 09:56:42 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-12 09:56:42 +01:00
   id: 877
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00679: 
+  statut_id:
+  severity_id:
+comment_00679:
   created_on: 2007-01-25 10:28:22 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:04 +02:00
   id: 679
   user_id: 2
   elapsed: 1
   statut_id: 3
-  severity_id: 
-comment_00799: 
+  severity_id:
+comment_00799:
   created_on: 2007-02-27 17:15:34 +01:00
   private: false
   issue_id: 8
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:05 +02:00
   id: 799
   user_id: 1
   elapsed: 0
   statut_id: 6
-  severity_id: 
-comment_07834: 
+  severity_id:
+comment_07834:
   created_on: 2008-04-29 16:47:34 +02:00
   private: false
   issue_id: 7
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-04-29 16:47:34 +02:00
   id: 7834
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00003: 
-  created_on: 2008-01-01 00:00:02 +01:00
-  private: false
-  issue_id: 2
-  text: Bla Bla
-  engineer_id: 2
-  updated_on: 2008-01-01 00:00:02 +01:00
-  id: 3
-  user_id: 5
-  elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00659: 
+  statut_id:
+  severity_id:
+comment_00659:
   created_on: 2007-01-17 18:17:43 +01:00
   private: false
   issue_id: 8
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-17 18:17:43 +01:00
   id: 659
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00878: 
+  statut_id:
+  severity_id:
+comment_00878:
   created_on: 2007-03-12 10:08:50 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-12 10:08:50 +01:00
   id: 878
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_05299: 
+  statut_id:
+  severity_id:
+comment_05299:
   created_on: 2008-01-02 10:26:08 +01:00
   private: false
   issue_id: 5
@@ -501,57 +477,57 @@ comment_05299:
   id: 5299
   user_id: 3
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_07736: 
+  statut_id:
+  severity_id:
+comment_07736:
   created_on: 2008-04-23 16:37:53 +02:00
   private: false
   issue_id: 7
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:30:18 +02:00
   id: 7736
   user_id: 4
   elapsed: 0
   statut_id: 1
   severity_id: 2
-comment_07757: 
+comment_07757:
   created_on: 2008-04-24 13:12:25 +02:00
   private: false
   issue_id: 7
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-04-24 13:12:25 +02:00
   id: 7757
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_07581: 
+  statut_id:
+  severity_id:
+comment_07581:
   created_on: 2008-04-16 18:10:36 +02:00
   private: true
   issue_id: 4
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-04-16 18:10:36 +02:00
   id: 7581
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_07976: 
+  statut_id:
+  severity_id:
+comment_07976:
   created_on: 2008-05-13 12:21:27 +02:00
   private: false
   issue_id: 4
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-13 12:21:27 +02:00
   id: 7976
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_02212: 
+  statut_id:
+  severity_id:
+comment_02212:
   created_on: 2007-01-17 18:10:37 +01:00
   private: false
   issue_id: 8
@@ -563,67 +539,67 @@ comment_02212:
   elapsed: 0
   statut_id: 1
   severity_id: 3
-comment_06446: 
+comment_06446:
   created_on: 2008-02-18 15:14:17 +01:00
   private: true
   issue_id: 6
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-02-18 15:14:17 +01:00
   id: 6446
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00682: 
+  statut_id:
+  severity_id:
+comment_00682:
   created_on: 2007-01-26 09:52:39 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-26 09:52:39 +01:00
   id: 682
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00880: 
+  statut_id:
+  severity_id:
+comment_00880:
   created_on: 2007-03-12 10:19:17 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-12 10:19:17 +01:00
   id: 880
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00879: 
+  statut_id:
+  severity_id:
+comment_00879:
   created_on: 2007-03-12 10:12:18 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-12 10:12:18 +01:00
   id: 879
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00005: 
+  statut_id:
+  severity_id:
+comment_00005:
   created_on: 2007-01-18 12:34:58 +01:00
   private: false
   issue_id: 8
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:05 +02:00
   id: 5
   user_id: 1
   elapsed: 20632
   statut_id: 4
-  severity_id: 
-comment_02213: 
+  severity_id:
+comment_02213:
   created_on: 2007-01-17 18:51:06 +01:00
   private: false
   issue_id: 8
@@ -634,68 +610,68 @@ comment_02213:
   user_id: 4
   elapsed: 2332
   statut_id: 2
-  severity_id: 
-comment_06193: 
+  severity_id:
+comment_06193:
   created_on: 2008-02-07 14:18:23 +01:00
   private: false
   issue_id: 5
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-02-07 14:18:23 +01:00
   id: 6193
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00860: 
+  statut_id:
+  severity_id:
+comment_00860:
   created_on: 2007-03-09 12:08:20 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-09 12:08:20 +01:00
   id: 860
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00683: 
+  statut_id:
+  severity_id:
+comment_00683:
   created_on: 2007-01-26 10:31:38 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-26 10:31:38 +01:00
   id: 683
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00859: 
+  statut_id:
+  severity_id:
+comment_00859:
   created_on: 2007-03-09 12:07:11 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-09 12:07:11 +01:00
   id: 859
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_05994: 
+  statut_id:
+  severity_id:
+comment_05994:
   created_on: 2008-01-28 19:48:54 +01:00
   private: false
   issue_id: 10
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:22 +02:00
   id: 5994
   user_id: 4
   elapsed: 1
   statut_id: 4
-  severity_id: 
-comment_07737: 
+  severity_id:
+comment_07737:
   created_on: 2008-04-23 16:41:21 +02:00
   private: false
   issue_id: 7
@@ -706,8 +682,8 @@ comment_07737:
   user_id: 2
   elapsed: 208
   statut_id: 2
-  severity_id: 
-comment_02214: 
+  severity_id:
+comment_02214:
   created_on: 2007-01-18 12:39:51 +01:00
   private: false
   issue_id: 8
@@ -718,200 +694,200 @@ comment_02214:
   user_id: 1
   elapsed: 0
   statut_id: 3
-  severity_id: 
-comment_00861: 
+  severity_id:
+comment_00861:
   created_on: 2007-03-09 12:14:00 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-09 12:24:48 +01:00
   id: 861
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00684: 
+  statut_id:
+  severity_id:
+comment_00684:
   created_on: 2007-01-26 11:25:58 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:04 +02:00
   id: 684
   user_id: 2
   elapsed: 0
   statut_id: 2
-  severity_id: 
-comment_05995: 
+  severity_id:
+comment_05995:
   created_on: 2008-01-28 19:49:14 +01:00
   private: false
   issue_id: 10
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:22 +02:00
   id: 5995
   user_id: 4
   elapsed: 0
   statut_id: 3
-  severity_id: 
-comment_06406: 
+  severity_id:
+comment_06406:
   created_on: 2008-02-18 10:26:04 +01:00
   private: false
   issue_id: 6
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:29:52 +02:00
   id: 6406
   user_id: 4
   elapsed: 0
   statut_id: 1
   severity_id: 3
-comment_06407: 
+comment_06407:
   created_on: 2008-02-18 10:28:03 +01:00
   private: false
   issue_id: 6
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:29:52 +02:00
   id: 6407
   user_id: 4
   elapsed: 119
   statut_id: 2
-  severity_id: 
-comment_07739: 
+  severity_id:
+comment_07739:
   created_on: 2008-04-23 17:51:34 +02:00
   private: false
   issue_id: 7
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-04-23 17:53:38 +02:00
   id: 7739
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00685: 
+  statut_id:
+  severity_id:
+comment_00685:
   created_on: 2007-01-26 13:38:35 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:04 +02:00
   id: 685
   user_id: 2
   elapsed: 1
   statut_id: 4
-  severity_id: 
-comment_00883: 
+  severity_id:
+comment_00883:
   created_on: 2007-03-12 14:52:05 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-12 14:52:05 +01:00
   id: 883
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_05996: 
+  statut_id:
+  severity_id:
+comment_05996:
   created_on: 2008-01-28 19:49:43 +01:00
   private: false
   issue_id: 10
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:22 +02:00
   id: 5996
   user_id: 4
   elapsed: 0
   statut_id: 6
-  severity_id: 
-comment_06209: 
+  severity_id:
+comment_06209:
   created_on: 2008-02-07 16:51:30 +01:00
   private: false
   issue_id: 5
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-02-07 16:51:30 +01:00
   id: 6209
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00644: 
+  statut_id:
+  severity_id:
+comment_00644:
   created_on: 2007-01-11 15:37:27 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-11 15:37:27 +01:00
   id: 644
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_01415: 
+  statut_id:
+  severity_id:
+comment_01415:
   created_on: 2007-06-25 10:43:14 +02:00
   private: false
   issue_id: 10
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-06-25 10:43:14 +02:00
   id: 1415
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00884: 
+  statut_id:
+  severity_id:
+comment_00884:
   created_on: 2007-03-12 15:55:15 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-12 15:55:15 +01:00
   id: 884
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_05362: 
+  statut_id:
+  severity_id:
+comment_05362:
   created_on: 2008-01-07 17:29:18 +01:00
   private: false
   issue_id: 5
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-01-07 17:29:18 +01:00
   id: 5362
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00665: 
+  statut_id:
+  severity_id:
+comment_00665:
   created_on: 2007-01-18 12:39:11 +01:00
   private: false
   issue_id: 8
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:05 +02:00
   id: 665
   user_id: 1
   elapsed: 253
   statut_id: 3
-  severity_id: 
-comment_00686: 
+  severity_id:
+comment_00686:
   created_on: 2007-01-26 14:29:00 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-26 14:29:00 +01:00
   id: 686
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_05002: 
+  statut_id:
+  severity_id:
+comment_05002:
   created_on: 2007-12-14 15:41:45 +01:00
   private: false
   issue_id: 10
@@ -921,333 +897,333 @@ comment_05002:
   id: 5002
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00800: 
+  statut_id:
+  severity_id:
+comment_00800:
   created_on: 2007-02-27 17:16:55 +01:00
   private: false
   issue_id: 8
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:05 +02:00
   id: 800
   user_id: 1
   elapsed: 0
   statut_id: 7
-  severity_id: 
-comment_07762: 
+  severity_id:
+comment_07762:
   created_on: 2008-04-24 16:04:35 +02:00
   private: true
   issue_id: 7
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-04-24 16:04:35 +02:00
   id: 7762
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_07784: 
+  statut_id:
+  severity_id:
+comment_07784:
   created_on: 2008-04-25 16:34:53 +02:00
   private: false
   issue_id: 7
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-04-25 16:34:53 +02:00
   id: 7784
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_07763: 
+  statut_id:
+  severity_id:
+comment_07763:
   created_on: 2008-04-24 16:15:56 +02:00
   private: true
   issue_id: 7
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-04-24 16:15:56 +02:00
   id: 7763
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00666: 
+  statut_id:
+  severity_id:
+comment_00666:
   created_on: 2007-01-19 11:55:11 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-19 11:55:11 +01:00
   id: 666
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00687: 
+  statut_id:
+  severity_id:
+comment_00687:
   created_on: 2007-01-26 14:29:31 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-26 14:29:31 +01:00
   id: 687
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00885: 
+  statut_id:
+  severity_id:
+comment_00885:
   created_on: 2007-03-12 15:56:05 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-12 15:56:05 +01:00
   id: 885
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_05003: 
+  statut_id:
+  severity_id:
+comment_05003:
   created_on: 2007-12-14 15:42:12 +01:00
   private: true
   issue_id: 10
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-12-14 15:42:12 +01:00
   id: 5003
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00645: 
+  statut_id:
+  severity_id:
+comment_00645:
   created_on: 2007-01-11 15:39:04 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-11 15:39:04 +01:00
   id: 645
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00688: 
+  statut_id:
+  severity_id:
+comment_00688:
   created_on: 2007-01-26 14:30:15 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:04 +02:00
   id: 688
   user_id: 2
   elapsed: 1
   statut_id: 3
-  severity_id: 
-comment_00667: 
+  severity_id:
+comment_00667:
   created_on: 2007-01-22 13:42:50 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-22 13:42:50 +01:00
   id: 667
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_04301: 
+  statut_id:
+  severity_id:
+comment_04301:
   created_on: 2007-11-16 18:17:32 +01:00
   private: false
   issue_id: 10
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:22 +02:00
   id: 4301
   user_id: 4
   elapsed: 0
   statut_id: 7
-  severity_id: 
-comment_05364: 
+  severity_id:
+comment_05364:
   created_on: 2008-01-07 18:18:03 +01:00
   private: false
   issue_id: 5
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-01-07 18:18:03 +01:00
   id: 5364
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00886: 
+  statut_id:
+  severity_id:
+comment_00886:
   created_on: 2007-03-12 15:57:12 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-12 15:57:12 +01:00
   id: 886
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_07764: 
+  statut_id:
+  severity_id:
+comment_07764:
   created_on: 2008-04-24 16:28:58 +02:00
   private: true
   issue_id: 7
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-04-24 16:28:58 +02:00
   id: 7764
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_07821: 
+  statut_id:
+  severity_id:
+comment_07821:
   created_on: 2008-04-29 12:01:52 +02:00
   private: false
   issue_id: 7
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:30:18 +02:00
   id: 7821
   user_id: 4
   elapsed: 112831
   statut_id: 3
-  severity_id: 
-comment_00690: 
+  severity_id:
+comment_00690:
   created_on: 2007-01-29 08:25:15 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-29 08:25:15 +01:00
   id: 690
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_04739: 
+  statut_id:
+  severity_id:
+comment_04739:
   created_on: 2007-12-04 08:49:26 +01:00
   private: false
   issue_id: 5
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:57 +02:00
   id: 4739
   user_id: 4
   elapsed: 0
   statut_id: 1
   severity_id: 3
-comment_04740: 
+comment_04740:
   created_on: 2007-12-04 08:50:43 +01:00
   private: false
   issue_id: 5
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:57 +02:00
   id: 4740
   user_id: 1
   elapsed: 77
   statut_id: 2
-  severity_id: 
-comment_00647: 
+  severity_id:
+comment_00647:
   created_on: 2007-01-15 12:05:20 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-15 12:05:20 +01:00
   id: 647
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00668: 
+  statut_id:
+  severity_id:
+comment_00668:
   created_on: 2007-01-22 15:28:26 +01:00
   private: true
   issue_id: 8
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-22 15:28:26 +01:00
   id: 668
   user_id: 1
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_07130: 
+  statut_id:
+  severity_id:
+comment_07130:
   created_on: 2008-03-27 14:42:51 +01:00
   private: false
   issue_id: 5
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-10 15:28:58 +02:00
   id: 7130
   user_id: 4
   elapsed: 2580728
   statut_id: 3
-  severity_id: 
-comment_07943: 
+  severity_id:
+comment_07943:
   created_on: 2008-05-07 15:02:42 +02:00
   private: false
   issue_id: 5
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2008-05-07 15:02:42 +02:00
   id: 7943
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_04741: 
+  statut_id:
+  severity_id:
+comment_04741:
   created_on: 2007-12-04 08:52:10 +01:00
   private: false
   issue_id: 5
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-12-04 08:52:10 +01:00
   id: 4741
   user_id: 1
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00691: 
+  statut_id:
+  severity_id:
+comment_00691:
   created_on: 2007-01-29 08:26:42 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-29 08:26:42 +01:00
   id: 691
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00670: 
+  statut_id:
+  severity_id:
+comment_00670:
   created_on: 2007-01-23 10:37:23 +01:00
   private: false
   issue_id: 8
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-23 10:37:23 +01:00
   id: 670
   user_id: 1
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00692: 
+  statut_id:
+  severity_id:
+comment_00692:
   created_on: 2007-01-29 08:28:01 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-29 08:28:01 +01:00
   id: 692
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_01286: 
+  statut_id:
+  severity_id:
+comment_01286:
   created_on: 2007-06-18 15:11:55 +02:00
   private: false
   issue_id: 10
@@ -1258,56 +1234,56 @@ comment_01286:
   user_id: 2
   elapsed: 1
   statut_id: 2
-  severity_id: 
-comment_00649: 
+  severity_id:
+comment_00649:
   created_on: 2007-01-15 15:07:55 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-15 15:07:55 +01:00
   id: 649
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00889: 
+  statut_id:
+  severity_id:
+comment_00889:
   created_on: 2007-03-12 17:22:03 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-12 17:22:03 +01:00
   id: 889
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00869: 
+  statut_id:
+  severity_id:
+comment_00869:
   created_on: 2007-03-09 17:09:27 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-03-09 17:09:27 +01:00
   id: 869
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_00672: 
+  statut_id:
+  severity_id:
+comment_00672:
   created_on: 2007-01-23 11:34:52 +01:00
   private: false
   issue_id: 9
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-01-23 11:34:52 +01:00
   id: 672
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_04269: 
+  statut_id:
+  severity_id:
+comment_04269:
   created_on: 2007-11-15 16:10:20 +01:00
   private: false
   issue_id: 10
@@ -1317,21 +1293,21 @@ comment_04269:
   id: 4269
   user_id: 2
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_04305: 
+  statut_id:
+  severity_id:
+comment_04305:
   created_on: 2007-11-16 18:21:07 +01:00
   private: false
   issue_id: 10
   text: Bla Bla
-  engineer_id: 
+  engineer_id:
   updated_on: 2007-11-16 18:21:07 +01:00
   id: 4305
   user_id: 4
   elapsed: 0
-  statut_id: 
-  severity_id: 
-comment_04743: 
+  statut_id:
+  severity_id:
+comment_04743:
   created_on: 2007-12-04 09:23:08 +01:00
   private: false
   issue_id: 5
@@ -1341,5 +1317,5 @@ comment_04743:
   id: 4743
   user_id: 1
   elapsed: 0
-  statut_id: 
-  severity_id: 
+  statut_id:
+  severity_id:

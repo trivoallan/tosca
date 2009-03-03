@@ -29,7 +29,6 @@ class User < ActiveRecord::Base
   belongs_to :team
   belongs_to :client
 
-  has_many :attachments, :through => :comments
   has_many :comments, :dependent => :destroy
   has_many :assigned_issues, :dependent => :destroy, :foreign_key => :recipient_id,
     :dependent => :destroy, :class_name => 'Issue'
@@ -318,7 +317,10 @@ class User < ActiveRecord::Base
   end
 
   def issues
-    self.contracts.collect(&:issues).uniq
+    res = self.contracts.collect(&:issues)
+    res.flatten!
+    res.uniq!
+    res
   end
 
   private

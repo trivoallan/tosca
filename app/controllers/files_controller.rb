@@ -63,8 +63,9 @@ class FilesController < ApplicationController
 
     # Ensure that we can remove scope
     begin
-      Attachment.set_scope(@session_user.client_id) if scope_active
-      # Check if you have the right, with the scope model of Tosca
+      Attachment.set_scope(@session_user.contract_ids) if scope_active
+      # Check if one have the right to find it : ie to download it,
+      # Using scope model of Tosca
       model[file_type].find(params[:id])
     ensure
       Attachment.remove_scope if scope_active
