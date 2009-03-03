@@ -11,23 +11,24 @@ We do: `_('Just translate my damn text!')`
 Setup
 =====
 ###Installation
-This plugin:
-    ./script/plugin install git://github.com/grosser/gettext_i18n_rails.git
-[FastGettext](http://github.com/grosser/fast_gettext):
-    sudo gem install grosser-fast_gettext -s http://gems.github.com/
-[GetText 2.0](http://github.com/mutoh/gettext) & [GetText::ActiveRecord 0.1](http://github.com/mutoh/gettext):
-    rake gettext:install
+This plugin: `  script/plugin install git://github.com/grosser/gettext_i18n_rails.git  `
+
+[FastGettext](http://github.com/grosser/fast_gettext): `  sudo gem install grosser-fast_gettext -s http://gems.github.com/  `
+
+GetText 1.93: `  sudo gem install gettext  `  
+Or [GetText 2.0](http://github.com/mutoh/gettext): `  rake gettext:install  `  
+GetText 2.0 will render 1.93 unusable, so only install if you do not have apps that use 1.93!
 
 ### Locales & initialisation
-Copy default locales you want from e.g. http://github.com/svenfuchs/rails-i18n/rails/locale/de.yml  
-into 'config/locales'
+Copy default locales you want from e.g.
+[rails i18n](http://github.com/svenfuchs/rails-i18n): rails/locale/de.yml into 'config/locales'
 
     #environment.rb
     Rails::Initializer.run do |config|
       ...
-      config.gem "grosser-fast_gettext", :lib => 'fast_gettext', :version => '0.2.6', :source=>"http://gems.github.com/"
+      config.gem "grosser-fast_gettext", :lib => 'fast_gettext', :version => '~>0.2.10', :source=>"http://gems.github.com/"
     end
-    FastGettext.add_text_domain 'app', :path => File.join(RAILS_ROOT, 'locale')
+    FastGettext.add_text_domain 'app', :path => 'locale'
 
     #application_controller
     class ApplicationController < ...
@@ -42,11 +43,28 @@ Translating
 ===========
  - use some _('translations')
  - run `rake gettext:find`, to let GetText find all translations used
+ - (optional) run `rake gettext:store_model_attributes`, to parse the database for columns that can be translated
  - if this is your first translation: `cp locale/app.pot locale/de/app.po` for every locale you want to use
  - translate messages in 'locale/de/app.po' (leave msgstr blank and msgstr == msgid)  
 new translations will be marked "fuzzy", search for this and remove it, so that they will be used.
 Obsolete translations are marked with ~#, they usually can be removed since they are no longer needed
  - run `rake gettext:pack` to write GetText format translation files
+
+###I18n
+Through Ruby magic:
+    I18n.locale is the same as FastGettext.locale.to_sym
+    I18n.locale = :de  is the same as FastGettext.locale = 'de'
+
+### ActiveRecord
+ActiveRecord error messages are translated through Rails::I18n, but
+model names and model attributes are translated through FastGettext.
+Therefore a validation error on a BigCar's and wheels_size needs `_('big car')` and `_('BigCar|Wheels size')`
+to display localized.
+
+These translations can be found through `rake gettext:store_model_attributes`,
+which ignores some commonly untranslated columns (id,type,xxx_count,...).
+It is recommended to use individual ignores, e.g. ignore whole tables, to do that copy/manipulate the rake task.
+
 
 Namespaces
 ==========
@@ -65,24 +83,11 @@ Unfound translations
 Sometimes GetText cannot find a translation like `_("x"+"u")`,  
 for this cases either add `N_('xu')` somewhere else in the code,  
 where it can be seen by GetText, or even in a totally seperate file like  
-`unfound_translations.rb`, or use the [gettext_test_log rails plugin ](http://github.com/grosser/gettext_test_log)  
+`locale/unfound_translations.rb`, or use the [gettext_test_log rails plugin ](http://github.com/grosser/gettext_test_log)
 to find all translations that where used while testing.  
-
-###Improving Rails translations
-You certanly want to add at least:
-    #de.yml
-    active_record:
-      models:
-        car: 'Auto'
-        ...
-So that Rails error messages use the translated version of your model.
-[more help](http://iain.nl/2008/09/translating-activerecord)
 
 Author
 ======
-GetText -> Masao Mutoh, from whom i learned how the internals work :)
-FastGettext -> Me
-
 Michael Grosser  
 grosser.michael@gmail.com  
 Hereby placed under public domain, do what you want, just do not hold me accountable...  

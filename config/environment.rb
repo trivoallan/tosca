@@ -75,7 +75,7 @@ Rails::Initializer.run do |config|
 
   ### External libs ###
   # Used to get up2date pagination on list
-  config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
+  config.gem 'mislav-will_paginate', :version => '~> 2.3.7', :lib => 'will_paginate', :source => 'http://gems.github.com'
 
   # l10n & i18n working
   config.gem "grosser-fast_gettext", :lib => 'fast_gettext', :source=>"http://gems.github.com/"
