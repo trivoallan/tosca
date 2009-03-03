@@ -2,7 +2,6 @@ config/database.yml
 db/schema.rb
 files/*
 config/config.rb
-locale/*
 log/*.log
 nbproject/*
 public/stylesheets/all.css
