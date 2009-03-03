@@ -1,9 +1,9 @@
-<h1><%= t(:access_denied) %></h1>
+<h1><%= _("Access denied") %></h1>
 
 <div class="information error">
-<p><%= t(:access_to_this_page_is_restricted) %></p>
+<p><%= _("Access to this page is restricted.") %></p>
 </div>
 
-<%= render :file => 'account/login', :use_full_path => true %>
+<%= render :file => "account/login", :use_full_path => true %>
 
 <%= public_link_to_home %>

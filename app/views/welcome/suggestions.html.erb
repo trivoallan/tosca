@@ -1,18 +1,17 @@
-<h1><%= t(:idea_box) %></h1>
+<h1><%= _('Idea Box')%></h1>
 
-<p><%= t(:have_an_idea) %></p>
+<p><%= _('Vous have an idea in order to improve our services ? Don\'t hesitate to fill in the form!<br />
+Every proposition will be consider with a lot of attention')%></p>
 
 <% form_tag suggestions_welcome_path do %>
-  <div class="subcolumns">
-    <div class="c50l">
-      <h2><%= t(:your_suggestions_on_our_service) %></h2>
-      <%= text_area :suggestion, :team, :cols => 80 %>
-    </div>
-    <div class="c50r">
-      <h2><%= t(:your_suggestions_on_our_tool) %></h2>
-      <%= text_area :suggestion, :tosca, :cols => 80 %>
-    </div>
+<div class="subcolumns">
+  <div class="c50l">
+    <h2><%=  _('Your suggestions on our service :')%></h2><%= text_area :suggestion, :team, :cols => 80 %>
+  </div>
+  <div class="c50r">
+    <h2><%= _('Your suggestions on our tool : ')%></h2><%= text_area :suggestion, :tosca, :cols => 80 %>
   </div>
 
-  <p><center><%= submit_tag t(:Validate) %></center></p>
+</div>
+  <p><center><%= submit_tag _('Submit')%></center></p>
 <% end %>

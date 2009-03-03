@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 module VersionsHelper
-
+  
   def link_to_version(version)
     return '-' unless version and version.is_a? Version
     name = "<i>#{version}</i>"
@@ -28,8 +28,8 @@ module VersionsHelper
   # <%= link_to_new_version(@software) %>
   def link_to_new_version(software = nil)
     return '' unless software
-    path = new_version_path(:software_id => software.id)
-    link_to(image_create(I18n.t(:a_version)), path)
+    path = new_version_path(:software_id => software.id,:referent => software.referent)
+    link_to(image_create(_('a package')), path)
   end
 
 end

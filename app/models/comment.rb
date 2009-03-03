@@ -19,33 +19,29 @@
 class Comment < ActiveRecord::Base
   belongs_to :issue
   belongs_to :user
+  belongs_to :attachment, :dependent => :destroy
   belongs_to :statut
   belongs_to :severity
   belongs_to :engineer, :class_name => 'User',
     :conditions => 'users.client_id IS NULL'
 
-  #TODO : For multiple attachment change this to has_many
-  has_one :attachment, :dependent => :destroy
-
-  validates_length_of :text, :minimum => 5,
-    :warn => I18n.t(:you_must_have_a_comment_with_at_least_5_characters)
   validates_presence_of :user
 
   validate do |record|
     issue = record.issue
     if record.issue.nil?
-      record.errors.add_to_base I18n.t(:you_must_indicate_a_valid_issue)
+      record.errors.add_to_base _('You must indicate a valid issue')
     end
     #We check if we are trying to change the status of the request,
     #but it has already the same status
     if (issue && issue.new_record? != true &&
-          issue.first_comment_id != record.id &&
-          issue.statut_id == record.statut_id &&
-          record.new_record?)
-      record.errors.add_to_base I18n.t(:the_status_of_this_issue_has_already_been_changed)
+        issue.first_comment_id != record.id &&
+        issue.statut_id == record.statut_id &&
+        record.new_record?)
+      record.errors.add_to_base _('The status of this issue has already been changed.')
     end
     if (record.statut_id && record.private)
-      record.errors.add_to_base I18n.t(:you_cannot_privately_change_the_status)
+      record.errors.add_to_base _('You cannot privately change the status')
     end
   end
 
@@ -53,16 +49,16 @@ class Comment < ActiveRecord::Base
     #If the status was changed and we do not specify a text, we generate a default text
     text = html2text(record.text).strip
     if record.statut and not Statut::NEED_COMMENT.include? record.statut_id and text.empty?
-      record.text << I18n.t(:the_issue_is_now, :status => I18n.t(record.statut.name))
+      record.text << ( _("The issue is now %s.<br/>") % _(record.statut.name) )
     end
     if record.engineer and text.empty?
-      record.text << I18n.t(:the_issue_is_now_managed_by, :user => record.engineer.name)
+      record.text << ( _("The issue is now managed by %s.<br/>") % _(record.engineer.name))
     end
   end
 
   # State in words of the comment (private or public)
   def state
-    ( private ? I18n.t(:Private) : I18n.t(:Public) )
+    ( private ? _("private") : _("public") )
   end
 
   # Used for outgoing mails feature, to keep track of the issue.
@@ -91,13 +87,6 @@ class Comment < ActiveRecord::Base
     (self.id == self.issue.first_comment_id)
   end
 
-  # See ApplicationController#scope
-  def self.set_private_scope()
-    scope = { :conditions => [ 'comments.private = ?', false ] }
-    self.scoped_methods << { :find => scope, :count => scope }
-  end
-
-
   private
 
   # We destroy a few things, if appropriate
@@ -118,7 +107,7 @@ class Comment < ActiveRecord::Base
     if !self.private and issue.last_comment_id == self.id
       last_comment = issue.find_other_comment(self.id)
       if !last_comment
-        self.errors.add_to_base(I18n.t(:this_issue_seems_to_be_unstable))
+        self.errors.add_to_base(_('This issue seems to be unstable.'))
         return false
       end
       issue.update_attribute :last_comment_id, last_comment.id
@@ -134,7 +123,7 @@ class Comment < ActiveRecord::Base
 
     issue = self.issue
     options = { :order => 'created_on DESC', :conditions =>
-        'comments.statut_id IS NOT NULL' }
+      'comments.statut_id IS NOT NULL' }
     last_one = issue.comments.first(options)
     return true unless last_one
     issue.update_attribute(:statut_id, last_one.statut_id)
@@ -187,11 +176,11 @@ class Comment < ActiveRecord::Base
   def automatic_subscribtion
     #Try to subscribe engineer that has deposit the comment
     Subscription.create(:user => self.user,
-      :model => self.issue) if self.user.engineer?
+                        :model => self.issue) if self.user.engineer?
 
     #Try to subscribe new engineer who is responsible for the request
     Subscription.create(:user => self.engineer,
-      :model => self.issue) if self.engineer
+                        :model => self.issue) if self.engineer
     true
   end
 

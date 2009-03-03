@@ -4,15 +4,15 @@
 <div class="show">
    <table>
      <tr>
-       <th><label for="version_software_id"><%= t(:'Models.Software')%></label></th>
+       <th><label for="version_software_id"><%= _('Software')%></label></th>
        <td><%= select(:version, :software_id, @softwares) %></td>
      </tr>
      <tr>
-       <th><label for="version_name"><%= t(:'Models.Version')%></label></th>
+       <th><label for="version_name"><%= _('Version')%></label></th>
        <td><%= text_field :version, :name  %></td>
      </tr>
      <tr>
-       <th><label for="version_generic"><%= t(:'Version.Generic')%> ?</label></th>
+       <th><label for="version_generic"><%= _('Generic ?')%></label></th>
        <td><%= check_box :version, :generic %></td>
      </tr>
    </table>

@@ -1,5 +1,5 @@
 atom_feed do |feed|
-  feed.title(t('Contributions of %s') % App::InternetAddress)
+  feed.title(_('Contributions of %s') % App::InternetAddress)
   feed.link("http://" + request.host_with_port + request.request_uri)
   feed.updated(@contributions.first.updated_on) unless @contributions.blank?
   for contribution in @contributions

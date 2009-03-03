@@ -30,6 +30,7 @@ module Static
     include ::ActionView
     include ::ActionView::Helpers::AssetTagHelper
     include ::ActionView::Helpers::TagHelper
+    include FastGettext::Translation
 
     @@av = nil
     @@relative_url_root = nil

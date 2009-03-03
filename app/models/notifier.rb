@@ -125,16 +125,16 @@ class Notifier < ActionMailer::Base
     case mode.to_sym
     when :day
       time = now.strftime("%A %d %B %Y")
-      subject I18n.t("Daily digest for ") << time
+      subject _("Daily digest for ") << time
     when :week
-      time = _ordinalize(now.strftime("%U").to_i) << I18n.t(" week of ") << now.year.to_s
-      subject I18n.t("Weekly digest for ") << time
+      time = _ordinalize(now.strftime("%U").to_i) << _(" week of ") << now.year.to_s
+      subject _("Weekly digest for ") << time
     when :month
       time = now.strftime("%B of %Y")
-      subject I18n.t("Monthly digest for ") << time
+      subject _("Monthly digest for ") << time
     else
       time = now.year.to_s
-      subject I18n.t("Yearly digest for ") << time
+      subject _("Yearly digest for ") << time
     end
 
     html_and_text_body({ :result => data.other, :important => data.important, :time => time })
@@ -273,7 +273,7 @@ class Notifier < ActionMailer::Base
     from       App::FromEmail
     recipients to
     bcc        App::TeamEmail
-    subject    "#{App::InternetAddress} : " << I18n.t("Possible error in your e-mail")
+    subject    "#{App::InternetAddress} : " << _("Possible error in your e-mail")
 
     html_and_text_body
   end
@@ -285,7 +285,7 @@ class Notifier < ActionMailer::Base
     from       App::FromEmail
     recipients to
     bcc        App::TeamEmail
-    subject    "#{App::InternetAddress} : " << I18n.t("Possible error in your e-mail")
+    subject    "#{App::InternetAddress} : " << _("Possible error in your e-mail")
 
     html_and_text_body
   end
@@ -298,7 +298,7 @@ class Notifier < ActionMailer::Base
     from       App::FromEmail
     recipients to
     bcc        App::TeamEmail
-    subject    "#{App::InternetAddress} : " << I18n.t("Possible error in your e-mail")
+    subject    "#{App::InternetAddress} : " << _("Possible error in your e-mail")
 
     html_and_text_body
   end
@@ -354,8 +354,8 @@ class Notifier < ActionMailer::Base
 
   #Compute the receiver of an email for the flash
   def message_notice(recipients, cc)
-    result = "<br />" << I18n.t("An e-mail was sent to ") << " <b>#{recipients}</b> "
-    result << "<br />" << I18n.t("with a copy to") << " <b>#{cc}</b>" if cc && !cc.blank?
+    result = "<br />" << _("An e-mail was sent to ") << " <b>#{recipients}</b> "
+    result << "<br />" << _("with a copy to") << " <b>#{cc}</b>" if cc && !cc.blank?
     result << '.'
   end
 

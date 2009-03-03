@@ -71,7 +71,7 @@ module ApplicationHelper
     return '' unless size > 0
 
     if !@session_user && options.has_key?(:public_summarised)
-      return "<u><b>#{pluralize(size, name.to_s.capitalize)}" << I18n.t(' to date') << '</b></u><br />'
+      return "<u><b>#{pluralize(size, name.to_s.capitalize)}" << _(' to date') << '</b></u><br />'
     end
 
     unless name.blank? or options.has_key? :no_title
@@ -118,16 +118,16 @@ module ApplicationHelper
   #   :add_lines > add the string at the end of the table
   #   :width > html options for global table width
   def show_table(elements, ar, titles, options = {})
-    return '<p>' << I18n.t('No %s at the moment') % I18n.t(ar.table_name.singularize) + '</p>' unless elements and elements.size > 0
+    return '<p>' << _('No %s at the moment') % _(ar.table_name.singularize) + '</p>' unless elements and elements.size > 0
     width = ( options[:width] ? "width=#{options[:width]}" : '' )
     result = "<table #{width} class=\"full\">"
     content_columns = options.has_key?(:content_columns)
 
     if titles
       result << '<thead><tr>'
-      ar.content_columns.each do |c|
-        result << "<th>#{t(:"#{ar}.#{c.human_name}")}</th>"
-      end if (content_columns)
+      if (content_columns)
+        ar.content_columns.each{|c| result <<  "<th>#{c.human_name}</th>"}
+      end
       #On doit mettre nowrap="nowrap" pour que ça soit valide XHTML
       titles.each {|t| result << "<th nowrap=\"nowrap\">#{t}</th>" }
       result << '</tr></thead>'
@@ -176,10 +176,10 @@ module ApplicationHelper
   def display_days(time)
     return time unless time.is_a? Numeric
     case time
-    when -1 then I18n.t('None')
-    when 1 then I18n.t('1 workday')
-    when 0..1 then time.to_s + I18n.t(' workday')
-    else time.to_s + I18n.t(' workdays')
+    when -1 then _('None')
+    when 1 then _('1 workday')
+    when 0..1 then time.to_s + _(' workday')
+    else time.to_s + _(' workdays')
     end
   end
 
@@ -284,7 +284,7 @@ module ApplicationHelper
   def show_warn
     @@warn ||= %Q{<div id="information_error" class="information error">
        <div class="close_information">#{delete_button('information_error')}</div>}
-    @@warn.dup << "<h2>" + I18n.t('An error has occured') + "</h2>
+    @@warn.dup << "<h2>" + _('An error has occured') + "</h2>
        <ul><li>" << flash[:warn] << "</li></ul></div>"
   end
 

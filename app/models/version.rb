@@ -40,13 +40,13 @@ class Version < ActiveRecord::Base
 
   def self.set_scope(contract_ids)
     self.scoped_methods << { :find => { :conditions =>
-          [ 'contracts_versions.contract_id IN (?)', contract_ids ], :joins =>
-          'INNER JOIN contracts_versions ON contracts_versions.version_id = versions.id'} }
+        [ 'contracts_versions.contract_id IN (?)', contract_ids ], :joins =>
+        "INNER JOIN contracts_versions ON contracts_versions.version_id = versions.id"} }
   end
 
   def full_name
     if self.read_attribute(:name).empty?
-      I18n.t("all versions")
+      _("all versions")
     else
       "v#{self.name}"
     end

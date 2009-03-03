@@ -1,7 +1,7 @@
-<h1><% t('List of the comments') %></h1>
+<h1><% _('List of the comments') %></h1>
 
-<% paginated_section(@comments, :create_label => t('a comment')) do %>
- <% titles = [t('Issue'), t('Body'), t('Created on'), t('Updated on')]%>
+<% paginated_section(@comments, :create_label => _('a comment')) do %>
+ <% titles = [_('Issue'), _('Body'), _('Created on'), _('Updated on')]%>
  <%= show_table(@comments, Comment, titles) { |c|
    result = ''
    result << "<td>#{link_to_issue c.issue}</td>"

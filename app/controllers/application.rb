@@ -27,16 +27,12 @@ require_dependency 'login_system'
 # Infos : http://wiki.rubyonrails.com/rails/pages/LoginGeneratorACLSystem/
 require_dependency 'acl_system'
 
-# All overrides to Rails class are here
-require_dependency 'overrides'
 class ApplicationController < ActionController::Base
-
-
   # access protected everywhere, See
   # * Wiki for more generic Info,
   # * lib/scope.rb for deep protection
   # * lib/login_system.rb for account protection
-  before_filter :set_global_shortcuts, :login_required, :before_scope
+  before_filter :set_gettext_locale, :set_global_shortcuts, :login_required, :before_scope
   after_filter :after_scope
 
   # Limited perimeter for specific roles
@@ -78,13 +74,22 @@ protected
     redirect_back_or_default welcome_path
   end
 
+  def set_gettext_locale
+    FastGettext.text_domain = 'tosca'
+    FastGettext.available_locales = ['en','fr'] #all you want to allow
+    super
+  end
+
+
+
+
   # global variables (not pretty, but those two are really usefull)
-  @@my_first_time = true
+  @@first_time = true
   def set_global_shortcuts
     # this small hack allows to initialize the static url
     # generator on the first request. We need it 'coz the prefix
     # (e.g.: /tosca) cannot be known before a request go through.
-    if @@my_first_time
+    if @@first_time and not defined? Static
       require 'static'
       require 'static_script'
       require 'static_picture'
@@ -107,10 +112,11 @@ protected
     remove_scopes(@session_user)
   end
 
+
   #Compute the receiver of an email for the flash
   def message_notice(recipients, cc)
-    result = '<br />' << t("An e-mail was sent to ") << " <b>#{html2text(recipients)}</b> "
-    result << '<br />' << t("with a copy to") << " <b>#{html2text(cc)}</b>" if cc && !cc.blank?
+    result = '<br />' << _("An e-mail was sent to ") << " <b>#{html2text(recipients)}</b> "
+    result << '<br />' << _("with a copy to") << " <b>#{html2text(cc)}</b>" if cc && !cc.blank?
     result << '.'
   end
 
@@ -124,12 +130,12 @@ private
                            ActionController::RoutingError ]
     msg = nil
     @@rescued_errors.each{ |k| if exception.is_a? k
-        msg = t('This address is not valid. If you think this is an error, do not hesitate to contact us.')
+        msg = _('This address is not valid. If you think this is an error, do not hesitate to contact us.')
       end
     }
     if msg.nil?
-      msg = t('An error has occured. We are now advised of your issue and have all the required information to investigate in order to fix it.') +
-        '<br />' + t('Please contact us if your problem remains.')
+      msg = _('An error has occured. We are now advised of your issue and have all the required information to investigate in order to fix it.') +
+        '<br />' + _('Please contact us if your problem remains.')
       if ENV['RAILS_ENV'] == 'production'
         Notifier::deliver_error_message(exception, clean_backtrace(exception),
                                         session.instance_variable_get("@data"),

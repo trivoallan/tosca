@@ -58,9 +58,4 @@ class Team < ActiveRecord::Base
     self.users.all(options)
   end
 
-  def issues
-    conditions = [ 'issues.contract_id IN (?) AND issues.statut_id = 1', self.contract_ids ]
-    Issue.all(:conditions => conditions)
-  end
-
 end

@@ -1,10 +1,10 @@
-<h1><%= t(:Index) %></h1>
+<h1><%= _('List of the status') %></h1>
 
 <table>
   <tr>
-    <th><%= t(:Id) %></th>
+    <th><%= _("Id") %></th>
   <% for column in Statut.content_columns %>
-    <th><%= t("Statut.#{column.human_name}") %></th>
+    <th><%= column.human_name %></th>
   <% end %>
   </tr>
 

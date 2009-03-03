@@ -44,17 +44,17 @@ ActionController::Routing::Routes.draw do |map|
   # routing files to prevent download from public access
   # TODO : convert to named route
   options = { :controller => 'files', :action => 'download', :filename => /\w+(.\w+)*/ }
-  %w(file patch archive).each do |file|
+  %w(file patch archive).each { |file|
     map.files(":file_type/#{file}/:id/:filename", options)
-  end
+  }
 
   # Autoloading Extensions Routes
   extension_path = "#{RAILS_ROOT}/vendor/extensions"
-  Dir.foreach( extension_path ) do |ext|
+  Dir.foreach( extension_path ) { |ext|
     next if ext == '.'
     route_path = File.join extension_path, ext, 'config', 'routes.rb'
     map.routes_from_plugin(ext.to_sym) if File.exists? route_path
-  end if File.exists? extension_path
+  } if File.exists? extension_path
 
   # RESTful routes with ORM
   # Sample call :
@@ -85,7 +85,7 @@ ActionController::Routing::Routes.draw do |map|
     :ajax_subscribe => :post,
     :ajax_unsubscribe => :delete }
   map.resources :contributions,
-    :collection => { :admin => :any, :select => :get, :ajax_list_versions => :post },
+    :collection => { :admin => :any, :select => :get, :experts => :get, :ajax_list_versions => :post },
     :member => { :list => :get }
   map.resources :commitments
   map.resources :contributionstates

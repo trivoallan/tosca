@@ -9,21 +9,21 @@
 <%= hidden_field_tag 'page', '1' %>
 <%# used_by remote_link_to_contracts %>
 <div class="menu_title" onclick="Element.toggle('menu_action')">
-  > <%= t('Action') %>
+  > <%= _('Action') %>
 </div>
 <ul id="menu_action">
-  <li><%= link_to t('Create a new contract'), new_contract_path %></li>
+  <li><%= link_to _('Create a new contract'), new_contract_path %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_search')">
-> <%= t('Search') %></div>
+> <%= _('Search') %></div>
 <ul id="menu_search">
   <li>
-    <b><%= t('By name') %></b><br />
+    <b><%= _('By name') %></b><br />
     <%= text_field :filters, :text %>
   </li>
   <li>
-    <b><%= t('By tam') %></b><br/>
+    <b><%= _('By tam') %></b><br/>
     <%= select_filter(@tams, :tam) %>
   </li>
 </ul>

@@ -18,8 +18,8 @@
 #
 class Archive < ActiveRecord::Base
   belongs_to :release
-  
-  validates_presence_of :file, :message => I18n.t(:you_must_select_a_file_to_upload)
+
+  validates_presence_of :file
 
   file_column :file, :fix_file_extensions => nil, :size => true
 

@@ -19,8 +19,8 @@
 class Picture < ActiveRecord::Base
   has_one :software
   has_one :client
-  
-  validates_presence_of :image, :message => I18n.t(:you_must_select_a_file_to_upload)
+
+  validates_presence_of :image
 
   # TODO : rename this column into 'file', with the appropriate migration
   # /!\ do not forget to move Directory during this migration /!\
@@ -39,11 +39,11 @@ class Picture < ActiveRecord::Base
         }
       }
     }
-  }, :root_path => File.join(RAILS_ROOT, 'public')
+  }, :root_path => File.join(RAILS_ROOT, "public")
 
   def name
-    return I18n.t(:logo_value, :value => software.name) if software
-    return I18n.t(:logo_value, :value => client.name) if client
+    return _("Logo '%s'") % software.name if software
+    return _("Logo '%s'") % client.name if client
     description
   end
 end

@@ -35,7 +35,7 @@ class IssuetypesController < ApplicationController
   def create
     @issuetype = Issuetype.new(params[:issuetype])
     if @issuetype.save
-      flash[:notice] = t("A new type of issue was successfully created.")
+      flash[:notice] = _("A new type of issue was successfully created.")
       redirect_to issuetypes_path
     else
       render :action => 'new'
@@ -49,7 +49,7 @@ class IssuetypesController < ApplicationController
   def update
     @issuetype = Issuetype.find(params[:id])
     if @issuetype.update_attributes(params[:issuetype])
-      flash[:notice] = t("An issue type was successfully updated.")
+      flash[:notice] = _("An issue type was successfully updated.")
       redirect_to issuetype_path(@issuetype)
     else
       render :action => 'edit'

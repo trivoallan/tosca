@@ -24,7 +24,7 @@ class Changelog < ActiveRecord::Base
   end
 
   def name
-    self.modification_date_formatted + ' : ' << read_attribute(:name) << '<br/>' <<
+    self.modification_date_formatted + ' : ' << read_attribute(:name) << '\n' <<
       self.modification_text
   end
 

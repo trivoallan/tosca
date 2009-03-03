@@ -1,7 +1,7 @@
 <h1>Listing contributionstates</h1>
 
 
-<% paginated_section(@contributionstates, :create_label => t('a new state')) do %>
+<% paginated_section(@contributionstates, :create_label => _('a new state')) do %>
  <table>
   <tr>
   <% for column in Contributionstate.content_columns %>

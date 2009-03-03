@@ -1,9 +1,9 @@
-<h1><%= t('List of contributions') + StaticPicture::spinner %></h1>
+<h1><%= _('List of contributions') + StaticPicture::spinner %></h1>
 
-<% options = { :create_label => t('a contribution'), :remote_url => admin_contributions_path } %>
+<% options = { :create_label => _('a contribution'), :remote_url => admin_contributions_path } %>
 <% paginated_section(@contributions, options) do %>
- <% titles = [t('Software'), t('Name'), t('State'),
-             t('Submitted on'), t('Closed on'), t('Delay'), t('Updated on')]%>
+ <% titles = [_('Software'), _('Name'), _('State'),
+             _('Submitted on'), _('Closed on'), _('Delay'), _('Updated on')]%>
  <% form_tag(contributions_path) do %>
  <%= show_table(@contributions, Contribution, titles) { |c|
    result = ''

@@ -2,22 +2,22 @@
 
 <table id="issues_list" class="full">
   <tr>
-    <th width='2%'><%= t('Id') %></th>
-    <th width='7%'><%= t('Software') %></th>
-    <th width='7%' colspan="2"><%= t('Type')%></th>
+    <th width='2%'><%= _('Id') %></th>
+    <th width='7%'><%= _('Software') %></th>
+    <th width='7%' colspan="2"><%= _('Type')%></th>
     <% if user.engineer? %>
-      <th width='7%'><%= t('Client')%></th>
+      <th width='7%'><%= _('Client')%></th>
     <% end %>
-    <th><%= t('Summary')%></th>
+    <th><%= _('Summary')%></th>
     <th width='10%'>
       <% if user.engineer? %>
-        <%=t('Owner')%>
+        <%=_('Owner')%>
       <% else %>
-        <%=t('Submitter')%>
+        <%=_('Submitter')%>
       <% end %>
     </th>
 
-    <th width='8%'><%=t('Updated on')%></th>
+    <th width='8%'><%=_('Updated on')%></th>
   </tr>
 
   <% for issue in @issues %>
@@ -48,7 +48,7 @@
 
   <% if @issues.size == 0 %>
     <tr><td colspan="11">
-        <p><%= t("No issue found.") %></p>
+        <p><%= _("No issue found.") %></p>
     </td></tr>
   <% end %>
 

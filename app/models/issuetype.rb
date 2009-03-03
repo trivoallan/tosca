@@ -21,10 +21,12 @@ class Issuetype < ActiveRecord::Base
   has_many :issues
   has_many :workflows
 
+
   # Only ids, it's use is restricted to expert view
   def allowed_statuses_ids(from_status_id)
-    if self.workflows.first(:conditions => {:statut_id => from_status_id})
-      w.allowed_status_ids
+    w = self.workflows.first(:conditions => {:statut_id => from_status_id})
+    if w
+      res = w.allowed_status_ids
     else # default case : nearly all statuses
       [2,3,4,5,6,7,8].delete_if{|s| s == from_status_id}
     end
@@ -38,6 +40,16 @@ class Issuetype < ActiveRecord::Base
     return statuses_ids if statuses_ids.empty?
     Statut.find_select(:conditions => ['statuts.id IN (?)', statuses_ids ],
                        :order => 'statuts.id')
+  end
+
+  def fake4translation
+    N_("Information")
+    N_("Incident")
+    N_("Evolution")
+    N_("Call-out")
+    N_("Analysis")
+    N_("Delivery")
+    N_("Documentation")
   end
 
 end

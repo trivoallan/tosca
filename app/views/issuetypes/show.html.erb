@@ -1,9 +1,9 @@
-<%= public_link_to t('Homepage') , welcome_path %> >
- <%= link_to t('Contracts') , contracts_path %> >
+<%= public_link_to _('Homepage') , welcome_path %> >
+ <%= link_to _('Contracts') , contracts_path %> >
   <%= @issuetype.name %>
 <div class="show">
-  <h1><%= t(:workflow_of_x, :name => @issuetype.name) %></h1>
-  <p><%= "#{t(:Workflows)} #{link_to_new_workflow(@issuetype.id)}" %></p>
+  <h1><%= _("Workflow of %s") % @issuetype.name%></h1>
+  <p><%= "#{_('Workflows')} #{link_to_new_workflow(@issuetype.id)}" %></p>
   <%= show_list(@issuetype.workflows, '', :no_title => true, :edit => 'workflow') do |w|
         w.name
       end %>

@@ -1,8 +1,8 @@
-<h1><%= t('Add a new knowledge')%></h1>
+<h1><%= _('Add a new knowledge')%></h1>
 
 <% form_for(@knowledge) do |f| %>
   <%= render :partial => 'form' %>
-  <p><%= f.submit t("Add") %></p>
+  <p><%= f.submit _("Add") %></p>
 <% end %>
 
 <%= link_to_back %>

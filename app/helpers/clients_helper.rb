@@ -30,7 +30,7 @@ module ClientsHelper
   def link_to_my_client(image = false)
     user = @session_user
     return nil unless user.recipient?
-    label = image ? logo_client(user.client) : I18n.t('My&nbsp;Offer')
+    label = image ? logo_client(user.client) : _('My&nbsp;Offer')
     link_to label, client_path(user.client_id)
   end
 
@@ -40,12 +40,12 @@ module ClientsHelper
   def remote_link_to_clients( param)
     ajax_call = PagesHelper::AJAX_OPTIONS.dup.update(:url => clients_path)
     if param == :actives
-      text = I18n.t('Active clients')
-      description = I18n.t('Display only active clients')
+      text = _('Active clients')
+      description = _('Display only active clients')
       value = 1
     else # :all
-      text = I18n.t('Inactive clients')
-      description = I18n.t('Display only inactive clients')
+      text = _('Inactive clients')
+      description = _('Display only inactive clients')
       value = -1
     end
     js_call = "document.forms['filters'].elements['filters[active]'].value=#{value};" <<

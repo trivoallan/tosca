@@ -39,7 +39,21 @@ class Statut < ActiveRecord::Base
   # It's one of the rare "heavily used & fixed" AR model,
   # So we can include it in the translation mechanism
   def name
-    I18n.t(read_attribute(:name))
+    _(read_attribute(:name))
   end
 
+
+  private
+  def fake4translation
+    #######################################
+    N_('Submitted') #1  Enregistrée       #
+    N_('Accepted')  #2	Accepté           #
+    N_('Suspended') #3	Suspendue         #
+    N_('Analysed')  #4	Analysée          #
+    N_('Bypassed')  #5 	Contournée        #
+    N_('Fixed')     #6	Corrigée          #
+    N_('Closed')    #7	Clôturée          #
+    N_('Cancelled') #8  Annulée           #
+    #######################################
+  end
 end

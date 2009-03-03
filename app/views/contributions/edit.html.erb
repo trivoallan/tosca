@@ -1,9 +1,9 @@
-<h1><%= t('Edit this contribution') %></h1>
+<h1><%= _('Edit this contribution') %></h1>
 
 <% form_tag(contribution_path(@contribution),
       :multipart => true, :method => :put, :id => 'main_form' ) do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag t('Validate') %>
+  <%= submit_tag _('Validate') %>
 <% end %>
 
 <%= link_to_show_and_list(@contribution) %>

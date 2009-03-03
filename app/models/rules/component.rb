@@ -43,15 +43,15 @@ class Rules::Component < ActiveRecord::Base
 
   def short_description
     if max == -1
-      t(:unlimited_offer)
+      _('unlimited offer')
     else
-      t(:unlimited_offer_covering_a_maximum_of_components, :number => max)
+      _('unlimited offer covering a maximum of %d components') % max
     end
   end
 
   def complete_description(value, contract)
-    t(:has_already_been_spent_on_your, :value => "<b>#{Time.in_words(value, contract.interval)}</b>",
-      :contract => short_description)
+    _("%s has already been spent on your %s") %
+      [ "<b>#{Time.in_words(value, contract.interval)}</b>", short_description ]
   end
 
 end

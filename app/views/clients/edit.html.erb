@@ -1,9 +1,9 @@
-<h1><%= t("Edit the client %s", 1, @client.name) %></h1>
+<h1><%= _("Edit the client %s") % @client.name %></h1>
 
 <% form_tag client_path(@client), :multipart => true, :method => :put, :id => 'main_form' do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag t("Edit") %>
+  <%= submit_tag _("Edit") %>
 <% end %>
 
-<%= link_to t("Show"), client_path(@client) %> |
+<%= link_to _("Show"), client_path(@client) %> |
 <%= link_to_back %>

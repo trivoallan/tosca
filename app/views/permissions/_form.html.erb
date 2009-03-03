@@ -1,11 +1,11 @@
 <%= error_messages_for 'permission' %>
 
-<p><label for="permission_name"><%= t(:'Permission.Name')%></label><br />
+<p><label for="permission_name"><%= _('Name')%></label><br />
 <%= text_field 'permission', 'name'  %></p>
 
-<p><label for="permission_info"><%= t(:Description)%></label><br />
+<p><label for="permission_info"><%= _('Info')%></label><br />
 <%= text_field 'permission', 'info'  %></p>
 
-<p><label for="role_permission"><%= t(:'Models.Role').pluralize %></label><br />
+<p><label for="role_permission"><%= _('Roles')%></label><br />
 <%= hbtm_check_box(@permission.roles, @roles, 'permission[role_ids]', :size => 4) %>
 </p>

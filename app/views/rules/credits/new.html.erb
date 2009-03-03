@@ -1,8 +1,8 @@
-<h1><%=t('New offer based on time credits')%></h1>
+<h1><%=_('New offer based on time credits')%></h1>
 
 <% form_for(@credit) do |f| %>
   <%= render :partial => 'form' %>
-  <%= f.submit t("Create") %>
+  <%= f.submit _("Create") %>
 <% end %>
 
 <%= link_to_back %>

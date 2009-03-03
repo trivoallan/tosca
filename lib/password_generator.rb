@@ -20,7 +20,6 @@ module PasswordGenerator
 
   @@mkpasswd = nil
   def generate_password
-    #TODO : berk, we should use a ruby lib
     @@mkpasswd ||= File.exist?('/usr/bin/mkpasswd')
     generated = ''
     # mkpasswd bug with control characters

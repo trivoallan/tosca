@@ -28,7 +28,7 @@ module ReportingHelper
     result = ''
     return result unless size > 0
     result << '<tr>'
-    first = (options.has_key?(:distribution) ? I18n.t('Status') : I18n.t('Period'))
+    first = (options.has_key?(:distribution) ? _('Status') : _('Period'))
     if options[:with2rows]
       result << %Q{<th rowspan="2">#{first}</th>} unless options[:without_firstcol]
       result << %Q[<th nowrap="nowrap" colspan="#{size}"><div style="text-align: center">#{options[:with2rows]}</div></th>]
@@ -77,7 +77,7 @@ module ReportingHelper
   def report_distribution(name, options= {})
     options[:distribution] = true
     if options.has_key? :separated
-      @first_col = [ I18n.t('Running'), I18n.t('Finished') ]
+      @first_col = [ _('Running'), _('Finished') ]
     end
     middle = :"#{name}_middle"
     total = :"#{name}_total"
@@ -86,7 +86,7 @@ module ReportingHelper
     table << ' <tr>'
     # cellule contenant le graphique de la periode
     table << '  <td class="report_graph" align="center">'
-    table << "  <h3>%s</h3>" % I18n.t('During the chosen period')
+    table << "  <h3>%s</h3>" % _('During the chosen period')
     table <<    report_graph(middle, options)
     table << '  </td>'
     # cellule avec la légende
@@ -95,7 +95,7 @@ module ReportingHelper
     table << '  </div></td>'
     # cellule contenant le graphique depuis le début
     table << '  <td class="report_graph" align="center">'
-    table << "  <h3>%s</h3>" % I18n.t('Since the beginning of your contract')
+    table << "  <h3>%s</h3>" % _('Since the beginning of your contract')
     table <<    report_graph(total, options)
     table << '  </td>'
     table << ' </tr>'
@@ -144,7 +144,7 @@ module ReportingHelper
       index = (twolines ? i*2 : i)
       head = data[i][0].to_s
       out << "<tr><th #{'colspan="2"' if twolines}>#{head}</th></tr>"
-      out << "<tr><th>#{I18n.t('Running')}</th><th>#{I18n.t('Finished')}</th></tr>" if twolines
+      out << "<tr><th>#{_('Running')}</th><th>#{_('Finished')}</th></tr>" if twolines
       out << '<tr>'
       color = colors[index].to_s
       # un <td> quoiqu'il se passe
@@ -182,10 +182,7 @@ module ReportingHelper
       first_col = @first_col
     end
     options.update(:width => '5%')
-    # The remove_empty_columns does not know what to do with
-    # with 2 rows mechanism
-    cleaned_data = (options.has_key?(:separated) ?
-                    data : remove_empty_columns(data))
+    cleaned_data = remove_empty_columns(data.dup)
     size = cleaned_data.size
     if options.has_key?(:cut_table) && size >= 4
       cut = size / 2
@@ -207,7 +204,7 @@ module ReportingHelper
   # :width : force the width
   # TODO : first_col, options[:without_firstcol] : needs more love
   def show_report_table(first_col, elements, titles, options = {})
-    return I18n.t('no data') unless elements and elements.size > 0
+    return _('no data') unless elements and elements.size > 0
     width = ( options[:width] ? %Q{width="#{options[:width]}"} : '' )
     result = "<table #{width}>"
     result << titles
@@ -273,7 +270,7 @@ module ReportingHelper
   # Display a progress bar colored according to the percentage given in
   # argument. 0% correspond to green, 100% to red and > 100% to black
   # usage : progress_bar(50) display a orange bar, which correspond to 50%
-  def progress_bar( percent, desc = I18n.t('progress bar') )
+  def progress_bar( percent, desc = _('progress bar') )
     return '-' if (not percent.is_a? Numeric or percent <= 0)
     percent = (percent * 100)
     case percent
@@ -298,7 +295,7 @@ module ReportingHelper
     result = Time.in_words(elapsed, interval)
     return result if elapsed == 0
     elapsed = Elapsed.relative2absolute(elapsed, interval)
-    return I18n.t('Exceedance') if @recipient && elapsed > total
+    return _('Exceedance') if @recipient && elapsed > total
     result += " / #{Time.in_words(total)}"
   end
 

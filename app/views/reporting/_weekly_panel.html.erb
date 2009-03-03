@@ -6,11 +6,11 @@
 <% form_remote_tag(options.dup.update(:html => {
       :id => 'filters', :name => 'filters'})) do %>
   
-  <%= div_toggle t('Filters'), 'menu_filters', :class => "menu_title" %>
+  <%= div_toggle _('Filters'), 'menu_filters', :class => "menu_title" %>
   <ul class="menu" id="menu_filters">
     <% if @session_user.engineer? %>
       <li>
-        <b><%= t('By contract') %></b><br />
+        <b><%= _('By contract') %></b><br />
         <%= select_filter(@contracts, :contract) %>
       </li>
     <% end %>
@@ -18,10 +18,10 @@
 
   <% submit_function = 
     remote_function(options.dup.update(:with => "Form.serialize(document.forms['filters'])")) %>
-  <%= div_toggle t('Date'), 'menu_date', :class => "menu_title" %>
+  <%= div_toggle _('Date'), 'menu_date', :class => "menu_title" %>
   <ul class="menu" id="menu_legend">
     <li>
-      <b><%= t('Start date') %></b>&nbsp;
+      <b><%= _('Start date') %></b>&nbsp;
       <span class="calendarPicker"><%= StaticScript::date_from %></span><br/>
       <%= text_field :report, :start_date, :onchange => submit_function %>
       <%= StaticScript::script_date('report_start_date', 'date_from') %>
@@ -32,16 +32,16 @@
     <%= render :partial => 'reporting/weekly_statistics' %>
   </div>
 
-  <%= div_toggle t('Legend'), 'menu_legend', :class => "menu_title" %>
+  <%= div_toggle _('Legend'), 'menu_legend', :class => "menu_title" %>
   <ul class="menu" id="menu_legend">
     <li>
-      <b><%= t('New issues are preceded by') %> <%= StaticPicture::new %></b>
+      <b><%= _('New issues are preceded by') %> <%= StaticPicture::new %></b>
     </li>
     <li>
-      <b><%= t('Running issues are preceded by') %> <%= StaticPicture::sla_running %></b>
+      <b><%= _('Running issues are preceded by') %> <%= StaticPicture::sla_running %></b>
     </li>
     <li>
-      <b><%= t('Closed issues are preceded by') %> <%= StaticPicture::stop %></b>
+      <b><%= _('Closed issues are preceded by') %> <%= StaticPicture::stop %></b>
     </li>
   </ul>
 

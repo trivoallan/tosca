@@ -28,10 +28,10 @@ class Knowledge < ActiveRecord::Base
   validate do |record|
     # length consistency
     if record.skill && record.software
-      record.errors.add_to_base I18n.t(:you_have_to_specify_a_software_or_a_domain)
+      record.errors.add_to_base _('You have to specify a software or a domain.')
     end
     if !record.skill && !record.software
-      record.errors.add_to_base I18n.t(:you_can_not_specify_a_software_and_a_domain)
+      record.errors.add_to_base _('You cannot specify a software and a domain.')
     end
   end
   # TODO : seach name of the levels ?

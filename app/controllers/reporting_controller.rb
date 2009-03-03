@@ -97,6 +97,7 @@ class ReportingController < ApplicationController
 
     init_colors
 
+    # we clean
     # TODO rework the clean
     # reporting = File.expand_path('public/reporting', RAILS_ROOT)
     # rmtree(reporting)
@@ -133,13 +134,13 @@ class ReportingController < ApplicationController
     @start_date = @start_date.beginning_of_week
     @end_date = @start_date.end_of_week - 2.day
 
-    @title = t('Issues of all your contracts')
+    @title = _('Issues of all your contracts')
 
     # Specification of a filter f :
     if params.has_key? :filters
       session[:weeklyreport_filters] =
         Filters::WeeklyReport.new(params[:filters])
-      @title = t('Issues of the contract %s') %
+      @title = _('Issues of the contract %s') %
         Contract.find(params[:filters][:contract_id]).name if params[:filters].has_key? :contract_id and
           not params[:filters][:contract_id].empty?
     end
@@ -249,12 +250,12 @@ class ReportingController < ApplicationController
       @report[:middle_report] = period
       @report[:total_report] = compute_nb_month(start_date, end_date)
     else
-      flash[:warn] = t('incorrect parameters')
+      flash[:warn] = _('incorrect parameters')
       # out condition
       @contracts = nil
     end
   rescue
-    flash[:warn] = t('incorrect parameters')
+    flash[:warn] = _('incorrect parameters')
     @contracts = nil
   end
 
@@ -385,8 +386,8 @@ class ReportingController < ApplicationController
       name = Software.find(software_id).name
       report.push [ name ]
     end
-    report.push [t('Unknown')]
-    report.push [t('Others')]
+    report.push [_('Unknown')]
+    report.push [_('Others')]
   end
 
   ##
@@ -425,8 +426,8 @@ class ReportingController < ApplicationController
     # 1st time, we have to fill dynamically labels
     # There's 2 lines, since we diffentiate opened and closed issues.
     if report.empty?
-      @types.each { |type| report << [t(type.name)] }
-      @types.each { |type| report << [t(type.name)] }
+      @types.each { |type| report << [_(type.name)] }
+      @types.each { |type| report << [_(type.name)] }
     end
 
     Issue.send(:with_scope, { :find => { :conditions => Issue::OPENED } }) do
@@ -436,6 +437,7 @@ class ReportingController < ApplicationController
       end
     end
 
+    size = @types.size
     Issue.send(:with_scope, { :find => { :conditions => Issue::CLOSED } }) do
       @types.each_with_index do |type, i|
         conditions = { :conditions => { :issuetype_id => type.id } }
@@ -460,8 +462,8 @@ class ReportingController < ApplicationController
     # There's 2 lines, since we diffentiate opened and closed issues.
     if report.empty?
       severities = Severity.all
-      severities.each { |s| report << [t(s.name)] }
-      severities.each { |s| report << [t(s.name)] }
+      severities.each { |s| report << [_(s.name)] }
+      severities.each { |s| report << [_(s.name)] }
     end
 
     size = filters.size
@@ -486,7 +488,7 @@ class ReportingController < ApplicationController
     fixed = { :conditions => [condition, 6] }
     closed = { :conditions => [condition, 7] }
     cancelled = { :conditions => [condition, 8] }
-    active = { :conditions => 'issues.statut_id NOT IN (5,6,7,8)' }
+    active = { :conditions => 'statut_id NOT IN (5,6,7,8)' }
 
     report[0].push Issue.count(cancelled)
     report[1].push Issue.count(bypassed)
@@ -499,15 +501,15 @@ class ReportingController < ApplicationController
   def write3graph(name, graph)
     __write_graph(name, graph)
     middle = :"#{name}_middle"
-    __write_graph(middle, Gruff::Pie, t("Distributed on ") + "#{@report[:middle_report]}" + t(" months")) if @data[middle]
+    __write_graph(middle, Gruff::Pie, _("Distributed on ") + "#{@report[:middle_report]}" + _(" months")) if @data[middle]
     total = :"#{name}_total"
-    __write_graph(total, Gruff::Pie, t("Distributed on ") + "#{@report[:total_report]}" + t(" months")) if @data[total]
+    __write_graph(total, Gruff::Pie, _("Distributed on ") + "#{@report[:total_report]}" + _(" months")) if @data[total]
   end
 
   # Ecrit le graphe en utilisant les données indexées par 'name' dans @données
   # grâce au chemin d'accès spécifié dans @path[name]
   # graph sert à spécifier le type de graphe attendu
-  def __write_graph(name, graph, title = t('Summary'))
+  def __write_graph(name, graph, title = _('Summary'))
     return unless @data[name]
     g = graph.new(450)
 
@@ -528,10 +530,10 @@ class ReportingController < ApplicationController
     # g.hide_dots = true if g.respond_to? :hide_dots
     g.hide_legend = true
     # TODO : put this in metadatas
-    g.no_data_message = t("No data \navailable")
+    g.no_data_message = _("No data \navailable")
 
     # this writes the file to the hard drive for caching
-    g.write File.join(RAILS_ROOT, 'public', 'images', @path[name])
+    g.write "#{RAILS_ROOT}/public/images/#{@path[name]}"
   end
 
   # 3 initialisations are needed : titles, colors & datas.
@@ -540,18 +542,18 @@ class ReportingController < ApplicationController
     @data[:by_type] = []
     @data[:by_severity] = []
     @data[:by_status] =
-     [ [t('Cancelled')], [t('Bypassed')], [t('Fixed')], [t('Closed')], [t('Active')] ]
+     [ [_('Cancelled')], [_('Bypassed')], [_('Fixed')], [_('Closed')], [_('Active')] ]
     @data[:by_status] =
-     [ [t('Cancelled')], [t('Bypassed')], [t('Fixed')], [t('Closed')], [t('Active')] ]
+     [ [_('Cancelled')], [_('Bypassed')], [_('Fixed')], [_('Closed')], [_('Active')] ]
     @data[:by_software] = []
 
     # calcul des délais
     @data[:callback_time] =
-     [ [t('In time')], [t('Out of time')] ]
+     [ [_('In time')], [_('Out of time')] ]
     @data[:workaround_time] =
-     [ [t('In time')], [t('Out of time')] ]
+     [ [_('In time')], [_('Out of time')] ]
     @data[:correction_time] =
-     [ [t('In time')], [t('Out of time')] ]
+     [ [_('In time')], [_('Out of time')] ]
 
   end
 
@@ -560,7 +562,7 @@ class ReportingController < ApplicationController
     @data.each_pair do |name, data|
       # sha1 = Digest::SHA1.hexdigest("-#{qui}-#{name}-")
       # TODO : it's not safe to store it that way
-      @path[name] = File.join('reporting', "#{name}.png")
+      @path[name] = "reporting/#{name}.png"
       size = data.size
       case name.to_s
       when /by_type/
@@ -582,19 +584,19 @@ class ReportingController < ApplicationController
   # 3 initialisations are needed : titles, colors & datas.
   def _titles
     @titles = {
-      :distribution => t('Distribution of your issues'),
-      :by_type => t('By types'),
-      :by_severity => t('By severities'),
-      :by_status => t('By status'),
-      :by_software => t('By software'),
+      :distribution => _('Distribution of your issues'),
+      :by_type => _('By types'),
+      :by_severity => _('By severities'),
+      :by_status => _('By status'),
+      :by_software => _('By software'),
 
-      :top5_issues => t('Top 5 of the most discussed issues'),
-      :top5_softwares => t('Top 5 of the most discussed software'),
+      :top5_issues => _('Top 5 of the most discussed issues'),
+      :top5_softwares => _('Top 5 of the most discussed software'),
 
-      :processing_time => t('Processing time'),
-      :callback_time => t('Response time'),
-      :workaround_time => t('Workaround time'),
-      :correction_time => t('Correction time')
+      :processing_time => _('Processing time'),
+      :callback_time => _('Response time'),
+      :workaround_time => _('Workaround time'),
+      :correction_time => _('Correction time')
     }
   end
 

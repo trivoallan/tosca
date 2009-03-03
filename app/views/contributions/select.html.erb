@@ -1,15 +1,15 @@
- <h1><%= t('Contributions') %></h1>
+ <h1><%= _('Contributions') %></h1>
 
 <% cache("contributions/select_#{params[:client_id] || 'all'}") do %>
-  <%= show_list(@softwares, t('contribution'), :no_title => true) { |l|
+  <%= show_list(@softwares, _('contribution'), :no_title => true) { |l|
       "<b>#{public_link_to_contribution_software l, params }</b> : #{l.resume}"
   } %>
 <% end %>
 
-<%= link_to t('Submit a contribution'), new_contribution_path %><br />
-<%= link_to t('Access to administration interface'), admin_contributions_path %><br />
-<%= link_to t('See all contributions'), list_contribution_path(:id => 'all') %><br />
-<%= link_to t('RSS'), formatted_list_contribution_path(:id => 'all', :client_id => params[:client_id], :format => 'atom') %><br />
+<%= link_to _('Submit a contribution'), new_contribution_path %><br />
+<%= link_to _('Access to administration interface'), admin_contributions_path %><br />
+<%= link_to _('See all contributions'), list_contribution_path(:id => 'all') %><br />
+<%= link_to _('RSS'), formatted_list_contribution_path(:id => 'all', :client_id => params[:client_id], :format => 'atom') %><br />
  <% Contribution::actions.each do |a| %>
    <p><%= send(a) %></p>
  <% end %>

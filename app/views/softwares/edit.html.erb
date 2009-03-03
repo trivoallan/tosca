@@ -1,9 +1,8 @@
-<h1><%= t(:Edit)%> <%= StaticPicture::spinner %></h1>
+<h1><%= _('Edit a software')%> <%= StaticPicture::spinner %></h1>
 <%= link_to_show_and_list( @software.id) %>
 
-
-<% form_for(@software, :multipart => true) do |f| %>
-  <%= render :partial => 'form', :locals => { :f => f } %>
-  <%= submit_tag t(:Validate) %>
+<% form_tag(software_path(@software), :multipart => true, :method => :put, :id => 'form_software') do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _('Update') %>
 <% end %>
 <br />

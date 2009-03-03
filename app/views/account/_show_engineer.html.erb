@@ -1,9 +1,9 @@
 <% if @user.engineer? %>
 
-<div title="<%= t("Show an account") %>" class="show">
-  <h1><b><%= t('Engineer') %></b></h1><br />
+<div title="<%= _("Show an account") %>" class="show">
+  <h1><b><%= _('Engineer') %></b></h1><br />
 
-  <p><b><%= t('Knowledges') %> <%= link_to_new_knowledge %> : </b>
+  <p><b><%= _('Knowledges') %> <%= link_to_new_knowledge %> : </b>
   <% unless @user.knowledges.empty? %>
      <% options = {:edit => 'knowledge', :no_title => true } %>
      <%= show_list(@user.knowledges, '', options) do |k|
@@ -12,7 +12,7 @@
   <% end %>
   </p>
 
-  <p><b><%= t('Contracts') %>:</b></p>
+  <p><b><%= _('Contracts') %>:</b></p>
   <ul>
     <% @user.contracts.each do |c| %>
       <li><%= c.name %></li>

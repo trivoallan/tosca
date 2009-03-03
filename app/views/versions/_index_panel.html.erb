@@ -10,24 +10,24 @@
 <%= hidden_field_tag 'page', '1' %>
 
 <div class="menu_title" onclick="Element.toggle('menu_consultation')">
-  > <%= t('Consultation')%></div>
+  > <%= _('Consultation')%></div>
 <ul id="menu_consultation">
- <li><%= link_to t(:'softwares.Index'), :controller => 'softwares' %></li>
- <li><%= link_to t(:'releases.Index'), :controller => 'releases' %></li>
+ <li><%= link_to _('Software list'), :controller => 'softwares' %></li>
+ <li><%= link_to _('Releases list'), :controller => 'releases' %></li>
 </ul>
 
 
 <div class="menu_title" onclick="Element.toggle('menu_recherche')">
-  > <%= t('Search')%></div>
+  > <%= _('Search')%></div>
 <ul id="menu_recherche">
-  <li><b><%= t('Models.Version')%> </b><br />
+  <li><b><%= _('Version')%> </b><br />
       <%= text_field :version, :name %></li>
 </ul>
 
 <div class="menu_title" onclick="Element.toggle('menu_perimetre')">
-  > <%= t('Contract.Perimeter')%></div>
+  > <%= _('Perimeter')%></div>
 <ul id="menu_perimetre">
-  <li><b><%= t('Models.Version').pluralize %> : </b><%=  @count[:versions] %></li>
+  <li><b><%= _('Versions')%> : </b><%=  @count[:versions] %></li>
 </ul>
 
 <% end %>

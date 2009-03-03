@@ -5,5 +5,5 @@
 <%= render :partial => "issues/tabs/comment", :locals =>
          { :comment => @comment, :not_collapsed => true } %>
 
-<%= link_to t('Edit'), edit_comment_path(@comment) %> |
-<%= link_to_issue @comment.issue, :text => t('Return to the issue') %>
+<%= link_to _('Edit'), edit_comment_path(@comment) %> |
+<%= link_to_issue @comment.issue, :text => _('Return to the issue') %>

@@ -1,8 +1,8 @@
-<h1><%= t('Add a new contribution') %></h1>
+<h1><%= _('Add a new contribution') %></h1>
 
 <% form_tag( contributions_path, :multipart => true, :id => 'main_form') do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag t('Create') %>
+  <%= submit_tag _('Create') %>
 <% end %>
 
 <%= link_to_back %>

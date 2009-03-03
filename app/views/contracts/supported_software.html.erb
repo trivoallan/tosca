@@ -1,4 +1,4 @@
-<h1><%= t("Supported software in this contract") %></h1>
+<h1><%= _("Supported software in this contract") %></h1>
 
 <% options = { :before => "Element.show('spinner')",
                :success => "Element.hide('spinner')",
@@ -8,9 +8,9 @@
 <% form_tag( {:action => "add_software"}, :id => "main_form") do %>
 <table class="show" cellpadding="5" >
   <tr>
-    <th width="70"><%= t('Software') %></th>
-    <th><%= t('Version') %></th>
-	<th><%= t("Generic ?") %></th>
+    <th width="70"><%= _('Software') %></th>
+    <th><%= _('Version') %></th>
+	<th><%= _("Generic ?") %></th>
     <th></th>
   </tr>
   <% @versions.each do |v| %>
@@ -23,14 +23,14 @@
 
 <table class="show" cellpadding="5">
   <tr><td>
-    <fieldset><legend><%= t('Add software') %></legend>
+    <fieldset><legend><%= _('Add software') %></legend>
     <table cellpadding="5">
       <tr>
-        <td><label for="select_software"><%=t('Software')%></label></td>
+        <td><label for="select_software"><%=_('Software')%></label></td>
         <td>
          <%= select_empty "select", "software", @softwares, {},
                           { :onchange => remote_function(options) } %>
-         <%= link_to image_create(t('a software')), new_software_path %>
+         <%= link_to image_create(_('a software')), new_software_path %>
         </td>
         <td width="20"> <%= StaticPicture::spinner %></td>
       </tr>
@@ -43,7 +43,7 @@
 
 <table class="show" cellpadding="5">
   <tr><td>
-    <%= submit_tag t('Validate') %>
+    <%= submit_tag _('Validate') %>
   </td></tr>
 </table>
 <% end %>

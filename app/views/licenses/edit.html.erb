@@ -1,8 +1,8 @@
-<h1><%=t('Edit a copyright')%></h1>
+<h1><%=_('Edit a copyright')%></h1>
 
 <% form_tag license_path(@license), :method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag t('Validate') %>
+  <%= submit_tag _('Validate') %>
 <% end %>
 
 <%= link_to_show_and_list(@license) %> 

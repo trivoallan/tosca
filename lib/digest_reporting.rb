@@ -28,9 +28,11 @@ module DigestReporting
     @period = "year" if period.blank?
     updated = Time.now.send("beginning_of_#{@period}")
     # We must localise it after getting the (english) helper for the start date
-    @period = t(@period)
+    @period = _(@period)
 
-    issues = @session_user.issues
+    options = { :conditions => [ "updated_on >= ? ", updated ],
+     :order => "contract_id ASC", :include => [:issuetype, :severity, :statut]}
+    issues = Issue.all(options)
 
     @result = []
     last_contract_id = nil
@@ -54,5 +56,48 @@ module DigestReporting
     end
   end
 
+  #important is an array of Issue, other is an array of DigestContracts
+  DigestManagers = Struct.new(:important, :other)
+
+  def digest_managers(period)
+    @period = period
+    @period = "year" if period.blank?
+    updated = Time.now.send("beginning_of_#{@period}")
+    # We must localise it after getting the (english) helper for the start date
+    @period = _(@period)
+
+    options = { :conditions => [ "updated_on >= ? ", updated ],
+     :order => "contract_id ASC", :include => [:issuetype, :severity, :statut]}
+    issues = Issue.all(options)
+
+    @result = DigestManagers.new
+    @result.important = []
+    @result.other = []
+    last_contract_id = nil
+    issues.each do |r|
+      if last_contract_id != r.contract_id and not r.critical?
+        dc = DigestContracts.new
+        dc.contract = r.contract
+        dc.issues = []
+        @result.other.push(dc)
+      end
+
+      if r.critical?
+        @result.important.push(r)
+      else
+
+        options = { :conditions => [ "created_on >= ? ", updated ] }
+
+        dr  = DigestIssues.new
+        dr.issue = r
+        dr.issue_at = r.state_at(updated)
+        dr.comments = r.comments.all(options)
+        @result.other.last.issues.push(dr)
+      end
+
+      last_contract_id = r.contract_id
+    end
+
+  end
 
 end

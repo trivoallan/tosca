@@ -35,17 +35,17 @@ module WelcomeHelper
   def init_builder
     # List of special actions. It can be regexps
     @@texts = {
-      'admin' => [I18n.t(:'helpers.has_an_administration_interface')],
-      'print' => I18n.t(:'helpers.has_a_pretty_print_page'),
-      'suggestions'=> [I18n.t(:'helpers.allows_to_post_suggestions')],
-      'about'=> [I18n.t(:'helpers.displays_informations')],
-      'become'=> I18n.t(:'helpers.allows_to_become_an_other_one'),
-      'login'=> [I18n.t(:'helpers.allows_to_log_in_in_the_application')],
-      'plan'=> [I18n.t(:'helpers.display_this_map')],
-      'comment'=> I18n.t(:'helpers.allows_to_comment'),
-      'deroulement'=> I18n.t(:'helpers.prints_the_life_cycle_of_an_issue'),
-      [/ajax/, /auto_complete/] => I18n.t(:'helpers.is_ajaxified'),
-      /_ods/ => I18n.t(:'helpers.allows_to_export_datas_in_ods')
+      'admin' => [_('has an administration interface')],
+      'print' => _('has a pretty print page'),
+      'suggestions'=> [_('allows to post suggestions')],
+      'about'=> [_('displays informations')],
+      'become'=> _('allows to become an other one'),
+      'login'=> [_('allows to log in in the application')],
+      'plan'=> [_('display this map')],
+      'comment'=> _('allows to comment'),
+      'deroulement'=> _('prints the life cycle of an issue'),
+      [/ajax/, /auto_complete/] => _('is ajaxified'),
+      /_ods/ => _('allows to export datas in ODS')
     }
   end
 
@@ -77,7 +77,7 @@ module WelcomeHelper
 
   def preview_image(theme)
     image = image_tag("screenshots/#{theme}_preview.png",
-                      StaticPicture.options(I18n.t(:'helpers.s_theme', :value => theme), '258x142'))
+                      StaticPicture.options(_('%s theme') % theme, '258x142'))
     public_link_to(image, theme_welcome_path(:theme => theme), :method => :post)
   end
 

@@ -4,14 +4,14 @@
 
 <div class="subcolumns">
   <div class="c50l">
-    <%= render :partial => 'show_account_information' %>
+    <%= render :partial => "show_account_information" %>
   </div>
-  <%# do not display this part to customer, for now %>
+  <%# do not display this part to customer, for now%>
   <% if @session_user.engineer? %>
-    <div class="c50r">
-      <%= render :partial => 'show_engineer' %>
-      <%= render :partial => 'show_recipient' %>
-    </div>
+  <div class="c50r">
+    <%= render :partial => "show_engineer" %>
+    <%= render :partial => "show_recipient" %>
+  </div>
   <% end %>
 </div>
 <br />

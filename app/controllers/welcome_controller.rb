@@ -21,7 +21,8 @@ class WelcomeController < ApplicationController
   helper :issues, :account, :contributions, :softwares, :groups, :clients
 
   # Default page, redirect if necessary
-  def index; end
+  def index
+  end
 
   # Display all method that user can access
   def plan
@@ -29,10 +30,12 @@ class WelcomeController < ApplicationController
   end
 
   # About this software
-  def about; end
+  def about
+  end
 
   # Various administrative links
-  def admin; end
+  def admin
+  end
 
   # Used to select a theme, even without an account
   def theme
@@ -61,7 +64,7 @@ class WelcomeController < ApplicationController
         Notifier::deliver_welcome_idea(suggestion[:tosca],
           :tosca, @session_user)
       end
-      flash[:notice] = t(:thank_your_for_taking_time_in_order_to_help_us_to_improve_this_product_your_comments_has_been_sent_successfully)
+      flash[:notice] = _('Thank your for taking time in order to help us to improve this product. Your comments has been sent successfully.')
       redirect_to_home
     end
   end
@@ -72,7 +75,7 @@ class WelcomeController < ApplicationController
     if @session_user.role_id == 1
       #TODO : Find a better way, and call directly the rake task tmp:cache:clear
       FileUtils.rm_rf(Dir['tmp/cache/[^.]*'])
-      flash[:notice] = t(:cache_cleared)
+      flash[:notice] = _("Cache cleared !")
     end
     redirect_to_home
   end

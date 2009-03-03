@@ -1,9 +1,9 @@
-<h1><%= t('New attachment') %></h1>
+<h1><%= _('New attachment') %></h1>
 
 <% form_tag( attachments_path, :multipart => true) do
  %>
   <%= render :partial => 'form' %>
-  <%= submit_tag t("Create") %>
+  <%= submit_tag _("Create") %>
 <% end %>
 
 <%= link_to_back %>

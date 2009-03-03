@@ -1,8 +1,8 @@
-<h1><%= t(:Edit)%></h1>
+<h1><%= _('Editing permission')%></h1>
 
 <% form_tag(permission_path(@permission), :method => :put, :id => 'main_form') do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag t(:Validate) %>
+  <%= submit_tag _('Edit') %>
 <% end %>
 <br />
 <%= link_to_show_and_list @permission %>

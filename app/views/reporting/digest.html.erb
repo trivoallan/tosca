@@ -1,30 +1,30 @@
 <div class="content" id="content">
-  <h1><%= t('The activity of your contracts') %></h1><br />
+  <h1><%= _('The activity of your contracts') %></h1><br />
   <% form_tag digest_resultat_reporting_path, :method => :get do %>
     <table class='show'>
       <tr>
         <td>
-          <label for="results_first_day"><%= t('Choose a period :')%></label>
+          <label for="results_first_day"><%= _('Choose a period :')%></label>
         </td>
         <td>
-          <%= radio_button(:digest, :period, "day") %><%= t("1 Day") %>
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>
-          <%= radio_button(:digest, :period, "week") %><%= t("1 Week") %>
+          <%= radio_button(:digest, :period, "day") %><%= _("1 Day") %>
         </td>
       </tr>
       <tr>
         <td></td>
         <td>
-          <%= radio_button(:digest, :period, "month") %><%= t("1 Month") %>
+          <%= radio_button(:digest, :period, "week") %><%= _("1 Week") %>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <%= radio_button(:digest, :period, "month") %><%= _("1 Month") %>
         </td>
       </tr>
       <tr>
         <td colspan="2" align="center">
-          <%= submit_tag t('See the digest') %>
+          <%= submit_tag _('See the digest') %>
         </td>
     </table>
   <% end %>

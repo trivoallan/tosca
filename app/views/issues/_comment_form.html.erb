@@ -1,19 +1,19 @@
 <table style="width: 100%;"><tr>
-  <td><b><u><%= t("Your answer :") %></u></b></td>
+  <td><b><u><%= _("Your answer :") %></u></b></td>
 
   <% unless @statuts.empty? %>
   <td align="center">
-    <label for="comment_statut_id"><%= t("Status") %></label>
+    <label for="comment_statut_id"><%= _("Status") %></label>
     <%= select_empty(:comment, :statut_id, @statuts) %>
   </td>
   <% end %>
   <% if @session_user.engineer? %>
   <td align="center">
-    <label for="comment_severity_id"><%= t("Severity") %></label>
+    <label for="comment_severity_id"><%= _("Severity") %></label>
     <%= select_empty(:comment, :severity_id, @severities) %>
   </td>
   <td align="center">
-    <label for="comment_engineer_id"><%= t("Assign") %></label>
+    <label for="comment_engineer_id"><%= _("Assign") %></label>
     <select id="comment_engineer_id" name="comment[engineer_id]"><option value="">» </option>
        <%= options_from_collection_for_select(@engineers, :last, :first) %>
        <%= option_groups_from_collection_for_select(@teams, :engineers_collection_select, :name, :id, :name) %>
@@ -30,19 +30,19 @@
      <%= avatar(@session_user) %><br />
      <br /><br />
     <% if @session_user.engineer? %>
-       <label for="comment_private"><%= t("Private ?") %></label>
+       <label for="comment_private"><%= _("Private ?") %></label>
      <%= check_box(:comment, :private) %><br />
      <br /><br /><br /><br /><br /><br /><br />
      <% if @issue.contract.credit? %>
       <%= text_field :comment, :elapsed, :size => 1 %>
-      <label for="comment_elapsed"><%= t('Tickets spent') %></label>
+      <label for="comment_elapsed"><%= _('Tickets spent') %></label>
      <% end %>
 
     <% end %>
   </td><td class="text" align="center" style="width:100%;">
    <%= text_area :comment, :text, :style => 'width:100%;' %>
      <%= file_column_field('attachment', 'file', :size => 45) %><br />
-     <%= submit_tag t("Answer") %>
+     <%= submit_tag _("Answer") %>
   </td>
  </tr>
 </table>

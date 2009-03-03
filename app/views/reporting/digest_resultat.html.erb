@@ -1,9 +1,9 @@
-<h1><%= t("Issues of this %s") % @period %></h1>
+<h1><%= _("Issues of this %s") % @period %></h1>
 
 <% @result.each do |c| %>
   <% contract = c.contract %>
   <% c_id = "contract_#{contract.id}" %>
-  <h2><%= toggle(c_id) %>&nbsp;<%= t("Contract : ") + contract.name %></h2>
+  <h2><%= toggle(c_id) %>&nbsp;<%= _("Contract : ") + contract.name %></h2>
   <ul id="<%= c_id %>" style="list-style: none; display: none;">
 
   <% c.issues.each do |d| %>
@@ -15,7 +15,7 @@
       <%= issue.issuetype %>
       <%= issue.severity %><%= " (#{old_issue.severity})" if old_issue.severity and old_issue.severity != issue.severity %>,
       <%= issue.statut %><%= " (#{old_issue.statut})" if old_issue.statut and old_issue.statut != issue.statut %>,
-      <%= t("open since %s") % distance_of_time_in_words_to_now(issue.created_on) %><br/><br/>
+      <%= _("open since %s") % distance_of_time_in_words_to_now(issue.created_on) %><br/><br/>
       <ul id="<%= d_id %>" style="list-style: none; display: none;">
 
         <% d.comments.each do |com| %>

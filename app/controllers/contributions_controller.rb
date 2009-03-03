@@ -21,6 +21,12 @@ class ContributionsController < ApplicationController
 
   cache_sweeper :contribution_sweeper, :only => [ :create, :update ]
 
+  # Show all contribs and who's done 'em
+  def experts
+    options = { :order => 'contributions.engineer_id, contributions.contributionstate_id' }
+    @contributions = Contribution.all(options)
+  end
+
   def index
     select
     render :action => "select"
@@ -110,7 +116,7 @@ class ContributionsController < ApplicationController
   def create
     @contribution = Contribution.new(params[:contribution])
     if _link2issue && @contribution.save
-      flash[:notice] = t('The contribution has been created successfully.')
+      flash[:notice] = _('The contribution has been created successfully.')
       _update(@contribution)
       redirect_to contribution_path(@contribution)
     else
@@ -130,7 +136,7 @@ class ContributionsController < ApplicationController
   def update
     @contribution = Contribution.find(params[:id])
     if _link2issue && @contribution.update_attributes(params[:contribution])
-      flash[:notice] = t('The contribution has been updated successfully.')
+      flash[:notice] = _('The contribution has been updated successfully.')
       _update(@contribution)
       redirect_to contribution_path(@contribution)
     else
@@ -191,7 +197,7 @@ private
       @contribution.issue = issue
       true
     rescue
-      flash[:warn] = t('The associated issue does not exist')
+      flash[:warn] = _('The associated issue does not exist')
       false
     end
   end

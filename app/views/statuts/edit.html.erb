@@ -1,8 +1,8 @@
-<h1><%= t("Editing a statut") %></h1>
+<h1><%= _("Editing a statut") %></h1>
 
 <% form_tag statut_path(@statut), :method => :put do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag t("Submit") %>
+  <%= submit_tag _("Submit") %>
 <% end %>
 
 <%= link_to_show_and_list @statut %>

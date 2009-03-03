@@ -4,43 +4,43 @@
   <tr><td>
     <table class="show">
       <tr>
-        <th colspan="2"><label for="contribution_name"><%=t('Name')%></label></th>
+        <th colspan="2"><label for="contribution_name"><%=_('Name')%></label></th>
       </tr><tr>
         <td colspan="2"><%= text_field 'contribution', 'name', :size => 40 %></td>
       </tr><tr>
-        <th><label for="contribution_software"><%=t('Software')%></label></th>
+        <th><label for="contribution_software"><%=_('Software')%></label></th>
         <td><%= select_empty(:contribution, :software_id, @softwares) %>
             <%= StaticPicture::spinner %></td>
       </tr><tr>
-        <th><label for="contribution_engineer"><%=t('Engineer')%></label></th>
+        <th><label for="contribution_engineer"><%=_('Engineer')%></label></th>
         <td><%= select(:contribution, :engineer_id, @engineers) %></td>
       </tr><tr>
-        <th><label for="issue_id"><%=t('Issue number')%></label></th>
+        <th><label for="issue_id"><%=_('Issue number')%></label></th>
         <td><%= text_field :issue, :id, :size => 5 %></td>
       </tr><tr>
-        <th colspan="2"><label for="contribution_patch"><%=t('Patch')%></label></th>
+        <th colspan="2"><label for="contribution_patch"><%=_('Patch')%></label></th>
       </tr><tr>
         <td colspan="2"><%= file_column_field 'contribution', 'patch'  %></td>
       </tr><tr>
-        <th><label for="contribution_contributiontype"><%=t('Kind of contribution')%></label></th>
+        <th><label for="contribution_contributiontype"><%=_('Kind of contribution')%></label></th>
         <td><%= select(:contribution, :contributiontype_id, @contributiontypes) %></td>
       </tr><tr id="versions">
         <%= render :partial => 'list_versions' %>
       </tr>
       <tr>
-        <th><label for="contribution_contributionstate"><%=t('State')%></label></th>
+        <th><label for="contribution_contributionstate"><%=_('State')%></label></th>
         <td><%= select(:contribution, :contributionstate_id, @contributionstates) %></td>
       </tr><tr>
-        <th colspan="2"><label for="hyperlink_name"><%=t('Add an url for the community issue')%></label></th>
+        <th colspan="2"><label for="hyperlink_name"><%=_('Add an url for the community issue')%></label></th>
       </tr><tr>
         <td colspan="2"><%= text_field 'hyperlink', 'name' %></td>
       </tr><tr>
-        <th><label for="contribution_reverse"><%=t('Submitted ?')%></label>
+        <th><label for="contribution_reverse"><%=_('Submitted ?')%></label>
             <%= check_box 'contribution', 'reverse', :onchange => "Element.toggle('contributed_on');"%></th>
         <td><div id='contributed_on' <%=hide_unless !@contribution.contributed_on?%> >
             <%= date_select :contribution, :contributed_on, :start_year => 1995 %></div></td>
       </tr><tr>
-         <th><label for="contribution_clos"><%=t('Closed ?')%></label>
+         <th><label for="contribution_clos"><%=_('Closed ?')%></label>
              <%= check_box 'contribution', 'clos', :onchange => "Element.toggle('closed_on');"%></th>
          <td><div id='closed_on' <%= hide_unless !@contribution.closed_on? %> >
              <%= date_select :contribution, :closed_on, :start_year => 1995 %></div></td>
@@ -49,11 +49,11 @@
   </td><td>
     <table class="show">
       <tr>
-        <th><label for="contribution_synthesis"><%=t('Synthesis')%></label></th>
+        <th><label for="contribution_synthesis"><%=_('Synthesis')%></label></th>
       </tr><tr>
         <td><%= text_field :contribution, :synthesis, :size => 78 %></td>
       </tr><tr>
-        <th><label for="contribution_description"><%=t('Description')%></label></th>
+        <th><label for="contribution_description"><%=_('Description')%></label></th>
       </tr><tr>
         <td><%= text_area :contribution, :description, :cols => 100, :rows => 20  %></td>
       </tr>

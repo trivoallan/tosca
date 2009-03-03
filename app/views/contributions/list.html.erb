@@ -1,14 +1,14 @@
 <p>
-  <%= public_link_to t('Home'), welcome_path %> >
-    <%= public_link_to t('Contributions'), select_contributions_path %> >
+  <%= public_link_to _('Home'), welcome_path %> >
+    <%= public_link_to _('Contributions'), select_contributions_path %> >
       <% if @software %>
         <%= public_link_to_software(@software) %>
       <% else %>
-        <%= public_link_to(t('All'), softwares_path) %>
+        <%= public_link_to(_('All'), softwares_path) %>
       <% end %>
 </p>
 
-<% paginated_section(@contributions, :create_label => t('a new contribution')) do %>
+<% paginated_section(@contributions, :create_label => _('a new contribution')) do %>
  <% @contributions.each do |contribution| %>
   <h2>
    <%= link_to_edit(contribution) %>

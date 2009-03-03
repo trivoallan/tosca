@@ -33,11 +33,11 @@ class Software < ActiveRecord::Base
 
   has_and_belongs_to_many :skills, :uniq => true
 
-  validates_presence_of :name, :message =>
-    I18n.t(:you_have_to_specify_a_name)
-  validates_presence_of :group, :message =>
-    I18n.t(:you_have_to_specify_a_group)
+  validates_presence_of :name
+
+  validates_presence_of :group
   validates_length_of :skills, :minimum => 1
+
 
   # See ApplicationController#scope
   def self.set_scope(contract_ids)

@@ -22,8 +22,7 @@ module ContributionsHelper
   # software in parameters
   def public_table_of_contributions(contribs)
     return '' unless contribs.size > 0
-    columns = [ I18n.t(:'Contribution.Contributed_on'),
-                I18n.t(:'Models.Version'), I18n.t(:'Software.Summary') ]
+    columns = [ _('Date'), _('Version'), _('Summary') ]
     out = '<div class="bloc_scroll"><table class="full"><tr>'
     columns.each { |c| out << "<th>#{c}</th>" }
     out << '</tr>'
@@ -64,7 +63,7 @@ module ContributionsHelper
     if text
       link_to(text, options)
     else
-      link_to image_create(I18n.t('a contribution')), options
+      link_to image_create(_('a contribution')), options
     end
   end
 

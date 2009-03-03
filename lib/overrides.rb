@@ -15,13 +15,8 @@
 #
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
-
+#
 # Used to put expiry caches on images/pictures
-=begin
-# Does not works well with Rails 2.2.2.
-# TODO : Check & re-activate it if needed
 if defined? Mongrel::DirHandler
   module Mongrel
     class DirHandler
@@ -38,7 +33,6 @@ if defined? Mongrel::DirHandler
     end
   end
 end
-=end
 
 class Module
   def include_all_modules_from(parent_module)
@@ -69,7 +63,7 @@ class Date
     Date.new(0, 11, 1) => true, # 1st november
     Date.new(0, 11, 11) => true, #11th november
     Date.new(0, 12, 25) => true #25th december
-  } unless defined? FixedHolidays
+  }
 
   # Dynamic cache for variable holidays, for performance reason
   @@variable_holidays = {}
@@ -189,14 +183,19 @@ class Time
   # Time.in_words(10.hours, 5)
   # Time.in_words(2.days + 10.hours)
   # Time.in_words(0.5.days, true)
+  @@first_time = true
   def self.in_words(distance_in_seconds, dayly_time = 24)
     # Needed for putting libs into the tranlaste world of TOSCA
     # We cannot load it into config/environnement.rb, current version
     # of gettext bug with current version of gettext_localize
     # as of 10/04/08
     # TODO : find the bug or check it later
+    if @@first_time
+      GetText.bindtextdomain 'tosca'
+      @@first_time = nil
+    end
 
-    return I18n.t(:Immediate) if distance_in_seconds == 0
+    return _('Immediate') if distance_in_seconds == 0
     return '-' unless distance_in_seconds.is_a?(Numeric) and distance_in_seconds > 0
     return '-' unless dayly_time == true or (dayly_time > 0 and dayly_time < 25)
     opened = (dayly_time != 24 ? true : false)
@@ -208,36 +207,35 @@ class Time
     half_day_inf = (day/2) - 60
     half_day_sup = (day/2) + 60
 
-    I18n.with_options :scope => 'datetime.distance_in_words' do |locale|
-      case distance # in minutes
-      when 0..1
-        locale.t(:less_than_x_minutes, :count => 0)
-      when 1..45
-        locale.t(:x_minutes, :count => distance)
-      when 45..half_day_inf, half_day_sup..day-60
-        value = (distance.to_f / 60.0).round
-        locale.t(:about_x_hours, :count => value)
-      when half_day_inf..half_day_sup
-        (opened ? t(:half_a_working_day) : t(:half_a_day))
-      when (day-60)..(day+60), (day*2-60)..(day*2+60),
-           (day*3-60)..(day*3), (3*day)..mo
-        val = (distance / day).round
-        (opened ? locale.t(:x_working_days, :count => val) :
-                  locale.t(:x_days, :count => val))
-      when day..(3*day)
-        days = (distance / day).floor
-        hours = ((distance % 1.day)/60).round
-        out = (opened ? locale.t(:x_working_days, :count => days) :
-                        locale.t(:x_days, :count => days))
-        out << ' ' << t('and') << ' ' << t(:about_x_hours, :count => hours)
-        out
-      else
-        val = (distance / mo).round
-        (opened ? t(:x_working_months, :count => val) :
-                  t(:x_months, :count => val))
-      end
+    case distance # in minutes
+    when 0..1
+      _('less than a minute')
+    when 1..45
+      _('%d minutes') % distance
+    when 45..half_day_inf, half_day_sup..day-60
+      value = (distance.to_f / 60.0).round
+      n_('%d hour', '%d hours', value) % value
+    when half_day_inf..half_day_sup
+      (opened ? _('1 half a working day') : _('1 half day'))
+    when (day-60)..(day+60), (day*2-60)..(day*2+60),
+         (day*3-60)..(day*3), (3*day)..mo
+      val = (distance / day).round
+      (opened ? n_('%d working day', '%d working days', val) :
+                n_('%d day', '%d days', val)) % val
+    when day..(3*day)
+      days = (distance / day).floor
+      hours = ((distance % 1.day)/60).round
+      out = ((opened ? n_('%d working day', '%d working days', days) :
+                       n_('%d day', '%d days', days)) % days)
+      out << ' ' << _('and') << ' ' << n_('%d hour', '%d hours', hours) % hours
+      out
+    else
+      val = (distance / mo).round
+      (opened ? n_('%d working month', '%d working months', val) :
+                n_('%d month', '%d months', val)) % val
     end
   end
+
 end
 
 #############################################
@@ -287,12 +285,12 @@ module ActionController
   class Base
     def url_for(options = nil) #:doc:
       case options || options={}
-      when String
-        options
-      when Hash
-        @url.rewrite(rewrite_options(options))
-      else
-        polymorphic_url(options)
+        when String
+          options
+        when Hash
+          @url.rewrite(rewrite_options(options))
+        else
+          polymorphic_url(options)
       end
     end
   end
@@ -322,19 +320,19 @@ module ActionView::Helpers::UrlHelper
     return nil unless options
 
     url = case options
-    when String
-      options
-    when :back
-      @controller.request.env["HTTP_REFERER"] || 'javascript:history.back()'
-    else
-      self.url_for(options)
-    end
+      when String
+        options
+      when :back
+        @controller.request.env["HTTP_REFERER"] || 'javascript:history.back()'
+      else
+        self.url_for(options)
+      end
 
     if html_options
       case html_options[:method]
-      when :delete
+        when :delete
         action = 'destroy'
-      when :put
+        when :put
         action = 'update'
       end
       html_options = html_options.stringify_keys
@@ -353,7 +351,7 @@ module ActionView::Helpers::UrlHelper
       required_perm = nil
       if options.is_a?(Hash) and options.has_key? :action
         required_perm = '%s/%s' % [ options[:controller] || controller.controller_name,
-          options[:action] ]
+                                    options[:action] ]
       end
       if action and options.is_a? String
         # No '/' here, since we have it with the grepped part of the url.
@@ -461,6 +459,65 @@ module ActiveRecord
 end
 
 
+# This one fix a bug encountered with cache + mongrel + prefix.
+# Url was badly rewritten
+# deactivated for rails 2.2.2
+# TODO : see if it's needed or if it can go out
+=begin
+module ActionView
+  module Helpers
+    module AssetTagHelper
+      public
+      def stylesheet_link_tag(*sources)
+        options = sources.extract_options!.stringify_keys
+        cache   = options.delete("cache")
+
+        if ActionController::Base.perform_caching && cache
+          joined_stylesheet_name = (cache == true ? "all" : cache) + ".css"
+          joined_stylesheet_path = File.join(STYLESHEETS_DIR, joined_stylesheet_name)
+
+          write_asset_file_contents(joined_stylesheet_path, compute_relative_stylesheet_paths(sources))
+          stylesheet_tag(joined_stylesheet_name, options)
+        else
+          expand_stylesheet_sources(sources).collect { |source| stylesheet_tag(source, options) }.join("\n")
+        end
+      end
+
+      def javascript_include_tag(*sources)
+        options = sources.extract_options!.stringify_keys
+        cache   = options.delete("cache")
+
+        if ActionController::Base.perform_caching && cache
+          joined_javascript_name = (cache == true ? "all" : cache) + ".js"
+          joined_javascript_path = File.join(JAVASCRIPTS_DIR, joined_javascript_name)
+
+          write_asset_file_contents(joined_javascript_path, compute_relative_javascript_paths(sources))
+          javascript_src_tag(joined_javascript_name, options)
+        else
+          expand_javascript_sources(sources).collect { |source| javascript_src_tag(source, options) }.join("\n")
+        end
+      end
+
+      private
+      def compute_relative_path(source, dir, ext = nil)
+        source += ".#{ext}" if File.extname(source).blank? && ext
+        # TODO : remove the '/' if possible
+        "#{dir}/#{source}"
+      end
+
+      def compute_relative_javascript_paths(sources)
+        expand_javascript_sources(sources).collect { |source| compute_relative_path(source, 'javascripts', 'js') }
+      end
+
+      def compute_relative_stylesheet_paths(sources)
+        expand_stylesheet_sources(sources).collect { |source| compute_relative_path(source, 'stylesheets', 'css') }
+      end
+    end
+  end
+end
+=end
+
+
 #To have homemade message-id in mails
 module TMail
   class Mail
@@ -496,32 +553,6 @@ module AutoComplete
         end
         render :inline => "<%= auto_complete_choice('#{object}', '#{method}', @items, '#{model}[#{field}_ids]') %>"
       end
-    end
-  end
-end
-
-module Test
-  module Unit
-    class TestCase
-
-      class << self
-        #Add loading fixtures from extentions
-        def fixtures(*table_names)
-          if table_names.first == :all
-            table_names = Dir["#{fixture_path}/*.yml"] + Dir["#{fixture_path}/*.csv"] +
-              Dir["#{RAILS_ROOT}/vendor/extensions/*/test/fixtures/*.yml"] +
-              Dir["#{RAILS_ROOT}/vendor/extensions/*/test/fixtures/*.csv"]
-            table_names.map! { |f| File.basename(f).split('.')[0..-2].join('.') }
-          else
-            table_names = table_names.flatten.map { |n| n.to_s }
-          end
-
-          self.fixture_table_names |= table_names
-          require_fixture_classes(table_names)
-          setup_fixture_accessors(table_names)
-        end
-      end
-
     end
   end
 end

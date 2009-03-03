@@ -6,21 +6,21 @@
     <thead>
       <tr>
         <th width='2%'><%= StaticPicture::checkbox %></th>
-        <th width='2%'><%= t('Id') %></th>
+        <th width='2%'><%= _('Id') %></th>
         <th width='2%'>
           <% if @session_user.engineer? %>
-            <%=  t('Resp.') %>
+            <%=  _('Resp.') %>
           <% else %>
-            <%=  t('Recipient') %>
+            <%=  _('Recipient') %>
           <% end %>
         </th>
-        <th width='2%'><%= t('Software') %></th>
+        <th width='2%'><%= _('Software') %></th>
         <% if @session_user.engineer? %>
-          <th width='2%'><%= t('Client') %></th>
+          <th width='2%'><%= _('Client') %></th>
         <% end %>
-        <th><%= t('Summary') %></th>
-        <th width="185px"><%= t('Workaround') %></th>
-        <th width="185px"><%= t('Correction') %></th>
+        <th><%= _('Summary') %></th>
+        <th width="185px"><%= _('Workaround') %></th>
+        <th width="185px"><%= _('Correction') %></th>
       </tr>
       <tr><td colspan="8"><hr /></td></tr>
     </thead>
@@ -62,9 +62,9 @@
     <tfoot>
       <tr><td colspan="8"><hr /></td></tr>
       <tr><td colspan="8">
-          <%=t('Selected issues can wait')%>
-          <%= text_field_tag :expected_on, "15", :size => '2' %> <%=t('days')%>
-          <%= submit_tag t("before renewal") %>
+          <%=_('Selected issues can wait')%>
+          <%= text_field_tag :expected_on, "15", :size => '2' %> <%=_('days')%>
+          <%= submit_tag _("before renewal") %>
       </td></tr>
     </tfoot>
   </table>

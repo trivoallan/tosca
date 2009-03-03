@@ -39,11 +39,12 @@ class ReleasesController < ApplicationController
   def create
     @release = Release.new(params[:release])
     if @release.version.generic?
-      flash[:warn] = t(:release_conflict_with_generic)
+      flash[:warn] = _("This release can not be created, because it is associated
+        with a generic version.<br/>Please create a specific version below.")
       redirect_to new_version_path(:version_id => @release.version_id)
     else
       if @release.save
-        flash[:notice] = t(:successfully_created, :name => @release.full_name)
+        flash[:notice] = _('This release has been successfully created.')
         redirect_to(@release.version ? version_path(@release.version) : @release)
       else
         _form
@@ -60,7 +61,7 @@ class ReleasesController < ApplicationController
   def update
     @release = Release.find(params[:id])
     if @release.update_attributes(params[:release])
-      flash[:notice] = t(:successfully_updated, :name => @release.full_name)
+      flash[:notice] = _('This release has been successfully updated.')
       redirect_to release_path(@release)
     else
       _form and render :action => 'edit'

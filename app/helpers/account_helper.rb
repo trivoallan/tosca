@@ -29,32 +29,32 @@ module AccountHelper
   def get_title
     result = ''
     if @session_user.id == @user.id
-      result << t(:'helpers.my_account')
+      result << _('My account')
     else
-      result << t(:'helpers.account_of', :name => @user.name)
+      result << _('Account of %s') % @user.name
     end
-    result << " (#{t(:'User.Inactive')})" if @user.inactive
+    result << " (#{_('User|Inactive')})" if @user.inactive
     result
   end
 
   def observe_client_field
     @@options ||= PagesHelper::SPINNER_OPTIONS.dup.\
-      update(:with => 'client', :url => 'ajax_place')
-      observe_field('user_client_form_true', @@options) <<
-      observe_field('user_client_form_false', @@options)
+      update(:with => "client", :url => 'ajax_place')
+      observe_field("user_client_form_true", @@options) <<
+      observe_field("user_client_form_false", @@options)
   end
 
   def observe_client_list
     @@contracts_options ||= PagesHelper::SPINNER_OPTIONS.dup.\
-      update(:with => 'client_id', :url => 'ajax_contracts')
-    observe_field 'user_recipient_client_id', @@contracts_options
+      update(:with => "client_id", :url => 'ajax_contracts')
+    observe_field "user_recipient_client_id", @@contracts_options
   end
 
   def form_become(user)
     result = ''
     if @session_user.engineer? && user && !user.inactive?
       result << %Q{<form action="#{become_account_path(user)}" method="post">}
-      result << %Q{<input name="commit" value='#{t(:'account.Become')}' type="submit" /></form>}
+      result << %Q{<input name="commit" value='#{_('Become')}' type="submit" /></form>}
     end
     result
   end

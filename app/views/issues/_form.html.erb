@@ -10,7 +10,7 @@
   <div class="show">
   <table>
     <tr>
-      <th colspan="2"><label for="issue_resume"><%= t("Summary") %></label></th>
+      <th colspan="2"><label for="issue_resume"><%= _("Summary") %></label></th>
     </tr>
     <tr>
       <td colspan="2"><%= text_field :issue, :resume, :size => 45, :maxlength => 70 %></td>
@@ -19,7 +19,7 @@
     <tr>
       <td colspan="2">
         <fieldset style="width: 45em;">
-          <legend><%=  t("Detailed description") %></legend>
+          <legend><%=  _("Detailed description") %></legend>
           <%= text_area 'issue', 'description', :cols => 55, :rows =>17 %>
         </fieldset>
       </td>
@@ -27,7 +27,7 @@
 
     <tr>
     <% if new_issue %>
-      <th colspan="2"><label for="attachment_file"><%= t("Add a file") %></label></th>
+      <th colspan="2"><label for="attachment_file"><%= _("Add a file") %></label></th>
     </tr>
 
     <tr>
@@ -44,7 +44,7 @@
   <div class="show tinymce">
    <table>
     <tr>
-     <th><label for="issue_issuetype_id"><%= t("Type") %></label></th>
+     <th><label for="issue_issuetype_id"><%= _("Type") %></label></th>
      <td><%= select(:issue, :issuetype_id, @issuetypes) %>
          <% if new_issue %>
            <%= select(:issue, :severity_id, @severities) %>
@@ -53,7 +53,7 @@
     </tr>
 
     <tr>
-     <th><label for="issue_contract_id"><%= t("Concerning") %></label></th>
+     <th><label for="issue_contract_id"><%= _("Concerning") %></label></th>
 
      <% if !@contracts.empty? %>
       <td>
@@ -73,14 +73,14 @@
     </tr>
 
     <tr>
-     <th><label for="issue_recipient_id"><%= t("Recipient") %></label></th>
+     <th><label for="issue_recipient_id"><%= _("Recipient") %></label></th>
      <%# Warning, the code of this cell is also in ajax_display_contract.rjs %>
      <td><div id="recipient"><%= select(:issue, :recipient_id, @recipients) %></div></td>
     </tr>
 
     <% if @session_user.engineer? %>
      <tr>
-      <th><label for="issue_engineer_id"><%=t("Assigned to")%></label></th>
+      <th><label for="issue_engineer_id"><%=_("Assigned to")%></label></th>
       <td>
        <div id="engineer">
         <select id="issue_engineer_id" name="issue[engineer_id]"><option value="">» </option>
@@ -94,7 +94,7 @@
 
     <tr><td colspan="2"><hr /></td></tr>
     <tr>
-     <th><label for="issue_software_id"><%= t("Software") %></label></th>
+     <th><label for="issue_software_id"><%= _("Software") %></label></th>
      <td><%= render :partial => 'software' %></td>
     </tr>
 
@@ -103,13 +103,13 @@
     <% if @session_user.engineer? %>
      <tr><td colspan="2"><hr /></td></tr>
      <tr>
-       <th><label for="issue_mail_cc"><%= t("CC") %></label></th>
+       <th><label for="issue_mail_cc"><%= _("CC") %></label></th>
        <td><%= text_field :issue, :mail_cc, :size => 20 %></td>
      </tr>
 
      <% unless new_issue %>
      <tr>
-      <th><label for="issue_expected_on"><%= t("Issue|Expected on") %></label></th>
+      <th><label for="issue_expected_on"><%= _("Issue|Expected on") %></label></th>
       <td>
        <%= text_field :issue, :expected_on, :size => 20 %>
        <span class="calendarPicker"><%= StaticScript::date_from %></span>
@@ -122,7 +122,7 @@
     <tr><td colspan="2"><hr /></td></tr>
 
     <tr>
-     <th><%= t("Commitments") %></th>
+     <th><%= _("Commitments") %></th>
      <td><div id="commitment"><%= display_commitment(@issue)%></div></td>
     </tr>
    </table>

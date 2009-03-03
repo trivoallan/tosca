@@ -11,12 +11,12 @@
 
 <h1 class="title">
   <%= (client ? client.name : Tosca::App::Name) %><br />
-  <%= t("Activity report") %><br />
+  <%= _("Activity report") %><br />
   <% if @report[:middle_date].month == @report[:end_date].month %>
-    <%= t('of') %> <%= @report[:middle_date].strftime('%B %Y') %>
+    <%= _('of') %> <%= @report[:middle_date].strftime('%B %Y') %>
   <% else %>
-    <%= t('from') %> <%= @report[:middle_date].strftime('%B %Y') %>
-    <%= t('to') %> <%= @report[:end_date].strftime('%B %Y') %>
+    <%= _('from') %> <%= @report[:middle_date].strftime('%B %Y') %>
+    <%= _('to') %> <%= @report[:end_date].strftime('%B %Y') %>
   <% end %>
-  (<%= @report[:middle_report] %> <%= t('months') %>)
+  (<%= @report[:middle_report] %> <%= _('months') %>)
 </h1>

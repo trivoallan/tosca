@@ -1,8 +1,8 @@
-<h1><%= t('Update your knowledge') %></h1>
+<h1><%= _('Update your knowledge') %></h1>
 
 <% form_for(@knowledge) do |f| %>
   <%= render :partial => 'form' %>
-  <p><%= f.submit t("Update") %></p>
+  <p><%= f.submit _("Update") %></p>
 <% end %>
 
 <%= link_to_show_and_list(@knowledge) %>

@@ -21,18 +21,18 @@ module SubscriptionsHelper
   def link_to_subscription(model, options = {})
     model_name = model.class.name
     if model.subscribed? @session_user
-      alert_success = I18n.t('You are now unsubscribed to this %s') % model_name
-      alert_failure = I18n.t('You can not unsubscribe to this %s') % model_name
+      alert_success = _('You are now unsubscribed to this %s') % model_name
+      alert_failure = _('You can not unsubscribe to this %s') % model_name
       url = send("ajax_unsubscribe_#{model_name.underscore}_url", model)
       icon = StaticPicture::unsubscribe
-      text = I18n.t('Unsubscribe to this %s') % model_name
+      text = _('Unsubscribe to this %s') % model_name
       method = :delete
     else
-      alert_success = I18n.t('You are now subscribed to this %s') % model_name
-      alert_failure = I18n.t('You can not subscribe to this %s') % model_name
+      alert_success = _('You are now subscribed to this %s') % model_name
+      alert_failure = _('You can not subscribe to this %s') % model_name
       url = send("ajax_subscribe_#{model_name.underscore}_url", model)
       icon = StaticPicture::subscribe
-      text = I18n.t('Subscribe to this %s') % model_name
+      text = _('Subscribe to this %s') % model_name
       method = :post
     end
 
@@ -57,7 +57,7 @@ module SubscriptionsHelper
       end
     end
     if subscribers.empty?
-      result << "<li>#{I18n.t('There is no subscribers.')}</li>"
+      result << "<li>#{_('There is no subscribers.')}</li>"
     else
       subscribers.each{|u| result << "<li>#{link_to(u, account_path(u))}</li>"}
     end

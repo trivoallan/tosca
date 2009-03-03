@@ -52,7 +52,7 @@ class Contract < ActiveRecord::Base
   def must_open_before_close
     valid = true
     if self.opening_time.to_i > self.closing_time.to_i
-      self.errors.add_to_base(i18n.t(:the_schedules_of_this_contract_are_invalid))
+      self.errors.add_to_base("The schedules of this contract are invalid.")
       valid = false
     end
     valid
@@ -67,7 +67,7 @@ class Contract < ActiveRecord::Base
 
   def self.set_scope(contract_ids)
     self.scoped_methods << { :find => { :conditions =>
-          [ 'contracts.id IN (?)', contract_ids ] } }
+        [ 'contracts.id IN (?)', contract_ids ] } }
   end
 
   def engineers
@@ -94,7 +94,7 @@ class Contract < ActiveRecord::Base
     if rule_type == 'Rules::Component' and rule.max == -1
       return Software.all(:order => 'softwares.name ASC')
     end
-    Software.all(:conditions => { 'contracts.id' => self.id },
+    Software.all(:conditions => { "contracts.id" => self.id },
       :joins => { :versions => :contracts },
       :order => 'softwares.name')
   end
@@ -114,7 +114,7 @@ class Contract < ActiveRecord::Base
 
   def find_commitment(issue)
     options = { :conditions =>
-        [ 'commitments.issuetype_id = ? AND severity_id = ?',
+      [ 'commitments.issuetype_id = ? AND severity_id = ?',
         issue.issuetype_id, issue.severity_id ] }
     self.commitments.first(options)
   end
@@ -123,15 +123,16 @@ class Contract < ActiveRecord::Base
     joins = 'INNER JOIN commitments ON commitments.issuetype_id = issuetypes.id '
     joins << 'INNER JOIN commitments_contracts ON commitments.id = commitments_contracts.commitment_id'
     conditions = [ 'commitments_contracts.contract_id = ? ', id ]
-    Issuetype.all(:select => 'DISTINCT issuetypes.*',
-      :conditions => conditions,
-      :joins => joins)
+    Issuetype.all(
+                     :select => "DISTINCT issuetypes.*",
+                     :conditions => conditions,
+                     :joins => joins)
   end
 
   INCLUDE = [:client]
   ORDER = 'clients.name ASC'
   OPTIONS = { :include => INCLUDE, :order => ORDER, :conditions =>
-      ["clients.inactive = ?", false] }
+    ["clients.inactive = ?", false] }
 
   def name
     specialisation = read_attribute(:name)

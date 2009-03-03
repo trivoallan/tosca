@@ -3,40 +3,40 @@
   <tr>
     <td colspan="2"><%= avatar(@user) %></td>
   </tr><tr>
-    <th><%= t('User|Login') %></th>
+    <th><%= _('User|Login') %></th>
     <td><%= @user.login %></td>
   </tr><tr>
-    <th><%= t('User|Title') %></th>
+    <th><%= _('User|Title') %></th>
     <td><%= @user.title %></td>
   </tr><tr>
-    <th><%= t('User|Name') %></th>
+    <th><%= _('User|Name') %></th>
     <td><%= @user.name %></td>
   </tr><tr>
-    <th><%= t('User|Email') %></th>
+    <th><%= _('User|Email') %></th>
     <td><%= @user.email %></td>
   </tr><tr>
-    <th><%= t('User|Phone') %></th>
+    <th><%= _('User|Phone') %></th>
     <td><%= @user.phone %></td>
   </tr>
   <% if @user.team %>
   <tr>
-    <th><%= t('User|Team') %></th>
+    <th><%= _('User|Team') %></th>
     <td><%= @user.team.name %></td>
   </tr>
   <% end %>
   <% if @user.team_manager? %>
   <tr>
-    <th><%= t('Manager of the team') %></th>
+    <th><%= _('Manager of the team') %></th>
     <td><%= @user.team.name %></td>
   </tr>
   <% end %>
   <tr>
-    <th><%= t('User|Role') %></th>
+    <th><%= _('User|Role') %></th>
     <td><%= @user.role.name %></td>
   </tr>
   <% unless @user.informations.blank? %>
     <tr><td colspan="2"><fieldset>
-      <legend><%=t('User|Informations')%></legend><%= @user.informations %>
+      <legend><%=_('User|Informations')%></legend><%= @user.informations %>
     </fieldset></td></tr>
   <% end %>
 </table>
@@ -45,18 +45,18 @@
 <div class="show">
 <table>
   <tr>
-    <td colspan="2"><h2><%= t("Preferences") %></h2></td>
+    <td colspan="2"><h2><%= _("Preferences") %></h2></td>
   </tr>
   <tr>
-    <th><%= t("Daily Digest") %></th>
+    <th><%= _("Daily Digest") %></th>
     <td><%= "X" if @user.prefers_digest_daily? %></td>
   </tr>
   <tr>
-    <th><%= t("Weekly Digest") %></th>
+    <th><%= _("Weekly Digest") %></th>
     <td><%= "X" if @user.prefers_digest_weekly? %></td>
   </tr>
   <tr>
-    <th><%= t("Monthly Digest") %></th>
+    <th><%= _("Monthly Digest") %></th>
     <td><%= "X" if @user.prefers_digest_monthly? %></td>
   </tr>
 </table>

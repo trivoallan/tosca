@@ -1,8 +1,8 @@
-<h1><%= t(:Edit) %></h1>
+<h1><%= _('Editing tag')%></h1>
 
-<% form_for(@tag) do |f| %>
-  <%= render :partial => 'form', :locals => { :f => f } %>
-  <%= f.submit t(:Validate) %>
+<% form_tag tag_path(@tag), :method => :put, :id => "main_form" do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag _('Edit') %>
 <% end %>
 
 <br />

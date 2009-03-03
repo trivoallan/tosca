@@ -43,7 +43,7 @@ class HyperlinksController < ApplicationController
   def create
     @hyperlink = Hyperlink.new(params[:hyperlink])
     if @hyperlink.save
-      flash[:notice] = t('The url was successfully created.')
+      flash[:notice] = _('The url was successfully created.')
       redirect_to_controller
     else
       render :action => "new"
@@ -55,7 +55,7 @@ class HyperlinksController < ApplicationController
     @hyperlink = Hyperlink.find(params[:id])
 
     if @hyperlink.update_attributes(params[:hyperlink])
-      flash[:notice] = t('The url was successfully updated.')
+      flash[:notice] = _('The url was successfully updated.')
       redirect_to_controller
     else
       render :action => "edit"
@@ -67,7 +67,7 @@ class HyperlinksController < ApplicationController
   def destroy
     @hyperlink = Hyperlink.find(params[:id])
     @hyperlink.destroy
-    flash[:notice] = t('The url was successfully destroyed.')
+    flash[:notice] = _('The url was successfully destroyed.')
     redirect_to_controller
   end
 

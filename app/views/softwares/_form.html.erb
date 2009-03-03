@@ -1,52 +1,54 @@
-<%= f.error_messages %>
+<%= error_messages_for 'software' %>
 
 <div class="subcolumns">
  <div class="c50l">
   <div class="show">
    <table>
     <tr>
-     <th><%= f.label :name %></th>
-     <td><%= f.text_field :name %></td>
+     <th><label for="software_name"><%=_('Name')%></label></th>
+     <td><%= text_field :software, :name %></td>
 	</tr><tr>
-     <th><%= f.label :summary %></th>
-     <td><%= f.text_field :summary %></td>
+     <th><label for="software_resume"><%=_('Summary')%></label></th>
+     <td><%= text_field :software, :resume %></td>
     </tr>
    </table>
 
-   <p><%= f.label :description %><br />
-      <%= f.text_area :description, :cols => 60 %></p>
+   <p><label for="software_description"><%=_('Description')%></label><br />
+   <%= text_area :software, :description, :cols => 60 %></p>
 
-   <p><%= f.label :logo %><br />
-      <%= file_column_field 'image', 'image' %></p>
+   <p><label for="image_image"><%=_('Logo')%></label><br />
+   <%= file_column_field 'image', 'image' %></p>
 
+   <p><label for="software_referent"><%=_('Base name')%></label><br />
+   <%= text_field :software, :referent %></p>
   </div>
  </div><div class="c50r">
   <div class="show">
    <table>
     <tr>
-     <th><%= f.label :copyright %></label>
-         <%= link_to_new_license %></th>
-     <td><%= f.select :license_id, @licenses %></td>
+     <th><label for="software_licence_id"><%=_('Copyright')%></label>
+      <%= link_to_new_license %></th>
+     <td><%= select(:software, :license_id, @licenses) %></td>
     </tr><tr>
-     <th><%= f.label :group %></label>
+     <th><label for="software_group_id"><%=_('Group')%></label>
       <%= link_to_new_group %></th>
-     <td><%= f.select :group_id, @groups %></td>
+     <td><%= select(:software, :group_id, @groups) %></td>
     </tr><tr>
-     <th><%= f.label :private %></th>
-     <td><%= f.check_box :private %></td>
+     <th><label for="software_private"><%=_('Private')%></label></th>
+     <td><%= check_box(:software, :private) %></td>
     </tr>
    </table>
 
-   <p><%= f.label :skills %></label> <%= link_to_new_skill %></p>
+   <p><label><%=_('Technologies')%></label> <%= link_to_new_skill %></p>
      <%= hbtm_check_box( @software.skills, @skills,
                          'software[skill_ids]', :size => 4) %>
    <% # Tags are dynamically dependent of related technologies %>
    <%= render :partial => 'tags' %>
    <%= observe_form('form_software', :update => 'tags',
-        :before => "Element.show('spinner')",
-        :success => "Element.hide('spinner')",
-        :url => ajax_update_tags_softwares_path,
-        :method => :get ) %>
+      :before => "Element.show('spinner')",
+      :success => "Element.hide('spinner')",
+      :url => ajax_update_tags_softwares_path,
+      :method => :get ) %>
   </div>
  </div>
 </div>

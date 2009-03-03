@@ -1,8 +1,8 @@
 <div class="memo">
-  <h1><%= t('Logout ...')%></h1>
+  <h1><%= _('Logout ...')%></h1>
 
   <p>&nbsp;</p>
-  <p><%= t('You are not anymore connected')%></p>
+  <p><%= _('You are not anymore connected')%></p>
   <p>&nbsp;</p>
   <p>&nbsp;</p>
   <p>&nbsp;</p>
@@ -10,6 +10,6 @@
 
 <%# This is a hard link because you have no rigths when you are disconnected. %>
 <%# So the link_to does not work %>
-  <p><a href="http://<%= request.host_with_port %>/account/login"><%= t('Log in')%></a></p>
+  <p><a href="http://<%= request.host_with_port %>/account/login"><%= _('Log in')%></a></p>
 
 </div>

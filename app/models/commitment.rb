@@ -22,7 +22,7 @@ class Commitment < ActiveRecord::Base
   has_and_belongs_to_many :contracts, :uniq => true
 
   validates_each :correction, :workaround do |record, attr, value|
-    record.errors.add attr, t(:must_be_0) if value < 0 and value != -1
+    record.errors.add attr, _('must be >= 0.') if value < 0 and value != -1
   end
 
   # Our agreement for 0 SLA is '-1' in the database.

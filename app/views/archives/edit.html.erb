@@ -1,8 +1,8 @@
-<h1><%=t('Edition of this archive')%></h1>
+<h1><%=_('Edition of this archive')%></h1>
 
 <% form_tag(archive_path(@archive), :method => :put, :multipart => true, :id => 'main_form') do%>
   <%= render :partial => 'form' %>
-  <%= submit_tag t('Validate') %>
+  <%= submit_tag _('Validate') %>
 <% end %>
 
 <%= link_to_show_and_list(@archive) %>

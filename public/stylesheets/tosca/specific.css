@@ -34,17 +34,6 @@ table { border-collapse: collapse; }
 div.info { width: 100%; }
 table.full { width: 100%; }
 
-pre, code {
-    padding: 1em;
-    border-width: 1px;
-    border-style: dashed;
-    border-color: #000000;
-    background-color: #fafafa;
-    overflow-x: scroll;
-    white-space:-moz-pre-wrap;
-}
-
-
 /* visible in roles/ view */
 th a { color: lightgreen; }
 
@@ -146,7 +135,6 @@ div.bloc_scroll, div.long_bloc_scroll {
   width: 99%;
   height: auto;
   max-height: 10em;
-  min-width: 35em;
   overflow: auto;
   background-color: #f2fff2;
 }

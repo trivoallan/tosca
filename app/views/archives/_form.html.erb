@@ -1,10 +1,10 @@
 <%= error_messages_for 'archive' %>
 
-<p><label for="archive_release"><%=t('Release')%></label><br />
+<p><label for="archive_release"><%=_('Release')%></label><br />
   <%= select(:archive, :release_id, @releases) %>
 </p>
 
-<p><label for="archive_file"><%= t('Archive') %></label><br />
+<p><label for="archive_file"><%= _('Archive') %></label><br />
 <%= file_column_field 'archive', 'file' %>
 </p>
 

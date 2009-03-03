@@ -1,26 +1,26 @@
 <% software = @version.software %>
-<%= public_link_to t('Homepage') , welcome_url%> >
- <%= public_link_to t('Software') , softwares_path %> >
+<%= public_link_to _('Homepage') , welcome_url%> >
+ <%= public_link_to _('Software') , softwares_path %> >
   <%= public_link_to software.group.name, software_path(software.group_id) %> >
    <%= public_link_to software, software_path(software) %> >
     <%= @version %>
      <%= link_to_edit(@version) %>
 
-   <h2><%= t(:Show)%></h2>
+   <h2><%= _('Version of a software')%></h2>
 
 <table>
   <tr><td>
    <div class="show">
-    <p><b><%= t(:'Models.Software') %> :</b> <%= @version.software.name %></p>
-    <p><b><%= t(:'Models.Version') %> :</b> <%= @version %></p>
-    <p><b><%= t(:'Version.Generic') %> ?</b> <%= @version.generic? ? t(:Yes) : t(:No)%></p>
+    <p><b><%= _('Software') + ' : '%></b> <%= @version.software.name %></p>
+    <p><b><%= _('Version') + ' : '%></b> <%= @version %></p>
+    <p><b><%= _('Generic ?') %></b> <%= @version.generic? ? _('Yes') : _('No')%></p>
    </div>
 
-   <p><b><%= pluralize(@version.releases.size, t(:'Models.Release')) %></b> <%= link_to_new_release(@version.id) %></p>
+   <p><b><%= pluralize(@version.releases.count, _('release') ) %></b> <%= link_to_new_release(@version.id) %></p>
    <p>
      <% options = { :no_title => true, :edit => 'release'} %>
      <% if @version.releases.size > 0 %>
-        <%= show_list(@version.releases, t('release'), options) {|r|
+        <%= show_list(@version.releases, _('release'), options) {|r|
             link_to r.full_name, release_path(r)
           } %>
      <% end %>

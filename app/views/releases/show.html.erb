@@ -1,35 +1,35 @@
 <% version = @release.version %>
 <% software = @release.software %>
-<%= public_link_to t(:Homepage), welcome_path %> >
- <%= public_link_to t(:'Models.Software'), softwares_path %> >
+<%= public_link_to _('Home'), welcome_path %> >
+ <%= public_link_to _('Software'), softwares_path %> >
   <%= public_link_to software.group.name, software_path(software.group_id) %> >
    <%= public_link_to software, software_path(software) %> >
-    <%= link_to version, version_path(version) %>-<%= h @release %>
-      <%= link_to_edit(@release) %>
+    <%= link_to version, version_path(version) %> >
+      <%= h @release %> <%= link_to_edit(@release) %>
 
-<h2><%=t(:Show)%></h2>
+<h2><%=_('Release')%></h2>
 <div class="show">
- <p><b><%=t(:'Models.Software')%>:</b> <%= public_link_to software, software_path(software) %></p>
- <p><b><%=t(:'Models.Contract')%>:</b> <%= link_to @release.contract.client, contract_path(@release.contract) %></p>
- <p><b><%=t(:'Models.Version')%>:</b> <%= link_to version, version_path(version) %></p>
- <p><b><%=t(:'Models.Release')%>:</b> <%= @release %></p>
- <p><b><%=t(:'Release.Packaged')%> ?</b> <%= t('Yes') if @release.packaged? %></p>
- <p><b><%=t(:'Release.Active')%> ?</b> <%= t('Yes') unless @release.inactive? %></p>
-
+ <p><b><%=_('Software')%>:</b> <%= public_link_to software, software_path(software) %></p>
+ <p><b><%=_('Contract')%>:</b> <%= link_to @release.contract.client, contract_path(@release.contract) %></p>
+ <p><b><%=_('Version')%>:</b> <%= link_to version, version_path(version) %></p>
+ <p><b><%=_('Release')%>:</b> <%= @release %></p>
+ <p><b><%=_('Packaged ?')%></b> <%= _('Yes') if @release.packaged? %></p>
+ <p><b><%=_('Active ?')%></b> <%= _('Yes') unless @release.inactive? %></p>
+ 
  <% if @release.changelog %>
  <fieldset>
-   <legend><%=t(:'Models.Changelog') %></legend>
+   <legend><%=_('Changelog') %></legend>
    <p><%= @release.changelog %></p>
  </fieldset>
  <% end %>
 </div>
 
 <div class="show">
-<p><b><%= pluralize(@release.archives.count, t('archive') ) %></b> <%= link_to_new_archive(@release.id) %></p>
+<p><b><%= pluralize(@release.archives.count, _('archive') ) %></b> <%= link_to_new_archive(@release.id) %></p>
   <p>
   <% if @release.archives.count > 0 %>
     <% options = { :no_title => true, :edit => 'archive'} %>
-    <%= show_list(@release.archives, t('archive'), options) { |a|
+    <%= show_list(@release.archives, _('archive'), options) { |a| 
       link_to a.name, archive_path(a)
     } %>
   <% end %>

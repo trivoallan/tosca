@@ -19,6 +19,7 @@
 class RolesController < ApplicationController
   def index
     options = { :order => 'permissions.name', :include => :roles }
+    @permissions = Permission.all(options)
     @roles = Role.all
   end
 
@@ -34,7 +35,7 @@ class RolesController < ApplicationController
   def create
     @role = Role.new(params[:role])
     if @role.save
-      flash[:notice] = t(:successfully_created, :name => @role.name)
+      flash[:notice] = _("The role %s was succefully created.") % "\"#{@role.name}\""
       redirect_to roles_url
     else
       render :action => 'new'
@@ -49,7 +50,7 @@ class RolesController < ApplicationController
   def update
     @role = Role.find(params[:id])
     if @role.update_attributes(params[:role])
-      flash[:notice] =  t(:successfully_updated, :name => @role.name)
+      flash[:notice] = _("The role %s was succefully updated.") % "\"#{@role.name}\""
       redirect_to roles_url
     else
       render :action => 'edit'

@@ -27,10 +27,10 @@ class SoftwaresController < ApplicationController
   # ajaxified list
   def index
     scope = nil
-    @title = t(:Index)
+    @title = _('List of software')
     if @session_user and @session_user.recipient? && params['active'] != '0'
       scope = :supported
-      @title = t(:'your_software')
+      @title = _('List of your supported software')
     end
 
     options = { :order => 'softwares.name', :include =>
@@ -84,10 +84,14 @@ class SoftwaresController < ApplicationController
     @software = Software.find(params[:id])
     conditions = { :conditions => ['issues.software_id=?', @software.id ] }
     if @session_user and @session_user.recipient?
-      @issues = @session_user.assigned_issues.all(conditions)
+      @issues = @session_user.issues.all(conditions)
     else
       @issues = Issue.all(conditions)
     end
+  end
+
+  def card
+    @software = Software.find(params[:id])
   end
 
   def new
@@ -98,7 +102,7 @@ class SoftwaresController < ApplicationController
   def create
     @software = Software.new(params[:software])
     if @software.save and add_logo
-      flash[:notice] = t(:successfully_created, :name => @software.name)
+      flash[:notice] = _('The software %s has been created succesfully.') % @software.name
       redirect_to software_path(@software)
     else
       add_image_errors
@@ -114,7 +118,7 @@ class SoftwaresController < ApplicationController
   def update
     @software = Software.find(params[:id])
     if @software.update_attributes(params[:software]) and add_logo
-      flash[:notice] = t(:successfully_updated, :name => @software.name)
+      flash[:notice] = _('The software %s has been updated successfully.') % @software.name
       redirect_to software_path(@software)
     else
       add_image_errors
@@ -125,6 +129,7 @@ class SoftwaresController < ApplicationController
   def destroy
     @software = Software.find(params[:id])
     @software.destroy
+    flash[:notice] = _('The software %s has been successfully deleted.') % @software.name
     redirect_to softwares_path
   end
 

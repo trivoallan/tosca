@@ -1,15 +1,15 @@
 <%= error_messages_for 'commitment' %>
 
-<p><label for="commitment_issuetype"><%= t('Type of the issue') %></label><br />
+<p><label for="commitment_issuetype"><%= _('Type of the issue') %></label><br />
   <%= select(:commitment, :issuetype_id, @issuetypes) %>
 </p>
 
-<p><label for="commitment_severity"><%= t('Severity') %></label><br />
+<p><label for="commitment_severity"><%= _('Severity') %></label><br />
   <%= select(:commitment, :severity_id, @severities) %>
 </p>	
 
-<p><label for="commitment_workaround"><%= t("Workaround") %></label><br />
+<p><label for="commitment_workaround"><%= _("Workaround") %></label><br />
 <%= text_field 'commitment', 'workaround'  %></p>
 
-<p><label for="commitment_correction"><%= t('Correction') %> </label><br />
+<p><label for="commitment_correction"><%= _('Correction') %> </label><br />
 <%= text_field 'commitment', 'correction'  %></p>

@@ -26,8 +26,8 @@ class Contribution < ActiveRecord::Base
   belongs_to :engineer, :class_name => 'User',
     :conditions => 'users.client_id IS NULL'
 
-  belongs_to :affected_version, :class_name => 'Version'
-  belongs_to :fixed_version, :class_name => 'Version'
+  belongs_to :affected_version, :class_name => "Version"
+  belongs_to :fixed_version, :class_name => "Version"
 
   file_column :patch, :fix_file_extensions => nil
 
@@ -51,7 +51,7 @@ class Contribution < ActiveRecord::Base
 
   def summary
     out = ''
-    out << contributiontype.name + t(:on) if contributiontype
+    out << contributiontype.name + _(' on ') if contributiontype
     out << software.name
     out << " #{affected_version}" if affected_version
     out

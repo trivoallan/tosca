@@ -10,9 +10,9 @@
 <% manager = (@session_user.role_id <= 2) %>
 <% if manager %>
  <div class="menu_title" onclick="Element.toggle('menu_action')">
-  > <%= t('Action') %></div>
+  > <%= _('Action') %></div>
  <ul id="menu_action">
-  <li><%= link_to t('Add a user'), signup_new_account_path %></li>
+  <li><%= link_to _('Add a user'), signup_new_account_path %></li>
   <%# deactivated TODO : <li><%= link_to _('Add several users'), multiple_signup_new_account_path </li> %>
   <% User::actions.each do |a| %>
     <li><%= send(a) %></li>
@@ -21,26 +21,26 @@
 <% end %>
 
 <div class="menu_title" onclick="Element.toggle('menu_search')">
-  > <%= t('Search ')%></div>
+  > <%= _('Search ')%></div>
 <ul id="menu_search">
- <li><b><%= t('Name')%></b><br />
+ <li><b><%= _('Name')%></b><br />
      <%= text_field :filters, :name %></li>
  <% if manager %>
-  <li><b><%= t('Customer ')%></b><br />
+  <li><b><%= _('Customer ')%></b><br />
       <%=select_filter(@clients, 'client')%></li>
-  <li><b><%= t('Roles ')%> </b><br />
+  <li><b><%= _('Roles ')%> </b><br />
       <%=select_filter(@roles, 'role')%></li>
  <% end %>
 </ul>
 
 <% if manager %>
 <div class="menu_title" onclick="Element.toggle('menu_perimeter')">
-  > <%=t('Perimeter')%></div>
+  > <%=_('Perimeter')%></div>
 <ul id="menu_perimeter">
-  <li><b><%= t('Logins: ')%> </b><%=@count[:users]%></li>
-  <li><b><%= t('Recipients: ')%></b><%=@count[:recipients]%></li>
-  <li><b><%= t('Engineers: ')%></b><%=@count[:engineers]%></li>
-  <li><b><%= t('Inconsistencies: ')%></b><%=(@count[:users] -
+  <li><b><%= _('Logins: ')%> </b><%=@count[:users]%></li>
+  <li><b><%= _('Recipients: ')%></b><%=@count[:recipients]%></li>
+  <li><b><%= _('Engineers: ')%></b><%=@count[:engineers]%></li>
+  <li><b><%= _('Inconsistencies: ')%></b><%=(@count[:users] -
     (@count[:recipients] + @count[:engineers])).to_s %></li>
 </ul>
 <% end %>

@@ -20,20 +20,21 @@
 
 class StaticScript < Static::ActionView
 
-  @@date_opt = { :alt => I18n.t("Choose a date"), :size => '16x16',
-    :title => I18n.t("Select a date"),
+  @@date_opt = { :size => '16x16',
     :onmouseover => "this.className='calendar_over';", :class => 'calendar_out',
     :onmouseout => "this.className='calendar_out';", :style => 'cursor: pointer;'
   }
 
-  @@date_from = nil
   def self.date_from
-    @@date_from ||= image_tag('icons/cal.gif', @@date_opt.dup.update(:id => 'date_from'))
+    options = { :alt => _("Choose a date"),
+      :title => _("Select a date"), :id => 'date_from' }
+    image_tag('icons/cal.gif', @@date_opt.dup.update(options))
   end
 
-  @@date_to = nil
   def self.date_to
-    @@date_to ||= image_tag('icons/cal.gif', @@date_opt.dup.update(:id => 'date_to'))
+    options = { :alt => _("Choose a date"),
+      :title => _("Select a date"), :id => 'date_from' }
+    image_tag('icons/cal.gif', @@date_opt.dup.update(options))
   end
 
   # used to generate js for calendar. It uses an array of 2 arguments. See

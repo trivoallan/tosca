@@ -26,7 +26,7 @@ class Rules::Credit < ActiveRecord::Base
   end
 
   def elapsed_formatted(value, contract)
-    t(:time_credit, :value => value, :count => value)
+    n_('%d time-credit', '%d time-credits', value) % value
   end
 
   # It's called like this :
@@ -38,19 +38,21 @@ class Rules::Credit < ActiveRecord::Base
 
   def short_description
     if max == -1
-      t(:unlimited_number_of_time_credits, :time => Time.in_words(time.hours))
+      _('unlimited number of time-credits of %s') %
+        Time.in_words(time.hours)
     else
-      t(:time_credits_of, :max => max, :time => Time.in_words(time.hours))
+      _('%d time-credits of %s') %
+        [ max, Time.in_words(time.hours) ]
     end
   end
 
   def complete_description(value, contract)
     if max == -1
-      t(:time_credits_have_already_been_spent, :value => value,
-        :time => Time.in_words(time.hours))
+      _("%s time-credits of %s have already been spent") %
+        [ "<b>#{value}</b>", "<b>#{max}</b>", "<b>#{Time.in_words(time.hours)}</b>" ]
     else
-      t(:time_credits_of_s_have_already_been_spent, :value => value,
-        :max => max, :time => Time.in_words(time.hours))
+      _("%s / %s time-credits of %s have already been spent") %
+        [ "<b>#{value}</b>", "<b>#{max}</b>", "<b>#{Time.in_words(time.hours)}</b>" ]
     end
   end
 

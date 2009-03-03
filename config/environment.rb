@@ -51,7 +51,6 @@ rescue
 end
 
 Rails::Initializer.run do |config|
-  config.i18n.default_locale = 'fr'
   # Settings in config/environments/* take precedence those specified here
 
   # Skip frameworks you're not going to use
@@ -73,14 +72,15 @@ Rails::Initializer.run do |config|
   # Default relative root
   config.action_controller.relative_url_root = 'tosca' if RAILS_ENV == 'production'
 
-  ### External libs ###
-  # Used to i18n and l10n
-#  config.gem 'ya2yaml'
-#  config.gem 'locale'
-#  config.gem 'locale_rails'
 
+  ### External libs ###
   # Used to get up2date pagination on list
   config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
+
+  # l10n & i18n working
+  config.gem "grosser-fast_gettext", :lib => 'fast_gettext', :source=>"http://gems.github.com/"
+
+
 
   # Used to generate graphs of activity report & resize some pictures
   # We keep 1.15.10 version, coz debian makes an old & staging distribution
@@ -113,9 +113,13 @@ Rails::Initializer.run do |config|
   # See Rails::Configuration for more options
 end
 
-# MLO : Type of cache.
-## See http://api.rubyonrails.org/classes/ActionController/Caching.html
+FastGettext.add_text_domain 'tosca', :path => File.join(RAILS_ROOT, 'locale')
+
+
+
+# MLO : Type of cache. See http://api.rubyonrails.org/classes/ActionController/Caching.html
 ActionController::Base.cache_store = :file_store, cache_path
+
 
 # MLO : session duration is one month,
 CGI::Session.expire_after 1.month
@@ -131,6 +135,10 @@ require 'config'
 # files
 require 'string_extensions'
 
+# Internal libs, located in lib/
+require 'overrides'
+
+
 # Check and create used dirs, which are not on the SCM
 log_path = File.join RAILS_ROOT, 'log'
 paths = [ log_path, page_cache_path, cache_path ]
@@ -145,3 +153,21 @@ Mime::Type.register "application/vnd.oasis.opendocument.spreadsheet", :ods
 
 # Neeeded for making password, in other things
 srand
+
+# Boot Check
+path = File.join RAILS_ROOT, "locale", "fr", "LC_MESSAGES", "tosca.mo"
+unless File.exists? path
+  puts "***********************"
+  puts "Missing traducted files. I am generating it for you with "
+  puts "$ rake l10n:mo"
+  %x[#{"rake l10n:mo"}]
+  puts "***********************"
+end
+
+# Default conf for gettextlocalize, used for Dates & Currency
+if defined? GettextLocalize
+  GettextLocalize::app_name = Tosca::App::Name
+  GettextLocalize::app_version = Tosca::App::Version
+  GettextLocalize::default_locale = 'en_US'
+  GettextLocalize::default_methods = [:param, :header, :session]
+end

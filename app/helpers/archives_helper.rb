@@ -27,7 +27,7 @@ module ArchivesHelper
   def link_to_new_archive(release_id)
     return '-' if release_id.blank?
     options = new_archive_path(:release_id => release_id)
-    link_to image_create(I18n.t('archive')), options
+    link_to image_create(_('archive')), options
   end
   
 end

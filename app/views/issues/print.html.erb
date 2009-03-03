@@ -2,21 +2,21 @@
 <%= render :partial => 'issues/tabs/description' %>
 <br />
 
-<h1><%= t("Comments") %></h1>
+<h1><%= _("Comments") %></h1>
 <%= render :partial => 'issues/tabs/tab_comments' %>
 <br />
 
-<h1><%= t("History") %></h1>
+<h1><%= _("History") %></h1>
 <%= render :partial => 'issues/tabs/history' %>
 <br />
 
 <% Issue::tabs.each do |t| %>
-  <h1><%= t(t.capitalize) %></h1>
+  <h1><%= _(t.capitalize) %></h1>
   <%= render :partial => "issues/tabs/#{t}" %>
   <br />
 <% end %>
 
-<h1><%= t("SLA") %></h1>
+<h1><%= _("SLA") %></h1>
 <%= render :partial => 'issues/tabs/cns' %>
 <br />
 

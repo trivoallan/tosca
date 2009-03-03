@@ -4,36 +4,36 @@
 <% menu[:titles] << link_to_home(:image=> true) %>
 <% menu[:links] << [
     (link_to_edit @session_user),
-    (link_to t('Plan'), plan_welcome_path),
-    (link_to t('Disconnect'), logout_account_path),
+    (link_to _('Plan'), plan_welcome_path),
+    (link_to _('Disconnect'), logout_account_path),
     (link_to_about),
   ] %>
-<% menu[:titles] << link_to( t('Issue'), issues_path) %>
+<% menu[:titles] << link_to( _('Issue'), issues_path) %>
 <% menu[:links] << [
-    (link_to t('Issue list'), issues_path),
-    (link_to t('Submit an issue'), new_issue_path),
-    (link_to t('Calls'), phonecalls_path),
+    (link_to _('Issue list'), issues_path),
+    (link_to _('Submit an issue'), new_issue_path),
+    (link_to _('Calls'), phonecalls_path),
   ] %>
-<% menu[:titles] << link_to( t('Software'), softwares_path) %>
+<% menu[:titles] << link_to( _('Software'), softwares_path) %>
 <% menu[:links] << [
-    (link_to t('Software'), softwares_path),
-    (link_to t('Packages'), versions_path),
+    (link_to _('Software'), softwares_path),
+    (link_to _('Packages'), versions_path),
     (link_to_contributions),
   ] %>
-<% menu[:titles] << link_to( t('Users'), accounts_path) %>
+<% menu[:titles] << link_to( _('Users'), accounts_path) %>
 <% menu[:links] << [
      (link_to_edit @session_user),
-     (link_to t('User list'), accounts_path),
-     (link_to t('Add a user'), signup_new_account_path),
-     (link_to t('Role management'), roles_path)
+     (link_to _('User list'), accounts_path),
+     (link_to _('Add a user'), signup_new_account_path),
+     (link_to _('Role management'), roles_path)
   ] %>
-<% menu[:titles] << link_to( t('Customers'), clients_path) %>
+<% menu[:titles] << link_to( _('Customers'), clients_path) %>
 <% menu[:links] << [
     (link_to_my_client),
-    (link_to t('Customers'), clients_path),
-    (link_to t('Activity report'), general_reporting_path),
+    (link_to _('Customers'), clients_path),
+    (link_to _('Activity report'), general_reporting_path),
   ] %>
-<% menu[:titles] << t('Search') %>
+<% menu[:titles] << _('Search') %>
 <% menu[:links] << [] %>
 
 <%= build_menu(menu) if @session_user %>

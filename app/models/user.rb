@@ -31,8 +31,8 @@ class User < ActiveRecord::Base
 
   has_many :attachments, :through => :comments
   has_many :comments, :dependent => :destroy
-  has_many :assigned_issues, :dependent => :destroy, :foreign_key => :recipient_id,
-    :dependent => :destroy, :class_name => 'Issue'
+  has_many :issues, :dependent => :destroy, :foreign_key => :recipient_id,
+    :dependent => :destroy
   has_many :managed_contracts, :class_name => 'Contract', :foreign_key => :tam_id
 
   has_many :knowledges, :order => 'knowledges.level DESC', :foreign_key => :engineer_id,
@@ -47,6 +47,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :login
 
   attr_accessor :pwd_confirmation
+
 
   #Preferences
   preference :digest_daily, :default => false
@@ -122,20 +123,21 @@ class User < ActiveRecord::Base
 
   # Eck ... We must add message manually in order to
   # not have the "pwd" prefix ... TODO : find a pretty way ?
+  # TODO : check if gettext is an answer ?
   def validate
-    errors.add(:pwd, t(:password_missing)) if password.blank?
+    errors.add(:pwd, _("Password missing")) if password.blank?
     if pwd != pwd_confirmation
-      errors.add(:pwd_confirmation, t(:password_is_different_from_its_confirmation))
+      errors.add(:pwd_confirmation, _('Password is different from its confirmation'))
     end
     unless pwd.blank?
       if pwd.length > 40
-        errors.add(:pwd, t(:your_password_is_too_long))
+        errors.add(:pwd, _('Your password is too long (max. 20)'))
       elsif pwd.length < 5
-        errors.add(:pwd, t(:your_password_is_too_short))
+        errors.add(:pwd, _('Your password is too short (min. 5)'))
       end
     end
     if pwd.blank? and self.password.blank?
-      errors.add(:pwd, t(:you_must_specify_a_password))
+      errors.add(:pwd, _('You must have specify a password.'))
     end
   end
 
@@ -176,8 +178,8 @@ class User < ActiveRecord::Base
   end
 
   def self.tams
-    self.find_select( { :joins => :own_contracts, :group => 'users.id, users.name',
-        :conditions => 'contracts.tam_id = users.id' } )
+    self.find_select( { :joins => :own_contracts, :group => "users.id, users.name",
+        :conditions => "contracts.tam_id = users.id" } )
   end
 
   def self.admins
@@ -315,10 +317,6 @@ class User < ActiveRecord::Base
     "#{self.name} <#{self.email}>"
   end
 
-  def issues
-    self.contracts.collect(&:issues).uniq
-  end
-
   private
   def self.sha1(pass)
     Digest::SHA1.hexdigest("linagora--#{pass}--")
@@ -332,4 +330,10 @@ class User < ActiveRecord::Base
   def models_subscribed(model)
     self.subscriptions.select { |s| s.model.is_a? model }.collect { |s| s.model }
   end
+
+  def fake4translation
+    N_('User|Pwd')
+    N_('User|Pwd confirmation')
+  end
+
 end

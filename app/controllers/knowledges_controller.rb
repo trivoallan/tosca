@@ -70,7 +70,7 @@ class KnowledgesController < ApplicationController
     @knowledge.engineer_id = @session_user.id
 
     if @knowledge.save
-      flash[:notice] = t('Your knowledge was successfully created.')
+      flash[:notice] = _('Your knowledge was successfully created.')
       redirect_to(account_path(@knowledge.engineer))
     else
       _form and render :action => "new"
@@ -80,7 +80,7 @@ class KnowledgesController < ApplicationController
   def update
     @knowledge = Knowledge.find(params[:id])
     if @knowledge.update_attributes(params[:knowledge])
-      flash[:notice] = t('Your knowledge was successfully updated.')
+      flash[:notice] = _('Your knowledge was successfully updated.')
       redirect_to(account_path(@knowledge.engineer))
     else
       _form and render :action => "edit"

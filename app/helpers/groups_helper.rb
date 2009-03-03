@@ -20,13 +20,13 @@ module GroupsHelper
 
   @@groups = nil
   def public_link_to_groups
-    @@groups ||= public_link_to(I18n.t('classification'), groups_url)
+    @@groups ||= public_link_to(_('classification'), groups_url)
   end
 
   # call it like :
   # <%= link_to_new_group %>
   def link_to_new_group
-    link_to image_create(I18n.t('a group')), new_group_path
+    link_to image_create(_('a group')), new_group_path
   end
 
   # Lien vers la consultation d'UN groupe

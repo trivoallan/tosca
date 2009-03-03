@@ -59,7 +59,7 @@ module Filters
 
   class Contracts < Struct.new('Contracts', :text, :tam_id)
     extend Shared
-  end unless defined? Struct::Contracts
+  end
 
   class Contributions < Struct.new('Contributions', :software, :engineer_id,
                              :contribution, :contributionstate_id, :contract_id)
@@ -70,7 +70,7 @@ module Filters
                               :issuetype_id, :severity_id, :statut_id,
                               :active, :limit)
     extend Shared
-  end unless defined? Struct::Issues
+  end
 
   class Knowledges < Struct.new('Knowledges', :engineer_id,
                                 :software_id, :skill_id)
@@ -80,11 +80,11 @@ module Filters
   class Softwares < Struct.new('Softwares', :software, :group_id,
                                :contract_id, :description )
     extend Shared
-  end unless defined? Struct::Softwares
+  end
 
   class WeeklyReport < Struct.new('WeeklyReport', :contract_id)
     extend Shared
-  end unless defined? Struct::WeeklyReport
+  end
 
   # build the conditions query, from a well specified array of filters
   # Specification of a filter f :
