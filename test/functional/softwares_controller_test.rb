@@ -82,23 +82,20 @@ class SoftwaresControllerTest < ActionController::TestCase
   end
 
   def test_create
-    num_softwares = Software.count
-
-    post :create, :software => {
-      :name=> 'ANT',
-      :group_id=> 4,
-      :referent=> 'ant',
-      :description=> 'un bon software.',
-      :resume=> 'Outil de compilation pour java',
-      :license_id=> 2,
-      :skill_ids => [1]
-    }
+    get :new
+    assert_difference('Software.count') do
+      form = select_form 'form_software'
+      form.software.name = 'Ant'
+      form.software.group_id = 4
+      form.software.summary = 'compilation java tool'
+      form.software.skill_ids = '1'
+      form.submit
+    end
 
     assert flash.has_key?(:notice)
     assert_response :redirect
-    assert_redirected_to :action => 'show'
-
-    assert_equal num_softwares + 1, Software.count
+    assert_redirected_to(:action => 'show',
+        :id => "5-Ant", :controller => "softwares")
   end
 
   def test_edit
@@ -112,20 +109,20 @@ class SoftwaresControllerTest < ActionController::TestCase
   end
 
   def test_update
-    options = {
-        :name => 'ANT',
-        :group_id=> 4,
-        :referent=> 'ant',
-        :description=> 'un bon software.',
-        :resume=> 'Outil de compilation pour java',
-        :license_id=> 2,
-        :skill_ids => [1]
-    }
-    post :update, { :id => 1, :software => options }
+    get :edit, :id => 1
+    p assigns(:software)
+    p assigns(:software).skills
 
+    form = select_form 'form_software'
+    form.software.name = 'OOo'
+    form.submit
+
+    assert_response :success
+    p assigns(:software)
+    p assigns(:software).skills
+    p assigns(:software).errors
     assert flash.has_key?(:notice)
-    assert_response :redirect
-    assert_redirected_to({:action =>"show", :id => "1-ANT",
+    assert_redirected_to({:action =>"show", :id => "1-OOo",
                            :controller => "softwares"})
   end
 

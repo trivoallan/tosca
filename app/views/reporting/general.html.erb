@@ -3,17 +3,17 @@
 <% gap = '<p>&nbsp;</p>'*2 %>
 
 <div class='report' >
-<%= render_partial 'header' %>
+<%= render :partial => 'header' %>
 
 <h2 class="chapter"><%= _('Summary') %></h2>
-<%= render_partial 'summary' %>
+<%= render :partial => 'summary' %>
 
 <%# =indent @data.inspect.gsub(/, :/,"\n") %><br />
 <%# =indent @colors.inspect.gsub(/, :/,"\n") %><br />
 <%# =indent @data[:severity_total].sort{|x,y| x[0].to_s <=> y[0].to_s}.inspect.gsub(/, :/,"\n") %><br />
 
 <h2 class="chapter"><a name="introduction"><%=_('Introduction')%></a></h2>
-<%= render_partial 'introduction' %><%= gap %>
+<%= render :partial => 'introduction' %><%= gap %>
 <p class="break_here"/>
 
 <%# do NOT forget to update _summary if you change a title ! %>

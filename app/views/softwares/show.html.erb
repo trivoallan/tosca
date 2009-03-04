@@ -16,7 +16,7 @@
           </td>
         </tr>
         <tr><th><%= _('Summary') %></th>
-        <td><%= @software.resume %></td></tr>
+        <td><%= @software.summary %></td></tr>
         <tr>
           <td colspan="2">
             <fieldset>
@@ -27,12 +27,6 @@
             </fieldset>
           </td>
         </tr>
-        <% if expert %>
-          <tr>
-            <th><%= _('Reference') %></th>
-            <td><%=h @software.referent %></td>
-          </tr>
-        <% end %>
 
         <tr>
           <th><%= _('Copyright') %></th>

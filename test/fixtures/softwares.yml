@@ -1,36 +1,37 @@
-software_00001:
+--- 
+software_00001: 
   name: OpenOffice.org
-  group_id: 2
+  private: false
   id: 1
+  group_id: 2
   summary: OpenOffice.org comprehensive office suite.
-  description: "OpenOffice.org is an Open Source, community-developed, multi-platform office productivity suite.  It includes the key desktop applications, such as a word processor, spreadsheet, presentation manager, formula editor and drawing program, with a user interface and feature set similar to other office suites.  Sophisticated and flexible, OpenOffice.org also works transparently with a variety of file formats, including Microsoft Office.  Usage: Simply type &quot;ooffice&quot; to run OpenOffice.org or select the issueed component (Writer, Calc, Draw, Impress, etc.) from your desktop menu. The ooffice wrapper script will install a few files in the user&#39;s home, if necessary.  The OpenOffice.org team hopes you enjoy working with OpenOffice.org!  Note: Non-.vor templates covered under the GPL license."
+  picture_id: 2
+  description: "<p>OpenOffice.org is an Open Source, community-developed, multi-platform office productivity suite.  It includes the key desktop applications, such as a word processor, spreadsheet, presentation manager, formula editor and drawing program, with a user interface and feature set similar to other office suites.  Sophisticated and flexible, OpenOffice.org also works transparently with a variety of file formats, including Microsoft Office.  Usage: Simply type \"ooffice\" to run OpenOffice.org or select the issueed component (Writer, Calc, Draw, Impress, etc.) from your desktop menu. The ooffice wrapper script will install a few files in the user's home, if necessary.  The OpenOffice.org team hopes you enjoy working with OpenOffice.org!  Note: Non-.vor templates covered under the GPL license.</p>"
   license_id: 3
-  private: false
-  picture_id: 2
-software_00002:
+software_00002: 
   name: Firefox
-  group_id: "16"
+  private: false
   id: 2
-  description: Mozilla Firefox is an open-source web browser, designed for standards <br />compliance, performance and portability.
+  group_id: 16
   summary: Mozilla Firefox web browser
-  license_id: "48"
-  private: false
-  picture_id:
-software_00003:
+  picture_id: 
+  description: <p>Mozilla Firefox is an open-source web browser, designed for standards <br />compliance, performance and portability.</p>
+  license_id: 1
+software_00003: 
   name: CVS
-  group_id: "10"
-  id: 3
-  description: CVS (Concurrent Version System) is a version control system that can<br/>record the history of your files (usually, but not always, source<br/>code). CVS only stores the differences between versions, instead of<br/>every version of every file you have ever created. CVS also keeps a log<br/>of who, when, and why changes occurred.<br/><br/>CVS is very helpful for managing releases and controlling the<br/>concurrent editing of source files among multiple authors. Instead of<br/>providing version control for a collection of files in a single<br/>directory, CVS provides version control for a hierarchical collection<br/>of directories consisting of revision controlled files. These<br/>directories and files can then be combined together to form a software<br/>release.
-  summary: A version control system.
-  license_id: "3"
   private: false
+  id: 3
+  group_id: 10
+  summary: A version control system.
   picture_id: 5
-software_00004:
+  description: <p>CVS (Concurrent Version System) is a version control system that can<br />record the history of your files (usually, but not always, source<br />code). CVS only stores the differences between versions, instead of<br />every version of every file you have ever created. CVS also keeps a log<br />of who, when, and why changes occurred.<br /><br />CVS is very helpful for managing releases and controlling the<br />concurrent editing of source files among multiple authors. Instead of<br />providing version control for a collection of files in a single<br />directory, CVS provides version control for a hierarchical collection<br />of directories consisting of revision controlled files. These<br />directories and files can then be combined together to form a software<br />release.</p>
+  license_id: 3
+software_00004: 
   name: ZimbraLDAP
-  group_id: "10"
-  id: 4
-  description: A custom version of an LDAP server
-  summary: It's not a real one
-  license_id: "3"
   private: true
+  id: 4
+  group_id: 10
+  summary: It's not a real one
   picture_id: 2
+  description: <p>A custom version of an LDAP server</p>
+  license_id: 3

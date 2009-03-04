@@ -1,2 +1,22 @@
---- {}
-
+--- 
+join_00002: 
+  software_id: "2"
+  skill_id: "4"
+join_00003: 
+  software_id: "2"
+  skill_id: "14"
+join_00004: 
+  software_id: "3"
+  skill_id: "2"
+join_00005: 
+  software_id: "3"
+  skill_id: "4"
+join_00006: 
+  software_id: "4"
+  skill_id: "14"
+join_00000: 
+  software_id: "1"
+  skill_id: "4"
+join_00001: 
+  software_id: "1"
+  skill_id: "8"

@@ -8,8 +8,8 @@
      <th><label for="software_name"><%=_('Name')%></label></th>
      <td><%= text_field :software, :name %></td>
 	</tr><tr>
-     <th><label for="software_resume"><%=_('Summary')%></label></th>
-     <td><%= text_field :software, :resume %></td>
+     <th><label for="software_summary"><%=_('Summary')%></label></th>
+     <td><%= text_field :software, :summary %></td>
     </tr>
    </table>
 
@@ -19,19 +19,17 @@
    <p><label for="image_image"><%=_('Logo')%></label><br />
    <%= file_column_field 'image', 'image' %></p>
 
-   <p><label for="software_referent"><%=_('Base name')%></label><br />
-   <%= text_field :software, :referent %></p>
   </div>
  </div><div class="c50r">
   <div class="show">
    <table>
     <tr>
-     <th><label for="software_licence_id"><%=_('Copyright')%></label>
-      <%= link_to_new_license %></th>
+     <th><p><label for="software_licence_id"><%=_('Copyright')%></label>
+      <%= link_to_new_license %></p></th>
      <td><%= select(:software, :license_id, @licenses) %></td>
     </tr><tr>
-     <th><label for="software_group_id"><%=_('Group')%></label>
-      <%= link_to_new_group %></th>
+     <th><p><label for="software_group_id"><%=_('Group')%></label>
+      <%= link_to_new_group %></p></th>
      <td><%= select(:software, :group_id, @groups) %></td>
     </tr><tr>
      <th><label for="software_private"><%=_('Private')%></label></th>
