@@ -110,20 +110,16 @@ class SoftwaresControllerTest < ActionController::TestCase
 
   def test_update
     get :edit, :id => 1
-    p assigns(:software)
-    p assigns(:software).skills
 
     form = select_form 'form_software'
     form.software.name = 'OOo'
     form.submit
 
-    assert_response :success
-    p assigns(:software)
-    p assigns(:software).skills
-    p assigns(:software).errors
+    assert_response :redirect
     assert flash.has_key?(:notice)
     assert_redirected_to({:action =>"show", :id => "1-OOo",
                            :controller => "softwares"})
+    assert_equal 'OOo', assigns(:software).name
   end
 
   def test_destroy

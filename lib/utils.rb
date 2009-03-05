@@ -96,7 +96,7 @@ def html2text(html)
 end
 
 def _ordinalize(number)
-  if Locale.get.language =~ /fr/
+  if I18n.locale.to_s =~ /fr/
     case number
     when 1; "#{number}er"
     when 2; "#{number}nd"

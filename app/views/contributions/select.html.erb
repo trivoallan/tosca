@@ -2,7 +2,7 @@
 
 <% cache("contributions/select_#{params[:client_id] || 'all'}") do %>
   <%= show_list(@softwares, _('contribution'), :no_title => true) { |l|
-      "<b>#{public_link_to_contribution_software l, params }</b> : #{l.resume}"
+      "<b>#{public_link_to_contribution_software l, params }</b> : #{l.summary}"
   } %>
 <% end %>
 
